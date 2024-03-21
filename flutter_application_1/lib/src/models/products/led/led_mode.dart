@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:ui';
 
 import 'package:flutter_application_1/src/models/products/led/palette.dart';
@@ -10,20 +12,20 @@ class LedMode {
 
 class ImageMode extends LedMode {
   // image = Image field
-  // imageLowPixel = Image filed
+  // image_low_pixel = Image filed
   Uri image;
-  Uri imageLowPixel;
+  Uri image_low_pixel;
 
-  ImageMode({required super.name, required this.image, required this.imageLowPixel});
+  ImageMode({required super.name, required this.image, required this.image_low_pixel});
 }
 
 class VideoMode extends LedMode {
   // video = Video field
-  // videoLowPixel = Video filed
+  // video_low_pixel = Video filed
   Uri video;
-  Uri videoLowPixel;
+  Uri video_low_pixel;
 
-  VideoMode({required super.name, required this.video, required this.videoLowPixel});
+  VideoMode({required super.name, required this.video, required this.video_low_pixel});
 }
 
 class ColorMode extends LedMode {

@@ -1,9 +1,11 @@
+import '../products/base_product.dart';
+
 class Project {
   String id;
   String owner;
   DateTime pubDate;
   String name;
-  List<String> products;
+  List<BaseProduct> products;
 
   Project(
       {required this.id,

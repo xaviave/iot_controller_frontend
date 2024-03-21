@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter_application_1/src/models/products/base_product.dart';
 import 'package:flutter_application_1/src/models/status.dart';
 
