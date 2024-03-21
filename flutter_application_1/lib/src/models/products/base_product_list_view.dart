@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/models/products/base_product.dart';
-import 'package:flutter_application_1/src/models/products/base_product_details_view.dart';
+import 'package:flutter_application_1/src/models/products/coffee_machine.dart';
+import 'package:flutter_application_1/src/models/products/coffee_machine_details_view.dart';
+import 'package:flutter_application_1/src/models/products/led/led_panel.dart';
+import 'package:flutter_application_1/src/models/products/led/led_panel_details_view.dart';
 import 'package:flutter_application_1/src/settings/settings_view.dart';
 
 class BaseProductListView extends StatelessWidget {
@@ -25,15 +28,27 @@ class BaseProductListView extends StatelessWidget {
               foregroundImage: AssetImage('assets/images/flutter_logo.png'),
             ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const BaseProductDetailsView(),
-                  settings: RouteSettings(
-                    arguments: item,
+              if (item is LedPanel) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LedPanelDetailsView(),
+                    settings: RouteSettings(
+                      arguments: item,
+                    ),
                   ),
-                ),
-              );
+                );
+              } else if (item is CoffeeMachine) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CoffeeMachineDetailsView(),
+                    settings: RouteSettings(
+                      arguments: item,
+                    ),
+                  ),
+                );
+              }
             },
           );
         },

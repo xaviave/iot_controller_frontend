@@ -38,7 +38,7 @@ class CoffeeMachineDetailsView extends StatelessWidget {
                 width: double.infinity,
                 margin: const EdgeInsets.all(10),
                 child: Text(
-                  product.heat as String,
+                  product.heat.toStringAsFixed(3),
                   style: const TextStyle(fontSize: 28),
                   textAlign: TextAlign.center,
                 )),
@@ -46,7 +46,7 @@ class CoffeeMachineDetailsView extends StatelessWidget {
                 width: double.infinity,
                 margin: const EdgeInsets.all(10),
                 child: Text(
-                  product.water_level as String,
+                  product.water_level.name,
                   style: const TextStyle(fontSize: 28),
                   textAlign: TextAlign.center,
                 )),
@@ -54,7 +54,7 @@ class CoffeeMachineDetailsView extends StatelessWidget {
                 width: double.infinity,
                 margin: const EdgeInsets.all(10),
                 child: Text(
-                  product.used_water_level as String,
+                  product.used_water_level.name,
                   style: const TextStyle(fontSize: 28),
                   textAlign: TextAlign.center,
                 )),
@@ -62,7 +62,7 @@ class CoffeeMachineDetailsView extends StatelessWidget {
                 width: double.infinity,
                 margin: const EdgeInsets.all(10),
                 child: Text(
-                  product.coffee_level as String,
+                  product.coffee_level.name,
                   style: const TextStyle(fontSize: 28),
                   textAlign: TextAlign.center,
                 )),
@@ -70,7 +70,7 @@ class CoffeeMachineDetailsView extends StatelessWidget {
                 width: double.infinity,
                 margin: const EdgeInsets.all(10),
                 child: Text(
-                  product.filter_position as String,
+                  product.filter_position ? "Good" : "Bad",
                   style: const TextStyle(fontSize: 28),
                   textAlign: TextAlign.center,
                 )),
@@ -78,7 +78,7 @@ class CoffeeMachineDetailsView extends StatelessWidget {
                 width: double.infinity,
                 margin: const EdgeInsets.all(10),
                 child: Text(
-                  product.mode_value as String,
+                  product.mode_value.toString(),
                   style: const TextStyle(fontSize: 28),
                   textAlign: TextAlign.center,
                 )),
