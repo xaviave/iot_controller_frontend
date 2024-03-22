@@ -22,8 +22,7 @@ class BaseProductDetailsView extends StatelessWidget {
                   product.name,
                   style: const TextStyle(fontSize: 28),
                   textAlign: TextAlign.center,
-                )
-            ),
+                )),
           ],
         ),
       ),

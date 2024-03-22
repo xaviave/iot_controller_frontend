@@ -16,7 +16,10 @@ class ImageMode extends LedMode {
   Uri image;
   Uri image_low_pixel;
 
-  ImageMode({required super.name, required this.image, required this.image_low_pixel});
+  ImageMode(
+      {required super.name,
+      required this.image,
+      required this.image_low_pixel});
 }
 
 class VideoMode extends LedMode {
@@ -25,7 +28,10 @@ class VideoMode extends LedMode {
   Uri video;
   Uri video_low_pixel;
 
-  VideoMode({required super.name, required this.video, required this.video_low_pixel});
+  VideoMode(
+      {required super.name,
+      required this.video,
+      required this.video_low_pixel});
 }
 
 class ColorMode extends LedMode {
@@ -40,5 +46,9 @@ class PatternMode extends LedMode {
   double blink;
   Palette palette;
 
-  PatternMode({required super.name, required this.fps, required this.blink, required this.palette});
+  PatternMode(
+      {required super.name,
+      required this.fps,
+      required this.blink,
+      required this.palette});
 }

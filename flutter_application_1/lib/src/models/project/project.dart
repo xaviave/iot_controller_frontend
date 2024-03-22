@@ -9,10 +9,10 @@ class Project {
 
   Project(
       {required this.id,
-        required this.owner,
-        required this.pubDate,
-        required this.name,
-        required this.products});
+      required this.owner,
+      required this.pubDate,
+      required this.name,
+      required this.products});
 
   // factory Project.fromJson(Map<String, dynamic> json) {
   //   // Adapt it for GRPC

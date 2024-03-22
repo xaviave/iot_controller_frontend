@@ -69,7 +69,6 @@ class ProjectListView extends StatelessWidget {
           ),
         ],
       ),
-
       body: ListView.builder(
         restorationId: 'ProjectListView',
         itemCount: projects.length,

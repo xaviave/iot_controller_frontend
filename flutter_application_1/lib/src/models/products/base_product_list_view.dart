@@ -4,7 +4,6 @@ import 'package:flutter_application_1/src/models/products/coffee_machine.dart';
 import 'package:flutter_application_1/src/models/products/coffee_machine_details_view.dart';
 import 'package:flutter_application_1/src/models/products/led/led_panel.dart';
 import 'package:flutter_application_1/src/models/products/led/led_panel_details_view.dart';
-import 'package:flutter_application_1/src/settings/settings_view.dart';
 
 class BaseProductListView extends StatelessWidget {
   BaseProductListView({super.key, required this.products});
