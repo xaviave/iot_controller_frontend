@@ -2,6 +2,7 @@ import "package:flutter_application_1/src/models/products/led/led_panel.dart";
 import "package:flutter_application_1/src/models/status.dart";
 import "package:flutter_application_1/src/settings/settings_view.dart";
 import "package:flutter/material.dart";
+import "package:grpc/grpc.dart";
 
 class LedPanelDetailsView extends StatefulWidget {
   const LedPanelDetailsView({super.key});
@@ -11,6 +12,28 @@ class LedPanelDetailsView extends StatefulWidget {
 }
 
 class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
+  var hello = "default";
+
+  Future<void> sayHello() async {
+    try {
+      HelloRequest helloRequest = HelloRequest();
+      helloRequest.name = "Itachi";
+
+      var helloResponse = await HelloService.instance.helloClient.sayHello(helloRequest);
+      ///do something with your response here
+      setState(() {
+        hello = helloResponse.message;
+      });
+    } on GrpcError catch (e) {
+      ///handle all grpc errors here
+      ///errors such us UNIMPLEMENTED,UNIMPLEMENTED etc...
+      print(e);
+    } catch (e) {
+      ///handle all generic errors here
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final product = ModalRoute.of(context)!.settings.arguments as LedPanel;
@@ -32,6 +55,12 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
       body: Center(
         child: Column(
           children: [
+            ElevatedButton(
+              onPressed: () {
+                sayHello();
+              },
+              child: const Text("Off"),
+            ),
             Container(
                 width: double.infinity,
                 margin: const EdgeInsets.all(10),
