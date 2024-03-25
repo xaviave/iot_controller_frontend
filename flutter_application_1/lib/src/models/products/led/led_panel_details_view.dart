@@ -12,27 +12,26 @@ class LedPanelDetailsView extends StatefulWidget {
 }
 
 class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
-  var hello = "default";
-
-  Future<void> sayHello() async {
-    try {
-      HelloRequest helloRequest = HelloRequest();
-      helloRequest.name = "Itachi";
-
-      var helloResponse = await HelloService.instance.helloClient.sayHello(helloRequest);
-      ///do something with your response here
-      setState(() {
-        hello = helloResponse.message;
-      });
-    } on GrpcError catch (e) {
-      ///handle all grpc errors here
-      ///errors such us UNIMPLEMENTED,UNIMPLEMENTED etc...
-      print(e);
-    } catch (e) {
-      ///handle all generic errors here
-      print(e);
-    }
-  }
+  //
+  // Future<void> sayHello() async {
+  //   try {
+  //     HelloRequest helloRequest = HelloRequest();
+  //     helloRequest.name = "Itachi";
+  //
+  //     var helloResponse = await HelloService.instance.helloClient.sayHello(helloRequest);
+  //     ///do something with your response here
+  //     setState(() {
+  //       hello = helloResponse.message;
+  //     });
+  //   } on GrpcError catch (e) {
+  //     ///handle all grpc errors here
+  //     ///errors such us UNIMPLEMENTED,UNIMPLEMENTED etc...
+  //     print(e);
+  //   } catch (e) {
+  //     ///handle all generic errors here
+  //     print(e);
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +56,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
           children: [
             ElevatedButton(
               onPressed: () {
-                sayHello();
+                // sayHello();
               },
               child: const Text("Off"),
             ),

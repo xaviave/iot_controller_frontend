@@ -38,7 +38,7 @@ class ProjectDetailsView extends StatelessWidget {
                 width: double.infinity,
                 margin: const EdgeInsets.all(10),
                 child: Text(
-                  project.owner,
+                  project.owner.toString(),
                   style: const TextStyle(fontSize: 28),
                   textAlign: TextAlign.center,
                 )),

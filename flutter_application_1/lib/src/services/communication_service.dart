@@ -1,52 +1,134 @@
+// ignore_for_file: non_constant_identifier_names
+
+import 'package:flutter_application_1/protos/backend.pb.dart';
+import 'package:flutter_application_1/protos/backend.pbgrpc.dart';
+import 'package:flutter_application_1/src/models/products/led/led_mode.dart';
+import 'package:flutter_application_1/src/models/products/led/led_panel.dart';
+import 'package:flutter_application_1/src/models/project/project.dart';
 import 'package:grpc/grpc.dart';
-import 'package:grpc_flutter/services/proto/hello.pbgrpc.dart';
 
-class HelloService {
+class LedModeCommunication {
+  late ClientChannel channel;
+  late LedModeControllerClient stub;
 
-  ///here enter your host without the http part (e.g enter google.com now http://google.com)
-  String baseUrl = "example.com";
-
-  HelloService._internal();
-  static final HelloService _instance = HelloService._internal();
-
-  factory HelloService() => _instance;
-
-  ///static HelloService instance that we will call when we want to make requests
-  static HelloService get instance => _instance;
-  ///HelloClient is the  class that was generated for us when we ran the generation command
-  ///it represent our Hello service in our proto file.
-  ///We will be calling any method from that service using this instance.
-  ///We will pass a channel to it to initialize it
-  late HelloClient _helloClient;
-
-  ///this will be used to create a channel once we create an instance of class.
-  ///Call HelloService().init() before making any call.
-  Future<void> init() async {
-    _createChannel();
+  Future<void> init(L) async {
+    channel = ClientChannel('127.0.0.1',
+        port: 50051,
+        options:
+            const ChannelOptions(credentials: ChannelCredentials.insecure()));
+    stub = LedModeControllerClient(channel,
+        options: CallOptions(timeout: Duration(seconds: 30)));
   }
 
-  ///provide public access to the HelloClient instance
-  HelloClient get helloClient {
-    return _helloClient;
+  Future<void> clean() async {
+    await channel.shutdown();
   }
 
-  ///here we create a channel and use it to initialize the HelloClient that was generated
-  ///
-  _createChannel() {
-    final channel = ClientChannel(
-      baseUrl,
+  Future<LedModeResponse> Create(LedMode l) async {
+    final response = await stub.create(l.get_request());
+    return response;
+  }
 
-      ///port: 9043,
-      port: 443,
+  Future<void> Destroy(String uuid) async {
+    await stub.destroy(LedModeDestroyRequest(uuid: uuid));
+  }
 
-      ///use credentials: ChannelCredentials.insecure() if you want to connect without Tls
-      ///Sample without TLS
-      //options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
+  Future<LedModeListResponse> List() async {
+    final response = await stub.list(LedModeListRequest());
+    return response;
+  }
 
-      ///use this if you are connecting with Tls
-      ///Sample with TLS
-      options: const ChannelOptions(),
-    );
-    _helloClient = HelloClient(channel);
+  Future<LedModeResponse> Retrieve(String uuid) async {
+    final response = await stub.retrieve(LedModeRetrieveRequest(uuid: uuid));
+    return response;
+  }
+
+  Future<LedModeResponse> Update(LedMode l) async {
+    final response = await stub.update(l.get_request());
+    return response;
+  }
+}
+
+class LedPanelCommunication {
+  late ClientChannel channel;
+  late LedPanelControllerClient stub;
+
+  Future<void> init(L) async {
+    channel = ClientChannel('127.0.0.1',
+        port: 50051,
+        options:
+            const ChannelOptions(credentials: ChannelCredentials.insecure()));
+    stub = LedPanelControllerClient(channel,
+        options: CallOptions(timeout: Duration(seconds: 30)));
+  }
+
+  Future<void> clean() async {
+    await channel.shutdown();
+  }
+
+  Future<LedPanelResponse> Create(LedPanel l) async {
+    final response = await stub.create(l.get_request());
+    return response;
+  }
+
+  Future<void> Destroy(String uuid) async {
+    await stub.destroy(LedPanelDestroyRequest(uuid: uuid));
+  }
+
+  Future<LedPanelListResponse> List() async {
+    final response = await stub.list(LedPanelListRequest());
+    return response;
+  }
+
+  Future<LedPanelResponse> Retrieve(String uuid) async {
+    final response = await stub.retrieve(LedPanelRetrieveRequest(uuid: uuid));
+    return response;
+  }
+
+  Future<LedPanelResponse> Update(LedPanel l) async {
+    final response = await stub.update(l.get_request());
+    return response;
+  }
+}
+
+class ProjectCommunication {
+  late ClientChannel channel;
+  late ProjectControllerClient stub;
+
+  Future<void> init(L) async {
+    channel = ClientChannel('127.0.0.1',
+        port: 50051,
+        options:
+            const ChannelOptions(credentials: ChannelCredentials.insecure()));
+    stub = ProjectControllerClient(channel,
+        options: CallOptions(timeout: Duration(seconds: 30)));
+  }
+
+  Future<void> clean() async {
+    await channel.shutdown();
+  }
+
+  Future<ProjectResponse> Create(Project p) async {
+    final response = await stub.create(p.get_request());
+    return response;
+  }
+
+  Future<void> Destroy(String uuid) async {
+    await stub.destroy(ProjectDestroyRequest(uuid: uuid));
+  }
+
+  Future<ProjectListResponse> List() async {
+    final response = await stub.list(ProjectListRequest());
+    return response;
+  }
+
+  Future<ProjectResponse> Retrieve(String uuid) async {
+    final response = await stub.retrieve(ProjectRetrieveRequest(uuid: uuid));
+    return response;
+  }
+
+  Future<ProjectResponse> Update(Project p) async {
+    final response = await stub.update(p.get_request());
+    return response;
   }
 }

@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:flutter_application_1/protos/backend.pb.dart';
 import 'package:flutter_application_1/src/models/products/base_product.dart';
 import 'package:flutter_application_1/src/models/status.dart';
 
@@ -23,6 +24,7 @@ class CoffeeMachine extends BaseProduct {
   int mode_value;
 
   CoffeeMachine({
+    required super.uuid,
     required super.name,
     required super.categories,
     required this.status,
@@ -33,4 +35,20 @@ class CoffeeMachine extends BaseProduct {
     required this.filter_position,
     required this.mode_value,
   });
+
+  @override
+  dynamic get_request() {
+    return CoffeeMachineRequest(
+      uuid: uuid,
+      name: name,
+      categories: categories.map((x) => x.uuid).toList(),
+      status: status.id,
+      heat: heat,
+      waterLevel: water_level.id,
+      usedWaterLevel: used_water_level.id,
+      coffeeLevel: coffee_level.id,
+      filterPosition: filter_position,
+      modeValue: mode_value,
+    );
+  }
 }

@@ -18,8 +18,8 @@ class ProjectListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var category = Category(name: "test test");
-    var coffee = CoffeeMachine(
+    var category = Category(uuid:"1", name: "test test");
+    var coffee = CoffeeMachine(uuid: "12",
         name: "coffee machine proto",
         categories: [category],
         status: Status.on,
@@ -31,28 +31,29 @@ class ProjectListView extends StatelessWidget {
         mode_value: 1);
 
     var led = LedPanel(
+        uuid: "gw",
         name: "led proto",
         categories: [category],
         status: Status.off,
         brightness: 0.5,
-        mode: ColorMode(color: Colors.blue, name: "blue"));
+        mode: ColorMode(color: Colors.blue, name: "blue", uuid: "uiu"));
 
     projects = [
       Project(
-          id: "1",
-          owner: "xavou 1",
+          uuid: "1",
+          owner: 1,
           pubDate: DateTime.parse('1969-07-20 20:18:04Z'),
           name: "product 1",
           products: [coffee]),
       Project(
-          id: "2",
-          owner: "xavou 2",
+          uuid: "2",
+          owner: 2,
           pubDate: DateTime.parse('1969-07-20 20:18:04Z'),
           name: "product 2",
           products: [led]),
       Project(
-          id: "3",
-          owner: "xavou 3",
+          uuid: "3",
+          owner: 3,
           pubDate: DateTime.parse('1969-07-20 20:18:04Z'),
           name: "product 3",
           products: [led, coffee])
