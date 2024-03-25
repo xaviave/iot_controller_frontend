@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/src/services/communication_service.dart';
 import 'package:flutter_application_1/src/models/category.dart';
 import 'package:flutter_application_1/src/models/products/coffee_machine.dart';
 import 'package:flutter_application_1/src/models/products/led/led_mode.dart';
@@ -9,12 +10,32 @@ import 'package:flutter_application_1/src/models/status.dart';
 import 'package:flutter_application_1/src/settings/settings_view.dart';
 
 /// Displays a list of Projects.
-class ProjectListView extends StatelessWidget {
-  ProjectListView({super.key, this.projects = const []});
-
+class ProjectListView extends StatefulWidget {
+  ProjectListView({super.key});
   static const routeName = '/';
 
-  List<Project> projects;
+  @override
+  State<ProjectListView> createState() => _ProjectListViewState();
+}
+
+class _ProjectListViewState extends State<ProjectListView> {
+  ProjectCommunication project_client;
+  late List<Project> projects;
+
+  @override
+  void initState() {
+    super.initState();
+    project_client = ProjectCommunication();
+    project_client.init();
+  }
+
+  void _callGrpcService() async {
+    var response = await client.List();
+    setState(() {
+      print(response);
+      projects = response.result;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

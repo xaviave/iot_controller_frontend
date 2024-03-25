@@ -12,27 +12,6 @@ class LedPanelDetailsView extends StatefulWidget {
 }
 
 class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
-  //
-  // Future<void> sayHello() async {
-  //   try {
-  //     HelloRequest helloRequest = HelloRequest();
-  //     helloRequest.name = "Itachi";
-  //
-  //     var helloResponse = await HelloService.instance.helloClient.sayHello(helloRequest);
-  //     ///do something with your response here
-  //     setState(() {
-  //       hello = helloResponse.message;
-  //     });
-  //   } on GrpcError catch (e) {
-  //     ///handle all grpc errors here
-  //     ///errors such us UNIMPLEMENTED,UNIMPLEMENTED etc...
-  //     print(e);
-  //   } catch (e) {
-  //     ///handle all generic errors here
-  //     print(e);
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     final product = ModalRoute.of(context)!.settings.arguments as LedPanel;
