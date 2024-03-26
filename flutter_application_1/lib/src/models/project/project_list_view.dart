@@ -9,9 +9,8 @@ import 'package:flutter_application_1/src/models/project/project_details_view.da
 import 'package:flutter_application_1/src/models/status.dart';
 import 'package:flutter_application_1/src/settings/settings_view.dart';
 
-/// Displays a list of Projects.
 class ProjectListView extends StatefulWidget {
-  ProjectListView({super.key});
+  const ProjectListView({super.key});
   static const routeName = '/';
 
   @override
@@ -19,7 +18,7 @@ class ProjectListView extends StatefulWidget {
 }
 
 class _ProjectListViewState extends State<ProjectListView> {
-  ProjectCommunication project_client;
+  late ProjectCommunication project_client;
   late List<Project> projects;
 
   @override
@@ -27,58 +26,67 @@ class _ProjectListViewState extends State<ProjectListView> {
     super.initState();
     project_client = ProjectCommunication();
     project_client.init();
+    get_project_list();
   }
 
-  void _callGrpcService() async {
-    var response = await client.List();
+  void get_project_list() async {
+    var response = await project_client.List();
     setState(() {
-      print(response);
-      projects = response.result;
+      projects = response.results
+          .map((x) => Project(
+                uuid: x.uuid, name: x.name, owner: x.owner,
+                pubDate: DateTime.parse(x.pubDate),
+                // products: x.products.map((y) => BaseProduct()).toList())
+                products: [],
+              ))
+          .toList();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    var category = Category(uuid:"1", name: "test test");
-    var coffee = CoffeeMachine(uuid: "12",
-        name: "coffee machine proto",
-        categories: [category],
-        status: Status.on,
-        heat: 51.2,
-        water_level: ContainerStatus.empty,
-        used_water_level: ContainerStatus.empty,
-        coffee_level: ContainerStatus.empty,
-        filter_position: false,
-        mode_value: 1);
+    // var category = Category(uuid: "1", name: "test test");
+    // var coffee = CoffeeMachine(
+    //     uuid: "12",
+    //     name: "coffee machine proto",
+    //     categories: [category],
+    //     status: Status.on,
+    //     heat: 51.2,
+    //     water_level: ContainerStatus.empty,
+    //     used_water_level: ContainerStatus.empty,
+    //     coffee_level: ContainerStatus.empty,
+    //     filter_position: false,
+    //     mode_value: 1);
+    //
+    // var led = LedPanel(
+    //     uuid: "gw",
+    //     name: "led proto",
+    //     categories: [category],
+    //     status: Status.off,
+    //     brightness: 0.5,
+    //     mode: ColorMode(color: Colors.blue, name: "blue", uuid: "uiu"));
+    //
+    // projects = [
+    //   Project(
+    //       uuid: "1",
+    //       owner: 1,
+    //       pubDate: DateTime.parse('1969-07-20 20:18:04Z'),
+    //       name: "product 1",
+    //       products: [coffee]),
+    //   Project(
+    //       uuid: "2",
+    //       owner: 2,
+    //       pubDate: DateTime.parse('1969-07-20 20:18:04Z'),
+    //       name: "product 2",
+    //       products: [led]),
+    //   Project(
+    //       uuid: "3",
+    //       owner: 3,
+    //       pubDate: DateTime.parse('1969-07-20 20:18:04Z'),
+    //       name: "product 3",
+    //       products: [led, coffee])
+    // ];
 
-    var led = LedPanel(
-        uuid: "gw",
-        name: "led proto",
-        categories: [category],
-        status: Status.off,
-        brightness: 0.5,
-        mode: ColorMode(color: Colors.blue, name: "blue", uuid: "uiu"));
-
-    projects = [
-      Project(
-          uuid: "1",
-          owner: 1,
-          pubDate: DateTime.parse('1969-07-20 20:18:04Z'),
-          name: "product 1",
-          products: [coffee]),
-      Project(
-          uuid: "2",
-          owner: 2,
-          pubDate: DateTime.parse('1969-07-20 20:18:04Z'),
-          name: "product 2",
-          products: [led]),
-      Project(
-          uuid: "3",
-          owner: 3,
-          pubDate: DateTime.parse('1969-07-20 20:18:04Z'),
-          name: "product 3",
-          products: [led, coffee])
-    ];
     return Scaffold(
       appBar: AppBar(
         title: const Text('List projects'),

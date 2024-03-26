@@ -2,7 +2,6 @@ import "package:flutter_application_1/src/models/products/led/led_panel.dart";
 import "package:flutter_application_1/src/models/status.dart";
 import "package:flutter_application_1/src/settings/settings_view.dart";
 import "package:flutter/material.dart";
-import "package:grpc/grpc.dart";
 
 class LedPanelDetailsView extends StatefulWidget {
   const LedPanelDetailsView({super.key});

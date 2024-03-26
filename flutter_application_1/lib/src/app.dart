@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
                     return SettingsView(controller: settingsController);
                   case ProjectListView.routeName:
                   default:
-                    return ProjectListView();
+                    return const ProjectListView();
                 }
               },
             );

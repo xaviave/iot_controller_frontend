@@ -1,6 +1,5 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter_application_1/protos/backend.pb.dart';
 import 'package:flutter_application_1/protos/backend.pbgrpc.dart';
 import 'package:flutter_application_1/src/models/products/led/led_mode.dart';
 import 'package:flutter_application_1/src/models/products/led/led_panel.dart';
@@ -11,13 +10,13 @@ class LedModeCommunication {
   late ClientChannel channel;
   late LedModeControllerClient stub;
 
-  Future<void> init(L) async {
-    channel = ClientChannel('127.0.0.1',
+  Future<void> init() async {
+    channel = ClientChannel('0.0.0.0',
         port: 50051,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));
     stub = LedModeControllerClient(channel,
-        options: CallOptions(timeout: Duration(seconds: 30)));
+        options: CallOptions(timeout: const Duration(seconds: 30)));
   }
 
   Future<void> clean() async {
@@ -53,13 +52,13 @@ class LedPanelCommunication {
   late ClientChannel channel;
   late LedPanelControllerClient stub;
 
-  Future<void> init(L) async {
+  Future<void> init() async {
     channel = ClientChannel('127.0.0.1',
         port: 50051,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));
     stub = LedPanelControllerClient(channel,
-        options: CallOptions(timeout: Duration(seconds: 30)));
+        options: CallOptions(timeout: const Duration(seconds: 30)));
   }
 
   Future<void> clean() async {
@@ -95,13 +94,13 @@ class ProjectCommunication {
   late ClientChannel channel;
   late ProjectControllerClient stub;
 
-  Future<void> init(L) async {
+  Future<void> init() async {
     channel = ClientChannel('127.0.0.1',
         port: 50051,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));
     stub = ProjectControllerClient(channel,
-        options: CallOptions(timeout: Duration(seconds: 30)));
+        options: CallOptions(timeout: const Duration(seconds: 30)));
   }
 
   Future<void> clean() async {

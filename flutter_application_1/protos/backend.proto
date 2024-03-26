@@ -1,3 +1,5 @@
+// protoc -I=protos/ protos/backend.proto --dart_out=grpc:lib/protos --experimental_allow_proto3_optional
+
 syntax = "proto3";
 
 package base_app.products_controller;

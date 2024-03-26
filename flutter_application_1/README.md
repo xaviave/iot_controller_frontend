@@ -21,6 +21,11 @@ Run theses commands:
     dart pub global activate protoc_plugin
     export PATH="$PATH:$HOME/.pub-cache/bin"
 
+
+Generate gPRC dart files:
+
+    protoc -I=protos/ protos/backend.proto --dart_out=grpc:lib/protos --experimental_allow_proto3_optional
+
 ## Assets
 
 The `assets` directory houses images, fonts, and any other files you want to
