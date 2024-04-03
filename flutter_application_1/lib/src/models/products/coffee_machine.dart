@@ -24,7 +24,7 @@ class CoffeeMachine extends BaseProduct {
   int mode_value;
 
   CoffeeMachine({
-    required super.uuid,
+    required super.id,
     required super.name,
     required super.categories,
     required this.status,
@@ -39,9 +39,9 @@ class CoffeeMachine extends BaseProduct {
   @override
   dynamic get_request() {
     return CoffeeMachineRequest(
-      uuid: uuid,
+      id: id,
       name: name,
-      categories: categories.map((x) => x.uuid).toList(),
+      categories: categories.map((x) => x.get_request()).toList(),
       status: status.id,
       heat: heat,
       waterLevel: water_level.id,

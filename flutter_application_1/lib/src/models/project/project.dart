@@ -4,14 +4,14 @@ import 'package:intl/intl.dart';
 import '../products/base_product.dart';
 
 class Project {
-  String uuid;
+  int id;
   int owner;
   DateTime pubDate;
   String name;
   List<BaseProduct> products;
 
   Project(
-      {required this.uuid,
+      {required this.id,
       required this.owner,
       required this.pubDate,
       required this.name,
@@ -19,10 +19,10 @@ class Project {
 
   ProjectRequest get_request() {
     return ProjectRequest(
-        uuid: uuid,
+        id: id,
         name: name,
         owner: owner,
         pubDate: DateFormat.yMMMd().format(pubDate),
-        products: products.map((x) => x.uuid).toList());
+        products: products.map((x) => x.get_request()).toList());
   }
 }

@@ -1,19 +1,9 @@
 // protoc -I=protos/ protos/backend.proto --dart_out=grpc:lib/protos --experimental_allow_proto3_optional
-
 syntax = "proto3";
 
 package base_app.products_controller;
 
 import "google/protobuf/empty.proto";
-
-service BaseProductController {
-    rpc Create(BaseProductRequest) returns (BaseProductResponse) {}
-    rpc Destroy(BaseProductDestroyRequest) returns (google.protobuf.Empty) {}
-    rpc List(BaseProductListRequest) returns (BaseProductListResponse) {}
-    rpc PartialUpdate(BaseProductPartialUpdateRequest) returns (BaseProductResponse) {}
-    rpc Retrieve(BaseProductRetrieveRequest) returns (BaseProductResponse) {}
-    rpc Update(BaseProductRequest) returns (BaseProductResponse) {}
-}
 
 service CategoryController {
     rpc Create(CategoryRequest) returns (CategoryResponse) {}
@@ -33,13 +23,22 @@ service CoffeeMachineController {
     rpc Update(CoffeeMachineRequest) returns (CoffeeMachineResponse) {}
 }
 
-service LedModeController {
-    rpc Create(LedModeRequest) returns (LedModeResponse) {}
-    rpc Destroy(LedModeDestroyRequest) returns (google.protobuf.Empty) {}
-    rpc List(LedModeListRequest) returns (LedModeListResponse) {}
-    rpc PartialUpdate(LedModePartialUpdateRequest) returns (LedModeResponse) {}
-    rpc Retrieve(LedModeRetrieveRequest) returns (LedModeResponse) {}
-    rpc Update(LedModeRequest) returns (LedModeResponse) {}
+service ColorModeController {
+    rpc Create(ColorModeRequest) returns (ColorModeResponse) {}
+    rpc Destroy(ColorModeDestroyRequest) returns (google.protobuf.Empty) {}
+    rpc List(ColorModeListRequest) returns (ColorModeListResponse) {}
+    rpc PartialUpdate(ColorModePartialUpdateRequest) returns (ColorModeResponse) {}
+    rpc Retrieve(ColorModeRetrieveRequest) returns (ColorModeResponse) {}
+    rpc Update(ColorModeRequest) returns (ColorModeResponse) {}
+}
+
+service ImageModeController {
+    rpc Create(ImageModeRequest) returns (ImageModeResponse) {}
+    rpc Destroy(ImageModeDestroyRequest) returns (google.protobuf.Empty) {}
+    rpc List(ImageModeListRequest) returns (ImageModeListResponse) {}
+    rpc PartialUpdate(ImageModePartialUpdateRequest) returns (ImageModeResponse) {}
+    rpc Retrieve(ImageModeRetrieveRequest) returns (ImageModeResponse) {}
+    rpc Update(ImageModeRequest) returns (ImageModeResponse) {}
 }
 
 service LedPanelController {
@@ -51,6 +50,15 @@ service LedPanelController {
     rpc Update(LedPanelRequest) returns (LedPanelResponse) {}
 }
 
+service PatternModeController {
+    rpc Create(PatternModeRequest) returns (PatternModeResponse) {}
+    rpc Destroy(PatternModeDestroyRequest) returns (google.protobuf.Empty) {}
+    rpc List(PatternModeListRequest) returns (PatternModeListResponse) {}
+    rpc PartialUpdate(PatternModePartialUpdateRequest) returns (PatternModeResponse) {}
+    rpc Retrieve(PatternModeRetrieveRequest) returns (PatternModeResponse) {}
+    rpc Update(PatternModeRequest) returns (PatternModeResponse) {}
+}
+
 service ProjectController {
     rpc Create(ProjectRequest) returns (ProjectResponse) {}
     rpc Destroy(ProjectDestroyRequest) returns (google.protobuf.Empty) {}
@@ -60,44 +68,51 @@ service ProjectController {
     rpc Update(ProjectRequest) returns (ProjectResponse) {}
 }
 
-message BaseProductDestroyRequest {
-    string uuid = 1;
+service VideoModeController {
+    rpc Create(VideoModeRequest) returns (VideoModeResponse) {}
+    rpc Destroy(VideoModeDestroyRequest) returns (google.protobuf.Empty) {}
+    rpc List(VideoModeListRequest) returns (VideoModeListResponse) {}
+    rpc PartialUpdate(VideoModePartialUpdateRequest) returns (VideoModeResponse) {}
+    rpc Retrieve(VideoModeRetrieveRequest) returns (VideoModeResponse) {}
+    rpc Update(VideoModeRequest) returns (VideoModeResponse) {}
 }
 
-message BaseProductListRequest {
-}
-
-message BaseProductListResponse {
-    repeated BaseProductResponse results = 1;
-    int32 count = 2;
-}
-
-message BaseProductPartialUpdateRequest {
-    repeated string categories = 2;
-    repeated string _partial_update_fields = 3;
-    string name = 4;
-    string uuid = 5;
-}
-
+// Polymorphism
+// Manual
 message BaseProductRequest {
-    repeated string categories = 2;
-    string name = 3;
-    string uuid = 4;
+    oneof product {
+        CoffeeMachineRequest CoffeeMachine = 2;
+        LedPanelRequest LedPanel = 3;
+    }
 }
 
 message BaseProductResponse {
-    repeated string categories = 2;
-    string name = 3;
-    optional int32 polymorphic_ctype = 4;
-    string uuid = 5;
+    oneof product {
+        CoffeeMachineResponse CoffeeMachine = 2;
+        LedPanelResponse LedPanel = 3;
+    }
 }
 
-message BaseProductRetrieveRequest {
-    string uuid = 1;
+message LedModeRequest {
+    oneof mode {
+        ImageModeRequest ImageMode = 2;
+        VideoModeRequest VideoMode = 3;
+        ColorModeRequest ColorMode = 4;
+        PatternModeRequest PatternMode = 5;
+    }
+}
+
+message LedModeResponse {
+    oneof mode {
+        ImageModeResponse ImageMode = 2;
+        VideoModeResponse VideoMode = 3;
+        ColorModeResponse ColorMode = 4;
+        PatternModeResponse PatternMode = 5;
+    }
 }
 
 message CategoryDestroyRequest {
-    string uuid = 1;
+    int32 id = 1;
 }
 
 message CategoryListRequest {
@@ -111,25 +126,25 @@ message CategoryListResponse {
 message CategoryPartialUpdateRequest {
     repeated string _partial_update_fields = 2;
     string name = 3;
-    string uuid = 4;
+    int32 id = 4;
 }
 
 message CategoryRequest {
     string name = 2;
-    string uuid = 3;
+    int32 id = 3;
 }
 
 message CategoryResponse {
     string name = 2;
-    string uuid = 3;
+    int32 id = 3;
 }
 
 message CategoryRetrieveRequest {
-    string uuid = 1;
+    int32 id = 1;
 }
 
 message CoffeeMachineDestroyRequest {
-    string uuid = 1;
+    int32 id = 1;
 }
 
 message CoffeeMachineListRequest {
@@ -150,8 +165,8 @@ message CoffeeMachinePartialUpdateRequest {
     int32 coffee_level = 8;
     bool filter_position = 9;
     int32 mode_value = 10;
-    repeated string categories = 11;
-    string uuid = 12;
+    repeated CategoryRequest categories = 11;
+    int32 id = 12;
 }
 
 message CoffeeMachineRequest {
@@ -163,8 +178,8 @@ message CoffeeMachineRequest {
     int32 coffee_level = 7;
     bool filter_position = 8;
     int32 mode_value = 9;
-    repeated string categories = 10;
-    string uuid = 11;
+    repeated CategoryRequest categories = 10;
+    int32 id = 11;
 }
 
 message CoffeeMachineResponse {
@@ -177,49 +192,91 @@ message CoffeeMachineResponse {
     bool filter_position = 8;
     int32 mode_value = 9;
     optional int32 polymorphic_ctype = 10;
-    repeated string categories = 11;
-    string uuid = 12;
+    repeated CategoryResponse categories = 11;
+    int32 id = 12;
 }
 
 message CoffeeMachineRetrieveRequest {
-    string uuid = 1;
+    int32 id = 1;
 }
 
-message LedModeDestroyRequest {
-    string uuid = 1;
+message ColorModeDestroyRequest {
+    int32 id = 1;
 }
 
-message LedModeListRequest {
+message ColorModeListRequest {
 }
 
-message LedModeListResponse {
-    repeated LedModeResponse results = 1;
+message ColorModeListResponse {
+    repeated ColorModeResponse results = 1;
     int32 count = 2;
 }
 
-message LedModePartialUpdateRequest {
-    repeated string _partial_update_fields = 2;
-    string name = 3;
-    string uuid = 4;
-}
-
-message LedModeRequest {
+message ColorModePartialUpdateRequest {
+    int32 id = 1;
     string name = 2;
-    string uuid = 3;
+    repeated string _partial_update_fields = 3;
+    string color = 4;
 }
 
-message LedModeResponse {
+message ColorModeRequest {
+    int32 id = 1;
     string name = 2;
-    optional int32 polymorphic_ctype = 3;
-    string uuid = 4;
+    string color = 3;
 }
 
-message LedModeRetrieveRequest {
-    string uuid = 1;
+message ColorModeResponse {
+    int32 id = 1;
+    string name = 2;
+    string color = 3;
+    optional int32 polymorphic_ctype = 4;
+}
+
+message ColorModeRetrieveRequest {
+    int32 id = 1;
+}
+
+message ImageModeDestroyRequest {
+    int32 id = 1;
+}
+
+message ImageModeListRequest {
+}
+
+message ImageModeListResponse {
+    repeated ImageModeResponse results = 1;
+    int32 count = 2;
+}
+
+message ImageModePartialUpdateRequest {
+    int32 id = 1;
+    string name = 2;
+    repeated string _partial_update_fields = 3;
+    string image = 4;
+    optional string image_low_pixel = 5;
+}
+
+message ImageModeRequest {
+    int32 id = 1;
+    string name = 2;
+    string image = 3;
+    optional string image_low_pixel = 4;
+}
+
+message ImageModeResponse {
+    int32 id = 1;
+    string name = 2;
+    string image = 3;
+    optional string image_low_pixel = 4;
+    optional int32 polymorphic_ctype = 5;
+}
+
+message ImageModeRetrieveRequest {
+    int32 id = 1;
 }
 
 message LedPanelDestroyRequest {
-    string uuid = 1;
+    int32 id = 1;
 }
 
 message LedPanelListRequest {
@@ -231,40 +288,82 @@ message LedPanelListResponse {
 }
 
 message LedPanelPartialUpdateRequest {
-    repeated string _partial_update_fields = 2;
+    int32 id = 1;
+    LedModeRequest mode = 2;
     string name = 3;
-    int32 status = 4;
-    double brightness = 5;
-    optional string mode = 6;
-    repeated string categories = 7;
-    string uuid = 8;
+    repeated CategoryRequest categories = 4;
+    repeated string _partial_update_fields = 5;
+    int32 status = 6;
+    double brightness = 7;
 }
 
 message LedPanelRequest {
-    string name = 2;
-    int32 status = 3;
-    double brightness = 4;
-    optional string mode = 5;
-    repeated string categories = 6;
-    string uuid = 7;
+    int32 id = 1;
+    LedModeRequest mode = 2;
+    string name = 3;
+    repeated CategoryRequest categories = 4;
+    int32 status = 5;
+    double brightness = 6;
 }
 
 message LedPanelResponse {
-    string name = 2;
-    int32 status = 3;
-    double brightness = 4;
-    optional int32 polymorphic_ctype = 5;
-    optional string mode = 6;
-    repeated string categories = 7;
-    string uuid = 8;
+    int32 id = 1;
+    LedModeResponse mode = 2;
+    string name = 3;
+    repeated CategoryResponse categories = 4;
+    int32 status = 5;
+    double brightness = 6;
+    optional int32 polymorphic_ctype = 7;
 }
 
 message LedPanelRetrieveRequest {
-    string uuid = 1;
+    int32 id = 1;
+}
+
+message PatternModeDestroyRequest {
+    int32 id = 1;
+}
+
+message PatternModeListRequest {
+}
+
+message PatternModeListResponse {
+    repeated PatternModeResponse results = 1;
+    int32 count = 2;
+}
+
+message PatternModePartialUpdateRequest {
+    int32 id = 1;
+    string name = 2;
+    repeated string _partial_update_fields = 3;
+    double fps = 4;
+    double blink = 5;
+    string palette = 6;
+}
+
+message PatternModeRequest {
+    int32 id = 1;
+    string name = 2;
+    double fps = 3;
+    double blink = 4;
+    string palette = 5;
+}
+
+message PatternModeResponse {
+    int32 id = 1;
+    string name = 2;
+    double fps = 3;
+    double blink = 4;
+    string palette = 5;
+    optional int32 polymorphic_ctype = 6;
+}
+
+message PatternModeRetrieveRequest {
+    int32 id = 1;
 }
 
 message ProjectDestroyRequest {
-    string uuid = 1;
+    int32 id = 1;
 }
 
 message ProjectListRequest {
@@ -276,31 +375,69 @@ message ProjectListResponse {
 }
 
 message ProjectPartialUpdateRequest {
-    repeated string products = 2;
+    repeated BaseProductRequest products = 2;
     repeated string _partial_update_fields = 3;
     string pub_date = 4;
     string name = 5;
     int32 owner = 6;
-    string uuid = 7;
+    int32 id = 7;
 }
 
 message ProjectRequest {
-    repeated string products = 2;
+    repeated BaseProductRequest products = 2;
     string pub_date = 3;
     string name = 4;
     int32 owner = 5;
-    string uuid = 6;
+    int32 id = 6;
 }
 
 message ProjectResponse {
-    repeated string products = 2;
+    repeated BaseProductResponse products = 2;
     string pub_date = 3;
     string name = 4;
     int32 owner = 5;
-    string uuid = 6;
+    int32 id = 6;
 }
 
 message ProjectRetrieveRequest {
-    string uuid = 1;
+    int32 id = 1;
 }
 
+message VideoModeDestroyRequest {
+    int32 id = 1;
+}
+
+message VideoModeListRequest {
+}
+
+message VideoModeListResponse {
+    repeated VideoModeResponse results = 1;
+    int32 count = 2;
+}
+
+message VideoModePartialUpdateRequest {
+    int32 id = 1;
+    string name = 2;
+    repeated string _partial_update_fields = 3;
+    string video = 4;
+    optional string video_low_pixel = 5;
+}
+
+message VideoModeRequest {
+    int32 id = 1;
+    string name = 2;
+    string video = 3;
+    optional string video_low_pixel = 4;
+}
+
+message VideoModeResponse {
+    int32 id = 1;
+    string name = 2;
+    string video = 3;
+    optional string video_low_pixel = 4;
+    optional int32 polymorphic_ctype = 5;
+}
+
+message VideoModeRetrieveRequest {
+    int32 id = 1;
+}

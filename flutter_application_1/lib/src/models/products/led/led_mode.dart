@@ -5,15 +5,11 @@ import 'dart:ui';
 import 'package:flutter_application_1/protos/backend.pb.dart';
 import 'package:flutter_application_1/src/models/products/led/palette.dart';
 
-class LedMode {
-  String uuid;
+abstract class LedMode {
+  int id;
   String name;
 
-  LedMode({required this.uuid, required this.name});
-
-  LedModeRequest get_request() {
-    return LedModeRequest(name: name);
-  }
+  LedMode({required this.id, required this.name});
 }
 
 class ImageMode extends LedMode {
@@ -23,10 +19,14 @@ class ImageMode extends LedMode {
   Uri image_low_pixel;
 
   ImageMode(
-      {required super.uuid,
+      {required super.id,
       required super.name,
       required this.image,
       required this.image_low_pixel});
+
+  ImageModeRequest get_request() {
+    return ImageModeRequest(name: name);
+  }
 }
 
 class VideoMode extends LedMode {
@@ -36,17 +36,25 @@ class VideoMode extends LedMode {
   Uri video_low_pixel;
 
   VideoMode(
-      {required super.uuid,
+      {required super.id,
       required super.name,
       required this.video,
       required this.video_low_pixel});
+
+  VideoModeRequest get_request() {
+    return VideoModeRequest(name: name);
+  }
 }
 
 class ColorMode extends LedMode {
   // maybe const
   Color color;
 
-  ColorMode({required super.uuid, required super.name, required this.color});
+  ColorMode({required super.id, required super.name, required this.color});
+
+  ColorModeRequest get_request() {
+    return ColorModeRequest(name: name);
+  }
 }
 
 class PatternMode extends LedMode {
@@ -55,9 +63,13 @@ class PatternMode extends LedMode {
   Palette palette;
 
   PatternMode(
-      {required super.uuid,
+      {required super.id,
       required super.name,
       required this.fps,
       required this.blink,
       required this.palette});
+
+  PatternModeRequest get_request() {
+    return PatternModeRequest(name: name);
+  }
 }

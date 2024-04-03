@@ -6,16 +6,16 @@ import 'package:flutter_application_1/src/models/products/led/led_panel.dart';
 import 'package:flutter_application_1/src/models/project/project.dart';
 import 'package:grpc/grpc.dart';
 
-class LedModeCommunication {
+class ColorModeCommunication {
   late ClientChannel channel;
-  late LedModeControllerClient stub;
+  late ColorModeControllerClient stub;
 
   Future<void> init() async {
     channel = ClientChannel('0.0.0.0',
         port: 50051,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));
-    stub = LedModeControllerClient(channel,
+    stub = ColorModeControllerClient(channel,
         options: CallOptions(timeout: const Duration(seconds: 30)));
   }
 
@@ -23,26 +23,26 @@ class LedModeCommunication {
     await channel.shutdown();
   }
 
-  Future<LedModeResponse> Create(LedMode l) async {
+  Future<ColorModeResponse> Create(ColorMode l) async {
     final response = await stub.create(l.get_request());
     return response;
   }
 
-  Future<void> Destroy(String uuid) async {
-    await stub.destroy(LedModeDestroyRequest(uuid: uuid));
+  Future<void> Destroy(int id) async {
+    await stub.destroy(ColorModeDestroyRequest(id: id));
   }
 
-  Future<LedModeListResponse> List() async {
-    final response = await stub.list(LedModeListRequest());
+  Future<ColorModeListResponse> List() async {
+    final response = await stub.list(ColorModeListRequest());
     return response;
   }
 
-  Future<LedModeResponse> Retrieve(String uuid) async {
-    final response = await stub.retrieve(LedModeRetrieveRequest(uuid: uuid));
+  Future<ColorModeResponse> Retrieve(int id) async {
+    final response = await stub.retrieve(ColorModeRetrieveRequest(id: id));
     return response;
   }
 
-  Future<LedModeResponse> Update(LedMode l) async {
+  Future<ColorModeResponse> Update(ColorMode l) async {
     final response = await stub.update(l.get_request());
     return response;
   }
@@ -70,8 +70,8 @@ class LedPanelCommunication {
     return response;
   }
 
-  Future<void> Destroy(String uuid) async {
-    await stub.destroy(LedPanelDestroyRequest(uuid: uuid));
+  Future<void> Destroy(int id) async {
+    await stub.destroy(LedPanelDestroyRequest(id: id));
   }
 
   Future<LedPanelListResponse> List() async {
@@ -79,8 +79,8 @@ class LedPanelCommunication {
     return response;
   }
 
-  Future<LedPanelResponse> Retrieve(String uuid) async {
-    final response = await stub.retrieve(LedPanelRetrieveRequest(uuid: uuid));
+  Future<LedPanelResponse> Retrieve(int id) async {
+    final response = await stub.retrieve(LedPanelRetrieveRequest(id: id));
     return response;
   }
 
@@ -112,8 +112,8 @@ class ProjectCommunication {
     return response;
   }
 
-  Future<void> Destroy(String uuid) async {
-    await stub.destroy(ProjectDestroyRequest(uuid: uuid));
+  Future<void> Destroy(int id) async {
+    await stub.destroy(ProjectDestroyRequest(id: id));
   }
 
   Future<ProjectListResponse> List() async {
@@ -121,8 +121,8 @@ class ProjectCommunication {
     return response;
   }
 
-  Future<ProjectResponse> Retrieve(String uuid) async {
-    final response = await stub.retrieve(ProjectRetrieveRequest(uuid: uuid));
+  Future<ProjectResponse> Retrieve(int id) async {
+    final response = await stub.retrieve(ProjectRetrieveRequest(id: id));
     return response;
   }
 

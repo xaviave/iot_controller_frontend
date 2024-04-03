@@ -20,144 +20,6 @@ import 'google/protobuf/empty.pb.dart' as $1;
 
 export 'backend.pb.dart';
 
-@$pb.GrpcServiceName('base_app.products_controller.BaseProductController')
-class BaseProductControllerClient extends $grpc.Client {
-  static final _$create = $grpc.ClientMethod<$0.BaseProductRequest, $0.BaseProductResponse>(
-      '/base_app.products_controller.BaseProductController/Create',
-      ($0.BaseProductRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.BaseProductResponse.fromBuffer(value));
-  static final _$destroy = $grpc.ClientMethod<$0.BaseProductDestroyRequest, $1.Empty>(
-      '/base_app.products_controller.BaseProductController/Destroy',
-      ($0.BaseProductDestroyRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
-  static final _$list = $grpc.ClientMethod<$0.BaseProductListRequest, $0.BaseProductListResponse>(
-      '/base_app.products_controller.BaseProductController/List',
-      ($0.BaseProductListRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.BaseProductListResponse.fromBuffer(value));
-  static final _$partialUpdate = $grpc.ClientMethod<$0.BaseProductPartialUpdateRequest, $0.BaseProductResponse>(
-      '/base_app.products_controller.BaseProductController/PartialUpdate',
-      ($0.BaseProductPartialUpdateRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.BaseProductResponse.fromBuffer(value));
-  static final _$retrieve = $grpc.ClientMethod<$0.BaseProductRetrieveRequest, $0.BaseProductResponse>(
-      '/base_app.products_controller.BaseProductController/Retrieve',
-      ($0.BaseProductRetrieveRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.BaseProductResponse.fromBuffer(value));
-  static final _$update = $grpc.ClientMethod<$0.BaseProductRequest, $0.BaseProductResponse>(
-      '/base_app.products_controller.BaseProductController/Update',
-      ($0.BaseProductRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.BaseProductResponse.fromBuffer(value));
-
-  BaseProductControllerClient($grpc.ClientChannel channel,
-      {$grpc.CallOptions? options,
-      $core.Iterable<$grpc.ClientInterceptor>? interceptors})
-      : super(channel, options: options,
-        interceptors: interceptors);
-
-  $grpc.ResponseFuture<$0.BaseProductResponse> create($0.BaseProductRequest request, {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$create, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> destroy($0.BaseProductDestroyRequest request, {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$destroy, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.BaseProductListResponse> list($0.BaseProductListRequest request, {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$list, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.BaseProductResponse> partialUpdate($0.BaseProductPartialUpdateRequest request, {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$partialUpdate, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.BaseProductResponse> retrieve($0.BaseProductRetrieveRequest request, {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$retrieve, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.BaseProductResponse> update($0.BaseProductRequest request, {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$update, request, options: options);
-  }
-}
-
-@$pb.GrpcServiceName('base_app.products_controller.BaseProductController')
-abstract class BaseProductControllerServiceBase extends $grpc.Service {
-  $core.String get $name => 'base_app.products_controller.BaseProductController';
-
-  BaseProductControllerServiceBase() {
-    $addMethod($grpc.ServiceMethod<$0.BaseProductRequest, $0.BaseProductResponse>(
-        'Create',
-        create_Pre,
-        false,
-        false,
-        ($core.List<$core.int> value) => $0.BaseProductRequest.fromBuffer(value),
-        ($0.BaseProductResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.BaseProductDestroyRequest, $1.Empty>(
-        'Destroy',
-        destroy_Pre,
-        false,
-        false,
-        ($core.List<$core.int> value) => $0.BaseProductDestroyRequest.fromBuffer(value),
-        ($1.Empty value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.BaseProductListRequest, $0.BaseProductListResponse>(
-        'List',
-        list_Pre,
-        false,
-        false,
-        ($core.List<$core.int> value) => $0.BaseProductListRequest.fromBuffer(value),
-        ($0.BaseProductListResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.BaseProductPartialUpdateRequest, $0.BaseProductResponse>(
-        'PartialUpdate',
-        partialUpdate_Pre,
-        false,
-        false,
-        ($core.List<$core.int> value) => $0.BaseProductPartialUpdateRequest.fromBuffer(value),
-        ($0.BaseProductResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.BaseProductRetrieveRequest, $0.BaseProductResponse>(
-        'Retrieve',
-        retrieve_Pre,
-        false,
-        false,
-        ($core.List<$core.int> value) => $0.BaseProductRetrieveRequest.fromBuffer(value),
-        ($0.BaseProductResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.BaseProductRequest, $0.BaseProductResponse>(
-        'Update',
-        update_Pre,
-        false,
-        false,
-        ($core.List<$core.int> value) => $0.BaseProductRequest.fromBuffer(value),
-        ($0.BaseProductResponse value) => value.writeToBuffer()));
-  }
-
-  $async.Future<$0.BaseProductResponse> create_Pre($grpc.ServiceCall call, $async.Future<$0.BaseProductRequest> request) async {
-    return create(call, await request);
-  }
-
-  $async.Future<$1.Empty> destroy_Pre($grpc.ServiceCall call, $async.Future<$0.BaseProductDestroyRequest> request) async {
-    return destroy(call, await request);
-  }
-
-  $async.Future<$0.BaseProductListResponse> list_Pre($grpc.ServiceCall call, $async.Future<$0.BaseProductListRequest> request) async {
-    return list(call, await request);
-  }
-
-  $async.Future<$0.BaseProductResponse> partialUpdate_Pre($grpc.ServiceCall call, $async.Future<$0.BaseProductPartialUpdateRequest> request) async {
-    return partialUpdate(call, await request);
-  }
-
-  $async.Future<$0.BaseProductResponse> retrieve_Pre($grpc.ServiceCall call, $async.Future<$0.BaseProductRetrieveRequest> request) async {
-    return retrieve(call, await request);
-  }
-
-  $async.Future<$0.BaseProductResponse> update_Pre($grpc.ServiceCall call, $async.Future<$0.BaseProductRequest> request) async {
-    return update(call, await request);
-  }
-
-  $async.Future<$0.BaseProductResponse> create($grpc.ServiceCall call, $0.BaseProductRequest request);
-  $async.Future<$1.Empty> destroy($grpc.ServiceCall call, $0.BaseProductDestroyRequest request);
-  $async.Future<$0.BaseProductListResponse> list($grpc.ServiceCall call, $0.BaseProductListRequest request);
-  $async.Future<$0.BaseProductResponse> partialUpdate($grpc.ServiceCall call, $0.BaseProductPartialUpdateRequest request);
-  $async.Future<$0.BaseProductResponse> retrieve($grpc.ServiceCall call, $0.BaseProductRetrieveRequest request);
-  $async.Future<$0.BaseProductResponse> update($grpc.ServiceCall call, $0.BaseProductRequest request);
-}
 @$pb.GrpcServiceName('base_app.products_controller.CategoryController')
 class CategoryControllerClient extends $grpc.Client {
   static final _$create = $grpc.ClientMethod<$0.CategoryRequest, $0.CategoryResponse>(
@@ -434,143 +296,281 @@ abstract class CoffeeMachineControllerServiceBase extends $grpc.Service {
   $async.Future<$0.CoffeeMachineResponse> retrieve($grpc.ServiceCall call, $0.CoffeeMachineRetrieveRequest request);
   $async.Future<$0.CoffeeMachineResponse> update($grpc.ServiceCall call, $0.CoffeeMachineRequest request);
 }
-@$pb.GrpcServiceName('base_app.products_controller.LedModeController')
-class LedModeControllerClient extends $grpc.Client {
-  static final _$create = $grpc.ClientMethod<$0.LedModeRequest, $0.LedModeResponse>(
-      '/base_app.products_controller.LedModeController/Create',
-      ($0.LedModeRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.LedModeResponse.fromBuffer(value));
-  static final _$destroy = $grpc.ClientMethod<$0.LedModeDestroyRequest, $1.Empty>(
-      '/base_app.products_controller.LedModeController/Destroy',
-      ($0.LedModeDestroyRequest value) => value.writeToBuffer(),
+@$pb.GrpcServiceName('base_app.products_controller.ColorModeController')
+class ColorModeControllerClient extends $grpc.Client {
+  static final _$create = $grpc.ClientMethod<$0.ColorModeRequest, $0.ColorModeResponse>(
+      '/base_app.products_controller.ColorModeController/Create',
+      ($0.ColorModeRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.ColorModeResponse.fromBuffer(value));
+  static final _$destroy = $grpc.ClientMethod<$0.ColorModeDestroyRequest, $1.Empty>(
+      '/base_app.products_controller.ColorModeController/Destroy',
+      ($0.ColorModeDestroyRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
-  static final _$list = $grpc.ClientMethod<$0.LedModeListRequest, $0.LedModeListResponse>(
-      '/base_app.products_controller.LedModeController/List',
-      ($0.LedModeListRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.LedModeListResponse.fromBuffer(value));
-  static final _$partialUpdate = $grpc.ClientMethod<$0.LedModePartialUpdateRequest, $0.LedModeResponse>(
-      '/base_app.products_controller.LedModeController/PartialUpdate',
-      ($0.LedModePartialUpdateRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.LedModeResponse.fromBuffer(value));
-  static final _$retrieve = $grpc.ClientMethod<$0.LedModeRetrieveRequest, $0.LedModeResponse>(
-      '/base_app.products_controller.LedModeController/Retrieve',
-      ($0.LedModeRetrieveRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.LedModeResponse.fromBuffer(value));
-  static final _$update = $grpc.ClientMethod<$0.LedModeRequest, $0.LedModeResponse>(
-      '/base_app.products_controller.LedModeController/Update',
-      ($0.LedModeRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.LedModeResponse.fromBuffer(value));
+  static final _$list = $grpc.ClientMethod<$0.ColorModeListRequest, $0.ColorModeListResponse>(
+      '/base_app.products_controller.ColorModeController/List',
+      ($0.ColorModeListRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.ColorModeListResponse.fromBuffer(value));
+  static final _$partialUpdate = $grpc.ClientMethod<$0.ColorModePartialUpdateRequest, $0.ColorModeResponse>(
+      '/base_app.products_controller.ColorModeController/PartialUpdate',
+      ($0.ColorModePartialUpdateRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.ColorModeResponse.fromBuffer(value));
+  static final _$retrieve = $grpc.ClientMethod<$0.ColorModeRetrieveRequest, $0.ColorModeResponse>(
+      '/base_app.products_controller.ColorModeController/Retrieve',
+      ($0.ColorModeRetrieveRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.ColorModeResponse.fromBuffer(value));
+  static final _$update = $grpc.ClientMethod<$0.ColorModeRequest, $0.ColorModeResponse>(
+      '/base_app.products_controller.ColorModeController/Update',
+      ($0.ColorModeRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.ColorModeResponse.fromBuffer(value));
 
-  LedModeControllerClient($grpc.ClientChannel channel,
+  ColorModeControllerClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
       $core.Iterable<$grpc.ClientInterceptor>? interceptors})
       : super(channel, options: options,
         interceptors: interceptors);
 
-  $grpc.ResponseFuture<$0.LedModeResponse> create($0.LedModeRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$0.ColorModeResponse> create($0.ColorModeRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$create, request, options: options);
   }
 
-  $grpc.ResponseFuture<$1.Empty> destroy($0.LedModeDestroyRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$1.Empty> destroy($0.ColorModeDestroyRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$destroy, request, options: options);
   }
 
-  $grpc.ResponseFuture<$0.LedModeListResponse> list($0.LedModeListRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$0.ColorModeListResponse> list($0.ColorModeListRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$list, request, options: options);
   }
 
-  $grpc.ResponseFuture<$0.LedModeResponse> partialUpdate($0.LedModePartialUpdateRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$0.ColorModeResponse> partialUpdate($0.ColorModePartialUpdateRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$partialUpdate, request, options: options);
   }
 
-  $grpc.ResponseFuture<$0.LedModeResponse> retrieve($0.LedModeRetrieveRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$0.ColorModeResponse> retrieve($0.ColorModeRetrieveRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$retrieve, request, options: options);
   }
 
-  $grpc.ResponseFuture<$0.LedModeResponse> update($0.LedModeRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$0.ColorModeResponse> update($0.ColorModeRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$update, request, options: options);
   }
 }
 
-@$pb.GrpcServiceName('base_app.products_controller.LedModeController')
-abstract class LedModeControllerServiceBase extends $grpc.Service {
-  $core.String get $name => 'base_app.products_controller.LedModeController';
+@$pb.GrpcServiceName('base_app.products_controller.ColorModeController')
+abstract class ColorModeControllerServiceBase extends $grpc.Service {
+  $core.String get $name => 'base_app.products_controller.ColorModeController';
 
-  LedModeControllerServiceBase() {
-    $addMethod($grpc.ServiceMethod<$0.LedModeRequest, $0.LedModeResponse>(
+  ColorModeControllerServiceBase() {
+    $addMethod($grpc.ServiceMethod<$0.ColorModeRequest, $0.ColorModeResponse>(
         'Create',
         create_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $0.LedModeRequest.fromBuffer(value),
-        ($0.LedModeResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.LedModeDestroyRequest, $1.Empty>(
+        ($core.List<$core.int> value) => $0.ColorModeRequest.fromBuffer(value),
+        ($0.ColorModeResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.ColorModeDestroyRequest, $1.Empty>(
         'Destroy',
         destroy_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $0.LedModeDestroyRequest.fromBuffer(value),
+        ($core.List<$core.int> value) => $0.ColorModeDestroyRequest.fromBuffer(value),
         ($1.Empty value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.LedModeListRequest, $0.LedModeListResponse>(
+    $addMethod($grpc.ServiceMethod<$0.ColorModeListRequest, $0.ColorModeListResponse>(
         'List',
         list_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $0.LedModeListRequest.fromBuffer(value),
-        ($0.LedModeListResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.LedModePartialUpdateRequest, $0.LedModeResponse>(
+        ($core.List<$core.int> value) => $0.ColorModeListRequest.fromBuffer(value),
+        ($0.ColorModeListResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.ColorModePartialUpdateRequest, $0.ColorModeResponse>(
         'PartialUpdate',
         partialUpdate_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $0.LedModePartialUpdateRequest.fromBuffer(value),
-        ($0.LedModeResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.LedModeRetrieveRequest, $0.LedModeResponse>(
+        ($core.List<$core.int> value) => $0.ColorModePartialUpdateRequest.fromBuffer(value),
+        ($0.ColorModeResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.ColorModeRetrieveRequest, $0.ColorModeResponse>(
         'Retrieve',
         retrieve_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $0.LedModeRetrieveRequest.fromBuffer(value),
-        ($0.LedModeResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.LedModeRequest, $0.LedModeResponse>(
+        ($core.List<$core.int> value) => $0.ColorModeRetrieveRequest.fromBuffer(value),
+        ($0.ColorModeResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.ColorModeRequest, $0.ColorModeResponse>(
         'Update',
         update_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $0.LedModeRequest.fromBuffer(value),
-        ($0.LedModeResponse value) => value.writeToBuffer()));
+        ($core.List<$core.int> value) => $0.ColorModeRequest.fromBuffer(value),
+        ($0.ColorModeResponse value) => value.writeToBuffer()));
   }
 
-  $async.Future<$0.LedModeResponse> create_Pre($grpc.ServiceCall call, $async.Future<$0.LedModeRequest> request) async {
+  $async.Future<$0.ColorModeResponse> create_Pre($grpc.ServiceCall call, $async.Future<$0.ColorModeRequest> request) async {
     return create(call, await request);
   }
 
-  $async.Future<$1.Empty> destroy_Pre($grpc.ServiceCall call, $async.Future<$0.LedModeDestroyRequest> request) async {
+  $async.Future<$1.Empty> destroy_Pre($grpc.ServiceCall call, $async.Future<$0.ColorModeDestroyRequest> request) async {
     return destroy(call, await request);
   }
 
-  $async.Future<$0.LedModeListResponse> list_Pre($grpc.ServiceCall call, $async.Future<$0.LedModeListRequest> request) async {
+  $async.Future<$0.ColorModeListResponse> list_Pre($grpc.ServiceCall call, $async.Future<$0.ColorModeListRequest> request) async {
     return list(call, await request);
   }
 
-  $async.Future<$0.LedModeResponse> partialUpdate_Pre($grpc.ServiceCall call, $async.Future<$0.LedModePartialUpdateRequest> request) async {
+  $async.Future<$0.ColorModeResponse> partialUpdate_Pre($grpc.ServiceCall call, $async.Future<$0.ColorModePartialUpdateRequest> request) async {
     return partialUpdate(call, await request);
   }
 
-  $async.Future<$0.LedModeResponse> retrieve_Pre($grpc.ServiceCall call, $async.Future<$0.LedModeRetrieveRequest> request) async {
+  $async.Future<$0.ColorModeResponse> retrieve_Pre($grpc.ServiceCall call, $async.Future<$0.ColorModeRetrieveRequest> request) async {
     return retrieve(call, await request);
   }
 
-  $async.Future<$0.LedModeResponse> update_Pre($grpc.ServiceCall call, $async.Future<$0.LedModeRequest> request) async {
+  $async.Future<$0.ColorModeResponse> update_Pre($grpc.ServiceCall call, $async.Future<$0.ColorModeRequest> request) async {
     return update(call, await request);
   }
 
-  $async.Future<$0.LedModeResponse> create($grpc.ServiceCall call, $0.LedModeRequest request);
-  $async.Future<$1.Empty> destroy($grpc.ServiceCall call, $0.LedModeDestroyRequest request);
-  $async.Future<$0.LedModeListResponse> list($grpc.ServiceCall call, $0.LedModeListRequest request);
-  $async.Future<$0.LedModeResponse> partialUpdate($grpc.ServiceCall call, $0.LedModePartialUpdateRequest request);
-  $async.Future<$0.LedModeResponse> retrieve($grpc.ServiceCall call, $0.LedModeRetrieveRequest request);
-  $async.Future<$0.LedModeResponse> update($grpc.ServiceCall call, $0.LedModeRequest request);
+  $async.Future<$0.ColorModeResponse> create($grpc.ServiceCall call, $0.ColorModeRequest request);
+  $async.Future<$1.Empty> destroy($grpc.ServiceCall call, $0.ColorModeDestroyRequest request);
+  $async.Future<$0.ColorModeListResponse> list($grpc.ServiceCall call, $0.ColorModeListRequest request);
+  $async.Future<$0.ColorModeResponse> partialUpdate($grpc.ServiceCall call, $0.ColorModePartialUpdateRequest request);
+  $async.Future<$0.ColorModeResponse> retrieve($grpc.ServiceCall call, $0.ColorModeRetrieveRequest request);
+  $async.Future<$0.ColorModeResponse> update($grpc.ServiceCall call, $0.ColorModeRequest request);
+}
+@$pb.GrpcServiceName('base_app.products_controller.ImageModeController')
+class ImageModeControllerClient extends $grpc.Client {
+  static final _$create = $grpc.ClientMethod<$0.ImageModeRequest, $0.ImageModeResponse>(
+      '/base_app.products_controller.ImageModeController/Create',
+      ($0.ImageModeRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.ImageModeResponse.fromBuffer(value));
+  static final _$destroy = $grpc.ClientMethod<$0.ImageModeDestroyRequest, $1.Empty>(
+      '/base_app.products_controller.ImageModeController/Destroy',
+      ($0.ImageModeDestroyRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+  static final _$list = $grpc.ClientMethod<$0.ImageModeListRequest, $0.ImageModeListResponse>(
+      '/base_app.products_controller.ImageModeController/List',
+      ($0.ImageModeListRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.ImageModeListResponse.fromBuffer(value));
+  static final _$partialUpdate = $grpc.ClientMethod<$0.ImageModePartialUpdateRequest, $0.ImageModeResponse>(
+      '/base_app.products_controller.ImageModeController/PartialUpdate',
+      ($0.ImageModePartialUpdateRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.ImageModeResponse.fromBuffer(value));
+  static final _$retrieve = $grpc.ClientMethod<$0.ImageModeRetrieveRequest, $0.ImageModeResponse>(
+      '/base_app.products_controller.ImageModeController/Retrieve',
+      ($0.ImageModeRetrieveRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.ImageModeResponse.fromBuffer(value));
+  static final _$update = $grpc.ClientMethod<$0.ImageModeRequest, $0.ImageModeResponse>(
+      '/base_app.products_controller.ImageModeController/Update',
+      ($0.ImageModeRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.ImageModeResponse.fromBuffer(value));
+
+  ImageModeControllerClient($grpc.ClientChannel channel,
+      {$grpc.CallOptions? options,
+      $core.Iterable<$grpc.ClientInterceptor>? interceptors})
+      : super(channel, options: options,
+        interceptors: interceptors);
+
+  $grpc.ResponseFuture<$0.ImageModeResponse> create($0.ImageModeRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$create, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$1.Empty> destroy($0.ImageModeDestroyRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$destroy, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.ImageModeListResponse> list($0.ImageModeListRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$list, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.ImageModeResponse> partialUpdate($0.ImageModePartialUpdateRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$partialUpdate, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.ImageModeResponse> retrieve($0.ImageModeRetrieveRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$retrieve, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.ImageModeResponse> update($0.ImageModeRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$update, request, options: options);
+  }
+}
+
+@$pb.GrpcServiceName('base_app.products_controller.ImageModeController')
+abstract class ImageModeControllerServiceBase extends $grpc.Service {
+  $core.String get $name => 'base_app.products_controller.ImageModeController';
+
+  ImageModeControllerServiceBase() {
+    $addMethod($grpc.ServiceMethod<$0.ImageModeRequest, $0.ImageModeResponse>(
+        'Create',
+        create_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.ImageModeRequest.fromBuffer(value),
+        ($0.ImageModeResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.ImageModeDestroyRequest, $1.Empty>(
+        'Destroy',
+        destroy_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.ImageModeDestroyRequest.fromBuffer(value),
+        ($1.Empty value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.ImageModeListRequest, $0.ImageModeListResponse>(
+        'List',
+        list_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.ImageModeListRequest.fromBuffer(value),
+        ($0.ImageModeListResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.ImageModePartialUpdateRequest, $0.ImageModeResponse>(
+        'PartialUpdate',
+        partialUpdate_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.ImageModePartialUpdateRequest.fromBuffer(value),
+        ($0.ImageModeResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.ImageModeRetrieveRequest, $0.ImageModeResponse>(
+        'Retrieve',
+        retrieve_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.ImageModeRetrieveRequest.fromBuffer(value),
+        ($0.ImageModeResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.ImageModeRequest, $0.ImageModeResponse>(
+        'Update',
+        update_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.ImageModeRequest.fromBuffer(value),
+        ($0.ImageModeResponse value) => value.writeToBuffer()));
+  }
+
+  $async.Future<$0.ImageModeResponse> create_Pre($grpc.ServiceCall call, $async.Future<$0.ImageModeRequest> request) async {
+    return create(call, await request);
+  }
+
+  $async.Future<$1.Empty> destroy_Pre($grpc.ServiceCall call, $async.Future<$0.ImageModeDestroyRequest> request) async {
+    return destroy(call, await request);
+  }
+
+  $async.Future<$0.ImageModeListResponse> list_Pre($grpc.ServiceCall call, $async.Future<$0.ImageModeListRequest> request) async {
+    return list(call, await request);
+  }
+
+  $async.Future<$0.ImageModeResponse> partialUpdate_Pre($grpc.ServiceCall call, $async.Future<$0.ImageModePartialUpdateRequest> request) async {
+    return partialUpdate(call, await request);
+  }
+
+  $async.Future<$0.ImageModeResponse> retrieve_Pre($grpc.ServiceCall call, $async.Future<$0.ImageModeRetrieveRequest> request) async {
+    return retrieve(call, await request);
+  }
+
+  $async.Future<$0.ImageModeResponse> update_Pre($grpc.ServiceCall call, $async.Future<$0.ImageModeRequest> request) async {
+    return update(call, await request);
+  }
+
+  $async.Future<$0.ImageModeResponse> create($grpc.ServiceCall call, $0.ImageModeRequest request);
+  $async.Future<$1.Empty> destroy($grpc.ServiceCall call, $0.ImageModeDestroyRequest request);
+  $async.Future<$0.ImageModeListResponse> list($grpc.ServiceCall call, $0.ImageModeListRequest request);
+  $async.Future<$0.ImageModeResponse> partialUpdate($grpc.ServiceCall call, $0.ImageModePartialUpdateRequest request);
+  $async.Future<$0.ImageModeResponse> retrieve($grpc.ServiceCall call, $0.ImageModeRetrieveRequest request);
+  $async.Future<$0.ImageModeResponse> update($grpc.ServiceCall call, $0.ImageModeRequest request);
 }
 @$pb.GrpcServiceName('base_app.products_controller.LedPanelController')
 class LedPanelControllerClient extends $grpc.Client {
@@ -710,6 +710,144 @@ abstract class LedPanelControllerServiceBase extends $grpc.Service {
   $async.Future<$0.LedPanelResponse> retrieve($grpc.ServiceCall call, $0.LedPanelRetrieveRequest request);
   $async.Future<$0.LedPanelResponse> update($grpc.ServiceCall call, $0.LedPanelRequest request);
 }
+@$pb.GrpcServiceName('base_app.products_controller.PatternModeController')
+class PatternModeControllerClient extends $grpc.Client {
+  static final _$create = $grpc.ClientMethod<$0.PatternModeRequest, $0.PatternModeResponse>(
+      '/base_app.products_controller.PatternModeController/Create',
+      ($0.PatternModeRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.PatternModeResponse.fromBuffer(value));
+  static final _$destroy = $grpc.ClientMethod<$0.PatternModeDestroyRequest, $1.Empty>(
+      '/base_app.products_controller.PatternModeController/Destroy',
+      ($0.PatternModeDestroyRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+  static final _$list = $grpc.ClientMethod<$0.PatternModeListRequest, $0.PatternModeListResponse>(
+      '/base_app.products_controller.PatternModeController/List',
+      ($0.PatternModeListRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.PatternModeListResponse.fromBuffer(value));
+  static final _$partialUpdate = $grpc.ClientMethod<$0.PatternModePartialUpdateRequest, $0.PatternModeResponse>(
+      '/base_app.products_controller.PatternModeController/PartialUpdate',
+      ($0.PatternModePartialUpdateRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.PatternModeResponse.fromBuffer(value));
+  static final _$retrieve = $grpc.ClientMethod<$0.PatternModeRetrieveRequest, $0.PatternModeResponse>(
+      '/base_app.products_controller.PatternModeController/Retrieve',
+      ($0.PatternModeRetrieveRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.PatternModeResponse.fromBuffer(value));
+  static final _$update = $grpc.ClientMethod<$0.PatternModeRequest, $0.PatternModeResponse>(
+      '/base_app.products_controller.PatternModeController/Update',
+      ($0.PatternModeRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.PatternModeResponse.fromBuffer(value));
+
+  PatternModeControllerClient($grpc.ClientChannel channel,
+      {$grpc.CallOptions? options,
+      $core.Iterable<$grpc.ClientInterceptor>? interceptors})
+      : super(channel, options: options,
+        interceptors: interceptors);
+
+  $grpc.ResponseFuture<$0.PatternModeResponse> create($0.PatternModeRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$create, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$1.Empty> destroy($0.PatternModeDestroyRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$destroy, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.PatternModeListResponse> list($0.PatternModeListRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$list, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.PatternModeResponse> partialUpdate($0.PatternModePartialUpdateRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$partialUpdate, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.PatternModeResponse> retrieve($0.PatternModeRetrieveRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$retrieve, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.PatternModeResponse> update($0.PatternModeRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$update, request, options: options);
+  }
+}
+
+@$pb.GrpcServiceName('base_app.products_controller.PatternModeController')
+abstract class PatternModeControllerServiceBase extends $grpc.Service {
+  $core.String get $name => 'base_app.products_controller.PatternModeController';
+
+  PatternModeControllerServiceBase() {
+    $addMethod($grpc.ServiceMethod<$0.PatternModeRequest, $0.PatternModeResponse>(
+        'Create',
+        create_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.PatternModeRequest.fromBuffer(value),
+        ($0.PatternModeResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.PatternModeDestroyRequest, $1.Empty>(
+        'Destroy',
+        destroy_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.PatternModeDestroyRequest.fromBuffer(value),
+        ($1.Empty value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.PatternModeListRequest, $0.PatternModeListResponse>(
+        'List',
+        list_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.PatternModeListRequest.fromBuffer(value),
+        ($0.PatternModeListResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.PatternModePartialUpdateRequest, $0.PatternModeResponse>(
+        'PartialUpdate',
+        partialUpdate_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.PatternModePartialUpdateRequest.fromBuffer(value),
+        ($0.PatternModeResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.PatternModeRetrieveRequest, $0.PatternModeResponse>(
+        'Retrieve',
+        retrieve_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.PatternModeRetrieveRequest.fromBuffer(value),
+        ($0.PatternModeResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.PatternModeRequest, $0.PatternModeResponse>(
+        'Update',
+        update_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.PatternModeRequest.fromBuffer(value),
+        ($0.PatternModeResponse value) => value.writeToBuffer()));
+  }
+
+  $async.Future<$0.PatternModeResponse> create_Pre($grpc.ServiceCall call, $async.Future<$0.PatternModeRequest> request) async {
+    return create(call, await request);
+  }
+
+  $async.Future<$1.Empty> destroy_Pre($grpc.ServiceCall call, $async.Future<$0.PatternModeDestroyRequest> request) async {
+    return destroy(call, await request);
+  }
+
+  $async.Future<$0.PatternModeListResponse> list_Pre($grpc.ServiceCall call, $async.Future<$0.PatternModeListRequest> request) async {
+    return list(call, await request);
+  }
+
+  $async.Future<$0.PatternModeResponse> partialUpdate_Pre($grpc.ServiceCall call, $async.Future<$0.PatternModePartialUpdateRequest> request) async {
+    return partialUpdate(call, await request);
+  }
+
+  $async.Future<$0.PatternModeResponse> retrieve_Pre($grpc.ServiceCall call, $async.Future<$0.PatternModeRetrieveRequest> request) async {
+    return retrieve(call, await request);
+  }
+
+  $async.Future<$0.PatternModeResponse> update_Pre($grpc.ServiceCall call, $async.Future<$0.PatternModeRequest> request) async {
+    return update(call, await request);
+  }
+
+  $async.Future<$0.PatternModeResponse> create($grpc.ServiceCall call, $0.PatternModeRequest request);
+  $async.Future<$1.Empty> destroy($grpc.ServiceCall call, $0.PatternModeDestroyRequest request);
+  $async.Future<$0.PatternModeListResponse> list($grpc.ServiceCall call, $0.PatternModeListRequest request);
+  $async.Future<$0.PatternModeResponse> partialUpdate($grpc.ServiceCall call, $0.PatternModePartialUpdateRequest request);
+  $async.Future<$0.PatternModeResponse> retrieve($grpc.ServiceCall call, $0.PatternModeRetrieveRequest request);
+  $async.Future<$0.PatternModeResponse> update($grpc.ServiceCall call, $0.PatternModeRequest request);
+}
 @$pb.GrpcServiceName('base_app.products_controller.ProjectController')
 class ProjectControllerClient extends $grpc.Client {
   static final _$create = $grpc.ClientMethod<$0.ProjectRequest, $0.ProjectResponse>(
@@ -847,4 +985,142 @@ abstract class ProjectControllerServiceBase extends $grpc.Service {
   $async.Future<$0.ProjectResponse> partialUpdate($grpc.ServiceCall call, $0.ProjectPartialUpdateRequest request);
   $async.Future<$0.ProjectResponse> retrieve($grpc.ServiceCall call, $0.ProjectRetrieveRequest request);
   $async.Future<$0.ProjectResponse> update($grpc.ServiceCall call, $0.ProjectRequest request);
+}
+@$pb.GrpcServiceName('base_app.products_controller.VideoModeController')
+class VideoModeControllerClient extends $grpc.Client {
+  static final _$create = $grpc.ClientMethod<$0.VideoModeRequest, $0.VideoModeResponse>(
+      '/base_app.products_controller.VideoModeController/Create',
+      ($0.VideoModeRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.VideoModeResponse.fromBuffer(value));
+  static final _$destroy = $grpc.ClientMethod<$0.VideoModeDestroyRequest, $1.Empty>(
+      '/base_app.products_controller.VideoModeController/Destroy',
+      ($0.VideoModeDestroyRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+  static final _$list = $grpc.ClientMethod<$0.VideoModeListRequest, $0.VideoModeListResponse>(
+      '/base_app.products_controller.VideoModeController/List',
+      ($0.VideoModeListRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.VideoModeListResponse.fromBuffer(value));
+  static final _$partialUpdate = $grpc.ClientMethod<$0.VideoModePartialUpdateRequest, $0.VideoModeResponse>(
+      '/base_app.products_controller.VideoModeController/PartialUpdate',
+      ($0.VideoModePartialUpdateRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.VideoModeResponse.fromBuffer(value));
+  static final _$retrieve = $grpc.ClientMethod<$0.VideoModeRetrieveRequest, $0.VideoModeResponse>(
+      '/base_app.products_controller.VideoModeController/Retrieve',
+      ($0.VideoModeRetrieveRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.VideoModeResponse.fromBuffer(value));
+  static final _$update = $grpc.ClientMethod<$0.VideoModeRequest, $0.VideoModeResponse>(
+      '/base_app.products_controller.VideoModeController/Update',
+      ($0.VideoModeRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.VideoModeResponse.fromBuffer(value));
+
+  VideoModeControllerClient($grpc.ClientChannel channel,
+      {$grpc.CallOptions? options,
+      $core.Iterable<$grpc.ClientInterceptor>? interceptors})
+      : super(channel, options: options,
+        interceptors: interceptors);
+
+  $grpc.ResponseFuture<$0.VideoModeResponse> create($0.VideoModeRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$create, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$1.Empty> destroy($0.VideoModeDestroyRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$destroy, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.VideoModeListResponse> list($0.VideoModeListRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$list, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.VideoModeResponse> partialUpdate($0.VideoModePartialUpdateRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$partialUpdate, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.VideoModeResponse> retrieve($0.VideoModeRetrieveRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$retrieve, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.VideoModeResponse> update($0.VideoModeRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$update, request, options: options);
+  }
+}
+
+@$pb.GrpcServiceName('base_app.products_controller.VideoModeController')
+abstract class VideoModeControllerServiceBase extends $grpc.Service {
+  $core.String get $name => 'base_app.products_controller.VideoModeController';
+
+  VideoModeControllerServiceBase() {
+    $addMethod($grpc.ServiceMethod<$0.VideoModeRequest, $0.VideoModeResponse>(
+        'Create',
+        create_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.VideoModeRequest.fromBuffer(value),
+        ($0.VideoModeResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.VideoModeDestroyRequest, $1.Empty>(
+        'Destroy',
+        destroy_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.VideoModeDestroyRequest.fromBuffer(value),
+        ($1.Empty value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.VideoModeListRequest, $0.VideoModeListResponse>(
+        'List',
+        list_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.VideoModeListRequest.fromBuffer(value),
+        ($0.VideoModeListResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.VideoModePartialUpdateRequest, $0.VideoModeResponse>(
+        'PartialUpdate',
+        partialUpdate_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.VideoModePartialUpdateRequest.fromBuffer(value),
+        ($0.VideoModeResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.VideoModeRetrieveRequest, $0.VideoModeResponse>(
+        'Retrieve',
+        retrieve_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.VideoModeRetrieveRequest.fromBuffer(value),
+        ($0.VideoModeResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.VideoModeRequest, $0.VideoModeResponse>(
+        'Update',
+        update_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.VideoModeRequest.fromBuffer(value),
+        ($0.VideoModeResponse value) => value.writeToBuffer()));
+  }
+
+  $async.Future<$0.VideoModeResponse> create_Pre($grpc.ServiceCall call, $async.Future<$0.VideoModeRequest> request) async {
+    return create(call, await request);
+  }
+
+  $async.Future<$1.Empty> destroy_Pre($grpc.ServiceCall call, $async.Future<$0.VideoModeDestroyRequest> request) async {
+    return destroy(call, await request);
+  }
+
+  $async.Future<$0.VideoModeListResponse> list_Pre($grpc.ServiceCall call, $async.Future<$0.VideoModeListRequest> request) async {
+    return list(call, await request);
+  }
+
+  $async.Future<$0.VideoModeResponse> partialUpdate_Pre($grpc.ServiceCall call, $async.Future<$0.VideoModePartialUpdateRequest> request) async {
+    return partialUpdate(call, await request);
+  }
+
+  $async.Future<$0.VideoModeResponse> retrieve_Pre($grpc.ServiceCall call, $async.Future<$0.VideoModeRetrieveRequest> request) async {
+    return retrieve(call, await request);
+  }
+
+  $async.Future<$0.VideoModeResponse> update_Pre($grpc.ServiceCall call, $async.Future<$0.VideoModeRequest> request) async {
+    return update(call, await request);
+  }
+
+  $async.Future<$0.VideoModeResponse> create($grpc.ServiceCall call, $0.VideoModeRequest request);
+  $async.Future<$1.Empty> destroy($grpc.ServiceCall call, $0.VideoModeDestroyRequest request);
+  $async.Future<$0.VideoModeListResponse> list($grpc.ServiceCall call, $0.VideoModeListRequest request);
+  $async.Future<$0.VideoModeResponse> partialUpdate($grpc.ServiceCall call, $0.VideoModePartialUpdateRequest request);
+  $async.Future<$0.VideoModeResponse> retrieve($grpc.ServiceCall call, $0.VideoModeRetrieveRequest request);
+  $async.Future<$0.VideoModeResponse> update($grpc.ServiceCall call, $0.VideoModeRequest request);
 }

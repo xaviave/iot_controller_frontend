@@ -13,241 +13,25 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-class BaseProductDestroyRequest extends $pb.GeneratedMessage {
-  factory BaseProductDestroyRequest({
-    $core.String? uuid,
-  }) {
-    final $result = create();
-    if (uuid != null) {
-      $result.uuid = uuid;
-    }
-    return $result;
-  }
-  BaseProductDestroyRequest._() : super();
-  factory BaseProductDestroyRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory BaseProductDestroyRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'BaseProductDestroyRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'uuid')
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  BaseProductDestroyRequest clone() => BaseProductDestroyRequest()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  BaseProductDestroyRequest copyWith(void Function(BaseProductDestroyRequest) updates) => super.copyWith((message) => updates(message as BaseProductDestroyRequest)) as BaseProductDestroyRequest;
-
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static BaseProductDestroyRequest create() => BaseProductDestroyRequest._();
-  BaseProductDestroyRequest createEmptyInstance() => create();
-  static $pb.PbList<BaseProductDestroyRequest> createRepeated() => $pb.PbList<BaseProductDestroyRequest>();
-  @$core.pragma('dart2js:noInline')
-  static BaseProductDestroyRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BaseProductDestroyRequest>(create);
-  static BaseProductDestroyRequest? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get uuid => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set uuid($core.String v) { $_setString(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasUuid() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearUuid() => clearField(1);
+enum BaseProductRequest_Product {
+  coffeeMachine, 
+  ledPanel, 
+  notSet
 }
 
-class BaseProductListRequest extends $pb.GeneratedMessage {
-  factory BaseProductListRequest() => create();
-  BaseProductListRequest._() : super();
-  factory BaseProductListRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory BaseProductListRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'BaseProductListRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  BaseProductListRequest clone() => BaseProductListRequest()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  BaseProductListRequest copyWith(void Function(BaseProductListRequest) updates) => super.copyWith((message) => updates(message as BaseProductListRequest)) as BaseProductListRequest;
-
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static BaseProductListRequest create() => BaseProductListRequest._();
-  BaseProductListRequest createEmptyInstance() => create();
-  static $pb.PbList<BaseProductListRequest> createRepeated() => $pb.PbList<BaseProductListRequest>();
-  @$core.pragma('dart2js:noInline')
-  static BaseProductListRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BaseProductListRequest>(create);
-  static BaseProductListRequest? _defaultInstance;
-}
-
-class BaseProductListResponse extends $pb.GeneratedMessage {
-  factory BaseProductListResponse({
-    $core.Iterable<BaseProductResponse>? results,
-    $core.int? count,
-  }) {
-    final $result = create();
-    if (results != null) {
-      $result.results.addAll(results);
-    }
-    if (count != null) {
-      $result.count = count;
-    }
-    return $result;
-  }
-  BaseProductListResponse._() : super();
-  factory BaseProductListResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory BaseProductListResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'BaseProductListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..pc<BaseProductResponse>(1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM, subBuilder: BaseProductResponse.create)
-    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  BaseProductListResponse clone() => BaseProductListResponse()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  BaseProductListResponse copyWith(void Function(BaseProductListResponse) updates) => super.copyWith((message) => updates(message as BaseProductListResponse)) as BaseProductListResponse;
-
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static BaseProductListResponse create() => BaseProductListResponse._();
-  BaseProductListResponse createEmptyInstance() => create();
-  static $pb.PbList<BaseProductListResponse> createRepeated() => $pb.PbList<BaseProductListResponse>();
-  @$core.pragma('dart2js:noInline')
-  static BaseProductListResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BaseProductListResponse>(create);
-  static BaseProductListResponse? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.List<BaseProductResponse> get results => $_getList(0);
-
-  @$pb.TagNumber(2)
-  $core.int get count => $_getIZ(1);
-  @$pb.TagNumber(2)
-  set count($core.int v) { $_setSignedInt32(1, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasCount() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearCount() => clearField(2);
-}
-
-class BaseProductPartialUpdateRequest extends $pb.GeneratedMessage {
-  factory BaseProductPartialUpdateRequest({
-    $core.Iterable<$core.String>? categories,
-    $core.Iterable<$core.String>? partialUpdateFields,
-    $core.String? name,
-    $core.String? uuid,
-  }) {
-    final $result = create();
-    if (categories != null) {
-      $result.categories.addAll(categories);
-    }
-    if (partialUpdateFields != null) {
-      $result.partialUpdateFields.addAll(partialUpdateFields);
-    }
-    if (name != null) {
-      $result.name = name;
-    }
-    if (uuid != null) {
-      $result.uuid = uuid;
-    }
-    return $result;
-  }
-  BaseProductPartialUpdateRequest._() : super();
-  factory BaseProductPartialUpdateRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory BaseProductPartialUpdateRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'BaseProductPartialUpdateRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..pPS(2, _omitFieldNames ? '' : 'categories')
-    ..pPS(3, _omitFieldNames ? '' : 'PartialUpdateFields')
-    ..aOS(4, _omitFieldNames ? '' : 'name')
-    ..aOS(5, _omitFieldNames ? '' : 'uuid')
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  BaseProductPartialUpdateRequest clone() => BaseProductPartialUpdateRequest()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  BaseProductPartialUpdateRequest copyWith(void Function(BaseProductPartialUpdateRequest) updates) => super.copyWith((message) => updates(message as BaseProductPartialUpdateRequest)) as BaseProductPartialUpdateRequest;
-
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static BaseProductPartialUpdateRequest create() => BaseProductPartialUpdateRequest._();
-  BaseProductPartialUpdateRequest createEmptyInstance() => create();
-  static $pb.PbList<BaseProductPartialUpdateRequest> createRepeated() => $pb.PbList<BaseProductPartialUpdateRequest>();
-  @$core.pragma('dart2js:noInline')
-  static BaseProductPartialUpdateRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BaseProductPartialUpdateRequest>(create);
-  static BaseProductPartialUpdateRequest? _defaultInstance;
-
-  @$pb.TagNumber(2)
-  $core.List<$core.String> get categories => $_getList(0);
-
-  @$pb.TagNumber(3)
-  $core.List<$core.String> get partialUpdateFields => $_getList(1);
-
-  @$pb.TagNumber(4)
-  $core.String get name => $_getSZ(2);
-  @$pb.TagNumber(4)
-  set name($core.String v) { $_setString(2, v); }
-  @$pb.TagNumber(4)
-  $core.bool hasName() => $_has(2);
-  @$pb.TagNumber(4)
-  void clearName() => clearField(4);
-
-  @$pb.TagNumber(5)
-  $core.String get uuid => $_getSZ(3);
-  @$pb.TagNumber(5)
-  set uuid($core.String v) { $_setString(3, v); }
-  @$pb.TagNumber(5)
-  $core.bool hasUuid() => $_has(3);
-  @$pb.TagNumber(5)
-  void clearUuid() => clearField(5);
-}
-
+/// Polymorphism
+/// Manual
 class BaseProductRequest extends $pb.GeneratedMessage {
   factory BaseProductRequest({
-    $core.Iterable<$core.String>? categories,
-    $core.String? name,
-    $core.String? uuid,
+    CoffeeMachineRequest? coffeeMachine,
+    LedPanelRequest? ledPanel,
   }) {
     final $result = create();
-    if (categories != null) {
-      $result.categories.addAll(categories);
+    if (coffeeMachine != null) {
+      $result.coffeeMachine = coffeeMachine;
     }
-    if (name != null) {
-      $result.name = name;
-    }
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (ledPanel != null) {
+      $result.ledPanel = ledPanel;
     }
     return $result;
   }
@@ -255,10 +39,15 @@ class BaseProductRequest extends $pb.GeneratedMessage {
   factory BaseProductRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory BaseProductRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
+  static const $core.Map<$core.int, BaseProductRequest_Product> _BaseProductRequest_ProductByTag = {
+    2 : BaseProductRequest_Product.coffeeMachine,
+    3 : BaseProductRequest_Product.ledPanel,
+    0 : BaseProductRequest_Product.notSet
+  };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'BaseProductRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..pPS(2, _omitFieldNames ? '' : 'categories')
-    ..aOS(3, _omitFieldNames ? '' : 'name')
-    ..aOS(4, _omitFieldNames ? '' : 'uuid')
+    ..oo(0, [2, 3])
+    ..aOM<CoffeeMachineRequest>(2, _omitFieldNames ? '' : 'CoffeeMachine', protoName: 'CoffeeMachine', subBuilder: CoffeeMachineRequest.create)
+    ..aOM<LedPanelRequest>(3, _omitFieldNames ? '' : 'LedPanel', protoName: 'LedPanel', subBuilder: LedPanelRequest.create)
     ..hasRequiredFields = false
   ;
 
@@ -283,47 +72,49 @@ class BaseProductRequest extends $pb.GeneratedMessage {
   static BaseProductRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BaseProductRequest>(create);
   static BaseProductRequest? _defaultInstance;
 
+  BaseProductRequest_Product whichProduct() => _BaseProductRequest_ProductByTag[$_whichOneof(0)]!;
+  void clearProduct() => clearField($_whichOneof(0));
+
   @$pb.TagNumber(2)
-  $core.List<$core.String> get categories => $_getList(0);
+  CoffeeMachineRequest get coffeeMachine => $_getN(0);
+  @$pb.TagNumber(2)
+  set coffeeMachine(CoffeeMachineRequest v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCoffeeMachine() => $_has(0);
+  @$pb.TagNumber(2)
+  void clearCoffeeMachine() => clearField(2);
+  @$pb.TagNumber(2)
+  CoffeeMachineRequest ensureCoffeeMachine() => $_ensure(0);
 
   @$pb.TagNumber(3)
-  $core.String get name => $_getSZ(1);
+  LedPanelRequest get ledPanel => $_getN(1);
   @$pb.TagNumber(3)
-  set name($core.String v) { $_setString(1, v); }
+  set ledPanel(LedPanelRequest v) { setField(3, v); }
   @$pb.TagNumber(3)
-  $core.bool hasName() => $_has(1);
+  $core.bool hasLedPanel() => $_has(1);
   @$pb.TagNumber(3)
-  void clearName() => clearField(3);
+  void clearLedPanel() => clearField(3);
+  @$pb.TagNumber(3)
+  LedPanelRequest ensureLedPanel() => $_ensure(1);
+}
 
-  @$pb.TagNumber(4)
-  $core.String get uuid => $_getSZ(2);
-  @$pb.TagNumber(4)
-  set uuid($core.String v) { $_setString(2, v); }
-  @$pb.TagNumber(4)
-  $core.bool hasUuid() => $_has(2);
-  @$pb.TagNumber(4)
-  void clearUuid() => clearField(4);
+enum BaseProductResponse_Product {
+  coffeeMachine, 
+  ledPanel, 
+  notSet
 }
 
 class BaseProductResponse extends $pb.GeneratedMessage {
   factory BaseProductResponse({
-    $core.Iterable<$core.String>? categories,
-    $core.String? name,
-    $core.int? polymorphicCtype,
-    $core.String? uuid,
+    CoffeeMachineResponse? coffeeMachine,
+    LedPanelResponse? ledPanel,
   }) {
     final $result = create();
-    if (categories != null) {
-      $result.categories.addAll(categories);
+    if (coffeeMachine != null) {
+      $result.coffeeMachine = coffeeMachine;
     }
-    if (name != null) {
-      $result.name = name;
-    }
-    if (polymorphicCtype != null) {
-      $result.polymorphicCtype = polymorphicCtype;
-    }
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (ledPanel != null) {
+      $result.ledPanel = ledPanel;
     }
     return $result;
   }
@@ -331,11 +122,15 @@ class BaseProductResponse extends $pb.GeneratedMessage {
   factory BaseProductResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory BaseProductResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
+  static const $core.Map<$core.int, BaseProductResponse_Product> _BaseProductResponse_ProductByTag = {
+    2 : BaseProductResponse_Product.coffeeMachine,
+    3 : BaseProductResponse_Product.ledPanel,
+    0 : BaseProductResponse_Product.notSet
+  };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'BaseProductResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..pPS(2, _omitFieldNames ? '' : 'categories')
-    ..aOS(3, _omitFieldNames ? '' : 'name')
-    ..a<$core.int>(4, _omitFieldNames ? '' : 'polymorphicCtype', $pb.PbFieldType.O3)
-    ..aOS(5, _omitFieldNames ? '' : 'uuid')
+    ..oo(0, [2, 3])
+    ..aOM<CoffeeMachineResponse>(2, _omitFieldNames ? '' : 'CoffeeMachine', protoName: 'CoffeeMachine', subBuilder: CoffeeMachineResponse.create)
+    ..aOM<LedPanelResponse>(3, _omitFieldNames ? '' : 'LedPanel', protoName: 'LedPanel', subBuilder: LedPanelResponse.create)
     ..hasRequiredFields = false
   ;
 
@@ -360,53 +155,79 @@ class BaseProductResponse extends $pb.GeneratedMessage {
   static BaseProductResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BaseProductResponse>(create);
   static BaseProductResponse? _defaultInstance;
 
+  BaseProductResponse_Product whichProduct() => _BaseProductResponse_ProductByTag[$_whichOneof(0)]!;
+  void clearProduct() => clearField($_whichOneof(0));
+
   @$pb.TagNumber(2)
-  $core.List<$core.String> get categories => $_getList(0);
+  CoffeeMachineResponse get coffeeMachine => $_getN(0);
+  @$pb.TagNumber(2)
+  set coffeeMachine(CoffeeMachineResponse v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCoffeeMachine() => $_has(0);
+  @$pb.TagNumber(2)
+  void clearCoffeeMachine() => clearField(2);
+  @$pb.TagNumber(2)
+  CoffeeMachineResponse ensureCoffeeMachine() => $_ensure(0);
 
   @$pb.TagNumber(3)
-  $core.String get name => $_getSZ(1);
+  LedPanelResponse get ledPanel => $_getN(1);
   @$pb.TagNumber(3)
-  set name($core.String v) { $_setString(1, v); }
+  set ledPanel(LedPanelResponse v) { setField(3, v); }
   @$pb.TagNumber(3)
-  $core.bool hasName() => $_has(1);
+  $core.bool hasLedPanel() => $_has(1);
   @$pb.TagNumber(3)
-  void clearName() => clearField(3);
-
-  @$pb.TagNumber(4)
-  $core.int get polymorphicCtype => $_getIZ(2);
-  @$pb.TagNumber(4)
-  set polymorphicCtype($core.int v) { $_setSignedInt32(2, v); }
-  @$pb.TagNumber(4)
-  $core.bool hasPolymorphicCtype() => $_has(2);
-  @$pb.TagNumber(4)
-  void clearPolymorphicCtype() => clearField(4);
-
-  @$pb.TagNumber(5)
-  $core.String get uuid => $_getSZ(3);
-  @$pb.TagNumber(5)
-  set uuid($core.String v) { $_setString(3, v); }
-  @$pb.TagNumber(5)
-  $core.bool hasUuid() => $_has(3);
-  @$pb.TagNumber(5)
-  void clearUuid() => clearField(5);
+  void clearLedPanel() => clearField(3);
+  @$pb.TagNumber(3)
+  LedPanelResponse ensureLedPanel() => $_ensure(1);
 }
 
-class BaseProductRetrieveRequest extends $pb.GeneratedMessage {
-  factory BaseProductRetrieveRequest({
-    $core.String? uuid,
+enum LedModeRequest_Mode {
+  imageMode, 
+  videoMode, 
+  colorMode, 
+  patternMode, 
+  notSet
+}
+
+class LedModeRequest extends $pb.GeneratedMessage {
+  factory LedModeRequest({
+    ImageModeRequest? imageMode,
+    VideoModeRequest? videoMode,
+    ColorModeRequest? colorMode,
+    PatternModeRequest? patternMode,
   }) {
     final $result = create();
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (imageMode != null) {
+      $result.imageMode = imageMode;
+    }
+    if (videoMode != null) {
+      $result.videoMode = videoMode;
+    }
+    if (colorMode != null) {
+      $result.colorMode = colorMode;
+    }
+    if (patternMode != null) {
+      $result.patternMode = patternMode;
     }
     return $result;
   }
-  BaseProductRetrieveRequest._() : super();
-  factory BaseProductRetrieveRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory BaseProductRetrieveRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  LedModeRequest._() : super();
+  factory LedModeRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory LedModeRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'BaseProductRetrieveRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'uuid')
+  static const $core.Map<$core.int, LedModeRequest_Mode> _LedModeRequest_ModeByTag = {
+    2 : LedModeRequest_Mode.imageMode,
+    3 : LedModeRequest_Mode.videoMode,
+    4 : LedModeRequest_Mode.colorMode,
+    5 : LedModeRequest_Mode.patternMode,
+    0 : LedModeRequest_Mode.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'LedModeRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..oo(0, [2, 3, 4, 5])
+    ..aOM<ImageModeRequest>(2, _omitFieldNames ? '' : 'ImageMode', protoName: 'ImageMode', subBuilder: ImageModeRequest.create)
+    ..aOM<VideoModeRequest>(3, _omitFieldNames ? '' : 'VideoMode', protoName: 'VideoMode', subBuilder: VideoModeRequest.create)
+    ..aOM<ColorModeRequest>(4, _omitFieldNames ? '' : 'ColorMode', protoName: 'ColorMode', subBuilder: ColorModeRequest.create)
+    ..aOM<PatternModeRequest>(5, _omitFieldNames ? '' : 'PatternMode', protoName: 'PatternMode', subBuilder: PatternModeRequest.create)
     ..hasRequiredFields = false
   ;
 
@@ -414,40 +235,197 @@ class BaseProductRetrieveRequest extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  BaseProductRetrieveRequest clone() => BaseProductRetrieveRequest()..mergeFromMessage(this);
+  LedModeRequest clone() => LedModeRequest()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  BaseProductRetrieveRequest copyWith(void Function(BaseProductRetrieveRequest) updates) => super.copyWith((message) => updates(message as BaseProductRetrieveRequest)) as BaseProductRetrieveRequest;
+  LedModeRequest copyWith(void Function(LedModeRequest) updates) => super.copyWith((message) => updates(message as LedModeRequest)) as LedModeRequest;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static BaseProductRetrieveRequest create() => BaseProductRetrieveRequest._();
-  BaseProductRetrieveRequest createEmptyInstance() => create();
-  static $pb.PbList<BaseProductRetrieveRequest> createRepeated() => $pb.PbList<BaseProductRetrieveRequest>();
+  static LedModeRequest create() => LedModeRequest._();
+  LedModeRequest createEmptyInstance() => create();
+  static $pb.PbList<LedModeRequest> createRepeated() => $pb.PbList<LedModeRequest>();
   @$core.pragma('dart2js:noInline')
-  static BaseProductRetrieveRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BaseProductRetrieveRequest>(create);
-  static BaseProductRetrieveRequest? _defaultInstance;
+  static LedModeRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LedModeRequest>(create);
+  static LedModeRequest? _defaultInstance;
 
-  @$pb.TagNumber(1)
-  $core.String get uuid => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set uuid($core.String v) { $_setString(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasUuid() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearUuid() => clearField(1);
+  LedModeRequest_Mode whichMode() => _LedModeRequest_ModeByTag[$_whichOneof(0)]!;
+  void clearMode() => clearField($_whichOneof(0));
+
+  @$pb.TagNumber(2)
+  ImageModeRequest get imageMode => $_getN(0);
+  @$pb.TagNumber(2)
+  set imageMode(ImageModeRequest v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasImageMode() => $_has(0);
+  @$pb.TagNumber(2)
+  void clearImageMode() => clearField(2);
+  @$pb.TagNumber(2)
+  ImageModeRequest ensureImageMode() => $_ensure(0);
+
+  @$pb.TagNumber(3)
+  VideoModeRequest get videoMode => $_getN(1);
+  @$pb.TagNumber(3)
+  set videoMode(VideoModeRequest v) { setField(3, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasVideoMode() => $_has(1);
+  @$pb.TagNumber(3)
+  void clearVideoMode() => clearField(3);
+  @$pb.TagNumber(3)
+  VideoModeRequest ensureVideoMode() => $_ensure(1);
+
+  @$pb.TagNumber(4)
+  ColorModeRequest get colorMode => $_getN(2);
+  @$pb.TagNumber(4)
+  set colorMode(ColorModeRequest v) { setField(4, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasColorMode() => $_has(2);
+  @$pb.TagNumber(4)
+  void clearColorMode() => clearField(4);
+  @$pb.TagNumber(4)
+  ColorModeRequest ensureColorMode() => $_ensure(2);
+
+  @$pb.TagNumber(5)
+  PatternModeRequest get patternMode => $_getN(3);
+  @$pb.TagNumber(5)
+  set patternMode(PatternModeRequest v) { setField(5, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasPatternMode() => $_has(3);
+  @$pb.TagNumber(5)
+  void clearPatternMode() => clearField(5);
+  @$pb.TagNumber(5)
+  PatternModeRequest ensurePatternMode() => $_ensure(3);
+}
+
+enum LedModeResponse_Mode {
+  imageMode, 
+  videoMode, 
+  colorMode, 
+  patternMode, 
+  notSet
+}
+
+class LedModeResponse extends $pb.GeneratedMessage {
+  factory LedModeResponse({
+    ImageModeResponse? imageMode,
+    VideoModeResponse? videoMode,
+    ColorModeResponse? colorMode,
+    PatternModeResponse? patternMode,
+  }) {
+    final $result = create();
+    if (imageMode != null) {
+      $result.imageMode = imageMode;
+    }
+    if (videoMode != null) {
+      $result.videoMode = videoMode;
+    }
+    if (colorMode != null) {
+      $result.colorMode = colorMode;
+    }
+    if (patternMode != null) {
+      $result.patternMode = patternMode;
+    }
+    return $result;
+  }
+  LedModeResponse._() : super();
+  factory LedModeResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory LedModeResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static const $core.Map<$core.int, LedModeResponse_Mode> _LedModeResponse_ModeByTag = {
+    2 : LedModeResponse_Mode.imageMode,
+    3 : LedModeResponse_Mode.videoMode,
+    4 : LedModeResponse_Mode.colorMode,
+    5 : LedModeResponse_Mode.patternMode,
+    0 : LedModeResponse_Mode.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'LedModeResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..oo(0, [2, 3, 4, 5])
+    ..aOM<ImageModeResponse>(2, _omitFieldNames ? '' : 'ImageMode', protoName: 'ImageMode', subBuilder: ImageModeResponse.create)
+    ..aOM<VideoModeResponse>(3, _omitFieldNames ? '' : 'VideoMode', protoName: 'VideoMode', subBuilder: VideoModeResponse.create)
+    ..aOM<ColorModeResponse>(4, _omitFieldNames ? '' : 'ColorMode', protoName: 'ColorMode', subBuilder: ColorModeResponse.create)
+    ..aOM<PatternModeResponse>(5, _omitFieldNames ? '' : 'PatternMode', protoName: 'PatternMode', subBuilder: PatternModeResponse.create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  LedModeResponse clone() => LedModeResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  LedModeResponse copyWith(void Function(LedModeResponse) updates) => super.copyWith((message) => updates(message as LedModeResponse)) as LedModeResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static LedModeResponse create() => LedModeResponse._();
+  LedModeResponse createEmptyInstance() => create();
+  static $pb.PbList<LedModeResponse> createRepeated() => $pb.PbList<LedModeResponse>();
+  @$core.pragma('dart2js:noInline')
+  static LedModeResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LedModeResponse>(create);
+  static LedModeResponse? _defaultInstance;
+
+  LedModeResponse_Mode whichMode() => _LedModeResponse_ModeByTag[$_whichOneof(0)]!;
+  void clearMode() => clearField($_whichOneof(0));
+
+  @$pb.TagNumber(2)
+  ImageModeResponse get imageMode => $_getN(0);
+  @$pb.TagNumber(2)
+  set imageMode(ImageModeResponse v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasImageMode() => $_has(0);
+  @$pb.TagNumber(2)
+  void clearImageMode() => clearField(2);
+  @$pb.TagNumber(2)
+  ImageModeResponse ensureImageMode() => $_ensure(0);
+
+  @$pb.TagNumber(3)
+  VideoModeResponse get videoMode => $_getN(1);
+  @$pb.TagNumber(3)
+  set videoMode(VideoModeResponse v) { setField(3, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasVideoMode() => $_has(1);
+  @$pb.TagNumber(3)
+  void clearVideoMode() => clearField(3);
+  @$pb.TagNumber(3)
+  VideoModeResponse ensureVideoMode() => $_ensure(1);
+
+  @$pb.TagNumber(4)
+  ColorModeResponse get colorMode => $_getN(2);
+  @$pb.TagNumber(4)
+  set colorMode(ColorModeResponse v) { setField(4, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasColorMode() => $_has(2);
+  @$pb.TagNumber(4)
+  void clearColorMode() => clearField(4);
+  @$pb.TagNumber(4)
+  ColorModeResponse ensureColorMode() => $_ensure(2);
+
+  @$pb.TagNumber(5)
+  PatternModeResponse get patternMode => $_getN(3);
+  @$pb.TagNumber(5)
+  set patternMode(PatternModeResponse v) { setField(5, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasPatternMode() => $_has(3);
+  @$pb.TagNumber(5)
+  void clearPatternMode() => clearField(5);
+  @$pb.TagNumber(5)
+  PatternModeResponse ensurePatternMode() => $_ensure(3);
 }
 
 class CategoryDestroyRequest extends $pb.GeneratedMessage {
   factory CategoryDestroyRequest({
-    $core.String? uuid,
+    $core.int? id,
   }) {
     final $result = create();
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (id != null) {
+      $result.id = id;
     }
     return $result;
   }
@@ -456,7 +434,7 @@ class CategoryDestroyRequest extends $pb.GeneratedMessage {
   factory CategoryDestroyRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CategoryDestroyRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'uuid')
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -482,13 +460,13 @@ class CategoryDestroyRequest extends $pb.GeneratedMessage {
   static CategoryDestroyRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get uuid => $_getSZ(0);
+  $core.int get id => $_getIZ(0);
   @$pb.TagNumber(1)
-  set uuid($core.String v) { $_setString(0, v); }
+  set id($core.int v) { $_setSignedInt32(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasUuid() => $_has(0);
+  $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearUuid() => clearField(1);
+  void clearId() => clearField(1);
 }
 
 class CategoryListRequest extends $pb.GeneratedMessage {
@@ -585,7 +563,7 @@ class CategoryPartialUpdateRequest extends $pb.GeneratedMessage {
   factory CategoryPartialUpdateRequest({
     $core.Iterable<$core.String>? partialUpdateFields,
     $core.String? name,
-    $core.String? uuid,
+    $core.int? id,
   }) {
     final $result = create();
     if (partialUpdateFields != null) {
@@ -594,8 +572,8 @@ class CategoryPartialUpdateRequest extends $pb.GeneratedMessage {
     if (name != null) {
       $result.name = name;
     }
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (id != null) {
+      $result.id = id;
     }
     return $result;
   }
@@ -606,7 +584,7 @@ class CategoryPartialUpdateRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CategoryPartialUpdateRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..pPS(2, _omitFieldNames ? '' : 'PartialUpdateFields')
     ..aOS(3, _omitFieldNames ? '' : 'name')
-    ..aOS(4, _omitFieldNames ? '' : 'uuid')
+    ..a<$core.int>(4, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -644,26 +622,26 @@ class CategoryPartialUpdateRequest extends $pb.GeneratedMessage {
   void clearName() => clearField(3);
 
   @$pb.TagNumber(4)
-  $core.String get uuid => $_getSZ(2);
+  $core.int get id => $_getIZ(2);
   @$pb.TagNumber(4)
-  set uuid($core.String v) { $_setString(2, v); }
+  set id($core.int v) { $_setSignedInt32(2, v); }
   @$pb.TagNumber(4)
-  $core.bool hasUuid() => $_has(2);
+  $core.bool hasId() => $_has(2);
   @$pb.TagNumber(4)
-  void clearUuid() => clearField(4);
+  void clearId() => clearField(4);
 }
 
 class CategoryRequest extends $pb.GeneratedMessage {
   factory CategoryRequest({
     $core.String? name,
-    $core.String? uuid,
+    $core.int? id,
   }) {
     final $result = create();
     if (name != null) {
       $result.name = name;
     }
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (id != null) {
+      $result.id = id;
     }
     return $result;
   }
@@ -673,7 +651,7 @@ class CategoryRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CategoryRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..aOS(2, _omitFieldNames ? '' : 'name')
-    ..aOS(3, _omitFieldNames ? '' : 'uuid')
+    ..a<$core.int>(3, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -708,26 +686,26 @@ class CategoryRequest extends $pb.GeneratedMessage {
   void clearName() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.String get uuid => $_getSZ(1);
+  $core.int get id => $_getIZ(1);
   @$pb.TagNumber(3)
-  set uuid($core.String v) { $_setString(1, v); }
+  set id($core.int v) { $_setSignedInt32(1, v); }
   @$pb.TagNumber(3)
-  $core.bool hasUuid() => $_has(1);
+  $core.bool hasId() => $_has(1);
   @$pb.TagNumber(3)
-  void clearUuid() => clearField(3);
+  void clearId() => clearField(3);
 }
 
 class CategoryResponse extends $pb.GeneratedMessage {
   factory CategoryResponse({
     $core.String? name,
-    $core.String? uuid,
+    $core.int? id,
   }) {
     final $result = create();
     if (name != null) {
       $result.name = name;
     }
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (id != null) {
+      $result.id = id;
     }
     return $result;
   }
@@ -737,7 +715,7 @@ class CategoryResponse extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CategoryResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..aOS(2, _omitFieldNames ? '' : 'name')
-    ..aOS(3, _omitFieldNames ? '' : 'uuid')
+    ..a<$core.int>(3, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -772,22 +750,22 @@ class CategoryResponse extends $pb.GeneratedMessage {
   void clearName() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.String get uuid => $_getSZ(1);
+  $core.int get id => $_getIZ(1);
   @$pb.TagNumber(3)
-  set uuid($core.String v) { $_setString(1, v); }
+  set id($core.int v) { $_setSignedInt32(1, v); }
   @$pb.TagNumber(3)
-  $core.bool hasUuid() => $_has(1);
+  $core.bool hasId() => $_has(1);
   @$pb.TagNumber(3)
-  void clearUuid() => clearField(3);
+  void clearId() => clearField(3);
 }
 
 class CategoryRetrieveRequest extends $pb.GeneratedMessage {
   factory CategoryRetrieveRequest({
-    $core.String? uuid,
+    $core.int? id,
   }) {
     final $result = create();
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (id != null) {
+      $result.id = id;
     }
     return $result;
   }
@@ -796,7 +774,7 @@ class CategoryRetrieveRequest extends $pb.GeneratedMessage {
   factory CategoryRetrieveRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CategoryRetrieveRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'uuid')
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -822,22 +800,22 @@ class CategoryRetrieveRequest extends $pb.GeneratedMessage {
   static CategoryRetrieveRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get uuid => $_getSZ(0);
+  $core.int get id => $_getIZ(0);
   @$pb.TagNumber(1)
-  set uuid($core.String v) { $_setString(0, v); }
+  set id($core.int v) { $_setSignedInt32(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasUuid() => $_has(0);
+  $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearUuid() => clearField(1);
+  void clearId() => clearField(1);
 }
 
 class CoffeeMachineDestroyRequest extends $pb.GeneratedMessage {
   factory CoffeeMachineDestroyRequest({
-    $core.String? uuid,
+    $core.int? id,
   }) {
     final $result = create();
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (id != null) {
+      $result.id = id;
     }
     return $result;
   }
@@ -846,7 +824,7 @@ class CoffeeMachineDestroyRequest extends $pb.GeneratedMessage {
   factory CoffeeMachineDestroyRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CoffeeMachineDestroyRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'uuid')
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -872,13 +850,13 @@ class CoffeeMachineDestroyRequest extends $pb.GeneratedMessage {
   static CoffeeMachineDestroyRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get uuid => $_getSZ(0);
+  $core.int get id => $_getIZ(0);
   @$pb.TagNumber(1)
-  set uuid($core.String v) { $_setString(0, v); }
+  set id($core.int v) { $_setSignedInt32(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasUuid() => $_has(0);
+  $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearUuid() => clearField(1);
+  void clearId() => clearField(1);
 }
 
 class CoffeeMachineListRequest extends $pb.GeneratedMessage {
@@ -982,8 +960,8 @@ class CoffeeMachinePartialUpdateRequest extends $pb.GeneratedMessage {
     $core.int? coffeeLevel,
     $core.bool? filterPosition,
     $core.int? modeValue,
-    $core.Iterable<$core.String>? categories,
-    $core.String? uuid,
+    $core.Iterable<CategoryRequest>? categories,
+    $core.int? id,
   }) {
     final $result = create();
     if (partialUpdateFields != null) {
@@ -1016,8 +994,8 @@ class CoffeeMachinePartialUpdateRequest extends $pb.GeneratedMessage {
     if (categories != null) {
       $result.categories.addAll(categories);
     }
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (id != null) {
+      $result.id = id;
     }
     return $result;
   }
@@ -1035,8 +1013,8 @@ class CoffeeMachinePartialUpdateRequest extends $pb.GeneratedMessage {
     ..a<$core.int>(8, _omitFieldNames ? '' : 'coffeeLevel', $pb.PbFieldType.O3)
     ..aOB(9, _omitFieldNames ? '' : 'filterPosition')
     ..a<$core.int>(10, _omitFieldNames ? '' : 'modeValue', $pb.PbFieldType.O3)
-    ..pPS(11, _omitFieldNames ? '' : 'categories')
-    ..aOS(12, _omitFieldNames ? '' : 'uuid')
+    ..pc<CategoryRequest>(11, _omitFieldNames ? '' : 'categories', $pb.PbFieldType.PM, subBuilder: CategoryRequest.create)
+    ..a<$core.int>(12, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -1137,16 +1115,16 @@ class CoffeeMachinePartialUpdateRequest extends $pb.GeneratedMessage {
   void clearModeValue() => clearField(10);
 
   @$pb.TagNumber(11)
-  $core.List<$core.String> get categories => $_getList(9);
+  $core.List<CategoryRequest> get categories => $_getList(9);
 
   @$pb.TagNumber(12)
-  $core.String get uuid => $_getSZ(10);
+  $core.int get id => $_getIZ(10);
   @$pb.TagNumber(12)
-  set uuid($core.String v) { $_setString(10, v); }
+  set id($core.int v) { $_setSignedInt32(10, v); }
   @$pb.TagNumber(12)
-  $core.bool hasUuid() => $_has(10);
+  $core.bool hasId() => $_has(10);
   @$pb.TagNumber(12)
-  void clearUuid() => clearField(12);
+  void clearId() => clearField(12);
 }
 
 class CoffeeMachineRequest extends $pb.GeneratedMessage {
@@ -1159,8 +1137,8 @@ class CoffeeMachineRequest extends $pb.GeneratedMessage {
     $core.int? coffeeLevel,
     $core.bool? filterPosition,
     $core.int? modeValue,
-    $core.Iterable<$core.String>? categories,
-    $core.String? uuid,
+    $core.Iterable<CategoryRequest>? categories,
+    $core.int? id,
   }) {
     final $result = create();
     if (name != null) {
@@ -1190,8 +1168,8 @@ class CoffeeMachineRequest extends $pb.GeneratedMessage {
     if (categories != null) {
       $result.categories.addAll(categories);
     }
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (id != null) {
+      $result.id = id;
     }
     return $result;
   }
@@ -1208,8 +1186,8 @@ class CoffeeMachineRequest extends $pb.GeneratedMessage {
     ..a<$core.int>(7, _omitFieldNames ? '' : 'coffeeLevel', $pb.PbFieldType.O3)
     ..aOB(8, _omitFieldNames ? '' : 'filterPosition')
     ..a<$core.int>(9, _omitFieldNames ? '' : 'modeValue', $pb.PbFieldType.O3)
-    ..pPS(10, _omitFieldNames ? '' : 'categories')
-    ..aOS(11, _omitFieldNames ? '' : 'uuid')
+    ..pc<CategoryRequest>(10, _omitFieldNames ? '' : 'categories', $pb.PbFieldType.PM, subBuilder: CategoryRequest.create)
+    ..a<$core.int>(11, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -1307,16 +1285,16 @@ class CoffeeMachineRequest extends $pb.GeneratedMessage {
   void clearModeValue() => clearField(9);
 
   @$pb.TagNumber(10)
-  $core.List<$core.String> get categories => $_getList(8);
+  $core.List<CategoryRequest> get categories => $_getList(8);
 
   @$pb.TagNumber(11)
-  $core.String get uuid => $_getSZ(9);
+  $core.int get id => $_getIZ(9);
   @$pb.TagNumber(11)
-  set uuid($core.String v) { $_setString(9, v); }
+  set id($core.int v) { $_setSignedInt32(9, v); }
   @$pb.TagNumber(11)
-  $core.bool hasUuid() => $_has(9);
+  $core.bool hasId() => $_has(9);
   @$pb.TagNumber(11)
-  void clearUuid() => clearField(11);
+  void clearId() => clearField(11);
 }
 
 class CoffeeMachineResponse extends $pb.GeneratedMessage {
@@ -1330,8 +1308,8 @@ class CoffeeMachineResponse extends $pb.GeneratedMessage {
     $core.bool? filterPosition,
     $core.int? modeValue,
     $core.int? polymorphicCtype,
-    $core.Iterable<$core.String>? categories,
-    $core.String? uuid,
+    $core.Iterable<CategoryResponse>? categories,
+    $core.int? id,
   }) {
     final $result = create();
     if (name != null) {
@@ -1364,8 +1342,8 @@ class CoffeeMachineResponse extends $pb.GeneratedMessage {
     if (categories != null) {
       $result.categories.addAll(categories);
     }
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (id != null) {
+      $result.id = id;
     }
     return $result;
   }
@@ -1383,8 +1361,8 @@ class CoffeeMachineResponse extends $pb.GeneratedMessage {
     ..aOB(8, _omitFieldNames ? '' : 'filterPosition')
     ..a<$core.int>(9, _omitFieldNames ? '' : 'modeValue', $pb.PbFieldType.O3)
     ..a<$core.int>(10, _omitFieldNames ? '' : 'polymorphicCtype', $pb.PbFieldType.O3)
-    ..pPS(11, _omitFieldNames ? '' : 'categories')
-    ..aOS(12, _omitFieldNames ? '' : 'uuid')
+    ..pc<CategoryResponse>(11, _omitFieldNames ? '' : 'categories', $pb.PbFieldType.PM, subBuilder: CategoryResponse.create)
+    ..a<$core.int>(12, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -1491,25 +1469,25 @@ class CoffeeMachineResponse extends $pb.GeneratedMessage {
   void clearPolymorphicCtype() => clearField(10);
 
   @$pb.TagNumber(11)
-  $core.List<$core.String> get categories => $_getList(9);
+  $core.List<CategoryResponse> get categories => $_getList(9);
 
   @$pb.TagNumber(12)
-  $core.String get uuid => $_getSZ(10);
+  $core.int get id => $_getIZ(10);
   @$pb.TagNumber(12)
-  set uuid($core.String v) { $_setString(10, v); }
+  set id($core.int v) { $_setSignedInt32(10, v); }
   @$pb.TagNumber(12)
-  $core.bool hasUuid() => $_has(10);
+  $core.bool hasId() => $_has(10);
   @$pb.TagNumber(12)
-  void clearUuid() => clearField(12);
+  void clearId() => clearField(12);
 }
 
 class CoffeeMachineRetrieveRequest extends $pb.GeneratedMessage {
   factory CoffeeMachineRetrieveRequest({
-    $core.String? uuid,
+    $core.int? id,
   }) {
     final $result = create();
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (id != null) {
+      $result.id = id;
     }
     return $result;
   }
@@ -1518,7 +1496,7 @@ class CoffeeMachineRetrieveRequest extends $pb.GeneratedMessage {
   factory CoffeeMachineRetrieveRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CoffeeMachineRetrieveRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'uuid')
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -1544,31 +1522,31 @@ class CoffeeMachineRetrieveRequest extends $pb.GeneratedMessage {
   static CoffeeMachineRetrieveRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get uuid => $_getSZ(0);
+  $core.int get id => $_getIZ(0);
   @$pb.TagNumber(1)
-  set uuid($core.String v) { $_setString(0, v); }
+  set id($core.int v) { $_setSignedInt32(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasUuid() => $_has(0);
+  $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearUuid() => clearField(1);
+  void clearId() => clearField(1);
 }
 
-class LedModeDestroyRequest extends $pb.GeneratedMessage {
-  factory LedModeDestroyRequest({
-    $core.String? uuid,
+class ColorModeDestroyRequest extends $pb.GeneratedMessage {
+  factory ColorModeDestroyRequest({
+    $core.int? id,
   }) {
     final $result = create();
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (id != null) {
+      $result.id = id;
     }
     return $result;
   }
-  LedModeDestroyRequest._() : super();
-  factory LedModeDestroyRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory LedModeDestroyRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  ColorModeDestroyRequest._() : super();
+  factory ColorModeDestroyRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ColorModeDestroyRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'LedModeDestroyRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'uuid')
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ColorModeDestroyRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -1576,40 +1554,40 @@ class LedModeDestroyRequest extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  LedModeDestroyRequest clone() => LedModeDestroyRequest()..mergeFromMessage(this);
+  ColorModeDestroyRequest clone() => ColorModeDestroyRequest()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  LedModeDestroyRequest copyWith(void Function(LedModeDestroyRequest) updates) => super.copyWith((message) => updates(message as LedModeDestroyRequest)) as LedModeDestroyRequest;
+  ColorModeDestroyRequest copyWith(void Function(ColorModeDestroyRequest) updates) => super.copyWith((message) => updates(message as ColorModeDestroyRequest)) as ColorModeDestroyRequest;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static LedModeDestroyRequest create() => LedModeDestroyRequest._();
-  LedModeDestroyRequest createEmptyInstance() => create();
-  static $pb.PbList<LedModeDestroyRequest> createRepeated() => $pb.PbList<LedModeDestroyRequest>();
+  static ColorModeDestroyRequest create() => ColorModeDestroyRequest._();
+  ColorModeDestroyRequest createEmptyInstance() => create();
+  static $pb.PbList<ColorModeDestroyRequest> createRepeated() => $pb.PbList<ColorModeDestroyRequest>();
   @$core.pragma('dart2js:noInline')
-  static LedModeDestroyRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LedModeDestroyRequest>(create);
-  static LedModeDestroyRequest? _defaultInstance;
+  static ColorModeDestroyRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ColorModeDestroyRequest>(create);
+  static ColorModeDestroyRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get uuid => $_getSZ(0);
+  $core.int get id => $_getIZ(0);
   @$pb.TagNumber(1)
-  set uuid($core.String v) { $_setString(0, v); }
+  set id($core.int v) { $_setSignedInt32(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasUuid() => $_has(0);
+  $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearUuid() => clearField(1);
+  void clearId() => clearField(1);
 }
 
-class LedModeListRequest extends $pb.GeneratedMessage {
-  factory LedModeListRequest() => create();
-  LedModeListRequest._() : super();
-  factory LedModeListRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory LedModeListRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+class ColorModeListRequest extends $pb.GeneratedMessage {
+  factory ColorModeListRequest() => create();
+  ColorModeListRequest._() : super();
+  factory ColorModeListRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ColorModeListRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'LedModeListRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ColorModeListRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..hasRequiredFields = false
   ;
 
@@ -1617,27 +1595,27 @@ class LedModeListRequest extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  LedModeListRequest clone() => LedModeListRequest()..mergeFromMessage(this);
+  ColorModeListRequest clone() => ColorModeListRequest()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  LedModeListRequest copyWith(void Function(LedModeListRequest) updates) => super.copyWith((message) => updates(message as LedModeListRequest)) as LedModeListRequest;
+  ColorModeListRequest copyWith(void Function(ColorModeListRequest) updates) => super.copyWith((message) => updates(message as ColorModeListRequest)) as ColorModeListRequest;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static LedModeListRequest create() => LedModeListRequest._();
-  LedModeListRequest createEmptyInstance() => create();
-  static $pb.PbList<LedModeListRequest> createRepeated() => $pb.PbList<LedModeListRequest>();
+  static ColorModeListRequest create() => ColorModeListRequest._();
+  ColorModeListRequest createEmptyInstance() => create();
+  static $pb.PbList<ColorModeListRequest> createRepeated() => $pb.PbList<ColorModeListRequest>();
   @$core.pragma('dart2js:noInline')
-  static LedModeListRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LedModeListRequest>(create);
-  static LedModeListRequest? _defaultInstance;
+  static ColorModeListRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ColorModeListRequest>(create);
+  static ColorModeListRequest? _defaultInstance;
 }
 
-class LedModeListResponse extends $pb.GeneratedMessage {
-  factory LedModeListResponse({
-    $core.Iterable<LedModeResponse>? results,
+class ColorModeListResponse extends $pb.GeneratedMessage {
+  factory ColorModeListResponse({
+    $core.Iterable<ColorModeResponse>? results,
     $core.int? count,
   }) {
     final $result = create();
@@ -1649,12 +1627,12 @@ class LedModeListResponse extends $pb.GeneratedMessage {
     }
     return $result;
   }
-  LedModeListResponse._() : super();
-  factory LedModeListResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory LedModeListResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  ColorModeListResponse._() : super();
+  factory ColorModeListResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ColorModeListResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'LedModeListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..pc<LedModeResponse>(1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM, subBuilder: LedModeResponse.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ColorModeListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..pc<ColorModeResponse>(1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM, subBuilder: ColorModeResponse.create)
     ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
@@ -1663,25 +1641,25 @@ class LedModeListResponse extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  LedModeListResponse clone() => LedModeListResponse()..mergeFromMessage(this);
+  ColorModeListResponse clone() => ColorModeListResponse()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  LedModeListResponse copyWith(void Function(LedModeListResponse) updates) => super.copyWith((message) => updates(message as LedModeListResponse)) as LedModeListResponse;
+  ColorModeListResponse copyWith(void Function(ColorModeListResponse) updates) => super.copyWith((message) => updates(message as ColorModeListResponse)) as ColorModeListResponse;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static LedModeListResponse create() => LedModeListResponse._();
-  LedModeListResponse createEmptyInstance() => create();
-  static $pb.PbList<LedModeListResponse> createRepeated() => $pb.PbList<LedModeListResponse>();
+  static ColorModeListResponse create() => ColorModeListResponse._();
+  ColorModeListResponse createEmptyInstance() => create();
+  static $pb.PbList<ColorModeListResponse> createRepeated() => $pb.PbList<ColorModeListResponse>();
   @$core.pragma('dart2js:noInline')
-  static LedModeListResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LedModeListResponse>(create);
-  static LedModeListResponse? _defaultInstance;
+  static ColorModeListResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ColorModeListResponse>(create);
+  static ColorModeListResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<LedModeResponse> get results => $_getList(0);
+  $core.List<ColorModeResponse> get results => $_getList(0);
 
   @$pb.TagNumber(2)
   $core.int get count => $_getIZ(1);
@@ -1693,99 +1671,37 @@ class LedModeListResponse extends $pb.GeneratedMessage {
   void clearCount() => clearField(2);
 }
 
-class LedModePartialUpdateRequest extends $pb.GeneratedMessage {
-  factory LedModePartialUpdateRequest({
-    $core.Iterable<$core.String>? partialUpdateFields,
+class ColorModePartialUpdateRequest extends $pb.GeneratedMessage {
+  factory ColorModePartialUpdateRequest({
+    $core.int? id,
     $core.String? name,
-    $core.String? uuid,
+    $core.Iterable<$core.String>? partialUpdateFields,
+    $core.String? color,
   }) {
     final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (name != null) {
+      $result.name = name;
+    }
     if (partialUpdateFields != null) {
       $result.partialUpdateFields.addAll(partialUpdateFields);
     }
-    if (name != null) {
-      $result.name = name;
-    }
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (color != null) {
+      $result.color = color;
     }
     return $result;
   }
-  LedModePartialUpdateRequest._() : super();
-  factory LedModePartialUpdateRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory LedModePartialUpdateRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  ColorModePartialUpdateRequest._() : super();
+  factory ColorModePartialUpdateRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ColorModePartialUpdateRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'LedModePartialUpdateRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..pPS(2, _omitFieldNames ? '' : 'PartialUpdateFields')
-    ..aOS(3, _omitFieldNames ? '' : 'name')
-    ..aOS(4, _omitFieldNames ? '' : 'uuid')
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  LedModePartialUpdateRequest clone() => LedModePartialUpdateRequest()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  LedModePartialUpdateRequest copyWith(void Function(LedModePartialUpdateRequest) updates) => super.copyWith((message) => updates(message as LedModePartialUpdateRequest)) as LedModePartialUpdateRequest;
-
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static LedModePartialUpdateRequest create() => LedModePartialUpdateRequest._();
-  LedModePartialUpdateRequest createEmptyInstance() => create();
-  static $pb.PbList<LedModePartialUpdateRequest> createRepeated() => $pb.PbList<LedModePartialUpdateRequest>();
-  @$core.pragma('dart2js:noInline')
-  static LedModePartialUpdateRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LedModePartialUpdateRequest>(create);
-  static LedModePartialUpdateRequest? _defaultInstance;
-
-  @$pb.TagNumber(2)
-  $core.List<$core.String> get partialUpdateFields => $_getList(0);
-
-  @$pb.TagNumber(3)
-  $core.String get name => $_getSZ(1);
-  @$pb.TagNumber(3)
-  set name($core.String v) { $_setString(1, v); }
-  @$pb.TagNumber(3)
-  $core.bool hasName() => $_has(1);
-  @$pb.TagNumber(3)
-  void clearName() => clearField(3);
-
-  @$pb.TagNumber(4)
-  $core.String get uuid => $_getSZ(2);
-  @$pb.TagNumber(4)
-  set uuid($core.String v) { $_setString(2, v); }
-  @$pb.TagNumber(4)
-  $core.bool hasUuid() => $_has(2);
-  @$pb.TagNumber(4)
-  void clearUuid() => clearField(4);
-}
-
-class LedModeRequest extends $pb.GeneratedMessage {
-  factory LedModeRequest({
-    $core.String? name,
-    $core.String? uuid,
-  }) {
-    final $result = create();
-    if (name != null) {
-      $result.name = name;
-    }
-    if (uuid != null) {
-      $result.uuid = uuid;
-    }
-    return $result;
-  }
-  LedModeRequest._() : super();
-  factory LedModeRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory LedModeRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'LedModeRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ColorModePartialUpdateRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..aOS(2, _omitFieldNames ? '' : 'name')
-    ..aOS(3, _omitFieldNames ? '' : 'uuid')
+    ..pPS(3, _omitFieldNames ? '' : 'PartialUpdateFields')
+    ..aOS(4, _omitFieldNames ? '' : 'color')
     ..hasRequiredFields = false
   ;
 
@@ -1793,68 +1709,163 @@ class LedModeRequest extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  LedModeRequest clone() => LedModeRequest()..mergeFromMessage(this);
+  ColorModePartialUpdateRequest clone() => ColorModePartialUpdateRequest()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  LedModeRequest copyWith(void Function(LedModeRequest) updates) => super.copyWith((message) => updates(message as LedModeRequest)) as LedModeRequest;
+  ColorModePartialUpdateRequest copyWith(void Function(ColorModePartialUpdateRequest) updates) => super.copyWith((message) => updates(message as ColorModePartialUpdateRequest)) as ColorModePartialUpdateRequest;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static LedModeRequest create() => LedModeRequest._();
-  LedModeRequest createEmptyInstance() => create();
-  static $pb.PbList<LedModeRequest> createRepeated() => $pb.PbList<LedModeRequest>();
+  static ColorModePartialUpdateRequest create() => ColorModePartialUpdateRequest._();
+  ColorModePartialUpdateRequest createEmptyInstance() => create();
+  static $pb.PbList<ColorModePartialUpdateRequest> createRepeated() => $pb.PbList<ColorModePartialUpdateRequest>();
   @$core.pragma('dart2js:noInline')
-  static LedModeRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LedModeRequest>(create);
-  static LedModeRequest? _defaultInstance;
+  static ColorModePartialUpdateRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ColorModePartialUpdateRequest>(create);
+  static ColorModePartialUpdateRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get name => $_getSZ(0);
+  $core.String get name => $_getSZ(1);
   @$pb.TagNumber(2)
-  set name($core.String v) { $_setString(0, v); }
+  set name($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasName() => $_has(0);
+  $core.bool hasName() => $_has(1);
   @$pb.TagNumber(2)
   void clearName() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.String get uuid => $_getSZ(1);
-  @$pb.TagNumber(3)
-  set uuid($core.String v) { $_setString(1, v); }
-  @$pb.TagNumber(3)
-  $core.bool hasUuid() => $_has(1);
-  @$pb.TagNumber(3)
-  void clearUuid() => clearField(3);
+  $core.List<$core.String> get partialUpdateFields => $_getList(2);
+
+  @$pb.TagNumber(4)
+  $core.String get color => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set color($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasColor() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearColor() => clearField(4);
 }
 
-class LedModeResponse extends $pb.GeneratedMessage {
-  factory LedModeResponse({
+class ColorModeRequest extends $pb.GeneratedMessage {
+  factory ColorModeRequest({
+    $core.int? id,
     $core.String? name,
-    $core.int? polymorphicCtype,
-    $core.String? uuid,
+    $core.String? color,
   }) {
     final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
     if (name != null) {
       $result.name = name;
+    }
+    if (color != null) {
+      $result.color = color;
+    }
+    return $result;
+  }
+  ColorModeRequest._() : super();
+  factory ColorModeRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ColorModeRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ColorModeRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOS(2, _omitFieldNames ? '' : 'name')
+    ..aOS(3, _omitFieldNames ? '' : 'color')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  ColorModeRequest clone() => ColorModeRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  ColorModeRequest copyWith(void Function(ColorModeRequest) updates) => super.copyWith((message) => updates(message as ColorModeRequest)) as ColorModeRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static ColorModeRequest create() => ColorModeRequest._();
+  ColorModeRequest createEmptyInstance() => create();
+  static $pb.PbList<ColorModeRequest> createRepeated() => $pb.PbList<ColorModeRequest>();
+  @$core.pragma('dart2js:noInline')
+  static ColorModeRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ColorModeRequest>(create);
+  static ColorModeRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get name => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set name($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearName() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get color => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set color($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasColor() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearColor() => clearField(3);
+}
+
+class ColorModeResponse extends $pb.GeneratedMessage {
+  factory ColorModeResponse({
+    $core.int? id,
+    $core.String? name,
+    $core.String? color,
+    $core.int? polymorphicCtype,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (name != null) {
+      $result.name = name;
+    }
+    if (color != null) {
+      $result.color = color;
     }
     if (polymorphicCtype != null) {
       $result.polymorphicCtype = polymorphicCtype;
     }
-    if (uuid != null) {
-      $result.uuid = uuid;
-    }
     return $result;
   }
-  LedModeResponse._() : super();
-  factory LedModeResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory LedModeResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  ColorModeResponse._() : super();
+  factory ColorModeResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ColorModeResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'LedModeResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ColorModeResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..aOS(2, _omitFieldNames ? '' : 'name')
-    ..a<$core.int>(3, _omitFieldNames ? '' : 'polymorphicCtype', $pb.PbFieldType.O3)
-    ..aOS(4, _omitFieldNames ? '' : 'uuid')
+    ..aOS(3, _omitFieldNames ? '' : 'color')
+    ..a<$core.int>(4, _omitFieldNames ? '' : 'polymorphicCtype', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -1862,67 +1873,76 @@ class LedModeResponse extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  LedModeResponse clone() => LedModeResponse()..mergeFromMessage(this);
+  ColorModeResponse clone() => ColorModeResponse()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  LedModeResponse copyWith(void Function(LedModeResponse) updates) => super.copyWith((message) => updates(message as LedModeResponse)) as LedModeResponse;
+  ColorModeResponse copyWith(void Function(ColorModeResponse) updates) => super.copyWith((message) => updates(message as ColorModeResponse)) as ColorModeResponse;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static LedModeResponse create() => LedModeResponse._();
-  LedModeResponse createEmptyInstance() => create();
-  static $pb.PbList<LedModeResponse> createRepeated() => $pb.PbList<LedModeResponse>();
+  static ColorModeResponse create() => ColorModeResponse._();
+  ColorModeResponse createEmptyInstance() => create();
+  static $pb.PbList<ColorModeResponse> createRepeated() => $pb.PbList<ColorModeResponse>();
   @$core.pragma('dart2js:noInline')
-  static LedModeResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LedModeResponse>(create);
-  static LedModeResponse? _defaultInstance;
+  static ColorModeResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ColorModeResponse>(create);
+  static ColorModeResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get name => $_getSZ(0);
+  $core.String get name => $_getSZ(1);
   @$pb.TagNumber(2)
-  set name($core.String v) { $_setString(0, v); }
+  set name($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasName() => $_has(0);
+  $core.bool hasName() => $_has(1);
   @$pb.TagNumber(2)
   void clearName() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.int get polymorphicCtype => $_getIZ(1);
+  $core.String get color => $_getSZ(2);
   @$pb.TagNumber(3)
-  set polymorphicCtype($core.int v) { $_setSignedInt32(1, v); }
+  set color($core.String v) { $_setString(2, v); }
   @$pb.TagNumber(3)
-  $core.bool hasPolymorphicCtype() => $_has(1);
+  $core.bool hasColor() => $_has(2);
   @$pb.TagNumber(3)
-  void clearPolymorphicCtype() => clearField(3);
+  void clearColor() => clearField(3);
 
   @$pb.TagNumber(4)
-  $core.String get uuid => $_getSZ(2);
+  $core.int get polymorphicCtype => $_getIZ(3);
   @$pb.TagNumber(4)
-  set uuid($core.String v) { $_setString(2, v); }
+  set polymorphicCtype($core.int v) { $_setSignedInt32(3, v); }
   @$pb.TagNumber(4)
-  $core.bool hasUuid() => $_has(2);
+  $core.bool hasPolymorphicCtype() => $_has(3);
   @$pb.TagNumber(4)
-  void clearUuid() => clearField(4);
+  void clearPolymorphicCtype() => clearField(4);
 }
 
-class LedModeRetrieveRequest extends $pb.GeneratedMessage {
-  factory LedModeRetrieveRequest({
-    $core.String? uuid,
+class ColorModeRetrieveRequest extends $pb.GeneratedMessage {
+  factory ColorModeRetrieveRequest({
+    $core.int? id,
   }) {
     final $result = create();
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (id != null) {
+      $result.id = id;
     }
     return $result;
   }
-  LedModeRetrieveRequest._() : super();
-  factory LedModeRetrieveRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory LedModeRetrieveRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  ColorModeRetrieveRequest._() : super();
+  factory ColorModeRetrieveRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ColorModeRetrieveRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'LedModeRetrieveRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'uuid')
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ColorModeRetrieveRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -1930,40 +1950,528 @@ class LedModeRetrieveRequest extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  LedModeRetrieveRequest clone() => LedModeRetrieveRequest()..mergeFromMessage(this);
+  ColorModeRetrieveRequest clone() => ColorModeRetrieveRequest()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  LedModeRetrieveRequest copyWith(void Function(LedModeRetrieveRequest) updates) => super.copyWith((message) => updates(message as LedModeRetrieveRequest)) as LedModeRetrieveRequest;
+  ColorModeRetrieveRequest copyWith(void Function(ColorModeRetrieveRequest) updates) => super.copyWith((message) => updates(message as ColorModeRetrieveRequest)) as ColorModeRetrieveRequest;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static LedModeRetrieveRequest create() => LedModeRetrieveRequest._();
-  LedModeRetrieveRequest createEmptyInstance() => create();
-  static $pb.PbList<LedModeRetrieveRequest> createRepeated() => $pb.PbList<LedModeRetrieveRequest>();
+  static ColorModeRetrieveRequest create() => ColorModeRetrieveRequest._();
+  ColorModeRetrieveRequest createEmptyInstance() => create();
+  static $pb.PbList<ColorModeRetrieveRequest> createRepeated() => $pb.PbList<ColorModeRetrieveRequest>();
   @$core.pragma('dart2js:noInline')
-  static LedModeRetrieveRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LedModeRetrieveRequest>(create);
-  static LedModeRetrieveRequest? _defaultInstance;
+  static ColorModeRetrieveRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ColorModeRetrieveRequest>(create);
+  static ColorModeRetrieveRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get uuid => $_getSZ(0);
+  $core.int get id => $_getIZ(0);
   @$pb.TagNumber(1)
-  set uuid($core.String v) { $_setString(0, v); }
+  set id($core.int v) { $_setSignedInt32(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasUuid() => $_has(0);
+  $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearUuid() => clearField(1);
+  void clearId() => clearField(1);
+}
+
+class ImageModeDestroyRequest extends $pb.GeneratedMessage {
+  factory ImageModeDestroyRequest({
+    $core.int? id,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    return $result;
+  }
+  ImageModeDestroyRequest._() : super();
+  factory ImageModeDestroyRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ImageModeDestroyRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ImageModeDestroyRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  ImageModeDestroyRequest clone() => ImageModeDestroyRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  ImageModeDestroyRequest copyWith(void Function(ImageModeDestroyRequest) updates) => super.copyWith((message) => updates(message as ImageModeDestroyRequest)) as ImageModeDestroyRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static ImageModeDestroyRequest create() => ImageModeDestroyRequest._();
+  ImageModeDestroyRequest createEmptyInstance() => create();
+  static $pb.PbList<ImageModeDestroyRequest> createRepeated() => $pb.PbList<ImageModeDestroyRequest>();
+  @$core.pragma('dart2js:noInline')
+  static ImageModeDestroyRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ImageModeDestroyRequest>(create);
+  static ImageModeDestroyRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+}
+
+class ImageModeListRequest extends $pb.GeneratedMessage {
+  factory ImageModeListRequest() => create();
+  ImageModeListRequest._() : super();
+  factory ImageModeListRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ImageModeListRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ImageModeListRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  ImageModeListRequest clone() => ImageModeListRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  ImageModeListRequest copyWith(void Function(ImageModeListRequest) updates) => super.copyWith((message) => updates(message as ImageModeListRequest)) as ImageModeListRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static ImageModeListRequest create() => ImageModeListRequest._();
+  ImageModeListRequest createEmptyInstance() => create();
+  static $pb.PbList<ImageModeListRequest> createRepeated() => $pb.PbList<ImageModeListRequest>();
+  @$core.pragma('dart2js:noInline')
+  static ImageModeListRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ImageModeListRequest>(create);
+  static ImageModeListRequest? _defaultInstance;
+}
+
+class ImageModeListResponse extends $pb.GeneratedMessage {
+  factory ImageModeListResponse({
+    $core.Iterable<ImageModeResponse>? results,
+    $core.int? count,
+  }) {
+    final $result = create();
+    if (results != null) {
+      $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
+    }
+    return $result;
+  }
+  ImageModeListResponse._() : super();
+  factory ImageModeListResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ImageModeListResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ImageModeListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..pc<ImageModeResponse>(1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM, subBuilder: ImageModeResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  ImageModeListResponse clone() => ImageModeListResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  ImageModeListResponse copyWith(void Function(ImageModeListResponse) updates) => super.copyWith((message) => updates(message as ImageModeListResponse)) as ImageModeListResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static ImageModeListResponse create() => ImageModeListResponse._();
+  ImageModeListResponse createEmptyInstance() => create();
+  static $pb.PbList<ImageModeListResponse> createRepeated() => $pb.PbList<ImageModeListResponse>();
+  @$core.pragma('dart2js:noInline')
+  static ImageModeListResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ImageModeListResponse>(create);
+  static ImageModeListResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<ImageModeResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) { $_setSignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
+}
+
+class ImageModePartialUpdateRequest extends $pb.GeneratedMessage {
+  factory ImageModePartialUpdateRequest({
+    $core.int? id,
+    $core.String? name,
+    $core.Iterable<$core.String>? partialUpdateFields,
+    $core.String? image,
+    $core.String? imageLowPixel,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (name != null) {
+      $result.name = name;
+    }
+    if (partialUpdateFields != null) {
+      $result.partialUpdateFields.addAll(partialUpdateFields);
+    }
+    if (image != null) {
+      $result.image = image;
+    }
+    if (imageLowPixel != null) {
+      $result.imageLowPixel = imageLowPixel;
+    }
+    return $result;
+  }
+  ImageModePartialUpdateRequest._() : super();
+  factory ImageModePartialUpdateRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ImageModePartialUpdateRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ImageModePartialUpdateRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOS(2, _omitFieldNames ? '' : 'name')
+    ..pPS(3, _omitFieldNames ? '' : 'PartialUpdateFields')
+    ..aOS(4, _omitFieldNames ? '' : 'image')
+    ..aOS(5, _omitFieldNames ? '' : 'imageLowPixel')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  ImageModePartialUpdateRequest clone() => ImageModePartialUpdateRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  ImageModePartialUpdateRequest copyWith(void Function(ImageModePartialUpdateRequest) updates) => super.copyWith((message) => updates(message as ImageModePartialUpdateRequest)) as ImageModePartialUpdateRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static ImageModePartialUpdateRequest create() => ImageModePartialUpdateRequest._();
+  ImageModePartialUpdateRequest createEmptyInstance() => create();
+  static $pb.PbList<ImageModePartialUpdateRequest> createRepeated() => $pb.PbList<ImageModePartialUpdateRequest>();
+  @$core.pragma('dart2js:noInline')
+  static ImageModePartialUpdateRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ImageModePartialUpdateRequest>(create);
+  static ImageModePartialUpdateRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get name => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set name($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearName() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.List<$core.String> get partialUpdateFields => $_getList(2);
+
+  @$pb.TagNumber(4)
+  $core.String get image => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set image($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasImage() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearImage() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get imageLowPixel => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set imageLowPixel($core.String v) { $_setString(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasImageLowPixel() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearImageLowPixel() => clearField(5);
+}
+
+class ImageModeRequest extends $pb.GeneratedMessage {
+  factory ImageModeRequest({
+    $core.int? id,
+    $core.String? name,
+    $core.String? image,
+    $core.String? imageLowPixel,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (name != null) {
+      $result.name = name;
+    }
+    if (image != null) {
+      $result.image = image;
+    }
+    if (imageLowPixel != null) {
+      $result.imageLowPixel = imageLowPixel;
+    }
+    return $result;
+  }
+  ImageModeRequest._() : super();
+  factory ImageModeRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ImageModeRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ImageModeRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOS(2, _omitFieldNames ? '' : 'name')
+    ..aOS(3, _omitFieldNames ? '' : 'image')
+    ..aOS(4, _omitFieldNames ? '' : 'imageLowPixel')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  ImageModeRequest clone() => ImageModeRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  ImageModeRequest copyWith(void Function(ImageModeRequest) updates) => super.copyWith((message) => updates(message as ImageModeRequest)) as ImageModeRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static ImageModeRequest create() => ImageModeRequest._();
+  ImageModeRequest createEmptyInstance() => create();
+  static $pb.PbList<ImageModeRequest> createRepeated() => $pb.PbList<ImageModeRequest>();
+  @$core.pragma('dart2js:noInline')
+  static ImageModeRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ImageModeRequest>(create);
+  static ImageModeRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get name => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set name($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearName() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get image => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set image($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasImage() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearImage() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get imageLowPixel => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set imageLowPixel($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasImageLowPixel() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearImageLowPixel() => clearField(4);
+}
+
+class ImageModeResponse extends $pb.GeneratedMessage {
+  factory ImageModeResponse({
+    $core.int? id,
+    $core.String? name,
+    $core.String? image,
+    $core.String? imageLowPixel,
+    $core.int? polymorphicCtype,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (name != null) {
+      $result.name = name;
+    }
+    if (image != null) {
+      $result.image = image;
+    }
+    if (imageLowPixel != null) {
+      $result.imageLowPixel = imageLowPixel;
+    }
+    if (polymorphicCtype != null) {
+      $result.polymorphicCtype = polymorphicCtype;
+    }
+    return $result;
+  }
+  ImageModeResponse._() : super();
+  factory ImageModeResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ImageModeResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ImageModeResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOS(2, _omitFieldNames ? '' : 'name')
+    ..aOS(3, _omitFieldNames ? '' : 'image')
+    ..aOS(4, _omitFieldNames ? '' : 'imageLowPixel')
+    ..a<$core.int>(5, _omitFieldNames ? '' : 'polymorphicCtype', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  ImageModeResponse clone() => ImageModeResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  ImageModeResponse copyWith(void Function(ImageModeResponse) updates) => super.copyWith((message) => updates(message as ImageModeResponse)) as ImageModeResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static ImageModeResponse create() => ImageModeResponse._();
+  ImageModeResponse createEmptyInstance() => create();
+  static $pb.PbList<ImageModeResponse> createRepeated() => $pb.PbList<ImageModeResponse>();
+  @$core.pragma('dart2js:noInline')
+  static ImageModeResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ImageModeResponse>(create);
+  static ImageModeResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get name => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set name($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearName() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get image => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set image($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasImage() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearImage() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get imageLowPixel => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set imageLowPixel($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasImageLowPixel() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearImageLowPixel() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.int get polymorphicCtype => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set polymorphicCtype($core.int v) { $_setSignedInt32(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasPolymorphicCtype() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearPolymorphicCtype() => clearField(5);
+}
+
+class ImageModeRetrieveRequest extends $pb.GeneratedMessage {
+  factory ImageModeRetrieveRequest({
+    $core.int? id,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    return $result;
+  }
+  ImageModeRetrieveRequest._() : super();
+  factory ImageModeRetrieveRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ImageModeRetrieveRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ImageModeRetrieveRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  ImageModeRetrieveRequest clone() => ImageModeRetrieveRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  ImageModeRetrieveRequest copyWith(void Function(ImageModeRetrieveRequest) updates) => super.copyWith((message) => updates(message as ImageModeRetrieveRequest)) as ImageModeRetrieveRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static ImageModeRetrieveRequest create() => ImageModeRetrieveRequest._();
+  ImageModeRetrieveRequest createEmptyInstance() => create();
+  static $pb.PbList<ImageModeRetrieveRequest> createRepeated() => $pb.PbList<ImageModeRetrieveRequest>();
+  @$core.pragma('dart2js:noInline')
+  static ImageModeRetrieveRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ImageModeRetrieveRequest>(create);
+  static ImageModeRetrieveRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
 }
 
 class LedPanelDestroyRequest extends $pb.GeneratedMessage {
   factory LedPanelDestroyRequest({
-    $core.String? uuid,
+    $core.int? id,
   }) {
     final $result = create();
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (id != null) {
+      $result.id = id;
     }
     return $result;
   }
@@ -1972,7 +2480,7 @@ class LedPanelDestroyRequest extends $pb.GeneratedMessage {
   factory LedPanelDestroyRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'LedPanelDestroyRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'uuid')
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -1998,13 +2506,13 @@ class LedPanelDestroyRequest extends $pb.GeneratedMessage {
   static LedPanelDestroyRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get uuid => $_getSZ(0);
+  $core.int get id => $_getIZ(0);
   @$pb.TagNumber(1)
-  set uuid($core.String v) { $_setString(0, v); }
+  set id($core.int v) { $_setSignedInt32(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasUuid() => $_has(0);
+  $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearUuid() => clearField(1);
+  void clearId() => clearField(1);
 }
 
 class LedPanelListRequest extends $pb.GeneratedMessage {
@@ -2099,35 +2607,35 @@ class LedPanelListResponse extends $pb.GeneratedMessage {
 
 class LedPanelPartialUpdateRequest extends $pb.GeneratedMessage {
   factory LedPanelPartialUpdateRequest({
-    $core.Iterable<$core.String>? partialUpdateFields,
+    $core.int? id,
+    LedModeRequest? mode,
     $core.String? name,
+    $core.Iterable<CategoryRequest>? categories,
+    $core.Iterable<$core.String>? partialUpdateFields,
     $core.int? status,
     $core.double? brightness,
-    $core.String? mode,
-    $core.Iterable<$core.String>? categories,
-    $core.String? uuid,
   }) {
     final $result = create();
-    if (partialUpdateFields != null) {
-      $result.partialUpdateFields.addAll(partialUpdateFields);
+    if (id != null) {
+      $result.id = id;
+    }
+    if (mode != null) {
+      $result.mode = mode;
     }
     if (name != null) {
       $result.name = name;
+    }
+    if (categories != null) {
+      $result.categories.addAll(categories);
+    }
+    if (partialUpdateFields != null) {
+      $result.partialUpdateFields.addAll(partialUpdateFields);
     }
     if (status != null) {
       $result.status = status;
     }
     if (brightness != null) {
       $result.brightness = brightness;
-    }
-    if (mode != null) {
-      $result.mode = mode;
-    }
-    if (categories != null) {
-      $result.categories.addAll(categories);
-    }
-    if (uuid != null) {
-      $result.uuid = uuid;
     }
     return $result;
   }
@@ -2136,13 +2644,13 @@ class LedPanelPartialUpdateRequest extends $pb.GeneratedMessage {
   factory LedPanelPartialUpdateRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'LedPanelPartialUpdateRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..pPS(2, _omitFieldNames ? '' : 'PartialUpdateFields')
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOM<LedModeRequest>(2, _omitFieldNames ? '' : 'mode', subBuilder: LedModeRequest.create)
     ..aOS(3, _omitFieldNames ? '' : 'name')
-    ..a<$core.int>(4, _omitFieldNames ? '' : 'status', $pb.PbFieldType.O3)
-    ..a<$core.double>(5, _omitFieldNames ? '' : 'brightness', $pb.PbFieldType.OD)
-    ..aOS(6, _omitFieldNames ? '' : 'mode')
-    ..pPS(7, _omitFieldNames ? '' : 'categories')
-    ..aOS(8, _omitFieldNames ? '' : 'uuid')
+    ..pc<CategoryRequest>(4, _omitFieldNames ? '' : 'categories', $pb.PbFieldType.PM, subBuilder: CategoryRequest.create)
+    ..pPS(5, _omitFieldNames ? '' : 'PartialUpdateFields')
+    ..a<$core.int>(6, _omitFieldNames ? '' : 'status', $pb.PbFieldType.O3)
+    ..a<$core.double>(7, _omitFieldNames ? '' : 'brightness', $pb.PbFieldType.OD)
     ..hasRequiredFields = false
   ;
 
@@ -2167,85 +2675,87 @@ class LedPanelPartialUpdateRequest extends $pb.GeneratedMessage {
   static LedPanelPartialUpdateRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LedPanelPartialUpdateRequest>(create);
   static LedPanelPartialUpdateRequest? _defaultInstance;
 
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
   @$pb.TagNumber(2)
-  $core.List<$core.String> get partialUpdateFields => $_getList(0);
+  LedModeRequest get mode => $_getN(1);
+  @$pb.TagNumber(2)
+  set mode(LedModeRequest v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasMode() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearMode() => clearField(2);
+  @$pb.TagNumber(2)
+  LedModeRequest ensureMode() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $core.String get name => $_getSZ(1);
+  $core.String get name => $_getSZ(2);
   @$pb.TagNumber(3)
-  set name($core.String v) { $_setString(1, v); }
+  set name($core.String v) { $_setString(2, v); }
   @$pb.TagNumber(3)
-  $core.bool hasName() => $_has(1);
+  $core.bool hasName() => $_has(2);
   @$pb.TagNumber(3)
   void clearName() => clearField(3);
 
   @$pb.TagNumber(4)
-  $core.int get status => $_getIZ(2);
-  @$pb.TagNumber(4)
-  set status($core.int v) { $_setSignedInt32(2, v); }
-  @$pb.TagNumber(4)
-  $core.bool hasStatus() => $_has(2);
-  @$pb.TagNumber(4)
-  void clearStatus() => clearField(4);
+  $core.List<CategoryRequest> get categories => $_getList(3);
 
   @$pb.TagNumber(5)
-  $core.double get brightness => $_getN(3);
-  @$pb.TagNumber(5)
-  set brightness($core.double v) { $_setDouble(3, v); }
-  @$pb.TagNumber(5)
-  $core.bool hasBrightness() => $_has(3);
-  @$pb.TagNumber(5)
-  void clearBrightness() => clearField(5);
+  $core.List<$core.String> get partialUpdateFields => $_getList(4);
 
   @$pb.TagNumber(6)
-  $core.String get mode => $_getSZ(4);
+  $core.int get status => $_getIZ(5);
   @$pb.TagNumber(6)
-  set mode($core.String v) { $_setString(4, v); }
+  set status($core.int v) { $_setSignedInt32(5, v); }
   @$pb.TagNumber(6)
-  $core.bool hasMode() => $_has(4);
+  $core.bool hasStatus() => $_has(5);
   @$pb.TagNumber(6)
-  void clearMode() => clearField(6);
+  void clearStatus() => clearField(6);
 
   @$pb.TagNumber(7)
-  $core.List<$core.String> get categories => $_getList(5);
-
-  @$pb.TagNumber(8)
-  $core.String get uuid => $_getSZ(6);
-  @$pb.TagNumber(8)
-  set uuid($core.String v) { $_setString(6, v); }
-  @$pb.TagNumber(8)
-  $core.bool hasUuid() => $_has(6);
-  @$pb.TagNumber(8)
-  void clearUuid() => clearField(8);
+  $core.double get brightness => $_getN(6);
+  @$pb.TagNumber(7)
+  set brightness($core.double v) { $_setDouble(6, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasBrightness() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearBrightness() => clearField(7);
 }
 
 class LedPanelRequest extends $pb.GeneratedMessage {
   factory LedPanelRequest({
+    $core.int? id,
+    LedModeRequest? mode,
     $core.String? name,
+    $core.Iterable<CategoryRequest>? categories,
     $core.int? status,
     $core.double? brightness,
-    $core.String? mode,
-    $core.Iterable<$core.String>? categories,
-    $core.String? uuid,
   }) {
     final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (mode != null) {
+      $result.mode = mode;
+    }
     if (name != null) {
       $result.name = name;
+    }
+    if (categories != null) {
+      $result.categories.addAll(categories);
     }
     if (status != null) {
       $result.status = status;
     }
     if (brightness != null) {
       $result.brightness = brightness;
-    }
-    if (mode != null) {
-      $result.mode = mode;
-    }
-    if (categories != null) {
-      $result.categories.addAll(categories);
-    }
-    if (uuid != null) {
-      $result.uuid = uuid;
     }
     return $result;
   }
@@ -2254,12 +2764,12 @@ class LedPanelRequest extends $pb.GeneratedMessage {
   factory LedPanelRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'LedPanelRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..aOS(2, _omitFieldNames ? '' : 'name')
-    ..a<$core.int>(3, _omitFieldNames ? '' : 'status', $pb.PbFieldType.O3)
-    ..a<$core.double>(4, _omitFieldNames ? '' : 'brightness', $pb.PbFieldType.OD)
-    ..aOS(5, _omitFieldNames ? '' : 'mode')
-    ..pPS(6, _omitFieldNames ? '' : 'categories')
-    ..aOS(7, _omitFieldNames ? '' : 'uuid')
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOM<LedModeRequest>(2, _omitFieldNames ? '' : 'mode', subBuilder: LedModeRequest.create)
+    ..aOS(3, _omitFieldNames ? '' : 'name')
+    ..pc<CategoryRequest>(4, _omitFieldNames ? '' : 'categories', $pb.PbFieldType.PM, subBuilder: CategoryRequest.create)
+    ..a<$core.int>(5, _omitFieldNames ? '' : 'status', $pb.PbFieldType.O3)
+    ..a<$core.double>(6, _omitFieldNames ? '' : 'brightness', $pb.PbFieldType.OD)
     ..hasRequiredFields = false
   ;
 
@@ -2284,68 +2794,79 @@ class LedPanelRequest extends $pb.GeneratedMessage {
   static LedPanelRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LedPanelRequest>(create);
   static LedPanelRequest? _defaultInstance;
 
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
   @$pb.TagNumber(2)
-  $core.String get name => $_getSZ(0);
+  LedModeRequest get mode => $_getN(1);
   @$pb.TagNumber(2)
-  set name($core.String v) { $_setString(0, v); }
+  set mode(LedModeRequest v) { setField(2, v); }
   @$pb.TagNumber(2)
-  $core.bool hasName() => $_has(0);
+  $core.bool hasMode() => $_has(1);
   @$pb.TagNumber(2)
-  void clearName() => clearField(2);
+  void clearMode() => clearField(2);
+  @$pb.TagNumber(2)
+  LedModeRequest ensureMode() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $core.int get status => $_getIZ(1);
+  $core.String get name => $_getSZ(2);
   @$pb.TagNumber(3)
-  set status($core.int v) { $_setSignedInt32(1, v); }
+  set name($core.String v) { $_setString(2, v); }
   @$pb.TagNumber(3)
-  $core.bool hasStatus() => $_has(1);
+  $core.bool hasName() => $_has(2);
   @$pb.TagNumber(3)
-  void clearStatus() => clearField(3);
+  void clearName() => clearField(3);
 
   @$pb.TagNumber(4)
-  $core.double get brightness => $_getN(2);
-  @$pb.TagNumber(4)
-  set brightness($core.double v) { $_setDouble(2, v); }
-  @$pb.TagNumber(4)
-  $core.bool hasBrightness() => $_has(2);
-  @$pb.TagNumber(4)
-  void clearBrightness() => clearField(4);
+  $core.List<CategoryRequest> get categories => $_getList(3);
 
   @$pb.TagNumber(5)
-  $core.String get mode => $_getSZ(3);
+  $core.int get status => $_getIZ(4);
   @$pb.TagNumber(5)
-  set mode($core.String v) { $_setString(3, v); }
+  set status($core.int v) { $_setSignedInt32(4, v); }
   @$pb.TagNumber(5)
-  $core.bool hasMode() => $_has(3);
+  $core.bool hasStatus() => $_has(4);
   @$pb.TagNumber(5)
-  void clearMode() => clearField(5);
+  void clearStatus() => clearField(5);
 
   @$pb.TagNumber(6)
-  $core.List<$core.String> get categories => $_getList(4);
-
-  @$pb.TagNumber(7)
-  $core.String get uuid => $_getSZ(5);
-  @$pb.TagNumber(7)
-  set uuid($core.String v) { $_setString(5, v); }
-  @$pb.TagNumber(7)
-  $core.bool hasUuid() => $_has(5);
-  @$pb.TagNumber(7)
-  void clearUuid() => clearField(7);
+  $core.double get brightness => $_getN(5);
+  @$pb.TagNumber(6)
+  set brightness($core.double v) { $_setDouble(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasBrightness() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearBrightness() => clearField(6);
 }
 
 class LedPanelResponse extends $pb.GeneratedMessage {
   factory LedPanelResponse({
+    $core.int? id,
+    LedModeResponse? mode,
     $core.String? name,
+    $core.Iterable<CategoryResponse>? categories,
     $core.int? status,
     $core.double? brightness,
     $core.int? polymorphicCtype,
-    $core.String? mode,
-    $core.Iterable<$core.String>? categories,
-    $core.String? uuid,
   }) {
     final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (mode != null) {
+      $result.mode = mode;
+    }
     if (name != null) {
       $result.name = name;
+    }
+    if (categories != null) {
+      $result.categories.addAll(categories);
     }
     if (status != null) {
       $result.status = status;
@@ -2356,15 +2877,6 @@ class LedPanelResponse extends $pb.GeneratedMessage {
     if (polymorphicCtype != null) {
       $result.polymorphicCtype = polymorphicCtype;
     }
-    if (mode != null) {
-      $result.mode = mode;
-    }
-    if (categories != null) {
-      $result.categories.addAll(categories);
-    }
-    if (uuid != null) {
-      $result.uuid = uuid;
-    }
     return $result;
   }
   LedPanelResponse._() : super();
@@ -2372,13 +2884,13 @@ class LedPanelResponse extends $pb.GeneratedMessage {
   factory LedPanelResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'LedPanelResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..aOS(2, _omitFieldNames ? '' : 'name')
-    ..a<$core.int>(3, _omitFieldNames ? '' : 'status', $pb.PbFieldType.O3)
-    ..a<$core.double>(4, _omitFieldNames ? '' : 'brightness', $pb.PbFieldType.OD)
-    ..a<$core.int>(5, _omitFieldNames ? '' : 'polymorphicCtype', $pb.PbFieldType.O3)
-    ..aOS(6, _omitFieldNames ? '' : 'mode')
-    ..pPS(7, _omitFieldNames ? '' : 'categories')
-    ..aOS(8, _omitFieldNames ? '' : 'uuid')
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOM<LedModeResponse>(2, _omitFieldNames ? '' : 'mode', subBuilder: LedModeResponse.create)
+    ..aOS(3, _omitFieldNames ? '' : 'name')
+    ..pc<CategoryResponse>(4, _omitFieldNames ? '' : 'categories', $pb.PbFieldType.PM, subBuilder: CategoryResponse.create)
+    ..a<$core.int>(5, _omitFieldNames ? '' : 'status', $pb.PbFieldType.O3)
+    ..a<$core.double>(6, _omitFieldNames ? '' : 'brightness', $pb.PbFieldType.OD)
+    ..a<$core.int>(7, _omitFieldNames ? '' : 'polymorphicCtype', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -2403,71 +2915,73 @@ class LedPanelResponse extends $pb.GeneratedMessage {
   static LedPanelResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LedPanelResponse>(create);
   static LedPanelResponse? _defaultInstance;
 
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
   @$pb.TagNumber(2)
-  $core.String get name => $_getSZ(0);
+  LedModeResponse get mode => $_getN(1);
   @$pb.TagNumber(2)
-  set name($core.String v) { $_setString(0, v); }
+  set mode(LedModeResponse v) { setField(2, v); }
   @$pb.TagNumber(2)
-  $core.bool hasName() => $_has(0);
+  $core.bool hasMode() => $_has(1);
   @$pb.TagNumber(2)
-  void clearName() => clearField(2);
+  void clearMode() => clearField(2);
+  @$pb.TagNumber(2)
+  LedModeResponse ensureMode() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $core.int get status => $_getIZ(1);
+  $core.String get name => $_getSZ(2);
   @$pb.TagNumber(3)
-  set status($core.int v) { $_setSignedInt32(1, v); }
+  set name($core.String v) { $_setString(2, v); }
   @$pb.TagNumber(3)
-  $core.bool hasStatus() => $_has(1);
+  $core.bool hasName() => $_has(2);
   @$pb.TagNumber(3)
-  void clearStatus() => clearField(3);
+  void clearName() => clearField(3);
 
   @$pb.TagNumber(4)
-  $core.double get brightness => $_getN(2);
-  @$pb.TagNumber(4)
-  set brightness($core.double v) { $_setDouble(2, v); }
-  @$pb.TagNumber(4)
-  $core.bool hasBrightness() => $_has(2);
-  @$pb.TagNumber(4)
-  void clearBrightness() => clearField(4);
+  $core.List<CategoryResponse> get categories => $_getList(3);
 
   @$pb.TagNumber(5)
-  $core.int get polymorphicCtype => $_getIZ(3);
+  $core.int get status => $_getIZ(4);
   @$pb.TagNumber(5)
-  set polymorphicCtype($core.int v) { $_setSignedInt32(3, v); }
+  set status($core.int v) { $_setSignedInt32(4, v); }
   @$pb.TagNumber(5)
-  $core.bool hasPolymorphicCtype() => $_has(3);
+  $core.bool hasStatus() => $_has(4);
   @$pb.TagNumber(5)
-  void clearPolymorphicCtype() => clearField(5);
+  void clearStatus() => clearField(5);
 
   @$pb.TagNumber(6)
-  $core.String get mode => $_getSZ(4);
+  $core.double get brightness => $_getN(5);
   @$pb.TagNumber(6)
-  set mode($core.String v) { $_setString(4, v); }
+  set brightness($core.double v) { $_setDouble(5, v); }
   @$pb.TagNumber(6)
-  $core.bool hasMode() => $_has(4);
+  $core.bool hasBrightness() => $_has(5);
   @$pb.TagNumber(6)
-  void clearMode() => clearField(6);
+  void clearBrightness() => clearField(6);
 
   @$pb.TagNumber(7)
-  $core.List<$core.String> get categories => $_getList(5);
-
-  @$pb.TagNumber(8)
-  $core.String get uuid => $_getSZ(6);
-  @$pb.TagNumber(8)
-  set uuid($core.String v) { $_setString(6, v); }
-  @$pb.TagNumber(8)
-  $core.bool hasUuid() => $_has(6);
-  @$pb.TagNumber(8)
-  void clearUuid() => clearField(8);
+  $core.int get polymorphicCtype => $_getIZ(6);
+  @$pb.TagNumber(7)
+  set polymorphicCtype($core.int v) { $_setSignedInt32(6, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasPolymorphicCtype() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearPolymorphicCtype() => clearField(7);
 }
 
 class LedPanelRetrieveRequest extends $pb.GeneratedMessage {
   factory LedPanelRetrieveRequest({
-    $core.String? uuid,
+    $core.int? id,
   }) {
     final $result = create();
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (id != null) {
+      $result.id = id;
     }
     return $result;
   }
@@ -2476,7 +2990,7 @@ class LedPanelRetrieveRequest extends $pb.GeneratedMessage {
   factory LedPanelRetrieveRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'LedPanelRetrieveRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'uuid')
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -2502,22 +3016,552 @@ class LedPanelRetrieveRequest extends $pb.GeneratedMessage {
   static LedPanelRetrieveRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get uuid => $_getSZ(0);
+  $core.int get id => $_getIZ(0);
   @$pb.TagNumber(1)
-  set uuid($core.String v) { $_setString(0, v); }
+  set id($core.int v) { $_setSignedInt32(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasUuid() => $_has(0);
+  $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearUuid() => clearField(1);
+  void clearId() => clearField(1);
+}
+
+class PatternModeDestroyRequest extends $pb.GeneratedMessage {
+  factory PatternModeDestroyRequest({
+    $core.int? id,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    return $result;
+  }
+  PatternModeDestroyRequest._() : super();
+  factory PatternModeDestroyRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory PatternModeDestroyRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PatternModeDestroyRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  PatternModeDestroyRequest clone() => PatternModeDestroyRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  PatternModeDestroyRequest copyWith(void Function(PatternModeDestroyRequest) updates) => super.copyWith((message) => updates(message as PatternModeDestroyRequest)) as PatternModeDestroyRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static PatternModeDestroyRequest create() => PatternModeDestroyRequest._();
+  PatternModeDestroyRequest createEmptyInstance() => create();
+  static $pb.PbList<PatternModeDestroyRequest> createRepeated() => $pb.PbList<PatternModeDestroyRequest>();
+  @$core.pragma('dart2js:noInline')
+  static PatternModeDestroyRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PatternModeDestroyRequest>(create);
+  static PatternModeDestroyRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+}
+
+class PatternModeListRequest extends $pb.GeneratedMessage {
+  factory PatternModeListRequest() => create();
+  PatternModeListRequest._() : super();
+  factory PatternModeListRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory PatternModeListRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PatternModeListRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  PatternModeListRequest clone() => PatternModeListRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  PatternModeListRequest copyWith(void Function(PatternModeListRequest) updates) => super.copyWith((message) => updates(message as PatternModeListRequest)) as PatternModeListRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static PatternModeListRequest create() => PatternModeListRequest._();
+  PatternModeListRequest createEmptyInstance() => create();
+  static $pb.PbList<PatternModeListRequest> createRepeated() => $pb.PbList<PatternModeListRequest>();
+  @$core.pragma('dart2js:noInline')
+  static PatternModeListRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PatternModeListRequest>(create);
+  static PatternModeListRequest? _defaultInstance;
+}
+
+class PatternModeListResponse extends $pb.GeneratedMessage {
+  factory PatternModeListResponse({
+    $core.Iterable<PatternModeResponse>? results,
+    $core.int? count,
+  }) {
+    final $result = create();
+    if (results != null) {
+      $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
+    }
+    return $result;
+  }
+  PatternModeListResponse._() : super();
+  factory PatternModeListResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory PatternModeListResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PatternModeListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..pc<PatternModeResponse>(1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM, subBuilder: PatternModeResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  PatternModeListResponse clone() => PatternModeListResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  PatternModeListResponse copyWith(void Function(PatternModeListResponse) updates) => super.copyWith((message) => updates(message as PatternModeListResponse)) as PatternModeListResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static PatternModeListResponse create() => PatternModeListResponse._();
+  PatternModeListResponse createEmptyInstance() => create();
+  static $pb.PbList<PatternModeListResponse> createRepeated() => $pb.PbList<PatternModeListResponse>();
+  @$core.pragma('dart2js:noInline')
+  static PatternModeListResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PatternModeListResponse>(create);
+  static PatternModeListResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<PatternModeResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) { $_setSignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
+}
+
+class PatternModePartialUpdateRequest extends $pb.GeneratedMessage {
+  factory PatternModePartialUpdateRequest({
+    $core.int? id,
+    $core.String? name,
+    $core.Iterable<$core.String>? partialUpdateFields,
+    $core.double? fps,
+    $core.double? blink,
+    $core.String? palette,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (name != null) {
+      $result.name = name;
+    }
+    if (partialUpdateFields != null) {
+      $result.partialUpdateFields.addAll(partialUpdateFields);
+    }
+    if (fps != null) {
+      $result.fps = fps;
+    }
+    if (blink != null) {
+      $result.blink = blink;
+    }
+    if (palette != null) {
+      $result.palette = palette;
+    }
+    return $result;
+  }
+  PatternModePartialUpdateRequest._() : super();
+  factory PatternModePartialUpdateRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory PatternModePartialUpdateRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PatternModePartialUpdateRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOS(2, _omitFieldNames ? '' : 'name')
+    ..pPS(3, _omitFieldNames ? '' : 'PartialUpdateFields')
+    ..a<$core.double>(4, _omitFieldNames ? '' : 'fps', $pb.PbFieldType.OD)
+    ..a<$core.double>(5, _omitFieldNames ? '' : 'blink', $pb.PbFieldType.OD)
+    ..aOS(6, _omitFieldNames ? '' : 'palette')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  PatternModePartialUpdateRequest clone() => PatternModePartialUpdateRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  PatternModePartialUpdateRequest copyWith(void Function(PatternModePartialUpdateRequest) updates) => super.copyWith((message) => updates(message as PatternModePartialUpdateRequest)) as PatternModePartialUpdateRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static PatternModePartialUpdateRequest create() => PatternModePartialUpdateRequest._();
+  PatternModePartialUpdateRequest createEmptyInstance() => create();
+  static $pb.PbList<PatternModePartialUpdateRequest> createRepeated() => $pb.PbList<PatternModePartialUpdateRequest>();
+  @$core.pragma('dart2js:noInline')
+  static PatternModePartialUpdateRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PatternModePartialUpdateRequest>(create);
+  static PatternModePartialUpdateRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get name => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set name($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearName() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.List<$core.String> get partialUpdateFields => $_getList(2);
+
+  @$pb.TagNumber(4)
+  $core.double get fps => $_getN(3);
+  @$pb.TagNumber(4)
+  set fps($core.double v) { $_setDouble(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasFps() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearFps() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.double get blink => $_getN(4);
+  @$pb.TagNumber(5)
+  set blink($core.double v) { $_setDouble(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasBlink() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearBlink() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.String get palette => $_getSZ(5);
+  @$pb.TagNumber(6)
+  set palette($core.String v) { $_setString(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasPalette() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearPalette() => clearField(6);
+}
+
+class PatternModeRequest extends $pb.GeneratedMessage {
+  factory PatternModeRequest({
+    $core.int? id,
+    $core.String? name,
+    $core.double? fps,
+    $core.double? blink,
+    $core.String? palette,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (name != null) {
+      $result.name = name;
+    }
+    if (fps != null) {
+      $result.fps = fps;
+    }
+    if (blink != null) {
+      $result.blink = blink;
+    }
+    if (palette != null) {
+      $result.palette = palette;
+    }
+    return $result;
+  }
+  PatternModeRequest._() : super();
+  factory PatternModeRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory PatternModeRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PatternModeRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOS(2, _omitFieldNames ? '' : 'name')
+    ..a<$core.double>(3, _omitFieldNames ? '' : 'fps', $pb.PbFieldType.OD)
+    ..a<$core.double>(4, _omitFieldNames ? '' : 'blink', $pb.PbFieldType.OD)
+    ..aOS(5, _omitFieldNames ? '' : 'palette')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  PatternModeRequest clone() => PatternModeRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  PatternModeRequest copyWith(void Function(PatternModeRequest) updates) => super.copyWith((message) => updates(message as PatternModeRequest)) as PatternModeRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static PatternModeRequest create() => PatternModeRequest._();
+  PatternModeRequest createEmptyInstance() => create();
+  static $pb.PbList<PatternModeRequest> createRepeated() => $pb.PbList<PatternModeRequest>();
+  @$core.pragma('dart2js:noInline')
+  static PatternModeRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PatternModeRequest>(create);
+  static PatternModeRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get name => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set name($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearName() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.double get fps => $_getN(2);
+  @$pb.TagNumber(3)
+  set fps($core.double v) { $_setDouble(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasFps() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearFps() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.double get blink => $_getN(3);
+  @$pb.TagNumber(4)
+  set blink($core.double v) { $_setDouble(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasBlink() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearBlink() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get palette => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set palette($core.String v) { $_setString(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasPalette() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearPalette() => clearField(5);
+}
+
+class PatternModeResponse extends $pb.GeneratedMessage {
+  factory PatternModeResponse({
+    $core.int? id,
+    $core.String? name,
+    $core.double? fps,
+    $core.double? blink,
+    $core.String? palette,
+    $core.int? polymorphicCtype,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (name != null) {
+      $result.name = name;
+    }
+    if (fps != null) {
+      $result.fps = fps;
+    }
+    if (blink != null) {
+      $result.blink = blink;
+    }
+    if (palette != null) {
+      $result.palette = palette;
+    }
+    if (polymorphicCtype != null) {
+      $result.polymorphicCtype = polymorphicCtype;
+    }
+    return $result;
+  }
+  PatternModeResponse._() : super();
+  factory PatternModeResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory PatternModeResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PatternModeResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOS(2, _omitFieldNames ? '' : 'name')
+    ..a<$core.double>(3, _omitFieldNames ? '' : 'fps', $pb.PbFieldType.OD)
+    ..a<$core.double>(4, _omitFieldNames ? '' : 'blink', $pb.PbFieldType.OD)
+    ..aOS(5, _omitFieldNames ? '' : 'palette')
+    ..a<$core.int>(6, _omitFieldNames ? '' : 'polymorphicCtype', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  PatternModeResponse clone() => PatternModeResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  PatternModeResponse copyWith(void Function(PatternModeResponse) updates) => super.copyWith((message) => updates(message as PatternModeResponse)) as PatternModeResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static PatternModeResponse create() => PatternModeResponse._();
+  PatternModeResponse createEmptyInstance() => create();
+  static $pb.PbList<PatternModeResponse> createRepeated() => $pb.PbList<PatternModeResponse>();
+  @$core.pragma('dart2js:noInline')
+  static PatternModeResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PatternModeResponse>(create);
+  static PatternModeResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get name => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set name($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearName() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.double get fps => $_getN(2);
+  @$pb.TagNumber(3)
+  set fps($core.double v) { $_setDouble(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasFps() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearFps() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.double get blink => $_getN(3);
+  @$pb.TagNumber(4)
+  set blink($core.double v) { $_setDouble(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasBlink() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearBlink() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get palette => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set palette($core.String v) { $_setString(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasPalette() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearPalette() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.int get polymorphicCtype => $_getIZ(5);
+  @$pb.TagNumber(6)
+  set polymorphicCtype($core.int v) { $_setSignedInt32(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasPolymorphicCtype() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearPolymorphicCtype() => clearField(6);
+}
+
+class PatternModeRetrieveRequest extends $pb.GeneratedMessage {
+  factory PatternModeRetrieveRequest({
+    $core.int? id,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    return $result;
+  }
+  PatternModeRetrieveRequest._() : super();
+  factory PatternModeRetrieveRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory PatternModeRetrieveRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PatternModeRetrieveRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  PatternModeRetrieveRequest clone() => PatternModeRetrieveRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  PatternModeRetrieveRequest copyWith(void Function(PatternModeRetrieveRequest) updates) => super.copyWith((message) => updates(message as PatternModeRetrieveRequest)) as PatternModeRetrieveRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static PatternModeRetrieveRequest create() => PatternModeRetrieveRequest._();
+  PatternModeRetrieveRequest createEmptyInstance() => create();
+  static $pb.PbList<PatternModeRetrieveRequest> createRepeated() => $pb.PbList<PatternModeRetrieveRequest>();
+  @$core.pragma('dart2js:noInline')
+  static PatternModeRetrieveRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PatternModeRetrieveRequest>(create);
+  static PatternModeRetrieveRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
 }
 
 class ProjectDestroyRequest extends $pb.GeneratedMessage {
   factory ProjectDestroyRequest({
-    $core.String? uuid,
+    $core.int? id,
   }) {
     final $result = create();
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (id != null) {
+      $result.id = id;
     }
     return $result;
   }
@@ -2526,7 +3570,7 @@ class ProjectDestroyRequest extends $pb.GeneratedMessage {
   factory ProjectDestroyRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProjectDestroyRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'uuid')
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -2552,13 +3596,13 @@ class ProjectDestroyRequest extends $pb.GeneratedMessage {
   static ProjectDestroyRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get uuid => $_getSZ(0);
+  $core.int get id => $_getIZ(0);
   @$pb.TagNumber(1)
-  set uuid($core.String v) { $_setString(0, v); }
+  set id($core.int v) { $_setSignedInt32(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasUuid() => $_has(0);
+  $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearUuid() => clearField(1);
+  void clearId() => clearField(1);
 }
 
 class ProjectListRequest extends $pb.GeneratedMessage {
@@ -2653,12 +3697,12 @@ class ProjectListResponse extends $pb.GeneratedMessage {
 
 class ProjectPartialUpdateRequest extends $pb.GeneratedMessage {
   factory ProjectPartialUpdateRequest({
-    $core.Iterable<$core.String>? products,
+    $core.Iterable<BaseProductRequest>? products,
     $core.Iterable<$core.String>? partialUpdateFields,
     $core.String? pubDate,
     $core.String? name,
     $core.int? owner,
-    $core.String? uuid,
+    $core.int? id,
   }) {
     final $result = create();
     if (products != null) {
@@ -2676,8 +3720,8 @@ class ProjectPartialUpdateRequest extends $pb.GeneratedMessage {
     if (owner != null) {
       $result.owner = owner;
     }
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (id != null) {
+      $result.id = id;
     }
     return $result;
   }
@@ -2686,12 +3730,12 @@ class ProjectPartialUpdateRequest extends $pb.GeneratedMessage {
   factory ProjectPartialUpdateRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProjectPartialUpdateRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..pPS(2, _omitFieldNames ? '' : 'products')
+    ..pc<BaseProductRequest>(2, _omitFieldNames ? '' : 'products', $pb.PbFieldType.PM, subBuilder: BaseProductRequest.create)
     ..pPS(3, _omitFieldNames ? '' : 'PartialUpdateFields')
     ..aOS(4, _omitFieldNames ? '' : 'pubDate')
     ..aOS(5, _omitFieldNames ? '' : 'name')
     ..a<$core.int>(6, _omitFieldNames ? '' : 'owner', $pb.PbFieldType.O3)
-    ..aOS(7, _omitFieldNames ? '' : 'uuid')
+    ..a<$core.int>(7, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -2717,7 +3761,7 @@ class ProjectPartialUpdateRequest extends $pb.GeneratedMessage {
   static ProjectPartialUpdateRequest? _defaultInstance;
 
   @$pb.TagNumber(2)
-  $core.List<$core.String> get products => $_getList(0);
+  $core.List<BaseProductRequest> get products => $_getList(0);
 
   @$pb.TagNumber(3)
   $core.List<$core.String> get partialUpdateFields => $_getList(1);
@@ -2750,22 +3794,22 @@ class ProjectPartialUpdateRequest extends $pb.GeneratedMessage {
   void clearOwner() => clearField(6);
 
   @$pb.TagNumber(7)
-  $core.String get uuid => $_getSZ(5);
+  $core.int get id => $_getIZ(5);
   @$pb.TagNumber(7)
-  set uuid($core.String v) { $_setString(5, v); }
+  set id($core.int v) { $_setSignedInt32(5, v); }
   @$pb.TagNumber(7)
-  $core.bool hasUuid() => $_has(5);
+  $core.bool hasId() => $_has(5);
   @$pb.TagNumber(7)
-  void clearUuid() => clearField(7);
+  void clearId() => clearField(7);
 }
 
 class ProjectRequest extends $pb.GeneratedMessage {
   factory ProjectRequest({
-    $core.Iterable<$core.String>? products,
+    $core.Iterable<BaseProductRequest>? products,
     $core.String? pubDate,
     $core.String? name,
     $core.int? owner,
-    $core.String? uuid,
+    $core.int? id,
   }) {
     final $result = create();
     if (products != null) {
@@ -2780,8 +3824,8 @@ class ProjectRequest extends $pb.GeneratedMessage {
     if (owner != null) {
       $result.owner = owner;
     }
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (id != null) {
+      $result.id = id;
     }
     return $result;
   }
@@ -2790,11 +3834,11 @@ class ProjectRequest extends $pb.GeneratedMessage {
   factory ProjectRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProjectRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..pPS(2, _omitFieldNames ? '' : 'products')
+    ..pc<BaseProductRequest>(2, _omitFieldNames ? '' : 'products', $pb.PbFieldType.PM, subBuilder: BaseProductRequest.create)
     ..aOS(3, _omitFieldNames ? '' : 'pubDate')
     ..aOS(4, _omitFieldNames ? '' : 'name')
     ..a<$core.int>(5, _omitFieldNames ? '' : 'owner', $pb.PbFieldType.O3)
-    ..aOS(6, _omitFieldNames ? '' : 'uuid')
+    ..a<$core.int>(6, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -2820,7 +3864,7 @@ class ProjectRequest extends $pb.GeneratedMessage {
   static ProjectRequest? _defaultInstance;
 
   @$pb.TagNumber(2)
-  $core.List<$core.String> get products => $_getList(0);
+  $core.List<BaseProductRequest> get products => $_getList(0);
 
   @$pb.TagNumber(3)
   $core.String get pubDate => $_getSZ(1);
@@ -2850,22 +3894,22 @@ class ProjectRequest extends $pb.GeneratedMessage {
   void clearOwner() => clearField(5);
 
   @$pb.TagNumber(6)
-  $core.String get uuid => $_getSZ(4);
+  $core.int get id => $_getIZ(4);
   @$pb.TagNumber(6)
-  set uuid($core.String v) { $_setString(4, v); }
+  set id($core.int v) { $_setSignedInt32(4, v); }
   @$pb.TagNumber(6)
-  $core.bool hasUuid() => $_has(4);
+  $core.bool hasId() => $_has(4);
   @$pb.TagNumber(6)
-  void clearUuid() => clearField(6);
+  void clearId() => clearField(6);
 }
 
 class ProjectResponse extends $pb.GeneratedMessage {
   factory ProjectResponse({
-    $core.Iterable<$core.String>? products,
+    $core.Iterable<BaseProductResponse>? products,
     $core.String? pubDate,
     $core.String? name,
     $core.int? owner,
-    $core.String? uuid,
+    $core.int? id,
   }) {
     final $result = create();
     if (products != null) {
@@ -2880,8 +3924,8 @@ class ProjectResponse extends $pb.GeneratedMessage {
     if (owner != null) {
       $result.owner = owner;
     }
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (id != null) {
+      $result.id = id;
     }
     return $result;
   }
@@ -2890,11 +3934,11 @@ class ProjectResponse extends $pb.GeneratedMessage {
   factory ProjectResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProjectResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..pPS(2, _omitFieldNames ? '' : 'products')
+    ..pc<BaseProductResponse>(2, _omitFieldNames ? '' : 'products', $pb.PbFieldType.PM, subBuilder: BaseProductResponse.create)
     ..aOS(3, _omitFieldNames ? '' : 'pubDate')
     ..aOS(4, _omitFieldNames ? '' : 'name')
     ..a<$core.int>(5, _omitFieldNames ? '' : 'owner', $pb.PbFieldType.O3)
-    ..aOS(6, _omitFieldNames ? '' : 'uuid')
+    ..a<$core.int>(6, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -2920,7 +3964,7 @@ class ProjectResponse extends $pb.GeneratedMessage {
   static ProjectResponse? _defaultInstance;
 
   @$pb.TagNumber(2)
-  $core.List<$core.String> get products => $_getList(0);
+  $core.List<BaseProductResponse> get products => $_getList(0);
 
   @$pb.TagNumber(3)
   $core.String get pubDate => $_getSZ(1);
@@ -2950,22 +3994,22 @@ class ProjectResponse extends $pb.GeneratedMessage {
   void clearOwner() => clearField(5);
 
   @$pb.TagNumber(6)
-  $core.String get uuid => $_getSZ(4);
+  $core.int get id => $_getIZ(4);
   @$pb.TagNumber(6)
-  set uuid($core.String v) { $_setString(4, v); }
+  set id($core.int v) { $_setSignedInt32(4, v); }
   @$pb.TagNumber(6)
-  $core.bool hasUuid() => $_has(4);
+  $core.bool hasId() => $_has(4);
   @$pb.TagNumber(6)
-  void clearUuid() => clearField(6);
+  void clearId() => clearField(6);
 }
 
 class ProjectRetrieveRequest extends $pb.GeneratedMessage {
   factory ProjectRetrieveRequest({
-    $core.String? uuid,
+    $core.int? id,
   }) {
     final $result = create();
-    if (uuid != null) {
-      $result.uuid = uuid;
+    if (id != null) {
+      $result.id = id;
     }
     return $result;
   }
@@ -2974,7 +4018,7 @@ class ProjectRetrieveRequest extends $pb.GeneratedMessage {
   factory ProjectRetrieveRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProjectRetrieveRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'uuid')
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -3000,13 +4044,501 @@ class ProjectRetrieveRequest extends $pb.GeneratedMessage {
   static ProjectRetrieveRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get uuid => $_getSZ(0);
+  $core.int get id => $_getIZ(0);
   @$pb.TagNumber(1)
-  set uuid($core.String v) { $_setString(0, v); }
+  set id($core.int v) { $_setSignedInt32(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasUuid() => $_has(0);
+  $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearUuid() => clearField(1);
+  void clearId() => clearField(1);
+}
+
+class VideoModeDestroyRequest extends $pb.GeneratedMessage {
+  factory VideoModeDestroyRequest({
+    $core.int? id,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    return $result;
+  }
+  VideoModeDestroyRequest._() : super();
+  factory VideoModeDestroyRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory VideoModeDestroyRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'VideoModeDestroyRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  VideoModeDestroyRequest clone() => VideoModeDestroyRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  VideoModeDestroyRequest copyWith(void Function(VideoModeDestroyRequest) updates) => super.copyWith((message) => updates(message as VideoModeDestroyRequest)) as VideoModeDestroyRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static VideoModeDestroyRequest create() => VideoModeDestroyRequest._();
+  VideoModeDestroyRequest createEmptyInstance() => create();
+  static $pb.PbList<VideoModeDestroyRequest> createRepeated() => $pb.PbList<VideoModeDestroyRequest>();
+  @$core.pragma('dart2js:noInline')
+  static VideoModeDestroyRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<VideoModeDestroyRequest>(create);
+  static VideoModeDestroyRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+}
+
+class VideoModeListRequest extends $pb.GeneratedMessage {
+  factory VideoModeListRequest() => create();
+  VideoModeListRequest._() : super();
+  factory VideoModeListRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory VideoModeListRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'VideoModeListRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  VideoModeListRequest clone() => VideoModeListRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  VideoModeListRequest copyWith(void Function(VideoModeListRequest) updates) => super.copyWith((message) => updates(message as VideoModeListRequest)) as VideoModeListRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static VideoModeListRequest create() => VideoModeListRequest._();
+  VideoModeListRequest createEmptyInstance() => create();
+  static $pb.PbList<VideoModeListRequest> createRepeated() => $pb.PbList<VideoModeListRequest>();
+  @$core.pragma('dart2js:noInline')
+  static VideoModeListRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<VideoModeListRequest>(create);
+  static VideoModeListRequest? _defaultInstance;
+}
+
+class VideoModeListResponse extends $pb.GeneratedMessage {
+  factory VideoModeListResponse({
+    $core.Iterable<VideoModeResponse>? results,
+    $core.int? count,
+  }) {
+    final $result = create();
+    if (results != null) {
+      $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
+    }
+    return $result;
+  }
+  VideoModeListResponse._() : super();
+  factory VideoModeListResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory VideoModeListResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'VideoModeListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..pc<VideoModeResponse>(1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM, subBuilder: VideoModeResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  VideoModeListResponse clone() => VideoModeListResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  VideoModeListResponse copyWith(void Function(VideoModeListResponse) updates) => super.copyWith((message) => updates(message as VideoModeListResponse)) as VideoModeListResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static VideoModeListResponse create() => VideoModeListResponse._();
+  VideoModeListResponse createEmptyInstance() => create();
+  static $pb.PbList<VideoModeListResponse> createRepeated() => $pb.PbList<VideoModeListResponse>();
+  @$core.pragma('dart2js:noInline')
+  static VideoModeListResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<VideoModeListResponse>(create);
+  static VideoModeListResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<VideoModeResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) { $_setSignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
+}
+
+class VideoModePartialUpdateRequest extends $pb.GeneratedMessage {
+  factory VideoModePartialUpdateRequest({
+    $core.int? id,
+    $core.String? name,
+    $core.Iterable<$core.String>? partialUpdateFields,
+    $core.String? video,
+    $core.String? videoLowPixel,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (name != null) {
+      $result.name = name;
+    }
+    if (partialUpdateFields != null) {
+      $result.partialUpdateFields.addAll(partialUpdateFields);
+    }
+    if (video != null) {
+      $result.video = video;
+    }
+    if (videoLowPixel != null) {
+      $result.videoLowPixel = videoLowPixel;
+    }
+    return $result;
+  }
+  VideoModePartialUpdateRequest._() : super();
+  factory VideoModePartialUpdateRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory VideoModePartialUpdateRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'VideoModePartialUpdateRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOS(2, _omitFieldNames ? '' : 'name')
+    ..pPS(3, _omitFieldNames ? '' : 'PartialUpdateFields')
+    ..aOS(4, _omitFieldNames ? '' : 'video')
+    ..aOS(5, _omitFieldNames ? '' : 'videoLowPixel')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  VideoModePartialUpdateRequest clone() => VideoModePartialUpdateRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  VideoModePartialUpdateRequest copyWith(void Function(VideoModePartialUpdateRequest) updates) => super.copyWith((message) => updates(message as VideoModePartialUpdateRequest)) as VideoModePartialUpdateRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static VideoModePartialUpdateRequest create() => VideoModePartialUpdateRequest._();
+  VideoModePartialUpdateRequest createEmptyInstance() => create();
+  static $pb.PbList<VideoModePartialUpdateRequest> createRepeated() => $pb.PbList<VideoModePartialUpdateRequest>();
+  @$core.pragma('dart2js:noInline')
+  static VideoModePartialUpdateRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<VideoModePartialUpdateRequest>(create);
+  static VideoModePartialUpdateRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get name => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set name($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearName() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.List<$core.String> get partialUpdateFields => $_getList(2);
+
+  @$pb.TagNumber(4)
+  $core.String get video => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set video($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasVideo() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearVideo() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get videoLowPixel => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set videoLowPixel($core.String v) { $_setString(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasVideoLowPixel() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearVideoLowPixel() => clearField(5);
+}
+
+class VideoModeRequest extends $pb.GeneratedMessage {
+  factory VideoModeRequest({
+    $core.int? id,
+    $core.String? name,
+    $core.String? video,
+    $core.String? videoLowPixel,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (name != null) {
+      $result.name = name;
+    }
+    if (video != null) {
+      $result.video = video;
+    }
+    if (videoLowPixel != null) {
+      $result.videoLowPixel = videoLowPixel;
+    }
+    return $result;
+  }
+  VideoModeRequest._() : super();
+  factory VideoModeRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory VideoModeRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'VideoModeRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOS(2, _omitFieldNames ? '' : 'name')
+    ..aOS(3, _omitFieldNames ? '' : 'video')
+    ..aOS(4, _omitFieldNames ? '' : 'videoLowPixel')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  VideoModeRequest clone() => VideoModeRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  VideoModeRequest copyWith(void Function(VideoModeRequest) updates) => super.copyWith((message) => updates(message as VideoModeRequest)) as VideoModeRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static VideoModeRequest create() => VideoModeRequest._();
+  VideoModeRequest createEmptyInstance() => create();
+  static $pb.PbList<VideoModeRequest> createRepeated() => $pb.PbList<VideoModeRequest>();
+  @$core.pragma('dart2js:noInline')
+  static VideoModeRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<VideoModeRequest>(create);
+  static VideoModeRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get name => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set name($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearName() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get video => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set video($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasVideo() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearVideo() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get videoLowPixel => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set videoLowPixel($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasVideoLowPixel() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearVideoLowPixel() => clearField(4);
+}
+
+class VideoModeResponse extends $pb.GeneratedMessage {
+  factory VideoModeResponse({
+    $core.int? id,
+    $core.String? name,
+    $core.String? video,
+    $core.String? videoLowPixel,
+    $core.int? polymorphicCtype,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (name != null) {
+      $result.name = name;
+    }
+    if (video != null) {
+      $result.video = video;
+    }
+    if (videoLowPixel != null) {
+      $result.videoLowPixel = videoLowPixel;
+    }
+    if (polymorphicCtype != null) {
+      $result.polymorphicCtype = polymorphicCtype;
+    }
+    return $result;
+  }
+  VideoModeResponse._() : super();
+  factory VideoModeResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory VideoModeResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'VideoModeResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOS(2, _omitFieldNames ? '' : 'name')
+    ..aOS(3, _omitFieldNames ? '' : 'video')
+    ..aOS(4, _omitFieldNames ? '' : 'videoLowPixel')
+    ..a<$core.int>(5, _omitFieldNames ? '' : 'polymorphicCtype', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  VideoModeResponse clone() => VideoModeResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  VideoModeResponse copyWith(void Function(VideoModeResponse) updates) => super.copyWith((message) => updates(message as VideoModeResponse)) as VideoModeResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static VideoModeResponse create() => VideoModeResponse._();
+  VideoModeResponse createEmptyInstance() => create();
+  static $pb.PbList<VideoModeResponse> createRepeated() => $pb.PbList<VideoModeResponse>();
+  @$core.pragma('dart2js:noInline')
+  static VideoModeResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<VideoModeResponse>(create);
+  static VideoModeResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get name => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set name($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearName() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get video => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set video($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasVideo() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearVideo() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get videoLowPixel => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set videoLowPixel($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasVideoLowPixel() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearVideoLowPixel() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.int get polymorphicCtype => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set polymorphicCtype($core.int v) { $_setSignedInt32(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasPolymorphicCtype() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearPolymorphicCtype() => clearField(5);
+}
+
+class VideoModeRetrieveRequest extends $pb.GeneratedMessage {
+  factory VideoModeRetrieveRequest({
+    $core.int? id,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    return $result;
+  }
+  VideoModeRetrieveRequest._() : super();
+  factory VideoModeRetrieveRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory VideoModeRetrieveRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'VideoModeRetrieveRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  VideoModeRetrieveRequest clone() => VideoModeRetrieveRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  VideoModeRetrieveRequest copyWith(void Function(VideoModeRetrieveRequest) updates) => super.copyWith((message) => updates(message as VideoModeRetrieveRequest)) as VideoModeRetrieveRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static VideoModeRetrieveRequest create() => VideoModeRetrieveRequest._();
+  VideoModeRetrieveRequest createEmptyInstance() => create();
+  static $pb.PbList<VideoModeRetrieveRequest> createRepeated() => $pb.PbList<VideoModeRetrieveRequest>();
+  @$core.pragma('dart2js:noInline')
+  static VideoModeRetrieveRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<VideoModeRetrieveRequest>(create);
+  static VideoModeRetrieveRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
 }
 
 

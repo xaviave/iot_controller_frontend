@@ -9,7 +9,7 @@ class LedPanel extends BaseProduct {
   LedMode mode;
 
   LedPanel({
-    required super.uuid,
+    required super.id,
     required super.name,
     required super.categories,
     required this.status,
@@ -20,12 +20,12 @@ class LedPanel extends BaseProduct {
   @override
   dynamic get_request() {
     return LedPanelRequest(
-      uuid: uuid,
+      id: id,
       name: name,
-      categories: categories.map((x) => x.uuid).toList(),
+      categories: categories.map((x) => x.get_request()).toList(),
       status: status.id,
       brightness: brightness,
-      mode: mode.uuid,
+      mode: mode.get_request(),
     );
   }
 }

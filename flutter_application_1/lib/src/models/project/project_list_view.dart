@@ -34,7 +34,7 @@ class _ProjectListViewState extends State<ProjectListView> {
     setState(() {
       projects = response.results
           .map((x) => Project(
-                uuid: x.uuid, name: x.name, owner: x.owner,
+                id: x.id, name: x.name, owner: x.owner,
                 pubDate: DateTime.parse(x.pubDate),
                 // products: x.products.map((y) => BaseProduct()).toList())
                 products: [],
@@ -45,9 +45,9 @@ class _ProjectListViewState extends State<ProjectListView> {
 
   @override
   Widget build(BuildContext context) {
-    // var category = Category(uuid: "1", name: "test test");
+    // var category = Category(id: "1", name: "test test");
     // var coffee = CoffeeMachine(
-    //     uuid: "12",
+    //     id: "12",
     //     name: "coffee machine proto",
     //     categories: [category],
     //     status: Status.on,
@@ -59,28 +59,28 @@ class _ProjectListViewState extends State<ProjectListView> {
     //     mode_value: 1);
     //
     // var led = LedPanel(
-    //     uuid: "gw",
+    //     id: "gw",
     //     name: "led proto",
     //     categories: [category],
     //     status: Status.off,
     //     brightness: 0.5,
-    //     mode: ColorMode(color: Colors.blue, name: "blue", uuid: "uiu"));
+    //     mode: ColorMode(color: Colors.blue, name: "blue", id: "uiu"));
     //
     // projects = [
     //   Project(
-    //       uuid: "1",
+    //       id: "1",
     //       owner: 1,
     //       pubDate: DateTime.parse('1969-07-20 20:18:04Z'),
     //       name: "product 1",
     //       products: [coffee]),
     //   Project(
-    //       uuid: "2",
+    //       id: "2",
     //       owner: 2,
     //       pubDate: DateTime.parse('1969-07-20 20:18:04Z'),
     //       name: "product 2",
     //       products: [led]),
     //   Project(
-    //       uuid: "3",
+    //       id: "3",
     //       owner: 3,
     //       pubDate: DateTime.parse('1969-07-20 20:18:04Z'),
     //       name: "product 3",
