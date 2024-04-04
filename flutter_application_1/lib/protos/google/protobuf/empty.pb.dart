@@ -24,16 +24,16 @@ class Empty extends $pb.GeneratedMessage {
   factory Empty() => create();
   Empty._() : super();
   factory Empty.fromBuffer($core.List<$core.int> i,
-      [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
   factory Empty.fromJson($core.String i,
-      [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'Empty',
       package:
-      const $pb.PackageName(_omitMessageNames ? '' : 'google.protobuf'),
+          const $pb.PackageName(_omitMessageNames ? '' : 'google.protobuf'),
       createEmptyInstance: create)
     ..hasRequiredFields = false;
 
@@ -60,4 +60,4 @@ class Empty extends $pb.GeneratedMessage {
 }
 
 const _omitMessageNames =
-$core.bool.fromEnvironment('protobuf.omit_message_names');
+    $core.bool.fromEnvironment('protobuf.omit_message_names');

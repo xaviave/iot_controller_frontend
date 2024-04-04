@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/services/communication_service.dart';
-import 'package:flutter_application_1/src/models/category.dart';
-import 'package:flutter_application_1/src/models/products/coffee_machine.dart';
-import 'package:flutter_application_1/src/models/products/led/led_mode.dart';
-import 'package:flutter_application_1/src/models/products/led/led_panel.dart';
 import 'package:flutter_application_1/src/models/project/project.dart';
 import 'package:flutter_application_1/src/models/project/project_details_view.dart';
-import 'package:flutter_application_1/src/models/status.dart';
 import 'package:flutter_application_1/src/settings/settings_view.dart';
 
 class ProjectListView extends StatefulWidget {
@@ -19,7 +14,8 @@ class ProjectListView extends StatefulWidget {
 
 class _ProjectListViewState extends State<ProjectListView> {
   late ProjectCommunication project_client;
-  late List<Project> projects;
+  // need a better way to init this without flickering
+  late List<Project> projects = [];
 
   @override
   void initState() {
@@ -32,61 +28,12 @@ class _ProjectListViewState extends State<ProjectListView> {
   void get_project_list() async {
     var response = await project_client.List();
     setState(() {
-      projects = response.results
-          .map((x) => Project(
-                id: x.id, name: x.name, owner: x.owner,
-                pubDate: DateTime.parse(x.pubDate),
-                // products: x.products.map((y) => BaseProduct()).toList())
-                products: [],
-              ))
-          .toList();
+      projects = response.results.map((x) => Project.from_response(x)).toList();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // var category = Category(id: "1", name: "test test");
-    // var coffee = CoffeeMachine(
-    //     id: "12",
-    //     name: "coffee machine proto",
-    //     categories: [category],
-    //     status: Status.on,
-    //     heat: 51.2,
-    //     water_level: ContainerStatus.empty,
-    //     used_water_level: ContainerStatus.empty,
-    //     coffee_level: ContainerStatus.empty,
-    //     filter_position: false,
-    //     mode_value: 1);
-    //
-    // var led = LedPanel(
-    //     id: "gw",
-    //     name: "led proto",
-    //     categories: [category],
-    //     status: Status.off,
-    //     brightness: 0.5,
-    //     mode: ColorMode(color: Colors.blue, name: "blue", id: "uiu"));
-    //
-    // projects = [
-    //   Project(
-    //       id: "1",
-    //       owner: 1,
-    //       pubDate: DateTime.parse('1969-07-20 20:18:04Z'),
-    //       name: "product 1",
-    //       products: [coffee]),
-    //   Project(
-    //       id: "2",
-    //       owner: 2,
-    //       pubDate: DateTime.parse('1969-07-20 20:18:04Z'),
-    //       name: "product 2",
-    //       products: [led]),
-    //   Project(
-    //       id: "3",
-    //       owner: 3,
-    //       pubDate: DateTime.parse('1969-07-20 20:18:04Z'),
-    //       name: "product 3",
-    //       products: [led, coffee])
-    // ];
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('List projects'),

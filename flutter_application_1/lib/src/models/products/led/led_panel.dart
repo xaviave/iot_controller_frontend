@@ -17,15 +17,19 @@ class LedPanel extends BaseProduct {
     required this.mode,
   });
 
-  @override
-  dynamic get_request() {
+  LedPanelRequest get_request() {
     return LedPanelRequest(
       id: id,
       name: name,
       categories: categories.map((x) => x.get_request()).toList(),
       status: status.id,
       brightness: brightness,
-      mode: mode.get_request(),
+      mode: mode.get_abstract_request(),
     );
+  }
+
+  @override
+  BaseProductRequest get_abstract_request() {
+    return BaseProductRequest()..ledPanel = get_request();
   }
 }

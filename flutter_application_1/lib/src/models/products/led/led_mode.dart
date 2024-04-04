@@ -10,6 +10,37 @@ abstract class LedMode {
   String name;
 
   LedMode({required this.id, required this.name});
+  LedModeRequest get_abstract_request() {
+    return LedModeRequest();
+  }
+
+  static LedMode from_response(LedModeResponse request) {
+    if (request.whichMode() == LedModeResponse_Mode.patternMode) {
+      PatternModeResponse r = request.patternMode;
+      return PatternMode(
+          id: r.id,
+          name: r.name,
+          fps: r.fps,
+          blink: r.blink,
+          palette: Palette.fromName(r.palette));
+    }
+    // else if (request.whichMode() == LedModeResponse_Mode.imageMode) {
+    //   ImageModeResponse r = request as ImageModeResponse;
+    //   return ImageMode(
+    //     id: r.id,
+    //     name: r.name,
+    //   );
+    // } else if (request.whichMode() == LedModeResponse_Mode.videoMode) {
+    //   VideoModeResponse r = request as VideoModeResponse;
+    //   return VideoMode(
+    //     id: r.id,
+    //     name: r.name,
+    //   );
+    else {
+      ColorModeResponse r = request.colorMode;
+      return ColorMode.fromHex(r.id, r.name, r.color);
+    }
+  }
 }
 
 class ImageMode extends LedMode {
@@ -26,6 +57,11 @@ class ImageMode extends LedMode {
 
   ImageModeRequest get_request() {
     return ImageModeRequest(name: name);
+  }
+
+  @override
+  LedModeRequest get_abstract_request() {
+    return LedModeRequest()..imageMode = get_request();
   }
 }
 
@@ -44,6 +80,11 @@ class VideoMode extends LedMode {
   VideoModeRequest get_request() {
     return VideoModeRequest(name: name);
   }
+
+  @override
+  LedModeRequest get_abstract_request() {
+    return LedModeRequest()..videoMode = get_request();
+  }
 }
 
 class ColorMode extends LedMode {
@@ -52,8 +93,24 @@ class ColorMode extends LedMode {
 
   ColorMode({required super.id, required super.name, required this.color});
 
+  static ColorMode fromHex(int id, String name, String hex_color) {
+    print("hex_color $hex_color");
+    hex_color = "000000";
+    hex_color = hex_color.toUpperCase().replaceAll("#", "");
+    if (hex_color.length == 6) {
+      hex_color = "FF" + hex_color;
+    }
+    return ColorMode(
+        id: id, name: name, color: Color(int.parse(hex_color, radix: 16)));
+  }
+
   ColorModeRequest get_request() {
     return ColorModeRequest(name: name);
+  }
+
+  @override
+  LedModeRequest get_abstract_request() {
+    return LedModeRequest()..colorMode = get_request();
   }
 }
 
@@ -71,5 +128,10 @@ class PatternMode extends LedMode {
 
   PatternModeRequest get_request() {
     return PatternModeRequest(name: name);
+  }
+
+  @override
+  LedModeRequest get_abstract_request() {
+    return LedModeRequest()..patternMode = get_request();
   }
 }

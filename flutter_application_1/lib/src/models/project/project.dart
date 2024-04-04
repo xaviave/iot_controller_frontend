@@ -17,12 +17,23 @@ class Project {
       required this.name,
       required this.products});
 
+  static Project from_response(ProjectResponse r) {
+    final products =
+        r.products.map((p) => BaseProduct.from_response(p)).toList();
+    return Project(
+        id: r.id,
+        owner: r.owner,
+        pubDate: DateTime.parse(r.pubDate),
+        name: r.name,
+        products: products);
+  }
+
   ProjectRequest get_request() {
     return ProjectRequest(
         id: id,
         name: name,
         owner: owner,
         pubDate: DateFormat.yMMMd().format(pubDate),
-        products: products.map((x) => x.get_request()).toList());
+        products: products.map((x) => x.get_abstract_request()).toList());
   }
 }

@@ -3,7 +3,11 @@ enum Status {
   off(id: 2),
   error(id: 3);
 
+  final int id;
+
   const Status({required this.id});
 
-  final int id;
+  factory Status.fromId(int id) {
+    return values.firstWhere((e) => e.id == id);
+  }
 }

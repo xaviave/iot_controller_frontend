@@ -18,7 +18,11 @@ enum Palette {
     "#FFFFFF"
   ]);
 
+  final List<String> p;
+
   const Palette({required this.p});
 
-  final List<String> p;
+  factory Palette.fromName(String name) {
+    return heat;
+  }
 }

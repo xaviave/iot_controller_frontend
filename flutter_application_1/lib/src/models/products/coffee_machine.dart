@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/protos/backend.pb.dart';
 import 'package:flutter_application_1/src/models/products/base_product.dart';
 import 'package:flutter_application_1/src/models/status.dart';
@@ -9,9 +10,13 @@ enum ContainerStatus {
   warning(id: 1),
   full(id: 2);
 
+  final int id;
+
   const ContainerStatus({required this.id});
 
-  final int id;
+  factory ContainerStatus.fromId(int id) {
+    return values.firstWhere((e) => e.id == id);
+  }
 }
 
 class CoffeeMachine extends BaseProduct {
@@ -36,8 +41,7 @@ class CoffeeMachine extends BaseProduct {
     required this.mode_value,
   });
 
-  @override
-  dynamic get_request() {
+  CoffeeMachineRequest get_request() {
     return CoffeeMachineRequest(
       id: id,
       name: name,
@@ -50,5 +54,10 @@ class CoffeeMachine extends BaseProduct {
       filterPosition: filter_position,
       modeValue: mode_value,
     );
+  }
+
+  @override
+  BaseProductRequest get_abstract_request() {
+    return BaseProductRequest()..coffeeMachine = get_request();
   }
 }
