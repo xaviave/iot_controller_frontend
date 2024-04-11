@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/src/services/communication_service.dart';
 import 'package:flutter_application_1/src/models/project/project.dart';
+import 'package:flutter_application_1/src/models/project/project_provider.dart';
 import 'package:flutter_application_1/src/models/project/project_details_view.dart';
 import 'package:flutter_application_1/src/settings/settings_view.dart';
+import 'package:provider/provider.dart';
 
 class ProjectListView extends StatefulWidget {
   const ProjectListView({super.key});
@@ -13,27 +14,11 @@ class ProjectListView extends StatefulWidget {
 }
 
 class _ProjectListViewState extends State<ProjectListView> {
-  late ProjectCommunication project_client;
-  // need a better way to init this without flickering
-  late List<Project> projects = [];
-
-  @override
-  void initState() {
-    super.initState();
-    project_client = ProjectCommunication();
-    project_client.init();
-    get_project_list();
-  }
-
-  void get_project_list() async {
-    var response = await project_client.List();
-    setState(() {
-      projects = response.results.map((x) => Project.from_response(x)).toList();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final projectProvider = Provider.of<ProjectProvider>(context);
+    // List<Project> projects = projectProvider.projects;
+    print(projectProvider.projects);
     return Scaffold(
       appBar: AppBar(
         title: const Text('List projects'),
@@ -48,12 +33,12 @@ class _ProjectListViewState extends State<ProjectListView> {
       ),
       body: ListView.builder(
         restorationId: 'ProjectListView',
-        itemCount: projects.length,
+        itemCount: projectProvider.projects.length,
         itemBuilder: (BuildContext context, int index) {
-          final item = projects[index];
+          final project = projectProvider.projects[index];
 
           return ListTile(
-            title: Text('Project ${item.name}'),
+            title: Text('Project ${project.name}'),
             leading: const CircleAvatar(
               foregroundImage: AssetImage('assets/images/flutter_logo.png'),
             ),
@@ -61,15 +46,20 @@ class _ProjectListViewState extends State<ProjectListView> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ProjectDetailsView(),
-                  settings: RouteSettings(
-                    arguments: item,
-                  ),
+                  builder: (context) => ProjectDetailsView(project: project),
+                  settings: RouteSettings(),
                 ),
               );
             },
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          projectProvider.getProjectItems();
+        },
+        tooltip: 'Refresh',
+        child: Icon(Icons.refresh),
       ),
     );
   }

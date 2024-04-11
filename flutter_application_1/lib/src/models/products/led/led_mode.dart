@@ -94,8 +94,6 @@ class ColorMode extends LedMode {
   ColorMode({required super.id, required super.name, required this.color});
 
   static ColorMode fromHex(int id, String name, String hex_color) {
-    print("hex_color $hex_color");
-    hex_color = "000000";
     hex_color = hex_color.toUpperCase().replaceAll("#", "");
     if (hex_color.length == 6) {
       hex_color = "FF" + hex_color;
