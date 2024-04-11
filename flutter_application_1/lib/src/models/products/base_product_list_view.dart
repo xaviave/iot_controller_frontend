@@ -19,32 +19,29 @@ class BaseProductListView extends StatelessWidget {
         restorationId: 'BaseProductListView',
         itemCount: products.length,
         itemBuilder: (BuildContext context, int index) {
-          final item = products[index];
+          final product = products[index];
 
           return ListTile(
-            title: Text('BaseProduct ${item.name}'),
+            title: Text('BaseProduct ${product.name}'),
             leading: const CircleAvatar(
               foregroundImage: AssetImage('assets/images/flutter_logo.png'),
             ),
             onTap: () {
-              if (item is LedPanel) {
+              if (product is LedPanel) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const LedPanelDetailsView(),
-                    settings: RouteSettings(
-                      arguments: item,
-                    ),
+                    builder: (context) => LedPanelDetailsView(product: product),
+                    settings: const RouteSettings(),
                   ),
                 );
-              } else if (item is CoffeeMachine) {
+              } else if (product is CoffeeMachine) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const CoffeeMachineDetailsView(),
-                    settings: RouteSettings(
-                      arguments: item,
-                    ),
+                    builder: (context) =>
+                        CoffeeMachineDetailsView(product: product),
+                    settings: const RouteSettings(),
                   ),
                 );
               }

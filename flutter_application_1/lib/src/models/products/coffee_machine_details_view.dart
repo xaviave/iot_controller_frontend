@@ -3,7 +3,9 @@ import 'package:flutter_application_1/src/settings/settings_view.dart';
 import 'package:flutter/material.dart';
 
 class CoffeeMachineDetailsView extends StatelessWidget {
-  const CoffeeMachineDetailsView({super.key});
+  final CoffeeMachine product;
+
+  const CoffeeMachineDetailsView({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {

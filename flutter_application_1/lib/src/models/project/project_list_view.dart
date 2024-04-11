@@ -47,7 +47,7 @@ class _ProjectListViewState extends State<ProjectListView> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => ProjectDetailsView(project: project),
-                  settings: RouteSettings(),
+                  settings: const RouteSettings(),
                 ),
               );
             },
