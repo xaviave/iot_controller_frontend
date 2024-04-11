@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/src/models/project/project.dart';
 import 'package:flutter_application_1/src/models/project/project_provider.dart';
 import 'package:flutter_application_1/src/models/project/project_details_view.dart';
 import 'package:flutter_application_1/src/settings/settings_view.dart';
@@ -17,8 +16,7 @@ class _ProjectListViewState extends State<ProjectListView> {
   @override
   Widget build(BuildContext context) {
     final projectProvider = Provider.of<ProjectProvider>(context);
-    // List<Project> projects = projectProvider.projects;
-    print(projectProvider.projects);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('List projects'),
@@ -59,7 +57,7 @@ class _ProjectListViewState extends State<ProjectListView> {
           projectProvider.getProjectItems();
         },
         tooltip: 'Refresh',
-        child: Icon(Icons.refresh),
+        child: const Icon(Icons.refresh),
       ),
     );
   }
