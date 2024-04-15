@@ -3,27 +3,35 @@ import 'package:flutter_application_1/src/models/products/led/led_panel.dart';
 import 'package:flutter_application_1/src/models/status.dart';
 
 class OnOffButton extends StatefulWidget {
-  // should use BaseProduct but it doesn't have a default status yet
-  // should maybe change juste one value
-  LedPanel product;
-  OnOffButton({super.key, required this.product});
+  final Status status;
+  final Function(Status) callbackUpdateStatus;
+
+  const OnOffButton(
+      {super.key, required this.status, required this.callbackUpdateStatus});
 
   @override
-  _OnOffButtonState createState() => _OnOffButtonState();
+  State<OnOffButton> createState() => _OnOffButtonState();
 }
 
 class _OnOffButtonState extends State<OnOffButton> {
-  bool isOn = false;
-  late LedPanel product;
+  late bool isOn;
+  late Status status;
 
+  late Function(Status) callbackUpdateStatus;
+
+  @override
   void initState() {
-    product = widget.product;
+    super.initState();
+    status = widget.status;
+    isOn = status == Status.on ? true : false;
+    callbackUpdateStatus = widget.callbackUpdateStatus;
   }
 
   void _toggleOnOff() {
     setState(() {
       isOn = !isOn;
-      product.status = isOn ? Status.on : Status.off;
+      status = isOn ? Status.on : Status.off;
+      callbackUpdateStatus(status);
     });
   }
 
@@ -47,7 +55,7 @@ class _OnOffButtonState extends State<OnOffButton> {
             const SizedBox(width: 8),
             Text(
               isOn ? 'ON' : 'OFF',
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             ),
           ],
         ),
@@ -55,6 +63,3 @@ class _OnOffButtonState extends State<OnOffButton> {
     );
   }
 }
-
-// Example usage:
-// OnOffButton(),

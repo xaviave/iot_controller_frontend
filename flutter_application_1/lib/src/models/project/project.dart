@@ -8,7 +8,7 @@ class Project {
   int owner;
   DateTime pubDate;
   String name;
-  List<BaseProduct> products;
+  Map<String, BaseProduct> products;
 
   Project(
       {required this.id,
@@ -18,8 +18,12 @@ class Project {
       required this.products});
 
   static Project from_response(ProjectResponse r) {
-    final products =
-        r.products.map((p) => BaseProduct.from_response(p)).toList();
+    Map<String, BaseProduct> products = <String, BaseProduct>{};
+    for (var e in r.products) {
+      BaseProduct p = BaseProduct.from_response(e);
+      products[p.name] = p;
+    }
+
     return Project(
         id: r.id,
         owner: r.owner,
@@ -34,6 +38,7 @@ class Project {
         name: name,
         owner: owner,
         pubDate: DateFormat.yMMMd().format(pubDate),
-        products: products.map((x) => x.get_abstract_request()).toList());
+        products:
+            products.values.map((x) => x.get_abstract_request()).toList());
   }
 }

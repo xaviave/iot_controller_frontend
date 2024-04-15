@@ -33,10 +33,10 @@ class _ProjectListViewState extends State<ProjectListView> {
         restorationId: 'ProjectListView',
         itemCount: projectProvider.projects.length,
         itemBuilder: (BuildContext context, int index) {
-          final project = projectProvider.projects[index];
+          String name = projectProvider.projects.keys.elementAt(index);
 
           return ListTile(
-            title: Text('Project ${project.name}'),
+            title: Text('Project $name'),
             leading: const CircleAvatar(
               foregroundImage: AssetImage('assets/images/flutter_logo.png'),
             ),
@@ -44,7 +44,8 @@ class _ProjectListViewState extends State<ProjectListView> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ProjectDetailsView(project: project),
+                  builder: (context) => ProjectDetailsView(
+                      project: projectProvider.projects[name]!),
                   settings: const RouteSettings(),
                 ),
               );

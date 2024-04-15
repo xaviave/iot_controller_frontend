@@ -6,11 +6,13 @@ import 'package:flutter_application_1/src/models/products/led/led_panel.dart';
 import 'package:flutter_application_1/src/models/products/led/led_panel_details_view.dart';
 
 class BaseProductListView extends StatelessWidget {
-  BaseProductListView({super.key, required this.products});
+  BaseProductListView(
+      {super.key, required this.products, required this.callbackUpdateProject});
 
+  final Function(BaseProduct) callbackUpdateProject;
   static const routeName = '/products';
 
-  List<BaseProduct> products;
+  Map<String, BaseProduct> products;
 
   @override
   Widget build(BuildContext context) {
@@ -19,28 +21,31 @@ class BaseProductListView extends StatelessWidget {
         restorationId: 'BaseProductListView',
         itemCount: products.length,
         itemBuilder: (BuildContext context, int index) {
-          final product = products[index];
+          String name = products.keys.elementAt(index);
 
           return ListTile(
-            title: Text('BaseProduct ${product.name}'),
+            title: Text('BaseProduct $name'),
             leading: const CircleAvatar(
               foregroundImage: AssetImage('assets/images/flutter_logo.png'),
             ),
             onTap: () {
-              if (product is LedPanel) {
+              if (products[name] is LedPanel) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => LedPanelDetailsView(product: product),
+                    builder: (context) => LedPanelDetailsView(
+                        product: products[name] as LedPanel,
+                        callbackUpdateProject: callbackUpdateProject),
                     settings: const RouteSettings(),
                   ),
                 );
-              } else if (product is CoffeeMachine) {
+              } else if (products[name] is CoffeeMachine) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        CoffeeMachineDetailsView(product: product),
+                    builder: (context) => CoffeeMachineDetailsView(
+                        product: products[name] as CoffeeMachine,
+                        callbackUpdateProject: callbackUpdateProject),
                     settings: const RouteSettings(),
                   ),
                 );

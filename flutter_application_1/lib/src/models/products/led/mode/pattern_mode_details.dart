@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/src/models/products/led/led_mode.dart';
-import 'package:flutter_application_1/src/settings/settings_view.dart';
+import 'package:flutter_application_1/src/models/products/led/mode/led_mode.dart';
 
 class PatternModeDetailsView extends StatefulWidget {
   final PatternMode mode;
+  final Function(LedMode) callbackUpdateMode;
 
-  const PatternModeDetailsView({super.key, required this.mode});
+  const PatternModeDetailsView(
+      {super.key, required this.mode, required this.callbackUpdateMode});
 
   @override
   State<PatternModeDetailsView> createState() => _PatternModeDetailsViewState();
@@ -13,11 +14,13 @@ class PatternModeDetailsView extends StatefulWidget {
 
 class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
   late PatternMode mode;
+  late Function(LedMode) callbackUpdateMode;
 
   @override
   void initState() {
     super.initState();
     mode = widget.mode;
+    callbackUpdateMode = widget.callbackUpdateMode;
   }
 
   @override

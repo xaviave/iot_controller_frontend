@@ -1,3 +1,4 @@
+import 'package:flutter_application_1/src/models/products/base_product.dart';
 import 'package:flutter_application_1/src/models/products/coffee_machine.dart';
 import 'package:flutter_application_1/src/settings/settings_view.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,9 @@ import 'package:flutter/material.dart';
 class CoffeeMachineDetailsView extends StatelessWidget {
   final CoffeeMachine product;
 
-  const CoffeeMachineDetailsView({super.key, required this.product});
+  const CoffeeMachineDetailsView(
+      {super.key, required this.product, required this.callbackUpdateProject});
+  final Function(BaseProduct) callbackUpdateProject;
 
   @override
   Widget build(BuildContext context) {

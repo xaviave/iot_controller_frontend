@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/src/models/products/led/led_mode.dart';
-import 'package:flutter_application_1/src/settings/settings_view.dart';
+import 'package:flutter_application_1/src/models/products/led/mode/led_mode.dart';
 
 class VideoModeDetailsView extends StatefulWidget {
   final VideoMode mode;
+  final Function(LedMode) callbackUpdateMode;
 
-  const VideoModeDetailsView({super.key, required this.mode});
+  const VideoModeDetailsView(
+      {super.key, required this.mode, required this.callbackUpdateMode});
 
   @override
   State<VideoModeDetailsView> createState() => _VideoModeDetailsViewState();
@@ -13,11 +14,13 @@ class VideoModeDetailsView extends StatefulWidget {
 
 class _VideoModeDetailsViewState extends State<VideoModeDetailsView> {
   late VideoMode mode;
+  late Function(LedMode) callbackUpdateMode;
 
   @override
   void initState() {
     super.initState();
     mode = widget.mode;
+    callbackUpdateMode = widget.callbackUpdateMode;
   }
 
   @override

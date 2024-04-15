@@ -1,12 +1,13 @@
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/src/models/products/led/led_mode.dart';
-import 'package:flutter_application_1/src/settings/settings_view.dart';
+import 'package:flutter_application_1/src/models/products/led/mode/led_mode.dart';
 
 class ColorModeDetailsView extends StatefulWidget {
   final ColorMode mode;
+  final Function(LedMode) callbackUpdateMode;
 
-  const ColorModeDetailsView({super.key, required this.mode});
+  const ColorModeDetailsView(
+      {super.key, required this.mode, required this.callbackUpdateMode});
 
   @override
   State<ColorModeDetailsView> createState() => _ColorModeDetailsViewState();
@@ -15,12 +16,14 @@ class ColorModeDetailsView extends StatefulWidget {
 class _ColorModeDetailsViewState extends State<ColorModeDetailsView> {
   late ColorMode mode;
   late Color pickerColor;
+  late Function(LedMode) callbackUpdateMode;
 
   @override
   void initState() {
     super.initState();
     mode = widget.mode;
     pickerColor = mode.color;
+    callbackUpdateMode = widget.callbackUpdateMode;
   }
 
   Future<void> _openColorPicker() async {
@@ -29,6 +32,8 @@ class _ColorModeDetailsViewState extends State<ColorModeDetailsView> {
       onColorChanged: (Color newColor) {
         setState(() {
           pickerColor = newColor;
+          mode.color = pickerColor;
+          callbackUpdateMode(mode as LedMode);
         });
       },
       width: 40,
@@ -66,9 +71,8 @@ class _ColorModeDetailsViewState extends State<ColorModeDetailsView> {
           ElevatedButton(
             onPressed: () => {
               _openColorPicker(),
-              setState(() {
-                mode.color = pickerColor;
-              })
+              // setState(() {
+              // })
             },
             child: const Text('Change lamp Color'),
           ),

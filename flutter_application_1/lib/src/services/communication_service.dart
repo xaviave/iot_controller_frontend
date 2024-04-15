@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter_application_1/protos/backend.pbgrpc.dart';
-import 'package:flutter_application_1/src/models/products/led/led_mode.dart';
+import 'package:flutter_application_1/src/models/products/led/mode/led_mode.dart';
 import 'package:flutter_application_1/src/models/products/led/led_panel.dart';
 import 'package:flutter_application_1/src/models/project/project.dart';
 import 'package:grpc/grpc.dart';

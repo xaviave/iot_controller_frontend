@@ -1,7 +1,7 @@
 import 'package:flutter_application_1/protos/backend.pb.dart';
 import 'package:flutter_application_1/src/models/category.dart';
 import 'package:flutter_application_1/src/models/products/coffee_machine.dart';
-import 'package:flutter_application_1/src/models/products/led/led_mode.dart';
+import 'package:flutter_application_1/src/models/products/led/mode/led_mode.dart';
 import 'package:flutter_application_1/src/models/products/led/led_panel.dart';
 import 'package:flutter_application_1/src/models/status.dart';
 

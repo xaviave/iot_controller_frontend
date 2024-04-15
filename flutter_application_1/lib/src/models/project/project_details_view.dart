@@ -1,13 +1,30 @@
+import 'package:flutter_application_1/src/models/products/base_product.dart';
 import 'package:flutter_application_1/src/models/products/base_product_list_view.dart';
 import 'package:flutter_application_1/src/settings/settings_view.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/models/project/project.dart';
 
-class ProjectDetailsView extends StatelessWidget {
+class ProjectDetailsView extends StatefulWidget {
   final Project project;
 
   const ProjectDetailsView({super.key, required this.project});
+
+  @override
+  State<ProjectDetailsView> createState() => _ProjectDetailsViewState();
+}
+
+class _ProjectDetailsViewState extends State<ProjectDetailsView> {
+  late Project project;
+
+  void updateProduct(BaseProduct p) =>
+      setState(() => project.products[p.name] = p);
+
+  @override
+  void initState() {
+    super.initState();
+    project = widget.project;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +67,10 @@ class ProjectDetailsView extends StatelessWidget {
                   style: const TextStyle(fontSize: 28),
                   textAlign: TextAlign.center,
                 )),
-            Expanded(child: BaseProductListView(products: project.products)),
+            Expanded(
+                child: BaseProductListView(
+                    products: project.products,
+                    callbackUpdateProject: updateProduct)),
           ],
         ),
       ),
