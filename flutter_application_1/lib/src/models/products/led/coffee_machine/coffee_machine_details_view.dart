@@ -1,19 +1,33 @@
 import 'package:flutter_application_1/src/models/products/base_product.dart';
-import 'package:flutter_application_1/src/models/products/coffee_machine.dart';
+import 'package:flutter_application_1/src/models/products/led/coffee_machine/coffee_machine.dart';
 import 'package:flutter_application_1/src/settings/settings_view.dart';
 import 'package:flutter/material.dart';
 
-class CoffeeMachineDetailsView extends StatelessWidget {
+class CoffeeMachineDetailsView extends StatefulWidget {
   final CoffeeMachine product;
+  final Function(BaseProduct) callbackUpdateProject;
 
   const CoffeeMachineDetailsView(
       {super.key, required this.product, required this.callbackUpdateProject});
-  final Function(BaseProduct) callbackUpdateProject;
+
+  @override
+  State<CoffeeMachineDetailsView> createState() =>
+      _CoffeeMachineDetailsViewState();
+}
+
+class _CoffeeMachineDetailsViewState extends State<CoffeeMachineDetailsView> {
+  late CoffeeMachine product;
+  late Function(BaseProduct) callbackUpdateProject;
+
+  @override
+  void initState() {
+    super.initState();
+    product = widget.product;
+    callbackUpdateProject = widget.callbackUpdateProject;
+  }
 
   @override
   Widget build(BuildContext context) {
-    final product = ModalRoute.of(context)!.settings.arguments as CoffeeMachine;
-
     // missing settings
     return Scaffold(
       appBar: AppBar(

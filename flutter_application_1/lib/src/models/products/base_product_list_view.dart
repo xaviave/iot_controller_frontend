@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/models/products/base_product.dart';
-import 'package:flutter_application_1/src/models/products/coffee_machine.dart';
-import 'package:flutter_application_1/src/models/products/coffee_machine_details_view.dart';
+import 'package:flutter_application_1/src/models/products/led/coffee_machine/coffee_machine.dart';
 import 'package:flutter_application_1/src/models/products/led/led_panel.dart';
 import 'package:flutter_application_1/src/models/products/led/led_panel_details_view.dart';
+
+import 'led/coffee_machine/coffee_machine_details_view.dart';
 
 class BaseProductListView extends StatelessWidget {
   BaseProductListView(

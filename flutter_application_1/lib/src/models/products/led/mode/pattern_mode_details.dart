@@ -11,10 +11,13 @@ class PatternModeDetailsView extends StatefulWidget {
   @override
   State<PatternModeDetailsView> createState() => _PatternModeDetailsViewState();
 }
+const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
 class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
   late PatternMode mode;
   late Function(LedMode) callbackUpdateMode;
+
+  String dropdownValue = list.first;
 
   @override
   void initState() {
@@ -37,6 +40,18 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
                 style: const TextStyle(fontSize: 28),
                 textAlign: TextAlign.center,
               )),
+          DropdownMenu<String>(
+            initialSelection: list.first,
+            onSelected: (String? value) {
+              // This is called when the user selects an item.
+              setState(() {
+                dropdownValue = value!;
+              });
+            },
+            dropdownMenuEntries: list.map<DropdownMenuEntry<String>>((String value) {
+              return DropdownMenuEntry<String>(value: value, label: value);
+            }).toList(),
+          )
         ],
       ),
     );
