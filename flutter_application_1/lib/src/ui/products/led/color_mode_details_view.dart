@@ -1,6 +1,6 @@
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/src/models/products/led/mode/led_mode.dart';
+import 'package:flutter_application_1/src/models/products/led/led_mode.dart';
 
 class ColorModeDetailsView extends StatefulWidget {
   final ColorMode mode;

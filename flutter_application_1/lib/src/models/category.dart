@@ -9,4 +9,8 @@ class Category {
   CategoryRequest get_request() {
     return CategoryRequest(name: name);
   }
+
+  static Category from_response(CategoryResponse r) {
+    return Category(id: r.id, name: r.name);
+  }
 }

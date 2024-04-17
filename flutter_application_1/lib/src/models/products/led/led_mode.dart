@@ -17,12 +17,7 @@ abstract class LedMode {
   static LedMode from_response(LedModeResponse request) {
     if (request.whichMode() == LedModeResponse_Mode.patternMode) {
       PatternModeResponse r = request.patternMode;
-      return PatternMode(
-          id: r.id,
-          name: r.name,
-          fps: r.fps,
-          blink: r.blink,
-          palette: Palette.fromName(r.palette));
+      return PatternMode.from_response(r);
     }
     // else if (request.whichMode() == LedModeResponse_Mode.imageMode) {
     //   ImageModeResponse r = request as ImageModeResponse;
@@ -38,7 +33,7 @@ abstract class LedMode {
     //   );
     else {
       ColorModeResponse r = request.colorMode;
-      return ColorMode.fromHex(r.id, r.name, r.color);
+      return ColorMode.from_response(r);
     }
   }
 }
@@ -110,6 +105,10 @@ class ColorMode extends LedMode {
   LedModeRequest get_abstract_request() {
     return LedModeRequest()..colorMode = get_request();
   }
+
+  static ColorMode from_response(ColorModeResponse r) {
+    return ColorMode.fromHex(r.id, r.name, r.color);
+  }
 }
 
 class PatternMode extends LedMode {
@@ -131,5 +130,14 @@ class PatternMode extends LedMode {
   @override
   LedModeRequest get_abstract_request() {
     return LedModeRequest()..patternMode = get_request();
+  }
+
+  static PatternMode from_response(PatternModeResponse r) {
+    return PatternMode(
+        id: r.id,
+        name: r.name,
+        fps: r.fps,
+        blink: r.blink,
+        palette: Palette.fromName(r.palette));
   }
 }

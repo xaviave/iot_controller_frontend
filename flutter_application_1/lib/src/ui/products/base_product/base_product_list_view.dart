@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/models/products/base_product.dart';
-import 'package:flutter_application_1/src/models/products/led/coffee_machine/coffee_machine.dart';
+import 'package:flutter_application_1/src/models/products/coffee_machine.dart';
 import 'package:flutter_application_1/src/models/products/led/led_panel.dart';
-import 'package:flutter_application_1/src/models/products/led/led_panel_details_view.dart';
+import 'package:flutter_application_1/src/ui/products/led/led_panel_details_view.dart';
 
-import 'led/coffee_machine/coffee_machine_details_view.dart';
+import '../coffee_machine/coffee_machine_details_view.dart';
 
 class BaseProductListView extends StatelessWidget {
   BaseProductListView(
       {super.key, required this.products, required this.callbackUpdateProject});
 
-  final Function(BaseProduct) callbackUpdateProject;
+  final Function(BaseProduct, BuildContext) callbackUpdateProject;
   static const routeName = '/products';
 
   Map<String, BaseProduct> products;

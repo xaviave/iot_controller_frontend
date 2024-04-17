@@ -1,6 +1,7 @@
 import 'package:flutter_application_1/protos/backend.pb.dart';
+import 'package:flutter_application_1/src/models/category.dart';
 import 'package:flutter_application_1/src/models/products/base_product.dart';
-import 'package:flutter_application_1/src/models/products/led/mode/led_mode.dart';
+import 'package:flutter_application_1/src/models/products/led/led_mode.dart';
 import 'package:flutter_application_1/src/models/status.dart';
 
 class LedPanel extends BaseProduct {
@@ -31,5 +32,16 @@ class LedPanel extends BaseProduct {
   @override
   BaseProductRequest get_abstract_request() {
     return BaseProductRequest()..ledPanel = get_request();
+  }
+
+  static LedPanel from_response(LedPanelResponse r) {
+    return LedPanel(
+        id: r.id,
+        name: r.name,
+        categories:
+            r.categories.map((c) => Category(id: c.id, name: c.name)).toList(),
+        status: Status.fromId(r.status),
+        brightness: r.brightness,
+        mode: LedMode.from_response(r.mode));
   }
 }

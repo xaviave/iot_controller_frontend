@@ -1,11 +1,11 @@
 import 'package:flutter_application_1/src/models/products/base_product.dart';
-import 'package:flutter_application_1/src/models/products/led/coffee_machine/coffee_machine.dart';
+import 'package:flutter_application_1/src/models/products/coffee_machine.dart';
 import 'package:flutter_application_1/src/settings/settings_view.dart';
 import 'package:flutter/material.dart';
 
 class CoffeeMachineDetailsView extends StatefulWidget {
   final CoffeeMachine product;
-  final Function(BaseProduct) callbackUpdateProject;
+  final Function(BaseProduct, BuildContext) callbackUpdateProject;
 
   const CoffeeMachineDetailsView(
       {super.key, required this.product, required this.callbackUpdateProject});
@@ -17,7 +17,7 @@ class CoffeeMachineDetailsView extends StatefulWidget {
 
 class _CoffeeMachineDetailsViewState extends State<CoffeeMachineDetailsView> {
   late CoffeeMachine product;
-  late Function(BaseProduct) callbackUpdateProject;
+  late Function(BaseProduct, BuildContext) callbackUpdateProject;
 
   @override
   void initState() {

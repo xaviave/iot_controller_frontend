@@ -1,10 +1,54 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter_application_1/protos/backend.pbgrpc.dart';
-import 'package:flutter_application_1/src/models/products/led/mode/led_mode.dart';
+import 'package:flutter_application_1/src/models/category.dart';
+import 'package:flutter_application_1/src/models/products/coffee_machine.dart';
+import 'package:flutter_application_1/src/models/products/led/led_mode.dart';
 import 'package:flutter_application_1/src/models/products/led/led_panel.dart';
-import 'package:flutter_application_1/src/models/project/project.dart';
+import 'package:flutter_application_1/src/models/project.dart';
 import 'package:grpc/grpc.dart';
+
+class CategoryCommunication {
+  late ClientChannel channel;
+  late CategoryControllerClient stub;
+
+  Future<void> init() async {
+    channel = ClientChannel('0.0.0.0',
+        port: 50051,
+        options:
+            const ChannelOptions(credentials: ChannelCredentials.insecure()));
+    stub = CategoryControllerClient(channel,
+        options: CallOptions(timeout: const Duration(seconds: 30)));
+  }
+
+  Future<void> clean() async {
+    await channel.shutdown();
+  }
+
+  Future<CategoryResponse> Create(Category l) async {
+    final response = await stub.create(l.get_request());
+    return response;
+  }
+
+  Future<void> Destroy(int id) async {
+    await stub.destroy(CategoryDestroyRequest(id: id));
+  }
+
+  Future<CategoryListResponse> List() async {
+    final response = await stub.list(CategoryListRequest());
+    return response;
+  }
+
+  Future<CategoryResponse> Retrieve(int id) async {
+    final response = await stub.retrieve(CategoryRetrieveRequest(id: id));
+    return response;
+  }
+
+  Future<CategoryResponse> Update(Category l) async {
+    final response = await stub.update(l.get_request());
+    return response;
+  }
+}
 
 class ColorModeCommunication {
   late ClientChannel channel;
@@ -48,6 +92,48 @@ class ColorModeCommunication {
   }
 }
 
+class PatternModeCommunication {
+  late ClientChannel channel;
+  late PatternModeControllerClient stub;
+
+  Future<void> init() async {
+    channel = ClientChannel('0.0.0.0',
+        port: 50051,
+        options:
+            const ChannelOptions(credentials: ChannelCredentials.insecure()));
+    stub = PatternModeControllerClient(channel,
+        options: CallOptions(timeout: const Duration(seconds: 30)));
+  }
+
+  Future<void> clean() async {
+    await channel.shutdown();
+  }
+
+  Future<PatternModeResponse> Create(PatternMode l) async {
+    final response = await stub.create(l.get_request());
+    return response;
+  }
+
+  Future<void> Destroy(int id) async {
+    await stub.destroy(PatternModeDestroyRequest(id: id));
+  }
+
+  Future<PatternModeListResponse> List() async {
+    final response = await stub.list(PatternModeListRequest());
+    return response;
+  }
+
+  Future<PatternModeResponse> Retrieve(int id) async {
+    final response = await stub.retrieve(PatternModeRetrieveRequest(id: id));
+    return response;
+  }
+
+  Future<PatternModeResponse> Update(PatternMode l) async {
+    final response = await stub.update(l.get_request());
+    return response;
+  }
+}
+
 class LedPanelCommunication {
   late ClientChannel channel;
   late LedPanelControllerClient stub;
@@ -85,6 +171,48 @@ class LedPanelCommunication {
   }
 
   Future<LedPanelResponse> Update(LedPanel l) async {
+    final response = await stub.update(l.get_request());
+    return response;
+  }
+}
+
+class CoffeeMachineCommunication {
+  late ClientChannel channel;
+  late CoffeeMachineControllerClient stub;
+
+  Future<void> init() async {
+    channel = ClientChannel('127.0.0.1',
+        port: 50051,
+        options:
+            const ChannelOptions(credentials: ChannelCredentials.insecure()));
+    stub = CoffeeMachineControllerClient(channel,
+        options: CallOptions(timeout: const Duration(seconds: 30)));
+  }
+
+  Future<void> clean() async {
+    await channel.shutdown();
+  }
+
+  Future<CoffeeMachineResponse> Create(CoffeeMachine l) async {
+    final response = await stub.create(l.get_request());
+    return response;
+  }
+
+  Future<void> Destroy(int id) async {
+    await stub.destroy(CoffeeMachineDestroyRequest(id: id));
+  }
+
+  Future<CoffeeMachineListResponse> List() async {
+    final response = await stub.list(CoffeeMachineListRequest());
+    return response;
+  }
+
+  Future<CoffeeMachineResponse> Retrieve(int id) async {
+    final response = await stub.retrieve(CoffeeMachineRetrieveRequest(id: id));
+    return response;
+  }
+
+  Future<CoffeeMachineResponse> Update(CoffeeMachine l) async {
     final response = await stub.update(l.get_request());
     return response;
   }

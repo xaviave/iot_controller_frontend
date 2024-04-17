@@ -1,7 +1,7 @@
 import 'package:flutter_application_1/protos/backend.pb.dart';
 import 'package:intl/intl.dart';
 
-import '../products/base_product.dart';
+import 'products/base_product.dart';
 
 class Project {
   int id;

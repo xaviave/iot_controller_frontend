@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/protos/backend.pb.dart';
+import 'package:flutter_application_1/src/models/category.dart';
 import 'package:flutter_application_1/src/models/products/base_product.dart';
 import 'package:flutter_application_1/src/models/status.dart';
 
@@ -59,5 +60,21 @@ class CoffeeMachine extends BaseProduct {
   @override
   BaseProductRequest get_abstract_request() {
     return BaseProductRequest()..coffeeMachine = get_request();
+  }
+
+  static CoffeeMachine from_response(CoffeeMachineResponse r) {
+    return CoffeeMachine(
+      id: r.id,
+      name: r.name,
+      categories:
+          r.categories.map((c) => Category(id: c.id, name: c.name)).toList(),
+      status: Status.fromId(r.status),
+      heat: r.heat,
+      water_level: ContainerStatus.fromId(r.waterLevel),
+      used_water_level: ContainerStatus.fromId(r.usedWaterLevel),
+      coffee_level: ContainerStatus.fromId(r.coffeeLevel),
+      filter_position: r.filterPosition,
+      mode_value: r.modeValue,
+    );
   }
 }

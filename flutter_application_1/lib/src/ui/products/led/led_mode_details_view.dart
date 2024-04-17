@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/src/models/products/led/mode/color_mode_details.dart';
-import 'package:flutter_application_1/src/models/products/led/mode/image_mode_details.dart';
-import 'package:flutter_application_1/src/models/products/led/mode/led_mode.dart';
-import 'package:flutter_application_1/src/models/products/led/mode/pattern_mode_details.dart';
-import 'package:flutter_application_1/src/models/products/led/mode/video_mode_details.dart';
+import 'package:flutter_application_1/src/models/products/led/led_mode.dart';
+
+import 'color_mode_details_view.dart';
+import 'image_mode_details_view.dart';
+import 'pattern_mode_details_view.dart';
+import 'video_mode_details_view.dart';
 
 class LedModeDetailsView extends StatelessWidget {
   LedMode mode;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/src/models/products/led/mode/led_mode.dart';
+import 'package:flutter_application_1/src/models/products/led/led_mode.dart';
 
 class PatternModeDetailsView extends StatefulWidget {
   final PatternMode mode;
@@ -11,6 +11,7 @@ class PatternModeDetailsView extends StatefulWidget {
   @override
   State<PatternModeDetailsView> createState() => _PatternModeDetailsViewState();
 }
+
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
 class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
@@ -48,7 +49,8 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
                 dropdownValue = value!;
               });
             },
-            dropdownMenuEntries: list.map<DropdownMenuEntry<String>>((String value) {
+            dropdownMenuEntries:
+                list.map<DropdownMenuEntry<String>>((String value) {
               return DropdownMenuEntry<String>(value: value, label: value);
             }).toList(),
           )

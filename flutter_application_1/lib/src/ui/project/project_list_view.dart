@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/src/models/project/project_provider.dart';
-import 'package:flutter_application_1/src/models/project/project_details_view.dart';
+import 'package:flutter_application_1/src/providers/project.dart';
 import 'package:flutter_application_1/src/settings/settings_view.dart';
 import 'package:provider/provider.dart';
+
+import 'project_details_view.dart';
 
 class ProjectListView extends StatefulWidget {
   const ProjectListView({super.key});

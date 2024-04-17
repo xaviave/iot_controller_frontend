@@ -1,9 +1,11 @@
 import 'package:flutter_application_1/src/models/products/base_product.dart';
-import 'package:flutter_application_1/src/models/products/base_product_list_view.dart';
+import 'package:flutter_application_1/src/providers/project.dart';
 import 'package:flutter_application_1/src/settings/settings_view.dart';
+import 'package:flutter_application_1/src/ui/products/base_product/base_product_list_view.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/src/models/project/project.dart';
+import 'package:flutter_application_1/src/models/project.dart';
+import 'package:provider/provider.dart';
 
 class ProjectDetailsView extends StatefulWidget {
   final Project project;
@@ -17,8 +19,12 @@ class ProjectDetailsView extends StatefulWidget {
 class _ProjectDetailsViewState extends State<ProjectDetailsView> {
   late Project project;
 
-  void updateProduct(BaseProduct p) =>
-      setState(() => project.products[p.name] = p);
+  void updateProduct(BaseProduct p, BuildContext context) {
+    final projectProvider = Provider.of<ProjectProvider>(context, listen: false);
+
+    projectProvider.updateProject(project);
+    setState(() => project.products[p.name] = p);
+  }
 
   @override
   void initState() {
