@@ -10,7 +10,7 @@ class Project {
   String name;
   Map<String, BaseProduct> products;
   final f = DateFormat('yyyy-MM-ddThh:mm:ss');
-  // "%Y-%m-%dT%H:%M:%S"
+
   Project(
       {required this.id,
       required this.owner,

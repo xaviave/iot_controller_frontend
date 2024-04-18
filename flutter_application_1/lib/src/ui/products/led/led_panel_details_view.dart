@@ -93,7 +93,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
               value: product.brightness,
               onChanged: (value) {
                 setStateUpdate(() {
-                  product.brightness = value;
+                  product.brightness = double.parse(value.toStringAsFixed(2));;
                   // do not work
                   colorBrightness = Color.lerp(
                       Colors.black, Colors.yellow, product.brightness)!;
