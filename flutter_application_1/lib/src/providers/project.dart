@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/models/project.dart';
 import 'package:flutter_application_1/src/services/communication_service.dart';
+import 'package:intl/intl.dart';
 
 class ProjectProvider with ChangeNotifier {
   Map<String, Project> _projects = {};
@@ -26,5 +29,4 @@ class ProjectProvider with ChangeNotifier {
     print("Update project : $response");
     notifyListeners();
   }
-
 }

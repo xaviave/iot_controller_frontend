@@ -98,7 +98,10 @@ class ColorMode extends LedMode {
   }
 
   ColorModeRequest get_request() {
-    return ColorModeRequest(name: name);
+    return ColorModeRequest(
+        name: name,
+        color:
+            "#${(color.value & 0xFFFFFF).toRadixString(16).padLeft(6, '0')}");
   }
 
   @override

@@ -20,7 +20,8 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
   late Project project;
 
   void updateProduct(BaseProduct p, BuildContext context) {
-    final projectProvider = Provider.of<ProjectProvider>(context, listen: false);
+    final projectProvider =
+        Provider.of<ProjectProvider>(context, listen: false);
 
     projectProvider.updateProject(project);
     setState(() => project.products[p.name] = p);
