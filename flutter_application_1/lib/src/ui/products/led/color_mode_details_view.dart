@@ -4,7 +4,7 @@ import 'package:flutter_application_1/src/models/products/led/led_mode.dart';
 
 class ColorModeDetailsView extends StatefulWidget {
   final ColorMode mode;
-  final Function(LedMode) callbackUpdateMode;
+  final Function(LedMode, BuildContext) callbackUpdateMode;
 
   const ColorModeDetailsView(
       {super.key, required this.mode, required this.callbackUpdateMode});
@@ -16,7 +16,7 @@ class ColorModeDetailsView extends StatefulWidget {
 class _ColorModeDetailsViewState extends State<ColorModeDetailsView> {
   late ColorMode mode;
   late Color pickerColor;
-  late Function(LedMode) callbackUpdateMode;
+  late Function(LedMode, BuildContext) callbackUpdateMode;
 
   @override
   void initState() {
@@ -33,7 +33,7 @@ class _ColorModeDetailsViewState extends State<ColorModeDetailsView> {
         setState(() {
           pickerColor = newColor;
           mode.color = pickerColor;
-          callbackUpdateMode(mode as LedMode);
+          callbackUpdateMode(mode as LedMode, context);
         });
       },
       width: 40,

@@ -4,7 +4,12 @@ import 'package:flutter_application_1/src/services/communication_service.dart';
 
 class LedModeProvider with ChangeNotifier {
   Map<String, LedMode> _modes = {};
+  Map<String, ColorMode> _colorModes = {};
+  Map<String, PatternMode> _patternModes = {};
   Map<String, LedMode> get modes => _modes;
+  Map<String, ColorMode> get colorModes => _colorModes;
+  Map<String, PatternMode> get patternModes => _patternModes;
+
   late ColorModeCommunication colorModeGrpcClient;
   late PatternModeCommunication patternModeGrpcClient;
   // late ImageModeCommunication imageModeGrpcClient;
@@ -23,16 +28,36 @@ class LedModeProvider with ChangeNotifier {
     getLedModeItems();
   }
 
-  Future<void> getLedModeItems() async {
-    var responseColor = await colorModeGrpcClient.List();
+  Future<void> getPatternModeItems() async {
     var responsePattern = await patternModeGrpcClient.List();
-    _modes = {
-      for (var e in responseColor.results) e.name: ColorMode.from_response(e)
-    };
-    _modes.addAll({
+    _patternModes = {
       for (var e in responsePattern.results)
         e.name: PatternMode.from_response(e)
-    });
+    };
+    notifyListeners();
+  }
+
+  Future<void> getColorModeItems() async {
+    var responseColor = await colorModeGrpcClient.List();
+    _colorModes = {
+      for (var e in responseColor.results) e.name: ColorMode.from_response(e)
+    };
+    notifyListeners();
+  }
+
+  Future<void> getLedModeItems() async {
+    getPatternModeItems();
+    getColorModeItems();
+    _modes = {..._patternModes, ..._colorModes};
+    notifyListeners();
+  }
+
+  Future<void> updateMode(LedMode mode) async {
+    if (mode is ColorMode) {
+      var response = await colorModeGrpcClient.Update(mode);
+    } else {
+      var response = await patternModeGrpcClient.Update(mode as PatternMode);
+    }
     notifyListeners();
   }
 }

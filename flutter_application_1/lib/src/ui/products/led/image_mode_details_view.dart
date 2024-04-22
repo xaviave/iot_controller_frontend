@@ -3,7 +3,7 @@ import 'package:flutter_application_1/src/models/products/led/led_mode.dart';
 
 class ImageModeDetailsView extends StatefulWidget {
   final ImageMode mode;
-  final Function(LedMode) callbackUpdateMode;
+  final Function(LedMode, BuildContext) callbackUpdateMode;
 
   const ImageModeDetailsView(
       {super.key, required this.mode, required this.callbackUpdateMode});
@@ -14,7 +14,7 @@ class ImageModeDetailsView extends StatefulWidget {
 
 class _ImageModeDetailsViewState extends State<ImageModeDetailsView> {
   late ImageMode mode;
-  late Function(LedMode) callbackUpdateMode;
+  late Function(LedMode, BuildContext) callbackUpdateMode;
 
   @override
   void initState() {

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/models/products/led/led_mode.dart';
+import 'package:flutter_application_1/src/providers/led_mode.dart';
+import 'package:provider/provider.dart';
 
 class PatternModeDetailsView extends StatefulWidget {
   final PatternMode mode;
-  final Function(LedMode) callbackUpdateMode;
+  final Function(LedMode, BuildContext) callbackUpdateMode;
 
   const PatternModeDetailsView(
       {super.key, required this.mode, required this.callbackUpdateMode});
@@ -12,18 +14,16 @@ class PatternModeDetailsView extends StatefulWidget {
   State<PatternModeDetailsView> createState() => _PatternModeDetailsViewState();
 }
 
-const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
-
 class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
   late PatternMode mode;
-  late Function(LedMode) callbackUpdateMode;
-
-  String dropdownValue = list.first;
+  late Function(LedMode, BuildContext) callbackUpdateMode;
+  late Map<String, PatternMode> patterns;
 
   @override
   void initState() {
     super.initState();
     mode = widget.mode;
+    patterns = Provider.of<LedModeProvider>(context).patternModes;
     callbackUpdateMode = widget.callbackUpdateMode;
   }
 
@@ -42,15 +42,16 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
                 textAlign: TextAlign.center,
               )),
           DropdownMenu<String>(
-            initialSelection: list.first,
+            initialSelection: mode.name,
             onSelected: (String? value) {
               // This is called when the user selects an item.
               setState(() {
-                dropdownValue = value!;
+                mode = patterns[value]!;
+                callbackUpdateMode(mode, context);
               });
             },
             dropdownMenuEntries:
-                list.map<DropdownMenuEntry<String>>((String value) {
+                patterns.keys.map<DropdownMenuEntry<String>>((String value) {
               return DropdownMenuEntry<String>(value: value, label: value);
             }).toList(),
           )

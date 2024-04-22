@@ -26,7 +26,6 @@ class ProjectProvider with ChangeNotifier {
 
   Future<void> updateProject(Project project) async {
     var response = await projectGrpcClient.Update(project);
-    print("Update project : $response");
     notifyListeners();
   }
 }

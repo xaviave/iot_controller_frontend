@@ -51,7 +51,7 @@ class ImageMode extends LedMode {
       required this.image_low_pixel});
 
   ImageModeRequest get_request() {
-    return ImageModeRequest(name: name);
+    return ImageModeRequest(id: id, name: name);
   }
 
   @override
@@ -73,7 +73,7 @@ class VideoMode extends LedMode {
       required this.video_low_pixel});
 
   VideoModeRequest get_request() {
-    return VideoModeRequest(name: name);
+    return VideoModeRequest(id: id, name: name);
   }
 
   @override
@@ -99,6 +99,7 @@ class ColorMode extends LedMode {
 
   ColorModeRequest get_request() {
     return ColorModeRequest(
+        id: id,
         name: name,
         color:
             "#${(color.value & 0xFFFFFF).toRadixString(16).padLeft(6, '0')}");
@@ -127,7 +128,13 @@ class PatternMode extends LedMode {
       required this.palette});
 
   PatternModeRequest get_request() {
-    return PatternModeRequest(name: name);
+    return PatternModeRequest(
+      id: id,
+      name: name,
+      fps: fps,
+      blink: blink,
+      // palette:palette,
+    );
   }
 
   @override

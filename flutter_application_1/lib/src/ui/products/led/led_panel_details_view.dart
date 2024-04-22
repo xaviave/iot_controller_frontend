@@ -2,9 +2,11 @@ import "package:flutter_application_1/src/models/products/base_product.dart";
 import "package:flutter_application_1/src/models/products/led/led_mode.dart";
 import "package:flutter_application_1/src/models/products/led/led_panel.dart";
 import "package:flutter_application_1/src/models/status.dart";
+import "package:flutter_application_1/src/providers/led_mode.dart";
 import "package:flutter_application_1/src/settings/settings_view.dart";
 import "package:flutter/material.dart";
 import "package:flutter_application_1/src/ui/utils/on_off_button.dart";
+import "package:provider/provider.dart";
 
 import "led_mode_details_view.dart";
 
@@ -24,9 +26,13 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
   late Color colorBrightness;
   late Function(BaseProduct, BuildContext) callbackUpdateProject;
 
-  void updateMode(LedMode m) {
+  void updateMode(LedMode m, BuildContext context) {
+    final ledModeProvider =
+        Provider.of<LedModeProvider>(context, listen: false);
+
+    ledModeProvider.updateMode(m);
     setState(() => product.mode = m);
-    callbackUpdateProject(product as BaseProduct, context);
+    // callbackUpdateProject(product as BaseProduct, context);
   }
 
   void updateStatus(Status s) {
@@ -45,7 +51,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
 
   void setStateUpdate(VoidCallback fn, BuildContext context) {
     super.setState(fn);
-    callbackUpdateProject(product as BaseProduct, context);
+    // callbackUpdateProject(product as BaseProduct, context);
   }
 
   @override
@@ -93,7 +99,8 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
               value: product.brightness,
               onChanged: (value) {
                 setStateUpdate(() {
-                  product.brightness = double.parse(value.toStringAsFixed(2));;
+                  product.brightness = double.parse(value.toStringAsFixed(2));
+                  ;
                   // do not work
                   colorBrightness = Color.lerp(
                       Colors.black, Colors.yellow, product.brightness)!;
