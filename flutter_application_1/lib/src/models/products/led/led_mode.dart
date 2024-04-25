@@ -133,7 +133,7 @@ class PatternMode extends LedMode {
       name: name,
       fps: fps,
       blink: blink,
-      // palette:palette,
+      palette: palette.name,
     );
   }
 

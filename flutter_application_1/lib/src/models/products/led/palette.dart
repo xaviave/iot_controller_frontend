@@ -25,4 +25,13 @@ enum Palette {
   factory Palette.fromName(String name) {
     return heat;
   }
+
+  String get name {
+    switch (this) {
+      case Palette.heat:
+        return 'heat';
+      default:
+        return "";
+    }
+  }
 }

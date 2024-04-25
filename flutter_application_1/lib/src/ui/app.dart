@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/providers/category.dart';
-import 'package:flutter_application_1/src/providers/category.dart';
 import 'package:flutter_application_1/src/providers/led_mode.dart';
-import 'package:flutter_application_1/src/providers/led_mode.dart';
-import 'package:flutter_application_1/src/providers/product.dart';
 import 'package:flutter_application_1/src/providers/product.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -29,18 +26,18 @@ class MyApp extends StatelessWidget {
       builder: (BuildContext context, Widget? child) {
         return MultiProvider(
           providers: [
-            ChangeNotifierProvider<ProjectProvider>(
-              create: (context) => ProjectProvider(),
-            ),
             ChangeNotifierProvider<CategoryProvider>(
               create: (context) => CategoryProvider(),
+            ),
+            ChangeNotifierProvider<LedModeProvider>(
+              create: (context) => LedModeProvider(),
             ),
             ChangeNotifierProvider<BaseProductProvider>(
               create: (context) => BaseProductProvider(),
             ),
-            ChangeNotifierProvider<LedModeProvider>(
-              create: (context) => LedModeProvider(),
-            )
+            ChangeNotifierProvider<ProjectProvider>(
+              create: (context) => ProjectProvider(),
+            ),
           ],
           child: Builder(builder: (BuildContext context) {
             return MaterialApp(

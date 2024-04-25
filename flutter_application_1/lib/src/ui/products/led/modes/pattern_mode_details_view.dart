@@ -16,15 +16,16 @@ class PatternModeDetailsView extends StatefulWidget {
 
 class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
   late PatternMode mode;
+  Map<String, PatternMode> patterns = <String, PatternMode>{};
   late Function(LedMode, BuildContext) callbackUpdateMode;
-  late Map<String, PatternMode> patterns;
 
   @override
   void initState() {
     super.initState();
     mode = widget.mode;
-    patterns = Provider.of<LedModeProvider>(context).patternModes;
     callbackUpdateMode = widget.callbackUpdateMode;
+    // patterns = Provider.of<LedModeProvider>(context).patternModes;
+  //   need the list of color else, the palette can't be init and make the provider crash
   }
 
   @override
@@ -41,20 +42,19 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
                 style: const TextStyle(fontSize: 28),
                 textAlign: TextAlign.center,
               )),
-          DropdownMenu<String>(
-            initialSelection: mode.name,
-            onSelected: (String? value) {
-              // This is called when the user selects an item.
-              setState(() {
-                mode = patterns[value]!;
-                callbackUpdateMode(mode, context);
-              });
-            },
-            dropdownMenuEntries:
-                patterns.keys.map<DropdownMenuEntry<String>>((String value) {
-              return DropdownMenuEntry<String>(value: value, label: value);
-            }).toList(),
-          )
+          // DropdownMenu<String>(
+          //   initialSelection: mode.name,
+          //   onSelected: (String? value) {
+          //     setState(() {
+          //       mode = patterns[value]!;
+          //       callbackUpdateMode(mode, context);
+          //     });
+          //   },
+          //   dropdownMenuEntries:
+          //       patterns.keys.map<DropdownMenuEntry<String>>((String value) {
+          //     return DropdownMenuEntry<String>(value: value, label: value);
+          //   }).toList(),
+          // )
         ],
       ),
     );

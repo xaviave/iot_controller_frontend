@@ -3,12 +3,13 @@ import "package:flutter_application_1/src/models/products/led/led_mode.dart";
 import "package:flutter_application_1/src/models/products/led/led_panel.dart";
 import "package:flutter_application_1/src/models/status.dart";
 import "package:flutter_application_1/src/providers/led_mode.dart";
+import "package:flutter_application_1/src/providers/product.dart";
 import "package:flutter_application_1/src/settings/settings_view.dart";
 import "package:flutter/material.dart";
 import "package:flutter_application_1/src/ui/utils/on_off_button.dart";
 import "package:provider/provider.dart";
 
-import "led_mode_details_view.dart";
+import "modes/led_mode_details_view.dart";
 
 class LedPanelDetailsView extends StatefulWidget {
   final LedPanel product;
@@ -27,17 +28,20 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
   late Function(BaseProduct, BuildContext) callbackUpdateProject;
 
   void updateMode(LedMode m, BuildContext context) {
-    final ledModeProvider =
-        Provider.of<LedModeProvider>(context, listen: false);
-
-    ledModeProvider.updateMode(m);
     setState(() => product.mode = m);
-    // callbackUpdateProject(product as BaseProduct, context);
+    updateProduct();
   }
 
   void updateStatus(Status s) {
     setState(() => product.status = s);
-    callbackUpdateProject(product as BaseProduct, context);
+    updateProduct();
+  }
+
+  void updateProduct() {
+    final baseProductProvider =
+        Provider.of<BaseProductProvider>(context, listen: false);
+
+    baseProductProvider.updateProduct(product);
   }
 
   @override
@@ -100,7 +104,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
               onChanged: (value) {
                 setStateUpdate(() {
                   product.brightness = double.parse(value.toStringAsFixed(2));
-                  ;
+                  updateProduct();
                   // do not work
                   colorBrightness = Color.lerp(
                       Colors.black, Colors.yellow, product.brightness)!;

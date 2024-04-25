@@ -6,9 +6,14 @@ import 'package:flutter_application_1/src/services/communication_service.dart';
 
 class BaseProductProvider with ChangeNotifier {
   Map<String, BaseProduct> _products = {};
+  Map<String, LedPanel> _ledPanels = {};
+  Map<String, CoffeeMachine> _coffeeMachines = {};
   Map<String, BaseProduct> get products => _products;
-  late CoffeeMachineCommunication coffeeMachineGrpcClient;
+  Map<String, LedPanel> get ledPanels => _ledPanels;
+  Map<String, CoffeeMachine> get coffeeMachines => _coffeeMachines;
+
   late LedPanelCommunication ledPanelGrpcClient;
+  late CoffeeMachineCommunication coffeeMachineGrpcClient;
 
   BaseProductProvider() {
     ledPanelGrpcClient = LedPanelCommunication();
@@ -18,16 +23,37 @@ class BaseProductProvider with ChangeNotifier {
     getBaseProductItems();
   }
 
-  Future<void> getBaseProductItems() async {
-    var responseCoffeeMachine = await coffeeMachineGrpcClient.List();
+  Future<void> getLedPanelItems() async {
     var responseLedPanel = await ledPanelGrpcClient.List();
-    _products = {
+    _ledPanels = {
+      for (var e in responseLedPanel.results) e.name: LedPanel.from_response(e)
+    };
+    notifyListeners();
+  }
+
+  Future<void> getCoffeeMachineItems() async {
+    var responseCoffeeMachine = await coffeeMachineGrpcClient.List();
+    _coffeeMachines = {
       for (var e in responseCoffeeMachine.results)
         e.name: CoffeeMachine.from_response(e)
     };
-    _products.addAll({
-      for (var e in responseLedPanel.results) e.name: LedPanel.from_response(e)
-    });
+    notifyListeners();
+  }
+
+  Future<void> getBaseProductItems() async {
+    getLedPanelItems();
+    getCoffeeMachineItems();
+    _products = {..._ledPanels, ..._coffeeMachines};
+    notifyListeners();
+  }
+
+  Future<void> updateProduct(BaseProduct product) async {
+    if (product is LedPanel) {
+      var response = await ledPanelGrpcClient.Update(product);
+    } else {
+      var response =
+          await coffeeMachineGrpcClient.Update(product as CoffeeMachine);
+    }
     notifyListeners();
   }
 }
