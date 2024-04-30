@@ -5,6 +5,18 @@ import 'dart:ui';
 import 'package:flutter_application_1/protos/backend.pb.dart';
 import 'package:flutter_application_1/src/models/products/led/palette.dart';
 
+Color color_from_hex(String c) {
+  c = c.toUpperCase().replaceAll("#", "");
+  if (c.length == 6) {
+    c = "FF$c";
+  }
+  return Color(int.parse(c, radix: 16));
+}
+
+String hex_from_color(Color color) {
+  return "#${(color.value & 0xFFFFFF).toRadixString(16).padLeft(6, '0')}";
+}
+
 abstract class LedMode {
   int id;
   String name;
@@ -89,20 +101,11 @@ class ColorMode extends LedMode {
   ColorMode({required super.id, required super.name, required this.color});
 
   static ColorMode fromHex(int id, String name, String hex_color) {
-    hex_color = hex_color.toUpperCase().replaceAll("#", "");
-    if (hex_color.length == 6) {
-      hex_color = "FF" + hex_color;
-    }
-    return ColorMode(
-        id: id, name: name, color: Color(int.parse(hex_color, radix: 16)));
+    return ColorMode(id: id, name: name, color: color_from_hex(hex_color));
   }
 
   ColorModeRequest get_request() {
-    return ColorModeRequest(
-        id: id,
-        name: name,
-        color:
-            "#${(color.value & 0xFFFFFF).toRadixString(16).padLeft(6, '0')}");
+    return ColorModeRequest(id: id, name: name, color: hex_from_color(color));
   }
 
   @override
@@ -118,7 +121,7 @@ class ColorMode extends LedMode {
 class PatternMode extends LedMode {
   double fps;
   double blink;
-  Palette palette;
+  List<Color> palette;
 
   PatternMode(
       {required super.id,
@@ -133,7 +136,7 @@ class PatternMode extends LedMode {
       name: name,
       fps: fps,
       blink: blink,
-      palette: palette.name,
+      palette: palette.map((c) => hex_from_color(c)),
     );
   }
 
@@ -148,6 +151,6 @@ class PatternMode extends LedMode {
         name: r.name,
         fps: r.fps,
         blink: r.blink,
-        palette: Palette.fromName(r.palette));
+        palette: r.palette.map((c) => color_from_hex(c)).toList());
   }
 }

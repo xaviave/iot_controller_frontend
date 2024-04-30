@@ -25,7 +25,7 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
     mode = widget.mode;
     callbackUpdateMode = widget.callbackUpdateMode;
     // patterns = Provider.of<LedModeProvider>(context).patternModes;
-  //   need the list of color else, the palette can't be init and make the provider crash
+    //   need the list of color else, the palette can't be init and make the provider crash
   }
 
   @override
@@ -42,19 +42,15 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
                 style: const TextStyle(fontSize: 28),
                 textAlign: TextAlign.center,
               )),
-          // DropdownMenu<String>(
-          //   initialSelection: mode.name,
-          //   onSelected: (String? value) {
-          //     setState(() {
-          //       mode = patterns[value]!;
-          //       callbackUpdateMode(mode, context);
-          //     });
-          //   },
-          //   dropdownMenuEntries:
-          //       patterns.keys.map<DropdownMenuEntry<String>>((String value) {
-          //     return DropdownMenuEntry<String>(value: value, label: value);
-          //   }).toList(),
-          // )
+          Wrap(
+              children: mode.palette
+                  .map((e) => Container(
+                        margin: const EdgeInsets.all(10),
+                        width: 50,
+                        height: 50,
+                        color: e,
+                      ))
+                  .toList())
         ],
       ),
     );
