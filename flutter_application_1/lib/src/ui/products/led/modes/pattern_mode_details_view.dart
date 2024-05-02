@@ -1,8 +1,6 @@
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/models/products/led/led_mode.dart';
-import 'package:flutter_application_1/src/providers/led_mode.dart';
-import 'package:provider/provider.dart';
 
 class PatternModeDetailsView extends StatefulWidget {
   final PatternMode mode;
@@ -30,6 +28,11 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
   }
 
   void callbackUpdatePalette(int index, Color newColor, bool addNewColor) {
+    if (mode.palette.length >= 30) {
+      // add alert button
+      // https://stackoverflow.com/questions/53844052/how-to-make-an-alertdialog-in-flutter
+      return;
+    }
     setState(() {
       if (addNewColor == true) {
         mode.palette.add(newColor);
@@ -100,13 +103,8 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
               children:
                   List.generate(mode.palette.length, (i) => i).map((index) {
             return addColorWidget(index, mode.palette[index], false);
-          }).toList()),
-          TextButton(
-            onPressed: () {
-              addColorWidget(0, Colors.black, true);
-            },
-            child: const Icon(Icons.add_box_outlined),
-          )
+          }).toList()..add(
+          addColorWidget(0, Colors.black, true))),
         ],
       ),
     );
