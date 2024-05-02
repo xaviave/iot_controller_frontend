@@ -1,3 +1,4 @@
+import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/models/products/led/led_mode.dart';
 import 'package:flutter_application_1/src/providers/led_mode.dart';
@@ -28,6 +29,59 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
     //   need the list of color else, the palette can't be init and make the provider crash
   }
 
+  void callbackUpdatePalette(int index, Color newColor, bool addNewColor) {
+    setState(() {
+      if (addNewColor == true) {
+        mode.palette.add(newColor);
+      } else {
+        mode.palette[index] = newColor;
+      }
+    });
+  }
+
+  ColorIndicator addColorWidget(int index, Color c, bool addNewColor) {
+    return ColorIndicator(
+        width: 100,
+        height: 100,
+        borderRadius: 0,
+        color: c,
+        elevation: 1,
+        onSelectFocus: false,
+        onSelect: () async {
+          final Color newColor = await showColorPickerDialog(
+            context,
+            c,
+            title: Text('ColorPicker',
+                style: Theme.of(context).textTheme.titleLarge),
+            width: 40,
+            height: 40,
+            spacing: 0,
+            runSpacing: 0,
+            borderRadius: 0,
+            wheelDiameter: 165,
+            enableOpacity: true,
+            showColorCode: true,
+            colorCodeHasColor: true,
+            pickersEnabled: <ColorPickerType, bool>{
+              ColorPickerType.wheel: true,
+            },
+            copyPasteBehavior: const ColorPickerCopyPasteBehavior(
+              copyButton: true,
+              pasteButton: true,
+              longPressMenu: true,
+            ),
+            actionButtons: const ColorPickerActionButtons(
+              okButton: true,
+              closeButton: true,
+              dialogActionButtons: false,
+            ),
+            constraints: const BoxConstraints(
+                minHeight: 480, minWidth: 320, maxWidth: 320),
+          );
+          callbackUpdatePalette(index, newColor, addNewColor);
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     // missing settings
@@ -43,14 +97,16 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
                 textAlign: TextAlign.center,
               )),
           Wrap(
-              children: mode.palette
-                  .map((e) => Container(
-                        margin: const EdgeInsets.all(10),
-                        width: 50,
-                        height: 50,
-                        color: e,
-                      ))
-                  .toList())
+              children:
+                  List.generate(mode.palette.length, (i) => i).map((index) {
+            return addColorWidget(index, mode.palette[index], false);
+          }).toList()),
+          TextButton(
+            onPressed: () {
+              addColorWidget(0, Colors.black, true);
+            },
+            child: const Icon(Icons.add_box_outlined),
+          )
         ],
       ),
     );
