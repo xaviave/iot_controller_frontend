@@ -1,5 +1,6 @@
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/src/models/products/led/default_palette.dart';
 import 'package:flutter_application_1/src/models/products/led/led_mode.dart';
 import 'package:flutter_application_1/src/ui/utils/alert_popup.dart';
 
@@ -28,7 +29,7 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
     //   need the list of color else, the palette can't be init and make the provider crash
   }
 
-  void callbackUpdatePalette(int index, Color newColor, bool addNewColor) {
+  void callbackUpdatePaletteColor(int index, Color newColor, bool addNewColor) {
     if (mode.palette.length >= PatternMode.maxPaletteLength) {
       showInfoDialog(
           context,
@@ -47,6 +48,13 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
     });
   }
 
+  void callbackUpdatePalette(List<Color> p) {
+    setState(() {
+      mode.palette = List.from(p);
+      callbackUpdateMode(mode, context);
+    });
+  }
+
   GestureDetector addColorWidget(int index, Color c, bool addNewColor) {
     return GestureDetector(
         onLongPress: () {
@@ -55,7 +63,6 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
               mode.palette.removeAt(index);
             }
           });
-          // return;
         },
         child: ColorIndicator(
             width: 100,
@@ -95,7 +102,7 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
                 constraints: const BoxConstraints(
                     minHeight: 480, minWidth: 320, maxWidth: 320),
               );
-              callbackUpdatePalette(index, newColor, addNewColor);
+              callbackUpdatePaletteColor(index, newColor, addNewColor);
             }));
   }
 
@@ -119,6 +126,34 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
             return addColorWidget(index, mode.palette[index], false);
           }).toList()
                     ..add(addColorWidget(0, Colors.black, true))),
+          ElevatedButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return Dialog(
+                    child: ListView.builder(
+                      itemCount: DefaultPalette.values.length,
+                      itemBuilder: (context, index) {
+                        final palette = DefaultPalette.values[index];
+                        return ListTile(
+                          title: Text(palette.name),
+                          onTap: () {
+                            Navigator.pop(context, palette);
+                          },
+                        );
+                      },
+                    ),
+                  );
+                },
+              ).then((selectedPalette) {
+                if (selectedPalette != null) {
+                  callbackUpdatePalette(selectedPalette.p);
+                }
+              });
+            },
+            child: Text('Select Palette'),
+          )
         ],
       ),
     );

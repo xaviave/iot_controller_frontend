@@ -3,19 +3,7 @@
 import 'dart:ui';
 
 import 'package:flutter_application_1/protos/backend.pb.dart';
-import 'package:flutter_application_1/src/models/products/led/palette.dart';
-
-Color color_from_hex(String c) {
-  c = c.toUpperCase().replaceAll("#", "");
-  if (c.length == 6) {
-    c = "FF$c";
-  }
-  return Color(int.parse(c, radix: 16));
-}
-
-String hex_from_color(Color color) {
-  return "#${(color.value & 0xFFFFFF).toRadixString(16).padLeft(6, '0')}";
-}
+import 'package:flutter_application_1/src/ui/utils/color.dart';
 
 abstract class LedMode {
   int id;
@@ -101,11 +89,11 @@ class ColorMode extends LedMode {
   ColorMode({required super.id, required super.name, required this.color});
 
   static ColorMode fromHex(int id, String name, String hex_color) {
-    return ColorMode(id: id, name: name, color: color_from_hex(hex_color));
+    return ColorMode(id: id, name: name, color: colorFromHex(hex_color));
   }
 
   ColorModeRequest get_request() {
-    return ColorModeRequest(id: id, name: name, color: hex_from_color(color));
+    return ColorModeRequest(id: id, name: name, color: hexFromColor(color));
   }
 
   @override
@@ -138,7 +126,7 @@ class PatternMode extends LedMode {
       name: name,
       fps: fps,
       blink: blink,
-      palette: palette.map((c) => hex_from_color(c)),
+      palette: palette.map((c) => hexFromColor(c)),
     );
   }
 
@@ -153,6 +141,6 @@ class PatternMode extends LedMode {
         name: r.name,
         fps: r.fps,
         blink: r.blink,
-        palette: r.palette.map((c) => color_from_hex(c)).toList());
+        palette: r.palette.map((c) => colorFromHex(c)).toList());
   }
 }

@@ -8,7 +8,6 @@ showConfirmDialog(
   String cancelBtnTxt,
   Function onConfirmClicked,
 ) {
-
   Widget cancelButton = TextButton(
     child: Text(cancelBtnTxt),
     onPressed: () {
