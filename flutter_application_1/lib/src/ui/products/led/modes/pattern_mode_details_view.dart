@@ -1,6 +1,7 @@
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/models/products/led/led_mode.dart';
+import 'package:flutter_application_1/src/ui/utils/alert_popup.dart';
 
 class PatternModeDetailsView extends StatefulWidget {
   final PatternMode mode;
@@ -28,9 +29,12 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
   }
 
   void callbackUpdatePalette(int index, Color newColor, bool addNewColor) {
-    if (mode.palette.length >= 30) {
-      // add alert button
-      // https://stackoverflow.com/questions/53844052/how-to-make-an-alertdialog-in-flutter
+    if (mode.palette.length >= PatternMode.maxPaletteLength) {
+      showInfoDialog(
+          context,
+          "Maximum palette size reached",
+          "The maximum of colors in a palette is: ${PatternMode.maxPaletteLength}",
+          "Ok");
       return;
     }
     setState(() {
@@ -39,50 +43,60 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
       } else {
         mode.palette[index] = newColor;
       }
+      callbackUpdateMode(mode, context);
     });
   }
 
-  ColorIndicator addColorWidget(int index, Color c, bool addNewColor) {
-    return ColorIndicator(
-        width: 100,
-        height: 100,
-        borderRadius: 0,
-        color: c,
-        elevation: 1,
-        onSelectFocus: false,
-        onSelect: () async {
-          final Color newColor = await showColorPickerDialog(
-            context,
-            c,
-            title: Text('ColorPicker',
-                style: Theme.of(context).textTheme.titleLarge),
-            width: 40,
-            height: 40,
-            spacing: 0,
-            runSpacing: 0,
+  GestureDetector addColorWidget(int index, Color c, bool addNewColor) {
+    return GestureDetector(
+        onLongPress: () {
+          setState(() {
+            if (addNewColor == false) {
+              mode.palette.removeAt(index);
+            }
+          });
+          // return;
+        },
+        child: ColorIndicator(
+            width: 100,
+            height: 100,
             borderRadius: 0,
-            wheelDiameter: 165,
-            enableOpacity: true,
-            showColorCode: true,
-            colorCodeHasColor: true,
-            pickersEnabled: <ColorPickerType, bool>{
-              ColorPickerType.wheel: true,
-            },
-            copyPasteBehavior: const ColorPickerCopyPasteBehavior(
-              copyButton: true,
-              pasteButton: true,
-              longPressMenu: true,
-            ),
-            actionButtons: const ColorPickerActionButtons(
-              okButton: true,
-              closeButton: true,
-              dialogActionButtons: false,
-            ),
-            constraints: const BoxConstraints(
-                minHeight: 480, minWidth: 320, maxWidth: 320),
-          );
-          callbackUpdatePalette(index, newColor, addNewColor);
-        });
+            color: c,
+            elevation: 1,
+            onSelectFocus: false,
+            onSelect: () async {
+              final Color newColor = await showColorPickerDialog(
+                context,
+                c,
+                title: Text('ColorPicker',
+                    style: Theme.of(context).textTheme.titleLarge),
+                width: 40,
+                height: 40,
+                spacing: 0,
+                runSpacing: 0,
+                borderRadius: 0,
+                wheelDiameter: 165,
+                enableOpacity: true,
+                showColorCode: true,
+                colorCodeHasColor: true,
+                pickersEnabled: <ColorPickerType, bool>{
+                  ColorPickerType.wheel: true,
+                },
+                copyPasteBehavior: const ColorPickerCopyPasteBehavior(
+                  copyButton: true,
+                  pasteButton: true,
+                  longPressMenu: true,
+                ),
+                actionButtons: const ColorPickerActionButtons(
+                  okButton: true,
+                  closeButton: true,
+                  dialogActionButtons: false,
+                ),
+                constraints: const BoxConstraints(
+                    minHeight: 480, minWidth: 320, maxWidth: 320),
+              );
+              callbackUpdatePalette(index, newColor, addNewColor);
+            }));
   }
 
   @override
@@ -103,8 +117,8 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
               children:
                   List.generate(mode.palette.length, (i) => i).map((index) {
             return addColorWidget(index, mode.palette[index], false);
-          }).toList()..add(
-          addColorWidget(0, Colors.black, true))),
+          }).toList()
+                    ..add(addColorWidget(0, Colors.black, true))),
         ],
       ),
     );

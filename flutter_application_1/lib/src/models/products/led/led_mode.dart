@@ -119,6 +119,8 @@ class ColorMode extends LedMode {
 }
 
 class PatternMode extends LedMode {
+  static const int maxPaletteLength = 30;
+
   double fps;
   double blink;
   List<Color> palette;
