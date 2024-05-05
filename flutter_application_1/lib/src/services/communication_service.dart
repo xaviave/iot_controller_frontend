@@ -14,7 +14,7 @@ class CategoryCommunication {
 
   Future<void> init() async {
     channel = ClientChannel('0.0.0.0',
-        port: 50051,
+        port: 50052,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));
     stub = CategoryControllerClient(channel,
@@ -57,7 +57,7 @@ class ColorModeCommunication {
 
   Future<void> init() async {
     channel = ClientChannel('0.0.0.0',
-        port: 50051,
+        port: 50052,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));
     stub = ColorModeControllerClient(channel,
@@ -100,7 +100,7 @@ class PatternModeCommunication {
 
   Future<void> init() async {
     channel = ClientChannel('0.0.0.0',
-        port: 50051,
+        port: 50052,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));
     stub = PatternModeControllerClient(channel,
@@ -142,8 +142,8 @@ class LedPanelCommunication {
   late LedPanelControllerClient stub;
 
   Future<void> init() async {
-    channel = ClientChannel('127.0.0.1',
-        port: 50051,
+    channel = ClientChannel('192.168.1.148',
+        port: 50052,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));
     stub = LedPanelControllerClient(channel,
@@ -185,8 +185,8 @@ class CoffeeMachineCommunication {
   late CoffeeMachineControllerClient stub;
 
   Future<void> init() async {
-    channel = ClientChannel('127.0.0.1',
-        port: 50051,
+    channel = ClientChannel('192.168.1.148',
+        port: 50052,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));
     stub = CoffeeMachineControllerClient(channel,
@@ -228,8 +228,8 @@ class ProjectCommunication {
   late ProjectControllerClient stub;
 
   Future<void> init() async {
-    channel = ClientChannel('127.0.0.1',
-        port: 50051,
+    channel = ClientChannel('192.168.1.148',
+        port: 50052,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));
     stub = ProjectControllerClient(channel,
