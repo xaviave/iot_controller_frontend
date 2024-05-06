@@ -11,7 +11,7 @@ class CategoryCommunication {
   late CategoryControllerClient stub;
 
   Future<void> init() async {
-    channel = ClientChannel('0.0.0.0',
+    channel = ClientChannel('192.168.1.148',
         port: 50052,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));
@@ -54,7 +54,7 @@ class ColorModeCommunication {
   late ColorModeControllerClient stub;
 
   Future<void> init() async {
-    channel = ClientChannel('0.0.0.0',
+    channel = ClientChannel('192.168.1.148',
         port: 50052,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));
@@ -97,7 +97,7 @@ class PatternModeCommunication {
   late PatternModeControllerClient stub;
 
   Future<void> init() async {
-    channel = ClientChannel('0.0.0.0',
+    channel = ClientChannel('192.168.1.148',
         port: 50052,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));
@@ -129,7 +129,6 @@ class PatternModeCommunication {
   }
 
   Future<PatternModeResponse> Update(PatternMode l) async {
-    // print("Update PatternMode");
     final response = await stub.update(l.getRequest());
     return response;
   }
@@ -140,7 +139,7 @@ class LedPanelCommunication {
   late LedPanelControllerClient stub;
 
   Future<void> init() async {
-    channel = ClientChannel('0.0.0.0',
+    channel = ClientChannel('192.168.1.148',
         port: 50052,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));
@@ -183,7 +182,7 @@ class CoffeeMachineCommunication {
   late CoffeeMachineControllerClient stub;
 
   Future<void> init() async {
-    channel = ClientChannel('0.0.0.0',
+    channel = ClientChannel('192.168.1.148',
         port: 50052,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));
@@ -226,7 +225,7 @@ class ProjectCommunication {
   late ProjectControllerClient stub;
 
   Future<void> init() async {
-    channel = ClientChannel('0.0.0.0',
+    channel = ClientChannel('192.168.1.148',
         port: 50052,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));

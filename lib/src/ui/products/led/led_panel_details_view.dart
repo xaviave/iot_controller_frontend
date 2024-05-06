@@ -94,22 +94,23 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
             OnOffButton(
                 status: product.status, callbackUpdateStatus: updateStatus),
             Slider(
-              min: 0,
-              max: 1,
-              activeColor: colorBrightness,
-              inactiveColor: Colors.grey,
-              thumbColor: colorBrightness,
-              value: product.brightness,
-              onChanged: (value) {
-                setStateUpdate(() {
-                  product.brightness = double.parse(value.toStringAsFixed(2));
+                min: 0,
+                max: 1,
+                activeColor: colorBrightness,
+                inactiveColor: Colors.grey,
+                thumbColor: colorBrightness,
+                value: product.brightness,
+                onChanged: (value) {
+                  setStateUpdate(() {
+                    product.brightness = double.parse(value.toStringAsFixed(2));
+                    // do not work
+                    colorBrightness = Color.lerp(
+                        Colors.black, Colors.yellow, product.brightness)!;
+                  }, context);
+                },
+                onChangeEnd: (value) {
                   updateProduct();
-                  // do not work
-                  colorBrightness = Color.lerp(
-                      Colors.black, Colors.yellow, product.brightness)!;
-                }, context);
-              },
-            ),
+                }),
             Expanded(
                 child: LedModeDetailsView(
                     mode: product.mode, callbackUpdateMode: updateMode)),
