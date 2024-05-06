@@ -91,8 +91,8 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
                 },
                 copyPasteBehavior: const ColorPickerCopyPasteBehavior(
                   copyButton: true,
-                  pasteButton: true,
-                  longPressMenu: true,
+                  pasteButton: false,
+                  longPressMenu: false,
                 ),
                 actionButtons: const ColorPickerActionButtons(
                   okButton: true,

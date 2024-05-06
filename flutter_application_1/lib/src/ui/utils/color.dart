@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+// Update here if alpha needs to be taken in account
+
 Color colorFromHex(String c) {
   c = c.toUpperCase().replaceAll("#", "");
   if (c.length == 6) {
