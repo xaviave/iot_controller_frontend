@@ -7,7 +7,7 @@ import 'project_details_view.dart';
 
 class ProjectListView extends StatefulWidget {
   const ProjectListView({super.key});
-  static const routeName = '/';
+  static const routeName = '/projects';
 
   @override
   State<ProjectListView> createState() => _ProjectListViewState();
