@@ -1,7 +1,7 @@
 import 'package:iot_controller/src/models/products/base_product.dart';
 import 'package:iot_controller/src/models/products/coffee_machine.dart';
-import 'package:iot_controller/src/settings/settings_view.dart';
 import 'package:flutter/material.dart';
+import 'package:iot_controller/src/ui/settings/settings_view.dart';
 
 class CoffeeMachineDetailsView extends StatefulWidget {
   final CoffeeMachine product;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iot_controller/src/providers/project.dart';
-import 'package:iot_controller/src/settings/settings_view.dart';
+import 'package:iot_controller/src/ui/settings/settings_view.dart';
 import 'package:provider/provider.dart';
 
 import 'project_details_view.dart';

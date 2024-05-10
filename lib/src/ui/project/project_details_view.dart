@@ -1,10 +1,10 @@
 import 'package:iot_controller/src/models/products/base_product.dart';
 import 'package:iot_controller/src/providers/project.dart';
-import 'package:iot_controller/src/settings/settings_view.dart';
 import 'package:iot_controller/src/ui/products/base_product/base_product_list_view.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:iot_controller/src/models/project.dart';
+import 'package:iot_controller/src/ui/settings/settings_view.dart';
 import 'package:provider/provider.dart';
 
 class ProjectDetailsView extends StatefulWidget {

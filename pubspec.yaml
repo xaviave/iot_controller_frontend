@@ -35,21 +35,20 @@ flutter:
   generate: true
 
   assets:
-    # Add assets from the images directory to the application.
     - assets/images/
 
 flutter_launcher_icons:
-  image_path_android: "assets/images/icons/android/icon.png"
-  image_path_ios: "assets/images/icons/ios/icon.png"
+  image_path_android: "assets/icons/android/icon.png"
+  image_path_ios: "assets/icons/ios/icon.png"
   android: true
   ios: true
   web:
     generate: true
-    image_path: "assets/images/icons/web/icon.png"
-    windows:
-      generate: true
-      image_path: "assets/images/icons/web/icon.png"
-      icon_size: 256
-    macos:
-      generate: true
-      image_path: "assets/images/icons/web/icon.png"
+    image_path: "assets/icons/web/icon.png"
+  windows:
+    generate: true
+    image_path: "assets/icons/web/icon.png"
+    icon_size: 256
+  macos:
+    generate: true
+    image_path: "assets/icons/web/icon.png"

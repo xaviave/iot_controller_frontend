@@ -3,8 +3,8 @@ import "package:iot_controller/src/models/products/led/led_mode.dart";
 import "package:iot_controller/src/models/products/led/led_panel.dart";
 import "package:iot_controller/src/models/status.dart";
 import "package:iot_controller/src/providers/product.dart";
-import "package:iot_controller/src/settings/settings_view.dart";
 import "package:flutter/material.dart";
+import "package:iot_controller/src/ui/settings/settings_view.dart";
 import "package:iot_controller/src/ui/utils/on_off_button.dart";
 import "package:provider/provider.dart";
 
