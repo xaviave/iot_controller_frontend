@@ -1,4 +1,5 @@
 import 'package:iot_controller/protos/backend.pbgrpc.dart';
+import 'package:iot_controller/src/blocs/settings_bloc.dart';
 import 'package:iot_controller/src/models/category.dart';
 import 'package:iot_controller/src/models/products/coffee_machine.dart';
 import 'package:iot_controller/src/models/products/led/led_mode.dart';
@@ -10,9 +11,13 @@ class CategoryCommunication {
   late ClientChannel channel;
   late CategoryControllerClient stub;
 
-  Future<void> init() async {
-    channel = ClientChannel('192.168.1.148',
-        port: 50052,
+  CategoryCommunication({required String serverName, required int serverPort}) {
+    init(serverName, serverPort);
+  }
+
+  Future<void> init(String serverName, int serverPort) async {
+    channel = ClientChannel(serverName,
+        port: serverPort,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));
     stub = CategoryControllerClient(channel,
@@ -53,9 +58,14 @@ class ColorModeCommunication {
   late ClientChannel channel;
   late ColorModeControllerClient stub;
 
-  Future<void> init() async {
-    channel = ClientChannel('192.168.1.148',
-        port: 50052,
+  ColorModeCommunication(
+      {required String serverName, required int serverPort}) {
+    init(serverName, serverPort);
+  }
+
+  Future<void> init(String serverName, int serverPort) async {
+    channel = ClientChannel(serverName,
+        port: serverPort,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));
     stub = ColorModeControllerClient(channel,
@@ -96,9 +106,14 @@ class PatternModeCommunication {
   late ClientChannel channel;
   late PatternModeControllerClient stub;
 
-  Future<void> init() async {
-    channel = ClientChannel('192.168.1.148',
-        port: 50052,
+  PatternModeCommunication(
+      {required String serverName, required int serverPort}) {
+    init(serverName, serverPort);
+  }
+
+  Future<void> init(String serverName, int serverPort) async {
+    channel = ClientChannel(serverName,
+        port: serverPort,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));
     stub = PatternModeControllerClient(channel,
@@ -138,9 +153,13 @@ class LedPanelCommunication {
   late ClientChannel channel;
   late LedPanelControllerClient stub;
 
-  Future<void> init() async {
-    channel = ClientChannel('192.168.1.148',
-        port: 50052,
+  LedPanelCommunication({required String serverName, required int serverPort}) {
+    init(serverName, serverPort);
+  }
+
+  Future<void> init(String serverName, int serverPort) async {
+    channel = ClientChannel(serverName,
+        port: serverPort,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));
     stub = LedPanelControllerClient(channel,
@@ -181,9 +200,14 @@ class CoffeeMachineCommunication {
   late ClientChannel channel;
   late CoffeeMachineControllerClient stub;
 
-  Future<void> init() async {
-    channel = ClientChannel('192.168.1.148',
-        port: 50052,
+  CoffeeMachineCommunication(
+      {required String serverName, required int serverPort}) {
+    init(serverName, serverPort);
+  }
+
+  Future<void> init(String serverName, int serverPort) async {
+    channel = ClientChannel(serverName,
+        port: serverPort,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));
     stub = CoffeeMachineControllerClient(channel,
@@ -224,9 +248,14 @@ class ProjectCommunication {
   late ClientChannel channel;
   late ProjectControllerClient stub;
 
-  Future<void> init() async {
-    channel = ClientChannel('192.168.1.148',
-        port: 50052,
+  ProjectCommunication({required String serverName, required int serverPort}) {
+    print("INIT ProjectCommunication ${serverName} ${serverPort}");
+    init(serverName, serverPort);
+  }
+
+  Future<void> init(String serverName, int serverPort) async {
+    channel = ClientChannel(serverName,
+        port: serverPort,
         options:
             const ChannelOptions(credentials: ChannelCredentials.insecure()));
     stub = ProjectControllerClient(channel,

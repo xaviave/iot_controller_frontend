@@ -16,15 +16,18 @@ class ServerInfoChangedEvent extends SettingsEvents {
   ServerInfoChangedEvent(this.serverName, this.serverPort);
 }
 
-
 class SettingsState {
   final ThemeMode theme;
   final String serverName;
   final int serverPort;
 
-  SettingsState({required this.theme, required this.serverName, required this.serverPort});
+  SettingsState(
+      {required this.theme,
+      required this.serverName,
+      required this.serverPort});
 
-  SettingsState copyWith({ThemeMode? newTheme, String? newServerName, int? newServerPort}) {
+  SettingsState copyWith(
+      {ThemeMode? newTheme, String? newServerName, int? newServerPort}) {
     return SettingsState(
       theme: newTheme ?? theme,
       serverName: newServerName ?? serverName,
@@ -33,18 +36,25 @@ class SettingsState {
   }
 }
 
-
 class SettingsBloc extends Bloc<SettingsEvents, SettingsState> {
-  SettingsBloc() : super(SettingsState(theme: ThemeMode.system, serverName: "0.0.0.0",serverPort: 50052)) {
+  SettingsBloc()
+      : super(SettingsState(
+            theme: ThemeMode.system,
+            serverName: "0.0.0.0",
+            serverPort: 50052)) {
+    print("SettingsBloc init ${state.serverName}");
     on<ThemeChangedEvent>(onThemeChange);
     on<ServerInfoChangedEvent>(onServerInfoChange);
   }
 
-  void onThemeChange(ThemeChangedEvent event, Emitter<SettingsState> emit) async {
+  void onThemeChange(
+      ThemeChangedEvent event, Emitter<SettingsState> emit) async {
     emit(state.copyWith(newTheme: event.theme));
   }
 
-  void onServerInfoChange(ServerInfoChangedEvent event, Emitter<SettingsState> emit) async {
-    emit(state.copyWith(newServerName: state.serverName, newServerPort: state.serverPort));
+  void onServerInfoChange(
+      ServerInfoChangedEvent event, Emitter<SettingsState> emit) async {
+    emit(state.copyWith(
+        newServerName: event.serverName, newServerPort: event.serverPort));
   }
 }

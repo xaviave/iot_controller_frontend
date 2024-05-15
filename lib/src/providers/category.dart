@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iot_controller/src/blocs/settings_bloc.dart';
 import 'package:iot_controller/src/models/category.dart';
 import 'package:iot_controller/src/services/communication_service.dart';
 
@@ -7,9 +8,9 @@ class CategoryProvider with ChangeNotifier {
   Map<String, Category> get categories => _categories;
   late CategoryCommunication categoryGrpcClient;
 
-  CategoryProvider() {
-    categoryGrpcClient = CategoryCommunication();
-    categoryGrpcClient.init();
+  CategoryProvider(SettingsState state) {
+    categoryGrpcClient = CategoryCommunication(
+        serverName: state.serverName, serverPort: state.serverPort);
     getCategoryItems();
   }
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iot_controller/src/blocs/settings_bloc.dart';
 import 'package:iot_controller/src/models/products/led/led_mode.dart';
 import 'package:iot_controller/src/services/communication_service.dart';
 
@@ -16,14 +15,16 @@ class LedModeProvider with ChangeNotifier {
   // late ImageModeCommunication imageModeGrpcClient;
   // late VideoModeCommunication videoModeGrpcClient;
 
-  LedModeProvider(SettingsState state) {
-    colorModeGrpcClient = ColorModeCommunication(
-        serverName: state.serverName, serverPort: state.serverPort);
-    patternModeGrpcClient = PatternModeCommunication(
-        serverName: state.serverName, serverPort: state.serverPort);
+  LedModeProvider() {
+    colorModeGrpcClient = ColorModeCommunication();
+    patternModeGrpcClient = PatternModeCommunication();
     // imageModeGrpcClient = ImageModeCommunication();
     // videoModeGrpcClient = VideoModeCommunication();
 
+    colorModeGrpcClient.init();
+    patternModeGrpcClient.init();
+    // imageModeGrpcClient.init();
+    // videoModeGrpcClient.init();
     getLedModeItems();
   }
 

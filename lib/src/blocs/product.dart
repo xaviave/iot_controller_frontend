@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iot_controller/src/blocs/settings_bloc.dart';
 import 'package:iot_controller/src/models/products/base_product.dart';
 import 'package:iot_controller/src/models/products/coffee_machine.dart';
 import 'package:iot_controller/src/models/products/led/led_panel.dart';
@@ -16,11 +15,11 @@ class BaseProductProvider with ChangeNotifier {
   late LedPanelCommunication ledPanelGrpcClient;
   late CoffeeMachineCommunication coffeeMachineGrpcClient;
 
-  BaseProductProvider(SettingsState state) {
-    ledPanelGrpcClient = LedPanelCommunication(
-        serverName: state.serverName, serverPort: state.serverPort);
-    coffeeMachineGrpcClient = CoffeeMachineCommunication(
-        serverName: state.serverName, serverPort: state.serverPort);
+  BaseProductProvider() {
+    ledPanelGrpcClient = LedPanelCommunication();
+    coffeeMachineGrpcClient = CoffeeMachineCommunication();
+    ledPanelGrpcClient.init();
+    coffeeMachineGrpcClient.init();
     getBaseProductItems();
   }
 
