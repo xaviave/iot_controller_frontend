@@ -5,7 +5,7 @@ import 'package:iot_controller/src/ui/settings/settings_view.dart';
 
 class CoffeeMachineDetailsView extends StatefulWidget {
   final CoffeeMachine product;
-  final Function(BaseProduct, BuildContext) callbackUpdateProject;
+  final Function(BaseProduct) callbackUpdateProject;
 
   const CoffeeMachineDetailsView(
       {super.key, required this.product, required this.callbackUpdateProject});
@@ -17,7 +17,7 @@ class CoffeeMachineDetailsView extends StatefulWidget {
 
 class _CoffeeMachineDetailsViewState extends State<CoffeeMachineDetailsView> {
   late CoffeeMachine product;
-  late Function(BaseProduct, BuildContext) callbackUpdateProject;
+  late Function(BaseProduct) callbackUpdateProject;
 
   @override
   void initState() {

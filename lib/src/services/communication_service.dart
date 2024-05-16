@@ -249,7 +249,6 @@ class ProjectCommunication {
   late ProjectControllerClient stub;
 
   ProjectCommunication({required String serverName, required int serverPort}) {
-    print("INIT ProjectCommunication ${serverName} ${serverPort}");
     init(serverName, serverPort);
   }
 

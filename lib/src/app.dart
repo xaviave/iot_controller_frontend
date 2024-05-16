@@ -5,6 +5,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:iot_controller/src/ui/project/project_list_view.dart';
 import 'package:iot_controller/src/ui/settings/settings_view.dart';
 
+import 'blocs/led_mode.dart';
+import 'blocs/product.dart';
 import 'blocs/project.dart';
 import 'blocs/settings_bloc.dart';
 
@@ -18,15 +20,14 @@ class MyApp extends StatelessWidget {
         create: (context) => SettingsBloc(),
         child:
             BlocBuilder<SettingsBloc, SettingsState>(builder: (context, state) {
-          print("HERE MyApp.build ${state.serverName} ${state.serverPort}");
           return MultiBlocProvider(
               providers: [
-                // BlocProvider<LedModeGRPCBloc>(
-                //   create: (BuildContext context) => LedModeGRPCBloc(),
-                // ),
-                // BlocProvider<BaseProductGRPCBloc>(
-                //   create: (BuildContext context) => BaseProductGRPCBloc(),
-                // ),
+                BlocProvider<LedModeGRPCBloc>(
+                  create: (BuildContext context) => LedModeGRPCBloc(state),
+                ),
+                BlocProvider<BaseProductGRPCBloc>(
+                  create: (BuildContext context) => BaseProductGRPCBloc(state),
+                ),
                 BlocProvider<ProjectGRPCBloc>(
                   create: (BuildContext context) => ProjectGRPCBloc(state),
                 ),

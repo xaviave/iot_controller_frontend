@@ -3,7 +3,7 @@ import 'package:iot_controller/src/models/products/led/led_mode.dart';
 
 class VideoModeDetailsView extends StatefulWidget {
   final VideoMode mode;
-  final Function(LedMode, BuildContext) callbackUpdateMode;
+  final Function(LedMode) callbackUpdateMode;
 
   const VideoModeDetailsView(
       {super.key, required this.mode, required this.callbackUpdateMode});
@@ -14,7 +14,7 @@ class VideoModeDetailsView extends StatefulWidget {
 
 class _VideoModeDetailsViewState extends State<VideoModeDetailsView> {
   late VideoMode mode;
-  late Function(LedMode, BuildContext) callbackUpdateMode;
+  late Function(LedMode) callbackUpdateMode;
 
   @override
   void initState() {

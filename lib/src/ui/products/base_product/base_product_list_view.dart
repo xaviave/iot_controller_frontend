@@ -7,7 +7,7 @@ import 'package:iot_controller/src/ui/products/led/led_panel_details_view.dart';
 import '../coffee_machine/coffee_machine_details_view.dart';
 
 class BaseProductListView extends StatelessWidget {
-  final Function(BaseProduct, BuildContext) callbackUpdateProject;
+  final Function(BaseProduct) callbackUpdateProject;
   static const routeName = '/products';
 
   final Map<String, BaseProduct> products;

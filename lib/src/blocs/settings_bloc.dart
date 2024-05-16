@@ -42,7 +42,6 @@ class SettingsBloc extends Bloc<SettingsEvents, SettingsState> {
             theme: ThemeMode.system,
             serverName: "0.0.0.0",
             serverPort: 50052)) {
-    print("SettingsBloc init ${state.serverName}");
     on<ThemeChangedEvent>(onThemeChange);
     on<ServerInfoChangedEvent>(onServerInfoChange);
   }

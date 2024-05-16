@@ -1,62 +1,144 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iot_controller/src/blocs/settings_bloc.dart';
 import 'package:iot_controller/src/models/products/led/led_mode.dart';
 import 'package:iot_controller/src/services/communication_service.dart';
 
-class LedModeProvider with ChangeNotifier {
-  Map<String, LedMode> _modes = {};
-  Map<String, ColorMode> _colorModes = {};
-  Map<String, PatternMode> _patternModes = {};
-  Map<String, LedMode> get modes => _modes;
-  Map<String, ColorMode> get colorModes => _colorModes;
-  Map<String, PatternMode> get patternModes => _patternModes;
+abstract class LedModeEvent {}
 
+class ServerChangedEvent extends LedModeEvent {
+  final ColorModeCommunication colorModeGrpcClient;
+  final PatternModeCommunication patternModeGrpcClient;
+  // final ImageModeCommunication imageModeGrpcClient;
+  // final VideoModeCommunication videoModeGrpcClient;
+
+  ServerChangedEvent(
+      {required this.colorModeGrpcClient, required this.patternModeGrpcClient});
+}
+
+class GetLedModeListEvent extends LedModeEvent {
+  GetLedModeListEvent();
+}
+
+class UpdateLedModeEvent extends LedModeEvent {
+  final LedMode mode;
+
+  UpdateLedModeEvent({required this.mode});
+}
+
+sealed class LedModeState {
+  const LedModeState();
+
+  Map<String, LedMode> get ledModes => {};
+}
+
+class LedModeListInitial extends LedModeState {}
+
+class LedModeListSuccess extends LedModeState {
+  final Map<String, ColorMode> _colorModes;
+  final Map<String, PatternMode> _patternModes;
+
+  const LedModeListSuccess(this._colorModes, this._patternModes);
+
+  Map<String, ColorMode> get coffeeMachines => _colorModes;
+  Map<String, PatternMode> get patternMode => _patternModes;
+  Map<String, LedMode> get modes => {..._colorModes, ..._patternModes};
+}
+
+class LedModeListError extends LedModeState {
+  final String message;
+
+  const LedModeListError(this.message);
+
+  String get errorMessage => message;
+}
+
+class UpdateLedModeEventSuccess extends LedModeState {
+  final String message;
+
+  const UpdateLedModeEventSuccess(this.message);
+
+  String get successMessage => message;
+}
+
+class UpdateLedModeEventError extends LedModeState {
+  final String message;
+
+  const UpdateLedModeEventError(this.message);
+
+  String get errorMessage => message;
+}
+
+class LedModeGRPCBloc extends Bloc<LedModeEvent, LedModeState> {
   late ColorModeCommunication colorModeGrpcClient;
   late PatternModeCommunication patternModeGrpcClient;
   // late ImageModeCommunication imageModeGrpcClient;
   // late VideoModeCommunication videoModeGrpcClient;
 
-  LedModeProvider() {
-    colorModeGrpcClient = ColorModeCommunication();
-    patternModeGrpcClient = PatternModeCommunication();
-    // imageModeGrpcClient = ImageModeCommunication();
-    // videoModeGrpcClient = VideoModeCommunication();
+  LedModeGRPCBloc(SettingsState state) : super(LedModeListInitial()) {
+    on<ServerChangedEvent>(onServerChangedEvent);
+    add(ServerChangedEvent(
+        colorModeGrpcClient: ColorModeCommunication(
+            serverName: state.serverName, serverPort: state.serverPort),
+        patternModeGrpcClient: PatternModeCommunication(
+            serverName: state.serverName, serverPort: state.serverPort)));
 
-    colorModeGrpcClient.init();
-    patternModeGrpcClient.init();
-    // imageModeGrpcClient.init();
-    // videoModeGrpcClient.init();
-    getLedModeItems();
+    on<GetLedModeListEvent>(onGetLedModeListEvent);
+    on<UpdateLedModeEvent>(onUpdateLedModeEvent);
+
+    add(GetLedModeListEvent());
   }
 
-  Future<void> getPatternModeItems() async {
-    var responsePattern = await patternModeGrpcClient.List();
-    _patternModes = {
-      for (var e in responsePattern.results) e.name: PatternMode.fromResponse(e)
+  void onServerChangedEvent(
+      ServerChangedEvent event, Emitter<LedModeState> emit) {
+    colorModeGrpcClient = event.colorModeGrpcClient;
+    patternModeGrpcClient = event.patternModeGrpcClient;
+    add(GetLedModeListEvent());
+  }
+
+  Future<Map<String, PatternMode>> getPatternModeItems() async {
+    var responsePatternMode = await patternModeGrpcClient.List();
+    return {
+      for (var e in responsePatternMode.results)
+        e.name: PatternMode.fromResponse(e)
     };
-    notifyListeners();
   }
 
-  Future<void> getColorModeItems() async {
-    var responseColor = await colorModeGrpcClient.List();
-    _colorModes = {
-      for (var e in responseColor.results) e.name: ColorMode.fromResponse(e)
+  Future<Map<String, ColorMode>> getColorModeItems() async {
+    var responseColorMode = await colorModeGrpcClient.List();
+    return {
+      for (var e in responseColorMode.results) e.name: ColorMode.fromResponse(e)
     };
-    notifyListeners();
   }
 
-  Future<void> getLedModeItems() async {
-    getPatternModeItems();
-    getColorModeItems();
-    _modes = {..._patternModes, ..._colorModes};
-    notifyListeners();
-  }
-
-  Future<void> updateMode(LedMode mode) async {
-    if (mode is ColorMode) {
-      var response = await colorModeGrpcClient.Update(mode);
-    } else {
-      var response = await patternModeGrpcClient.Update(mode as PatternMode);
+  void onGetLedModeListEvent(
+      GetLedModeListEvent event, Emitter<LedModeState> emit) async {
+    try {
+      emit(LedModeListSuccess(
+          await getColorModeItems(), await getPatternModeItems()));
+    } catch (error) {
+      emit(LedModeListError(error.toString()));
     }
-    notifyListeners();
+  }
+
+  void onUpdateLedModeEvent(
+      UpdateLedModeEvent event, Emitter<LedModeState> emit) async {
+    try {
+      if (event.mode is ColorMode) {
+        await colorModeGrpcClient.Update(event.mode as ColorMode);
+      } else {
+        await patternModeGrpcClient.Update(event.mode as PatternMode);
+      }
+    } catch (error) {
+      emit(UpdateLedModeEventError(error.toString()));
+    }
   }
 }
+//BlocBuilder<ProjectGRPCBloc, ProjectState>(
+//               builder: (context, state) {
+//             if (state is ProjectListInitial) {
+//               return const Center(child: CircularProgressIndicator());
+//             } else if (state is ProjectListError) {
+//               return Center(
+//                 child: Text("Error: ${state.message}"),
+//               );
+//             } else if (state is ProjectListSuccess) {

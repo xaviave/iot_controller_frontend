@@ -1,11 +1,9 @@
 import 'package:iot_controller/src/models/products/base_product.dart';
-import 'package:iot_controller/src/providers/project.dart';
 import 'package:iot_controller/src/ui/products/base_product/base_product_list_view.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:iot_controller/src/models/project.dart';
 import 'package:iot_controller/src/ui/settings/settings_view.dart';
-import 'package:provider/provider.dart';
 
 class ProjectDetailsView extends StatefulWidget {
   final Project project;
@@ -19,11 +17,11 @@ class ProjectDetailsView extends StatefulWidget {
 class _ProjectDetailsViewState extends State<ProjectDetailsView> {
   late Project project;
 
-  void updateProduct(BaseProduct p, BuildContext context) {
-    final projectProvider =
-        Provider.of<ProjectProvider>(context, listen: false);
+  void updateProduct(BaseProduct p) {
 
-    projectProvider.updateProject(project);
+  //   context.read<ProjectGRPCBloc>().add(UpdateProjectEvent(
+  //   project: p
+    // ));
     setState(() => project.products[p.name] = p);
   }
 

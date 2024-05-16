@@ -8,7 +8,7 @@ import 'video_mode_details_view.dart';
 
 class LedModeDetailsView extends StatelessWidget {
   final LedMode mode;
-  final Function(LedMode, BuildContext) callbackUpdateMode;
+  final Function(LedMode) callbackUpdateMode;
 
   const LedModeDetailsView(
       {super.key, required this.mode, required this.callbackUpdateMode});

@@ -6,7 +6,7 @@ import 'package:iot_controller/src/ui/utils/alert_popup.dart';
 
 class PatternModeDetailsView extends StatefulWidget {
   final PatternMode mode;
-  final Function(LedMode, BuildContext) callbackUpdateMode;
+  final Function(LedMode) callbackUpdateMode;
 
   const PatternModeDetailsView(
       {super.key, required this.mode, required this.callbackUpdateMode});
@@ -18,7 +18,7 @@ class PatternModeDetailsView extends StatefulWidget {
 class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
   late PatternMode mode;
   Map<String, PatternMode> patterns = <String, PatternMode>{};
-  late Function(LedMode, BuildContext) callbackUpdateMode;
+  late Function(LedMode) callbackUpdateMode;
 
   @override
   void initState() {
@@ -44,14 +44,14 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
       } else {
         mode.palette[index] = newColor;
       }
-      callbackUpdateMode(mode, context);
+      callbackUpdateMode(mode);
     });
   }
 
   void callbackUpdatePalette(List<Color> p) {
     setState(() {
       mode.palette = List.from(p);
-      callbackUpdateMode(mode, context);
+      callbackUpdateMode(mode);
     });
   }
 
