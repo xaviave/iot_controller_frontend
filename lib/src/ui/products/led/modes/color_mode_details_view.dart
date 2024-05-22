@@ -95,3 +95,17 @@ class _ColorModeDetailsViewState extends State<ColorModeDetailsView> {
     );
   }
 }
+
+class ColorModePreview extends StatelessWidget {
+  final ColorMode mode;
+
+  const ColorModePreview({super.key, required this.mode});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+        width: double.infinity,
+        height: 20,
+        child: Container(color: mode.color));
+  }
+}

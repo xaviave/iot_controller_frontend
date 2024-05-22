@@ -42,3 +42,14 @@ class _VideoModeDetailsViewState extends State<VideoModeDetailsView> {
     );
   }
 }
+
+class VideoModePreview extends StatelessWidget {
+  final VideoMode mode;
+
+  const VideoModePreview({super.key, required this.mode});
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.network(mode.video_low_pixel as String);
+  }
+}

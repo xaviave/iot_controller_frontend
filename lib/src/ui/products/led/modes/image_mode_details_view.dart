@@ -42,3 +42,14 @@ class _ImageModeDetailsViewState extends State<ImageModeDetailsView> {
     );
   }
 }
+
+class ImageModePreview extends StatelessWidget {
+  final ImageMode mode;
+
+  const ImageModePreview({super.key, required this.mode});
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.network(mode.image_low_pixel as String);
+  }
+}

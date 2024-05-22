@@ -25,8 +25,6 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
     super.initState();
     mode = widget.mode;
     callbackUpdateMode = widget.callbackUpdateMode;
-    // patterns = Provider.of<LedModeProvider>(context).patternModes;
-    //   need the list of color else, the palette can't be init and make the provider crash
   }
 
   void callbackUpdatePaletteColor(int index, Color newColor, bool addNewColor) {
@@ -152,10 +150,25 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
                 }
               });
             },
-            child: Text('Select Palette'),
+            child: const Text('Select Palette'),
           )
         ],
       ),
     );
+  }
+}
+
+class PatternModePreview extends StatelessWidget {
+  final PatternMode mode;
+
+  const PatternModePreview({super.key, required this.mode});
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+        children: List.generate(mode.palette.length, (i) => i).map((index) {
+      return SizedBox(
+          width: 20, height: 20, child: Container(color: mode.palette[index]));
+    }).toList());
   }
 }

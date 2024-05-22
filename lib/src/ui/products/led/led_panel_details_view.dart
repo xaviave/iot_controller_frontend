@@ -4,6 +4,7 @@ import "package:iot_controller/src/models/products/led/led_mode.dart";
 import "package:iot_controller/src/models/products/led/led_panel.dart";
 import "package:iot_controller/src/models/status.dart";
 import "package:flutter/material.dart";
+import "package:iot_controller/src/ui/products/led/modes/led_mode_list_alert_view.dart";
 import "package:iot_controller/src/ui/settings/settings_view.dart";
 import "package:iot_controller/src/ui/utils/on_off_button.dart";
 import "package:provider/provider.dart";
@@ -109,9 +110,28 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                 onChangeEnd: (value) {
                   updateProduct();
                 }),
-            Expanded(
-                child: LedModeDetailsView(
-                    mode: product.mode, callbackUpdateMode: updateMode)),
+            LedModeDetailsView(
+                mode: product.mode, callbackUpdateMode: updateMode),
+            TextButton(
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                          title: const Text("Change Mode"),
+                          content: LedModeListAlertView(
+                              callbackUpdateMode: updateMode),
+                          actions: [
+                            TextButton(
+                              child: const Text("Cancel"),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            )
+                          ],
+                        ));
+              },
+              child: const Text("Update mode"),
+            ),
           ],
         ),
       ),

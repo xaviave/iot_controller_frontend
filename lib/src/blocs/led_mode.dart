@@ -133,12 +133,3 @@ class LedModeGRPCBloc extends Bloc<LedModeEvent, LedModeState> {
     }
   }
 }
-//BlocBuilder<ProjectGRPCBloc, ProjectState>(
-//               builder: (context, state) {
-//             if (state is ProjectListInitial) {
-//               return const Center(child: CircularProgressIndicator());
-//             } else if (state is ProjectListError) {
-//               return Center(
-//                 child: Text("Error: ${state.message}"),
-//               );
-//             } else if (state is ProjectListSuccess) {
