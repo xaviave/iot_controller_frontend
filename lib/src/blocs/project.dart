@@ -92,7 +92,7 @@ class ProjectGRPCBloc extends Bloc<ProjectEvent, ProjectState> {
   void onUpdateProjectEvent(
       UpdateProjectEvent event, Emitter<ProjectState> emit) async {
     try {
-        await projectGrpcClient.Update(event.project);
+      await projectGrpcClient.Update(event.project);
     } catch (error) {
       emit(UpdateProjectEventError(error.toString()));
     }

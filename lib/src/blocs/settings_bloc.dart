@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class SettingsEvents {}
 
@@ -37,11 +38,11 @@ class SettingsState {
 }
 
 class SettingsBloc extends Bloc<SettingsEvents, SettingsState> {
-  SettingsBloc()
+  SettingsBloc(SharedPreferences prefs)
       : super(SettingsState(
             theme: ThemeMode.system,
-            serverName: "0.0.0.0",
-            serverPort: 50052)) {
+            serverName: prefs.getString("serverName") ?? "0.0.0.0",
+            serverPort: prefs.getInt("serverPort") ?? 50052)) {
     on<ThemeChangedEvent>(onThemeChange);
     on<ServerInfoChangedEvent>(onServerInfoChange);
   }
@@ -53,6 +54,10 @@ class SettingsBloc extends Bloc<SettingsEvents, SettingsState> {
 
   void onServerInfoChange(
       ServerInfoChangedEvent event, Emitter<SettingsState> emit) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setInt("serverPort", event.serverPort);
+    await prefs.setString("serverName", event.serverName);
+
     emit(state.copyWith(
         newServerName: event.serverName, newServerPort: event.serverPort));
   }

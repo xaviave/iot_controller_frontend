@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:iot_controller/src/ui/project/project_list_view.dart';
 import 'package:iot_controller/src/ui/settings/settings_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'blocs/led_mode.dart';
 import 'blocs/product.dart';
@@ -11,13 +12,15 @@ import 'blocs/project.dart';
 import 'blocs/settings_bloc.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final SharedPreferences prefs;
+
+  const MyApp({super.key, required this.prefs});
 
   @override
   Widget build(BuildContext context) {
     // could add an auth bloc there
     return BlocProvider<SettingsBloc>(
-        create: (context) => SettingsBloc(),
+        create: (context) => SettingsBloc(prefs),
         child:
             BlocBuilder<SettingsBloc, SettingsState>(builder: (context, state) {
           return MultiBlocProvider(

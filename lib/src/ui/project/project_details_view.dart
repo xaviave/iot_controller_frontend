@@ -18,9 +18,8 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
   late Project project;
 
   void updateProduct(BaseProduct p) {
-
-  //   context.read<ProjectGRPCBloc>().add(UpdateProjectEvent(
-  //   project: p
+    //   context.read<ProjectGRPCBloc>().add(UpdateProjectEvent(
+    //   project: p
     // ));
     setState(() => project.products[p.name] = p);
   }
