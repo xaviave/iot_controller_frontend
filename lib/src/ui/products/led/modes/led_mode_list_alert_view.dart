@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iot_controller/src/blocs/led_mode.dart';
 import 'package:iot_controller/src/blocs/settings_bloc.dart';
-import 'package:iot_controller/src/models/products/led/led_mode.dart';
+import 'package:iot_controller/src/models/products/led/modes/led_mode.dart';
 import 'package:iot_controller/src/services/communication_service.dart';
 import 'package:iot_controller/src/ui/products/led/modes/led_mode_details_view.dart';
 

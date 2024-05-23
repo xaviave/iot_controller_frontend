@@ -1,7 +1,8 @@
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:iot_controller/src/models/products/led/default_palette.dart';
-import 'package:iot_controller/src/models/products/led/led_mode.dart';
+import 'package:iot_controller/src/models/products/led/modes/led_mode.dart';
+import 'package:iot_controller/src/models/products/led/modes/pattern_mode.dart';
 import 'package:iot_controller/src/ui/utils/alert_popup.dart';
 
 class PatternModeDetailsView extends StatefulWidget {
@@ -17,6 +18,8 @@ class PatternModeDetailsView extends StatefulWidget {
 
 class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
   late PatternMode mode;
+  late Color fpsColor;
+  late Color blinkColor;
   Map<String, PatternMode> patterns = <String, PatternMode>{};
   late Function(LedMode) callbackUpdateMode;
 
@@ -24,6 +27,8 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
   void initState() {
     super.initState();
     mode = widget.mode;
+    fpsColor = Color.lerp(Colors.black, Colors.white, mode.fps)!;
+    blinkColor = Color.lerp(Colors.black, Colors.white, mode.blink)!;
     callbackUpdateMode = widget.callbackUpdateMode;
   }
 
@@ -118,6 +123,41 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
                 style: const TextStyle(fontSize: 28),
                 textAlign: TextAlign.center,
               )),
+          const Text('FPS'),
+          Slider(
+              min: 0,
+              max: 1,
+              activeColor: fpsColor,
+              inactiveColor: Colors.grey,
+              thumbColor: fpsColor,
+              value: mode.fps,
+              onChanged: (value) {
+                setState(() {
+                  mode.fps = double.parse(value.toStringAsFixed(2));
+                  fpsColor = Color.lerp(Colors.black, Colors.white, mode.fps)!;
+                });
+              },
+              onChangeEnd: (value) {
+                callbackUpdateMode(mode);
+              }),
+          const Text('Blink interval'),
+          Slider(
+              min: 0,
+              max: 1,
+              activeColor: blinkColor,
+              inactiveColor: Colors.grey,
+              thumbColor: blinkColor,
+              value: mode.blink,
+              onChanged: (value) {
+                setState(() {
+                  mode.blink = double.parse(value.toStringAsFixed(2));
+                  blinkColor =
+                      Color.lerp(Colors.black, Colors.white, mode.blink)!;
+                });
+              },
+              onChangeEnd: (value) {
+                callbackUpdateMode(mode);
+              }),
           Wrap(
               children:
                   List.generate(mode.palette.length, (i) => i).map((index) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iot_controller/src/models/products/led/led_mode.dart';
+import 'package:iot_controller/src/models/products/led/modes/image_mode.dart';
+import 'package:iot_controller/src/models/products/led/modes/led_mode.dart';
 
 class ImageModeDetailsView extends StatefulWidget {
   final ImageMode mode;
@@ -50,6 +51,6 @@ class ImageModePreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(mode.image_low_pixel as String);
+    return Image.network(mode.imageLowPixel as String);
   }
 }

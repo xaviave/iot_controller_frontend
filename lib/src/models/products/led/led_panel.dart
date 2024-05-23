@@ -1,7 +1,7 @@
 import 'package:iot_controller/protos/backend.pb.dart';
 import 'package:iot_controller/src/models/category.dart';
 import 'package:iot_controller/src/models/products/base_product.dart';
-import 'package:iot_controller/src/models/products/led/led_mode.dart';
+import 'package:iot_controller/src/models/products/led/modes/led_mode.dart';
 import 'package:iot_controller/src/models/status.dart';
 
 class LedPanel extends BaseProduct {

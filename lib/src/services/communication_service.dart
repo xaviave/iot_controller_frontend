@@ -1,9 +1,9 @@
 import 'package:iot_controller/protos/backend.pbgrpc.dart';
-import 'package:iot_controller/src/blocs/settings_bloc.dart';
 import 'package:iot_controller/src/models/category.dart';
 import 'package:iot_controller/src/models/products/coffee_machine.dart';
-import 'package:iot_controller/src/models/products/led/led_mode.dart';
+import 'package:iot_controller/src/models/products/led/modes/color_mode.dart';
 import 'package:iot_controller/src/models/products/led/led_panel.dart';
+import 'package:iot_controller/src/models/products/led/modes/pattern_mode.dart';
 import 'package:iot_controller/src/models/project.dart';
 import 'package:grpc/grpc.dart';
 

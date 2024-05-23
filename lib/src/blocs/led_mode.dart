@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iot_controller/src/blocs/settings_bloc.dart';
-import 'package:iot_controller/src/models/products/led/led_mode.dart';
+import 'package:iot_controller/src/models/products/led/modes/color_mode.dart';
+import 'package:iot_controller/src/models/products/led/modes/led_mode.dart';
+import 'package:iot_controller/src/models/products/led/modes/pattern_mode.dart';
 import 'package:iot_controller/src/services/communication_service.dart';
 
 abstract class LedModeEvent {}

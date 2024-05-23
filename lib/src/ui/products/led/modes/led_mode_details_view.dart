@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:iot_controller/src/models/products/led/led_mode.dart';
+import 'package:iot_controller/src/models/products/led/modes/color_mode.dart';
+import 'package:iot_controller/src/models/products/led/modes/image_mode.dart';
+import 'package:iot_controller/src/models/products/led/modes/led_mode.dart';
+import 'package:iot_controller/src/models/products/led/modes/pattern_mode.dart';
+import 'package:iot_controller/src/models/products/led/modes/video_mode.dart';
 
 import 'color_mode_details_view.dart';
 import 'image_mode_details_view.dart';

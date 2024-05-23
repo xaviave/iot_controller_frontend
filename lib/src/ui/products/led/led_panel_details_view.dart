@@ -1,6 +1,6 @@
 import "package:iot_controller/src/blocs/product.dart";
 import "package:iot_controller/src/models/products/base_product.dart";
-import "package:iot_controller/src/models/products/led/led_mode.dart";
+import "package:iot_controller/src/models/products/led/modes/led_mode.dart";
 import "package:iot_controller/src/models/products/led/led_panel.dart";
 import "package:iot_controller/src/models/status.dart";
 import "package:flutter/material.dart";
@@ -52,11 +52,6 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
         Color.lerp(Colors.black, Colors.yellow, product.brightness)!;
   }
 
-  void setStateUpdate(VoidCallback fn) {
-    super.setState(fn);
-    // callbackUpdateProject(product as BaseProduct);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,7 +96,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                 thumbColor: colorBrightness,
                 value: product.brightness,
                 onChanged: (value) {
-                  setStateUpdate(() {
+                  setState(() {
                     product.brightness = double.parse(value.toStringAsFixed(2));
                     colorBrightness = Color.lerp(
                         Colors.black, Colors.yellow, product.brightness)!;
