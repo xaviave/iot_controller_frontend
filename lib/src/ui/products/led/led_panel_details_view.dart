@@ -55,81 +55,83 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Led Panel details"),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              Navigator.restorablePushNamed(context, SettingsView.routeName);
-            },
-          ),
-        ],
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(10),
-                child: Text(
-                  product.name,
-                  style: const TextStyle(fontSize: 28),
-                  textAlign: TextAlign.center,
-                )),
-            Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(10),
-                child: Text(
-                  product.status.name,
-                  style: const TextStyle(fontSize: 28),
-                  textAlign: TextAlign.center,
-                )),
-            // add categories
-            OnOffButton(
-                status: product.status, callbackUpdateStatus: updateStatus),
-            Slider(
-                min: 0,
-                max: 1,
-                activeColor: colorBrightness,
-                inactiveColor: Colors.grey,
-                thumbColor: colorBrightness,
-                value: product.brightness,
-                onChanged: (value) {
-                  setState(() {
-                    product.brightness = double.parse(value.toStringAsFixed(2));
-                    colorBrightness = Color.lerp(
-                        Colors.black, Colors.yellow, product.brightness)!;
-                  });
-                },
-                onChangeEnd: (value) {
-                  updateProduct();
-                }),
-            LedModeDetailsView(
-                mode: product.mode, callbackUpdateMode: updateMode),
-            TextButton(
+        appBar: AppBar(
+          title: const Text("Led Panel details"),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.settings),
               onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) => AlertDialog(
-                          title: const Text("Change Mode"),
-                          content: LedModeListAlertView(
-                              callbackUpdateMode: updateMode),
-                          actions: [
-                            TextButton(
-                              child: const Text("Cancel"),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            )
-                          ],
-                        ));
+                Navigator.restorablePushNamed(context, SettingsView.routeName);
               },
-              child: const Text("Update mode"),
             ),
           ],
         ),
-      ),
-    );
+        body: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                    width: double.infinity,
+                    margin: const EdgeInsets.all(10),
+                    child: Text(
+                      product.name,
+                      style: const TextStyle(fontSize: 28),
+                      textAlign: TextAlign.center,
+                    )),
+                Container(
+                    width: double.infinity,
+                    margin: const EdgeInsets.all(10),
+                    child: Text(
+                      product.status.name,
+                      style: const TextStyle(fontSize: 28),
+                      textAlign: TextAlign.center,
+                    )),
+                // add categories
+                OnOffButton(
+                    status: product.status, callbackUpdateStatus: updateStatus),
+                Slider(
+                    min: 0,
+                    max: 1,
+                    activeColor: colorBrightness,
+                    inactiveColor: Colors.grey,
+                    thumbColor: colorBrightness,
+                    value: product.brightness,
+                    onChanged: (value) {
+                      setState(() {
+                        product.brightness =
+                            double.parse(value.toStringAsFixed(2));
+                        colorBrightness = Color.lerp(
+                            Colors.black, Colors.yellow, product.brightness)!;
+                      });
+                    },
+                    onChangeEnd: (value) {
+                      updateProduct();
+                    }),
+                LedModeDetailsView(
+                    mode: product.mode, callbackUpdateMode: updateMode),
+                TextButton(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                              title: const Text("Change Mode"),
+                              content: LedModeListAlertView(
+                                  callbackUpdateMode: updateMode),
+                              actions: [
+                                TextButton(
+                                  child: const Text("Cancel"),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                )
+                              ],
+                            ));
+                  },
+                  child: const Text("Update mode"),
+                ),
+              ],
+            ),
+          ),
+        ));
   }
 }
