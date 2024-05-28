@@ -3,6 +3,7 @@ import 'package:iot_controller/src/models/category.dart';
 import 'package:iot_controller/src/models/products/base_product.dart';
 import 'package:iot_controller/src/models/products/led/modes/led_mode.dart';
 import 'package:iot_controller/src/models/status.dart';
+import 'package:iot_controller/src/ui/utils/math.dart';
 
 class LedPanel extends BaseProduct {
   Status status;
@@ -24,7 +25,7 @@ class LedPanel extends BaseProduct {
       name: name,
       categories: categories.map((x) => x.getRequest()).toList(),
       status: status.id,
-      brightness: brightness,
+      brightness: truncateToDecimalPlaces(brightness, 2),
       mode: mode.getAbstractRequest(),
     );
   }

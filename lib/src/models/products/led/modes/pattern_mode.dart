@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:iot_controller/protos/backend.pb.dart';
 import 'package:iot_controller/src/ui/utils/color.dart';
+import 'package:iot_controller/src/ui/utils/math.dart';
 
 import 'led_mode.dart';
 
@@ -20,11 +21,12 @@ class PatternMode extends LedMode {
       required this.palette});
 
   PatternModeRequest getRequest() {
+    // fps and blink are capped to 60 from the slider itself (0-1 with 0.01 step)
     return PatternModeRequest(
       id: id,
       name: name,
-      fps: fps * 60,
-      blink: blink * 60,
+      fps: truncateToDecimalPlaces(fps, 2),
+      blink: truncateToDecimalPlaces(blink, 2),
       palette: palette.map((c) => hexFromColor(c)),
     );
   }
@@ -38,8 +40,8 @@ class PatternMode extends LedMode {
     return PatternMode(
         id: r.id,
         name: r.name,
-        fps: r.fps / 60,
-        blink: r.blink / 60,
+        fps: r.fps,
+        blink: r.blink,
         palette: r.palette.map((c) => colorFromHex(c)).toList());
   }
 }
