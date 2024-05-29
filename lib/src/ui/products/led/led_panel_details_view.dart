@@ -135,3 +135,74 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
         ));
   }
 }
+
+class LedPanelMinimalDetailsView extends StatefulWidget {
+  final LedPanel product;
+
+  const LedPanelMinimalDetailsView({super.key, required this.product});
+
+  @override
+  State<LedPanelMinimalDetailsView> createState() =>
+      _LedPanelMinimalDetailsViewState();
+}
+
+class _LedPanelMinimalDetailsViewState
+    extends State<LedPanelMinimalDetailsView> {
+  late LedPanel product;
+  late Color colorBrightness;
+
+  void updateStatus(Status s) {
+    setState(() => product.status = s);
+    updateProduct();
+  }
+
+  void updateProduct() {
+    context
+        .read<BaseProductGRPCBloc>()
+        .add(UpdateBaseProductEvent(product: product));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    product = widget.product;
+    colorBrightness =
+        Color.lerp(Colors.black, Colors.yellow, product.brightness)!;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+        width: double.infinity,
+        child: Column(
+          children: [
+            ListTile(
+                title: Text(
+                  product.name,
+                  style: const TextStyle(fontSize: 28),
+                  textAlign: TextAlign.center,
+                ),
+                trailing: OnOffButton(
+                    status: product.status,
+                    callbackUpdateStatus: updateStatus)),
+            Slider(
+                min: 0,
+                max: 1,
+                activeColor: colorBrightness,
+                inactiveColor: Colors.grey,
+                thumbColor: colorBrightness,
+                value: product.brightness,
+                onChanged: (value) {
+                  setState(() {
+                    product.brightness = double.parse(value.toStringAsFixed(2));
+                    colorBrightness = Color.lerp(
+                        Colors.black, Colors.yellow, product.brightness)!;
+                  });
+                },
+                onChangeEnd: (value) {
+                  updateProduct();
+                }),
+          ],
+        ));
+  }
+}

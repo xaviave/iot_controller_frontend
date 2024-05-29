@@ -19,8 +19,10 @@ dependencies:
   protobuf: ^3.1.0
   provider: ^6.1.2
   shared_preferences: ^2.2.3
-  flutter_launcher_icons: ^0.13.1
+  flutter_launcher_icons: ^0.11.0
   flutter_bloc: ^8.1.5
+  object_3d: ^1.0.0
+  vector_math: ^2.1.4
 
 dev_dependencies:
   flutter_test:
@@ -36,6 +38,8 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/models/
+    - assets/models/Minidisc/files/minidisc.obj
 
 flutter_launcher_icons:
   image_path_android: "assets/icons/android/icon.png"
