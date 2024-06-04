@@ -25,32 +25,31 @@ class BaseProductListView extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           String name = products.keys.elementAt(index);
           return ListTile(
-            title:
-              LedPanelMinimalDetailsView(product: products[name] as LedPanel),
-            onTap: () {
-              if (products[name] is LedPanel) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => LedPanelDetailsView(
-                        product: products[name] as LedPanel,
-                        callbackUpdateProject: callbackUpdateProject),
-                    settings: const RouteSettings(),
-                  ),
-                );
-              } else if (products[name] is CoffeeMachine) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CoffeeMachineDetailsView(
-                        product: products[name] as CoffeeMachine,
-                        callbackUpdateProject: callbackUpdateProject),
-                    settings: const RouteSettings(),
-                  ),
-                );
-              }
-            }
-          );
+              title: LedPanelMinimalDetailsView(
+                  product: products[name] as LedPanel),
+              onTap: () {
+                if (products[name] is LedPanel) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => LedPanelDetailsView(
+                          product: products[name] as LedPanel,
+                          callbackUpdateProject: callbackUpdateProject),
+                      settings: const RouteSettings(),
+                    ),
+                  );
+                } else if (products[name] is CoffeeMachine) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CoffeeMachineDetailsView(
+                          product: products[name] as CoffeeMachine,
+                          callbackUpdateProject: callbackUpdateProject),
+                      settings: const RouteSettings(),
+                    ),
+                  );
+                }
+              });
         },
       ),
     );

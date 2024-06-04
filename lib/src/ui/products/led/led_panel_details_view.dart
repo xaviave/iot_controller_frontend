@@ -6,6 +6,7 @@ import "package:iot_controller/src/models/status.dart";
 import "package:flutter/material.dart";
 import "package:iot_controller/src/ui/products/led/modes/led_mode_list_alert_view.dart";
 import "package:iot_controller/src/ui/settings/settings_view.dart";
+import "package:iot_controller/src/ui/utils/capitalize.dart";
 import "package:iot_controller/src/ui/utils/on_off_button.dart";
 import "package:provider/provider.dart";
 
@@ -56,7 +57,10 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Led Panel details"),
+          title: Text(
+            product.name.capitalize,
+            style: const TextStyle(fontSize: 28),
+          ),
           actions: [
             IconButton(
               icon: const Icon(Icons.settings),
@@ -66,49 +70,38 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
             ),
           ],
         ),
-        body: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              // add categories
+              OnOffButton(
+                  status: product.status, callbackUpdateStatus: updateStatus),
+
+              Slider(
+                  min: 0,
+                  max: 1,
+                  activeColor: colorBrightness,
+                  inactiveColor: Colors.grey,
+                  thumbColor: colorBrightness,
+                  value: product.brightness,
+                  onChanged: (value) {
+                    setState(() {
+                      product.brightness =
+                          double.parse(value.toStringAsFixed(2));
+                      colorBrightness = Color.lerp(
+                          Colors.black, Colors.yellow, product.brightness)!;
+                    });
+                  },
+                  onChangeEnd: (value) {
+                    updateProduct();
+                  }),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 Container(
-                    width: double.infinity,
                     margin: const EdgeInsets.all(10),
                     child: Text(
-                      product.name,
+                      product.mode.name.capitalize,
                       style: const TextStyle(fontSize: 28),
-                      textAlign: TextAlign.center,
                     )),
-                Container(
-                    width: double.infinity,
-                    margin: const EdgeInsets.all(10),
-                    child: Text(
-                      product.status.name,
-                      style: const TextStyle(fontSize: 28),
-                      textAlign: TextAlign.center,
-                    )),
-                // add categories
-                OnOffButton(
-                    status: product.status, callbackUpdateStatus: updateStatus),
-                Slider(
-                    min: 0,
-                    max: 1,
-                    activeColor: colorBrightness,
-                    inactiveColor: Colors.grey,
-                    thumbColor: colorBrightness,
-                    value: product.brightness,
-                    onChanged: (value) {
-                      setState(() {
-                        product.brightness =
-                            double.parse(value.toStringAsFixed(2));
-                        colorBrightness = Color.lerp(
-                            Colors.black, Colors.yellow, product.brightness)!;
-                      });
-                    },
-                    onChangeEnd: (value) {
-                      updateProduct();
-                    }),
-                LedModeDetailsView(
-                    mode: product.mode, callbackUpdateMode: updateMode),
                 TextButton(
                   onPressed: () {
                     showDialog(
@@ -127,10 +120,17 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                               ],
                             ));
                   },
-                  child: const Text("Update mode"),
-                ),
-              ],
-            ),
+                  child: Container(
+                      margin: const EdgeInsets.all(10),
+                      child: const Text(
+                        "Update mode",
+                        style: TextStyle(fontSize: 28),
+                      )),
+                )
+              ]),
+              LedModeDetailsView(
+                  mode: product.mode, callbackUpdateMode: updateMode),
+            ],
           ),
         ));
   }
@@ -172,19 +172,20 @@ class _LedPanelMinimalDetailsViewState
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+        // color: Colors.blueAccent,
         width: double.infinity,
         child: Column(
           children: [
-            ListTile(
-                title: Text(
-                  product.name,
-                  style: const TextStyle(fontSize: 28),
-                  textAlign: TextAlign.center,
-                ),
-                trailing: OnOffButton(
-                    status: product.status,
-                    callbackUpdateStatus: updateStatus)),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Text(
+                product.name.capitalize,
+                style: const TextStyle(fontSize: 28),
+                textAlign: TextAlign.center,
+              ),
+              OnOffButton(
+                  status: product.status, callbackUpdateStatus: updateStatus)
+            ]),
             Slider(
                 min: 0,
                 max: 1,

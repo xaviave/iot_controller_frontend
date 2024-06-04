@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:iot_controller/src/models/project.dart';
 import 'package:iot_controller/src/ui/settings/settings_view.dart';
+import 'package:iot_controller/src/ui/utils/capitalize.dart';
 
 class ProjectDetailsView extends StatefulWidget {
   final Project project;
@@ -33,51 +34,43 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Projects details'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              Navigator.restorablePushNamed(context, SettingsView.routeName);
-            },
+        appBar: AppBar(
+          title: Text(
+            project.name.capitalize,
+            style: const TextStyle(fontSize: 28),
           ),
-        ],
-      ),
-      body: Center(
-        child: Column(
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.settings),
+              onPressed: () {
+                Navigator.restorablePushNamed(context, SettingsView.routeName);
+              },
+            ),
+          ],
+        ),
+        body: Column(
           children: [
+            // need to query the real name and no the id
+            // Container(
+            //     width: double.infinity,
+            //     margin: const EdgeInsets.all(10),
+            //     child: Text(
+            //       project.owner.toString(),
+            //       style: const TextStyle(fontSize: 28),
+            //       textAlign: TextAlign.center,
+            //     )),
             Container(
+                margin: const EdgeInsets.all(16),
                 width: double.infinity,
-                margin: const EdgeInsets.all(10),
                 child: Text(
-                  project.name,
+                  "Created: ${DateFormat.yMMMd().format(project.pubDate)}",
                   style: const TextStyle(fontSize: 28),
-                  textAlign: TextAlign.center,
-                )),
-            Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(10),
-                child: Text(
-                  project.owner.toString(),
-                  style: const TextStyle(fontSize: 28),
-                  textAlign: TextAlign.center,
-                )),
-            Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(10),
-                child: Text(
-                  DateFormat.yMMMd().format(project.pubDate),
-                  style: const TextStyle(fontSize: 28),
-                  textAlign: TextAlign.center,
                 )),
             Expanded(
                 child: BaseProductListView(
                     products: project.products,
                     callbackUpdateProject: updateProduct)),
           ],
-        ),
-      ),
-    );
+        ));
   }
 }

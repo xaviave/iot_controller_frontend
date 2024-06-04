@@ -112,88 +112,77 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
   @override
   Widget build(BuildContext context) {
     // missing settings
-    return Center(
-      child: Column(
-        children: [
-          Container(
-              width: double.infinity,
-              margin: const EdgeInsets.all(10),
-              child: Text(
-                mode.name,
-                style: const TextStyle(fontSize: 28),
-                textAlign: TextAlign.center,
-              )),
-          const Text('FPS'),
-          Slider(
-              min: 0,
-              max: 1,
-              activeColor: fpsColor,
-              inactiveColor: Colors.grey,
-              thumbColor: fpsColor,
-              value: mode.fps,
-              onChanged: (value) {
-                setState(() {
-                  mode.fps = double.parse(value.toStringAsFixed(2));
-                  fpsColor = Color.lerp(Colors.black, Colors.white, mode.fps)!;
-                });
-              },
-              onChangeEnd: (value) {
-                callbackUpdateMode(mode);
-              }),
-          const Text('Blink interval'),
-          Slider(
-              min: 0,
-              max: 1,
-              activeColor: blinkColor,
-              inactiveColor: Colors.grey,
-              thumbColor: blinkColor,
-              value: mode.blink,
-              onChanged: (value) {
-                setState(() {
-                  mode.blink = double.parse(value.toStringAsFixed(2));
-                  blinkColor =
-                      Color.lerp(Colors.black, Colors.white, mode.blink)!;
-                });
-              },
-              onChangeEnd: (value) {
-                callbackUpdateMode(mode);
-              }),
-          Wrap(
-              children:
-                  List.generate(mode.palette.length, (i) => i).map((index) {
-            return addColorWidget(index, mode.palette[index], false);
-          }).toList()
-                    ..add(addColorWidget(0, Colors.black, true))),
-          ElevatedButton(
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return Dialog(
-                    child: ListView.builder(
-                      itemCount: DefaultPalette.values.length,
-                      itemBuilder: (context, index) {
-                        final palette = DefaultPalette.values[index];
-                        return ListTile(
-                          title: Text(palette.name),
-                          onTap: () {
-                            Navigator.pop(context, palette);
-                          },
-                        );
-                      },
-                    ),
-                  );
-                },
-              ).then((selectedPalette) {
-                if (selectedPalette != null) {
-                  callbackUpdatePalette(selectedPalette.p);
-                }
+    return Column(
+      children: [
+        const Text('FPS'),
+        Slider(
+            min: 0,
+            max: 1,
+            activeColor: fpsColor,
+            inactiveColor: Colors.grey,
+            thumbColor: fpsColor,
+            value: mode.fps,
+            onChanged: (value) {
+              setState(() {
+                mode.fps = double.parse(value.toStringAsFixed(2));
+                fpsColor = Color.lerp(Colors.black, Colors.white, mode.fps)!;
               });
             },
-            child: const Text('Select Palette'),
-          )
-        ],
-      ),
+            onChangeEnd: (value) {
+              callbackUpdateMode(mode);
+            }),
+        const Text('Blink interval'),
+        Slider(
+            min: 0,
+            max: 1,
+            activeColor: blinkColor,
+            inactiveColor: Colors.grey,
+            thumbColor: blinkColor,
+            value: mode.blink,
+            onChanged: (value) {
+              setState(() {
+                mode.blink = double.parse(value.toStringAsFixed(2));
+                blinkColor =
+                    Color.lerp(Colors.black, Colors.white, mode.blink)!;
+              });
+            },
+            onChangeEnd: (value) {
+              callbackUpdateMode(mode);
+            }),
+        Wrap(
+            children: List.generate(mode.palette.length, (i) => i).map((index) {
+          return addColorWidget(index, mode.palette[index], false);
+        }).toList()
+              ..add(addColorWidget(0, Colors.black, true))),
+        ElevatedButton(
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return Dialog(
+                  child: ListView.builder(
+                    itemCount: DefaultPalette.values.length,
+                    itemBuilder: (context, index) {
+                      final palette = DefaultPalette.values[index];
+                      return ListTile(
+                        title: Text(palette.name),
+                        onTap: () {
+                          Navigator.pop(context, palette);
+                        },
+                      );
+                    },
+                  ),
+                );
+              },
+            ).then((selectedPalette) {
+              if (selectedPalette != null) {
+                callbackUpdatePalette(selectedPalette.p);
+              }
+            });
+          },
+          child: const Text('Select Palette'),
+        )
+      ],
     );
   }
 }

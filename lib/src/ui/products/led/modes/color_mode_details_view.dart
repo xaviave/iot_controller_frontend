@@ -77,23 +77,14 @@ class _ColorModeDetailsViewState extends State<ColorModeDetailsView> {
 
   @override
   Widget build(BuildContext context) {
-    // missing settings
-    return Center(
-      child: Column(
-        children: [
-          Container(
-              width: double.infinity,
-              margin: const EdgeInsets.all(10),
-              child: Text(
-                // add LedModeDetailsView()
-                mode.name,
-                style: const TextStyle(fontSize: 28),
-                textAlign: TextAlign.center,
-              )),
-          addColorWidget(mode.color)
-        ],
-      ),
-    );
+    return Container(
+        decoration: const BoxDecoration(
+            gradient: RadialGradient(
+          colors: [Color(0xff2bff00), Color(0xffd3fb41)],
+          stops: [0.25, 0.87],
+          center: Alignment.center,
+        )),
+        child: addColorWidget(mode.color));
   }
 }
 

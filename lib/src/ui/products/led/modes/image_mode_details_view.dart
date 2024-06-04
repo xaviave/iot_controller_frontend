@@ -27,19 +27,17 @@ class _ImageModeDetailsViewState extends State<ImageModeDetailsView> {
   @override
   Widget build(BuildContext context) {
     // missing settings
-    return Center(
-      child: Column(
-        children: [
-          Container(
-              width: double.infinity,
-              margin: const EdgeInsets.all(10),
-              child: Text(
-                mode.name,
-                style: const TextStyle(fontSize: 28),
-                textAlign: TextAlign.center,
-              )),
-        ],
-      ),
+    return Column(
+      children: [
+        Container(
+            width: double.infinity,
+            margin: const EdgeInsets.all(10),
+            child: Text(
+              mode.name,
+              style: const TextStyle(fontSize: 28),
+              textAlign: TextAlign.center,
+            )),
+      ],
     );
   }
 }

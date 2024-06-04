@@ -41,68 +41,66 @@ class _CoffeeMachineDetailsViewState extends State<CoffeeMachineDetailsView> {
           ),
         ],
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(10),
-                child: Text(
-                  product.name,
-                  style: const TextStyle(fontSize: 28),
-                  textAlign: TextAlign.center,
-                )),
-            // add categories
-            Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(10),
-                child: Text(
-                  product.heat.toStringAsFixed(3),
-                  style: const TextStyle(fontSize: 28),
-                  textAlign: TextAlign.center,
-                )),
-            Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(10),
-                child: Text(
-                  product.water_level.name,
-                  style: const TextStyle(fontSize: 28),
-                  textAlign: TextAlign.center,
-                )),
-            Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(10),
-                child: Text(
-                  product.used_water_level.name,
-                  style: const TextStyle(fontSize: 28),
-                  textAlign: TextAlign.center,
-                )),
-            Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(10),
-                child: Text(
-                  product.coffee_level.name,
-                  style: const TextStyle(fontSize: 28),
-                  textAlign: TextAlign.center,
-                )),
-            Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(10),
-                child: Text(
-                  product.filter_position ? "Good" : "Bad",
-                  style: const TextStyle(fontSize: 28),
-                  textAlign: TextAlign.center,
-                )),
-            Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(10),
-                child: Text(
-                  product.mode_value.toString(),
-                  style: const TextStyle(fontSize: 28),
-                  textAlign: TextAlign.center,
-                )),
-          ],
-        ),
+      body: Column(
+        children: [
+          Container(
+              width: double.infinity,
+              margin: const EdgeInsets.all(10),
+              child: Text(
+                product.name,
+                style: const TextStyle(fontSize: 28),
+                textAlign: TextAlign.center,
+              )),
+          // add categories
+          Container(
+              width: double.infinity,
+              margin: const EdgeInsets.all(10),
+              child: Text(
+                product.heat.toStringAsFixed(3),
+                style: const TextStyle(fontSize: 28),
+                textAlign: TextAlign.center,
+              )),
+          Container(
+              width: double.infinity,
+              margin: const EdgeInsets.all(10),
+              child: Text(
+                product.water_level.name,
+                style: const TextStyle(fontSize: 28),
+                textAlign: TextAlign.center,
+              )),
+          Container(
+              width: double.infinity,
+              margin: const EdgeInsets.all(10),
+              child: Text(
+                product.used_water_level.name,
+                style: const TextStyle(fontSize: 28),
+                textAlign: TextAlign.center,
+              )),
+          Container(
+              width: double.infinity,
+              margin: const EdgeInsets.all(10),
+              child: Text(
+                product.coffee_level.name,
+                style: const TextStyle(fontSize: 28),
+                textAlign: TextAlign.center,
+              )),
+          Container(
+              width: double.infinity,
+              margin: const EdgeInsets.all(10),
+              child: Text(
+                product.filter_position ? "Good" : "Bad",
+                style: const TextStyle(fontSize: 28),
+                textAlign: TextAlign.center,
+              )),
+          Container(
+              width: double.infinity,
+              margin: const EdgeInsets.all(10),
+              child: Text(
+                product.mode_value.toString(),
+                style: const TextStyle(fontSize: 28),
+                textAlign: TextAlign.center,
+              )),
+        ],
       ),
     );
   }

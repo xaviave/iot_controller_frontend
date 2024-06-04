@@ -12,19 +12,17 @@ class BaseProductDetailsView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('BaseProduct Details'),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Container(
-                width: double.infinity,
-                margin: const EdgeInsets.all(10),
-                child: Text(
-                  product.name,
-                  style: const TextStyle(fontSize: 28),
-                  textAlign: TextAlign.center,
-                )),
-          ],
-        ),
+      body: Column(
+        children: [
+          Container(
+              width: double.infinity,
+              margin: const EdgeInsets.all(10),
+              child: Text(
+                product.name,
+                style: const TextStyle(fontSize: 28),
+                textAlign: TextAlign.center,
+              )),
+        ],
       ),
     );
   }
