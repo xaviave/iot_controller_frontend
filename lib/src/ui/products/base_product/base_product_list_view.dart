@@ -19,39 +19,49 @@ class BaseProductListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-        restorationId: 'BaseProductListView',
-        itemCount: products.length,
-        itemBuilder: (BuildContext context, int index) {
-          String name = products.keys.elementAt(index);
-          return ListTile(
-              title: LedPanelMinimalDetailsView(
-                  product: products[name] as LedPanel),
-              onTap: () {
-                if (products[name] is LedPanel) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => LedPanelDetailsView(
-                          product: products[name] as LedPanel,
-                          callbackUpdateProject: callbackUpdateProject),
-                      settings: const RouteSettings(),
-                    ),
-                  );
-                } else if (products[name] is CoffeeMachine) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CoffeeMachineDetailsView(
-                          product: products[name] as CoffeeMachine,
-                          callbackUpdateProject: callbackUpdateProject),
-                      settings: const RouteSettings(),
-                    ),
-                  );
-                }
-              });
-        },
-      ),
+      body: ListView.separated(
+          restorationId: 'BaseProductListView',
+          itemCount: products.length,
+          itemBuilder: (BuildContext context, int index) {
+            String name = products.keys.elementAt(index);
+            return ListTile(
+                // Decoration
+                // shape: RoundedRectangleBorder(
+                //   side: const BorderSide(color: Colors.white70, width: 2),
+                //   borderRadius: BorderRadius.circular(30),
+                // ),
+
+                // Code
+                // Should be updated to adapt each classes
+                title: LedPanelMinimalDetailsView(
+                    product: products[name] as LedPanel),
+                onTap: () {
+                  if (products[name] is LedPanel) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LedPanelDetailsView(
+                            product: products[name] as LedPanel,
+                            callbackUpdateProject: callbackUpdateProject),
+                        settings: const RouteSettings(),
+                      ),
+                    );
+                  } else if (products[name] is CoffeeMachine) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CoffeeMachineDetailsView(
+                            product: products[name] as CoffeeMachine,
+                            callbackUpdateProject: callbackUpdateProject),
+                        settings: const RouteSettings(),
+                      ),
+                    );
+                  }
+                });
+          },
+          separatorBuilder: (context, index) => const SizedBox(
+                height: 10,
+              )),
     );
   }
 }

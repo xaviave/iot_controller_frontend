@@ -172,38 +172,42 @@ class _LedPanelMinimalDetailsViewState
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        // color: Colors.blueAccent,
-        width: double.infinity,
-        child: Column(
-          children: [
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Text(
-                product.name.capitalize,
-                style: const TextStyle(fontSize: 28),
-                textAlign: TextAlign.center,
-              ),
-              OnOffButton(
-                  status: product.status, callbackUpdateStatus: updateStatus)
-            ]),
-            Slider(
-                min: 0,
-                max: 1,
-                activeColor: colorBrightness,
-                inactiveColor: Colors.grey,
-                thumbColor: colorBrightness,
-                value: product.brightness,
-                onChanged: (value) {
-                  setState(() {
-                    product.brightness = double.parse(value.toStringAsFixed(2));
-                    colorBrightness = Color.lerp(
-                        Colors.black, Colors.yellow, product.brightness)!;
-                  });
-                },
-                onChangeEnd: (value) {
-                  updateProduct();
-                }),
-          ],
-        ));
+    return Card(
+        child: SizedBox(
+            width: double.infinity,
+            child: Column(
+              children: [
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        product.name.capitalize,
+                        style: const TextStyle(fontSize: 28),
+                        textAlign: TextAlign.center,
+                      ),
+                      OnOffButton(
+                          status: product.status,
+                          callbackUpdateStatus: updateStatus)
+                    ]),
+                Slider(
+                    min: 0,
+                    max: 1,
+                    activeColor: colorBrightness,
+                    inactiveColor: Colors.grey,
+                    thumbColor: colorBrightness,
+                    value: product.brightness,
+                    onChanged: (value) {
+                      setState(() {
+                        product.brightness =
+                            double.parse(value.toStringAsFixed(2));
+                        colorBrightness = Color.lerp(
+                            Colors.black, Colors.yellow, product.brightness)!;
+                      });
+                    },
+                    onChangeEnd: (value) {
+                      updateProduct();
+                    }),
+              ],
+            )));
   }
 }

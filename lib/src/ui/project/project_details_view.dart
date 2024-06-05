@@ -63,8 +63,8 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
                 margin: const EdgeInsets.all(16),
                 width: double.infinity,
                 child: Text(
-                  "Created: ${DateFormat.yMMMd().format(project.pubDate)}",
-                  style: const TextStyle(fontSize: 28),
+                  "Created on ${DateFormat.yMMMd().format(project.pubDate)}",
+                  style: const TextStyle(fontSize: 20),
                 )),
             Expanded(
                 child: BaseProductListView(
