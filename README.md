@@ -7,6 +7,7 @@ The app aim to control every different IOT product connected to the server with 
 
 - Andrdoid Widget
 - gRPC web (not working on web platform)
+- [Secure identification](https://warrenstrange.medium.com/flutter-web-a-dart-grpc-server-and-firebase-authentication-9b6fb4593593)
 - Design app
 
 ## Commands

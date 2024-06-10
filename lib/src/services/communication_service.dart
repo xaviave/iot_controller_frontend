@@ -1,3 +1,4 @@
+import 'package:grpc/grpc_connection_interface.dart';
 import 'package:iot_controller/protos/backend.pbgrpc.dart';
 import 'package:iot_controller/src/models/category.dart';
 import 'package:iot_controller/src/models/products/coffee_machine.dart';
@@ -5,10 +6,13 @@ import 'package:iot_controller/src/models/products/led/modes/color_mode.dart';
 import 'package:iot_controller/src/models/products/led/led_panel.dart';
 import 'package:iot_controller/src/models/products/led/modes/pattern_mode.dart';
 import 'package:iot_controller/src/models/project.dart';
-import 'package:grpc/grpc.dart';
+
+import 'package:iot_controller/src/services/channel/abstract_communication.dart'
+    if (dart.library.io) 'package:iot_controller/src/services/channel/mobile_communication.dart'
+    if (dart.library.html) 'package:iot_controller/src/services/channel/web_communication.dart';
 
 class CategoryCommunication {
-  late ClientChannel channel;
+  late ClientChannelBase channel;
   late CategoryControllerClient stub;
 
   CategoryCommunication({required String serverName, required int serverPort}) {
@@ -16,10 +20,7 @@ class CategoryCommunication {
   }
 
   Future<void> init(String serverName, int serverPort) async {
-    channel = ClientChannel(serverName,
-        port: serverPort,
-        options:
-            const ChannelOptions(credentials: ChannelCredentials.insecure()));
+    channel = getCommunicationService(serverName, serverPort);
     stub = CategoryControllerClient(channel,
         options: CallOptions(timeout: const Duration(seconds: 30)));
   }
@@ -55,19 +56,15 @@ class CategoryCommunication {
 }
 
 class ColorModeCommunication {
-  late ClientChannel channel;
+  late ClientChannelBase channel;
   late ColorModeControllerClient stub;
 
   ColorModeCommunication(
       {required String serverName, required int serverPort}) {
     init(serverName, serverPort);
   }
-
   Future<void> init(String serverName, int serverPort) async {
-    channel = ClientChannel(serverName,
-        port: serverPort,
-        options:
-            const ChannelOptions(credentials: ChannelCredentials.insecure()));
+    channel = getCommunicationService(serverName, serverPort);
     stub = ColorModeControllerClient(channel,
         options: CallOptions(timeout: const Duration(seconds: 30)));
   }
@@ -103,19 +100,15 @@ class ColorModeCommunication {
 }
 
 class PatternModeCommunication {
-  late ClientChannel channel;
+  late ClientChannelBase channel;
   late PatternModeControllerClient stub;
 
   PatternModeCommunication(
       {required String serverName, required int serverPort}) {
     init(serverName, serverPort);
   }
-
   Future<void> init(String serverName, int serverPort) async {
-    channel = ClientChannel(serverName,
-        port: serverPort,
-        options:
-            const ChannelOptions(credentials: ChannelCredentials.insecure()));
+    channel = getCommunicationService(serverName, serverPort);
     stub = PatternModeControllerClient(channel,
         options: CallOptions(timeout: const Duration(seconds: 30)));
   }
@@ -150,20 +143,17 @@ class PatternModeCommunication {
 }
 
 class LedPanelCommunication {
-  late ClientChannel channel;
+  late ClientChannelBase channel;
   late LedPanelControllerClient stub;
 
   LedPanelCommunication({required String serverName, required int serverPort}) {
     init(serverName, serverPort);
   }
-
   Future<void> init(String serverName, int serverPort) async {
-    channel = ClientChannel(serverName,
-        port: serverPort,
-        options:
-            const ChannelOptions(credentials: ChannelCredentials.insecure()));
-    stub = LedPanelControllerClient(channel,
-        options: CallOptions(timeout: const Duration(seconds: 30)));
+    channel = getCommunicationService(serverName, serverPort);
+    channel = getCommunicationService(serverName, serverPort);
+    options:
+    CallOptions(timeout: const Duration(seconds: 30));
   }
 
   Future<void> clean() async {
@@ -197,19 +187,15 @@ class LedPanelCommunication {
 }
 
 class CoffeeMachineCommunication {
-  late ClientChannel channel;
+  late ClientChannelBase channel;
   late CoffeeMachineControllerClient stub;
 
   CoffeeMachineCommunication(
       {required String serverName, required int serverPort}) {
     init(serverName, serverPort);
   }
-
   Future<void> init(String serverName, int serverPort) async {
-    channel = ClientChannel(serverName,
-        port: serverPort,
-        options:
-            const ChannelOptions(credentials: ChannelCredentials.insecure()));
+    channel = getCommunicationService(serverName, serverPort);
     stub = CoffeeMachineControllerClient(channel,
         options: CallOptions(timeout: const Duration(seconds: 30)));
   }
@@ -245,7 +231,7 @@ class CoffeeMachineCommunication {
 }
 
 class ProjectCommunication {
-  late ClientChannel channel;
+  late ClientChannelBase channel;
   late ProjectControllerClient stub;
 
   ProjectCommunication({required String serverName, required int serverPort}) {
@@ -253,10 +239,7 @@ class ProjectCommunication {
   }
 
   Future<void> init(String serverName, int serverPort) async {
-    channel = ClientChannel(serverName,
-        port: serverPort,
-        options:
-            const ChannelOptions(credentials: ChannelCredentials.insecure()));
+    channel = getCommunicationService(serverName, serverPort);
     stub = ProjectControllerClient(channel,
         options: CallOptions(timeout: const Duration(seconds: 30)));
   }
