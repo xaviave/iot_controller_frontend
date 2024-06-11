@@ -53,7 +53,7 @@ class _LedModeListAlertViewState extends State<LedModeListAlertView> {
 
                     return ListTile(
                       title: Column(children: [
-                        Text('LedMode $name'),
+                        Text("Led mode '$name'"),
                         LedModePreview(mode: state.modes[name]!)
                       ]),
                       onTap: () {

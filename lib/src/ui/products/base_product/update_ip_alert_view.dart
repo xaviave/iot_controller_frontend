@@ -26,11 +26,12 @@ class IpUpdateAlertView extends StatelessWidget {
                         labelText: 'Product IP',
                         hintText: 'Current Product IP: $ipAddress'),
                     onSubmitted: (value) {
+                      // add validator for IP
                       callbackUpdateIp(value, ipPort);
                     },
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 10, width: 1000),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: TextField(
@@ -40,6 +41,7 @@ class IpUpdateAlertView extends StatelessWidget {
                         hintText: 'Current Product IP Port: $ipPort'),
                     keyboardType: TextInputType.number,
                     onSubmitted: (value) {
+                      // add validator for port
                       callbackUpdateIp(ipAddress, int.parse(value));
                     },
                   ),

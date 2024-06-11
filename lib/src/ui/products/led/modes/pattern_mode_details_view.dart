@@ -197,7 +197,9 @@ class PatternModePreview extends StatelessWidget {
     return Wrap(
         children: List.generate(mode.palette.length, (i) => i).map((index) {
       return SizedBox(
-          width: 20, height: 20, child: Container(color: mode.palette[index]));
+          width: MediaQuery.of(context).size.width / 10,
+          height: MediaQuery.of(context).size.width / 10,
+          child: Container(color: mode.palette[index]));
     }).toList());
   }
 }

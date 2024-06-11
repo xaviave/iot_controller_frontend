@@ -91,11 +91,17 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                   showDialog(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
-                            title: const Text("Change Product IP"),
-                            content: IpUpdateAlertView(
-                                ipAddress: product.ipAddress,
-                                ipPort: product.ipPort,
-                                callbackUpdateIp: updateIp),
+                            title: const Text(
+                              "Change Product IP",
+                              textAlign: TextAlign.center,
+                            ),
+                            insetPadding: const EdgeInsets.all(50),
+                            content: SizedBox(
+                                width: MediaQuery.of(context).size.width,
+                                child: IpUpdateAlertView(
+                                    ipAddress: product.ipAddress,
+                                    ipPort: product.ipPort,
+                                    callbackUpdateIp: updateIp)),
                             actions: [
                               TextButton(
                                 child: const Text("Cancel"),
@@ -144,8 +150,11 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                         context: context,
                         builder: (BuildContext context) => AlertDialog(
                               title: const Text("Change Mode"),
-                              content: LedModeListAlertView(
-                                  callbackUpdateMode: updateMode),
+                              insetPadding: const EdgeInsets.all(50),
+                              content: SizedBox(
+                                  width: MediaQuery.of(context).size.width,
+                                  child: LedModeListAlertView(
+                                      callbackUpdateMode: updateMode)),
                               actions: [
                                 TextButton(
                                   child: const Text("Cancel"),

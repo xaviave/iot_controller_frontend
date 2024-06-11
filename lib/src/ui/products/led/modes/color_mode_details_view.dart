@@ -96,8 +96,8 @@ class ColorModePreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: double.infinity,
-        height: 20,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.width / 10,
         child: Container(color: mode.color));
   }
 }
