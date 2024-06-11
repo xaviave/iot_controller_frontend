@@ -50,7 +50,6 @@ class _LedModeListAlertViewState extends State<LedModeListAlertView> {
                   itemCount: state.modes.length,
                   itemBuilder: (BuildContext context, int index) {
                     String name = state.modes.keys.elementAt(index);
-
                     return ListTile(
                       title: Column(children: [
                         Text("Led mode '$name'"),
@@ -60,9 +59,6 @@ class _LedModeListAlertViewState extends State<LedModeListAlertView> {
                         callbackUpdateMode(state.modes[name]!);
                         Navigator.of(context).pop();
                       },
-                      // onLongPress: () {
-                      //   LedModePreview(mode: state.modes[name]!);
-                      // },
                     );
                   });
             } else {

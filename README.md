@@ -5,8 +5,8 @@ The app aim to control every different IOT product connected to the server with 
 
 ## To-Do
 
-- Andrdoid Widget
-- gRPC web (not working on web platform)
+- Android Widget
+- gRPC web ok on branch but needs a envoy proxy
 - Design app
 
 ## Commands

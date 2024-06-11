@@ -173,6 +173,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                       )),
                 )
               ]),
+              const SizedBox(height: 10),
               LedModeDetailsView(
                   mode: product.mode, callbackUpdateMode: updateMode),
             ],

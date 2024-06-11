@@ -44,7 +44,7 @@ class _ColorModeDetailsViewState extends State<ColorModeDetailsView> {
           final Color newColor = await showColorPickerDialog(
             context,
             c,
-            title: Text('ColorPicker',
+            title: Text('Color Picker',
                 style: Theme.of(context).textTheme.titleLarge),
             width: 40,
             height: 40,
@@ -52,26 +52,25 @@ class _ColorModeDetailsViewState extends State<ColorModeDetailsView> {
             runSpacing: 0,
             borderRadius: 0,
             wheelDiameter: 165,
-            enableOpacity: true,
             showColorCode: true,
             colorCodeHasColor: true,
             pickersEnabled: <ColorPickerType, bool>{
               ColorPickerType.wheel: true,
             },
             copyPasteBehavior: const ColorPickerCopyPasteBehavior(
-              copyButton: true,
               pasteButton: true,
               longPressMenu: true,
             ),
             actionButtons: const ColorPickerActionButtons(
               okButton: true,
               closeButton: true,
-              dialogActionButtons: false,
             ),
             constraints: const BoxConstraints(
                 minHeight: 480, minWidth: 320, maxWidth: 320),
           );
-          callbackUpdatePalette(newColor);
+          if (c != newColor) {
+            callbackUpdatePalette(newColor);
+          }
         });
   }
 

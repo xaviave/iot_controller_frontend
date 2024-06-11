@@ -180,6 +180,8 @@ class LedPanelCommunication {
   }
 
   Future<LedPanelListResponse> List() async {
+    print("List led");
+
     final response = await stub.list(LedPanelListRequest());
     return response;
   }
@@ -228,6 +230,7 @@ class CoffeeMachineCommunication {
   }
 
   Future<CoffeeMachineListResponse> List() async {
+    print("List coffee");
     final response = await stub.list(CoffeeMachineListRequest());
     return response;
   }
