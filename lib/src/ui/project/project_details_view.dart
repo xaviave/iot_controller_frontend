@@ -50,19 +50,11 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
         ),
         body: Column(
           children: [
-            // need to query the real name and no the id
-            // Container(
-            //     width: double.infinity,
-            //     margin: const EdgeInsets.all(10),
-            //     child: Text(
-            //       project.owner.toString(),
-            //       style: const TextStyle(fontSize: 28),
-            //       textAlign: TextAlign.center,
-            //     )),
             Container(
                 margin: const EdgeInsets.all(16),
                 width: double.infinity,
                 child: Text(
+                  "${project.owner.username.toUpperCase()}'s project\n"
                   "Created on ${DateFormat.yMMMd().format(project.pubDate)}",
                   style: const TextStyle(fontSize: 20),
                 )),

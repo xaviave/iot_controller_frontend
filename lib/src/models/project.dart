@@ -1,11 +1,12 @@
 import 'package:iot_controller/protos/backend.pb.dart';
 import 'package:intl/intl.dart';
+import 'package:iot_controller/src/models/user.dart';
 
 import 'products/base_product.dart';
 
 class Project {
   int id;
-  int owner;
+  User owner;
   DateTime pubDate;
   String name;
   Map<String, BaseProduct> products;
@@ -27,7 +28,7 @@ class Project {
 
     return Project(
         id: r.id,
-        owner: r.owner,
+        owner: User.fromResponse(r.owner),
         pubDate: DateTime.parse(r.pubDate),
         name: r.name,
         products: products);
@@ -37,7 +38,7 @@ class Project {
     return ProjectRequest(
         id: id,
         name: name,
-        owner: owner,
+        owner: owner.getRequest(),
         pubDate: f.format(pubDate),
         products: products.values.map((x) => x.getAbstractRequest()).toList());
   }

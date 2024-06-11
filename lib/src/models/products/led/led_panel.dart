@@ -13,6 +13,8 @@ class LedPanel extends BaseProduct {
   LedPanel({
     required super.id,
     required super.name,
+    required super.ipPort,
+    required super.ipAddress,
     required super.categories,
     required this.status,
     required this.brightness,
@@ -23,6 +25,8 @@ class LedPanel extends BaseProduct {
     return LedPanelRequest(
       id: id,
       name: name,
+      ipPort: ipPort,
+      ipAddress: ipAddress,
       categories: categories.map((x) => x.getRequest()).toList(),
       status: status.id,
       brightness: truncateToDecimalPlaces(brightness, 2),
@@ -39,6 +43,8 @@ class LedPanel extends BaseProduct {
     return LedPanel(
         id: r.id,
         name: r.name,
+        ipPort: r.ipPort,
+        ipAddress: r.ipAddress,
         categories:
             r.categories.map((c) => Category(id: c.id, name: c.name)).toList(),
         status: Status.fromId(r.status),

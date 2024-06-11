@@ -4,6 +4,7 @@ import "package:iot_controller/src/models/products/led/modes/led_mode.dart";
 import "package:iot_controller/src/models/products/led/led_panel.dart";
 import "package:iot_controller/src/models/status.dart";
 import "package:flutter/material.dart";
+import "package:iot_controller/src/ui/products/base_product/update_ip_alert_view.dart";
 import "package:iot_controller/src/ui/products/led/modes/led_mode_list_alert_view.dart";
 import "package:iot_controller/src/ui/settings/settings_view.dart";
 import "package:iot_controller/src/ui/utils/capitalize.dart";
@@ -30,6 +31,14 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
 
   void updateMode(LedMode m) {
     setState(() => product.mode = m);
+    updateProduct();
+  }
+
+  void updateIp(String ipAddress, int ipPort) {
+    setState(() {
+      product.ipAddress = ipAddress;
+      product.ipPort = ipPort;
+    });
     updateProduct();
   }
 
@@ -76,7 +85,34 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
               // add categories
               OnOffButton(
                   status: product.status, callbackUpdateStatus: updateStatus),
-
+              const SizedBox(height: 10),
+              TextButton(
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                            title: const Text("Change Product IP"),
+                            content: IpUpdateAlertView(
+                                ipAddress: product.ipAddress,
+                                ipPort: product.ipPort,
+                                callbackUpdateIp: updateIp),
+                            actions: [
+                              TextButton(
+                                child: const Text("Cancel"),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              )
+                            ],
+                          ));
+                },
+                child: Container(
+                    margin: const EdgeInsets.all(10),
+                    child: const Text(
+                      "Update Product IP",
+                      style: TextStyle(fontSize: 28),
+                    )),
+              ),
               Slider(
                   min: 0,
                   max: 1,

@@ -64,7 +64,7 @@ class _CoffeeMachineDetailsViewState extends State<CoffeeMachineDetailsView> {
               width: double.infinity,
               margin: const EdgeInsets.all(10),
               child: Text(
-                product.water_level.name,
+                product.waterLevel.name,
                 style: const TextStyle(fontSize: 28),
                 textAlign: TextAlign.center,
               )),
@@ -72,7 +72,7 @@ class _CoffeeMachineDetailsViewState extends State<CoffeeMachineDetailsView> {
               width: double.infinity,
               margin: const EdgeInsets.all(10),
               child: Text(
-                product.used_water_level.name,
+                product.usedWaterLevel.name,
                 style: const TextStyle(fontSize: 28),
                 textAlign: TextAlign.center,
               )),
@@ -80,7 +80,7 @@ class _CoffeeMachineDetailsViewState extends State<CoffeeMachineDetailsView> {
               width: double.infinity,
               margin: const EdgeInsets.all(10),
               child: Text(
-                product.coffee_level.name,
+                product.coffeeLevel.name,
                 style: const TextStyle(fontSize: 28),
                 textAlign: TextAlign.center,
               )),
@@ -88,7 +88,7 @@ class _CoffeeMachineDetailsViewState extends State<CoffeeMachineDetailsView> {
               width: double.infinity,
               margin: const EdgeInsets.all(10),
               child: Text(
-                product.filter_position ? "Good" : "Bad",
+                product.filterPosition ? "Good" : "Bad",
                 style: const TextStyle(fontSize: 28),
                 textAlign: TextAlign.center,
               )),
@@ -96,7 +96,7 @@ class _CoffeeMachineDetailsViewState extends State<CoffeeMachineDetailsView> {
               width: double.infinity,
               margin: const EdgeInsets.all(10),
               child: Text(
-                product.mode_value.toString(),
+                product.modeValue.toString(),
                 style: const TextStyle(fontSize: 28),
                 textAlign: TextAlign.center,
               )),

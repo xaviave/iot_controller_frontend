@@ -39,6 +39,7 @@ class SettingsView extends StatelessWidget {
                         child: Text('Dark Theme'),
                       )
                     ]),
+                const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: TextField(
@@ -53,6 +54,7 @@ class SettingsView extends StatelessWidget {
                     },
                   ),
                 ),
+                const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: TextField(

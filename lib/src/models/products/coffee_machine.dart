@@ -20,37 +20,41 @@ enum ContainerStatus {
 class CoffeeMachine extends BaseProduct {
   Status status;
   double heat;
-  ContainerStatus water_level;
-  ContainerStatus used_water_level;
-  ContainerStatus coffee_level;
-  bool filter_position;
-  int mode_value;
+  ContainerStatus waterLevel;
+  ContainerStatus usedWaterLevel;
+  ContainerStatus coffeeLevel;
+  bool filterPosition;
+  int modeValue;
 
   CoffeeMachine({
     required super.id,
     required super.name,
+    required super.ipPort,
+    required super.ipAddress,
     required super.categories,
     required this.status,
     required this.heat,
-    required this.water_level,
-    required this.used_water_level,
-    required this.coffee_level,
-    required this.filter_position,
-    required this.mode_value,
+    required this.waterLevel,
+    required this.usedWaterLevel,
+    required this.coffeeLevel,
+    required this.filterPosition,
+    required this.modeValue,
   });
 
   CoffeeMachineRequest getRequest() {
     return CoffeeMachineRequest(
       id: id,
       name: name,
+      ipPort: ipPort,
+      ipAddress: ipAddress,
       categories: categories.map((x) => x.getRequest()).toList(),
       status: status.id,
       heat: heat,
-      waterLevel: water_level.id,
-      usedWaterLevel: used_water_level.id,
-      coffeeLevel: coffee_level.id,
-      filterPosition: filter_position,
-      modeValue: mode_value,
+      waterLevel: waterLevel.id,
+      usedWaterLevel: usedWaterLevel.id,
+      coffeeLevel: coffeeLevel.id,
+      filterPosition: filterPosition,
+      modeValue: modeValue,
     );
   }
 
@@ -63,15 +67,17 @@ class CoffeeMachine extends BaseProduct {
     return CoffeeMachine(
       id: r.id,
       name: r.name,
+      ipPort: r.ipPort,
+      ipAddress: r.ipAddress,
       categories:
           r.categories.map((c) => Category(id: c.id, name: c.name)).toList(),
       status: Status.fromId(r.status),
       heat: r.heat,
-      water_level: ContainerStatus.fromId(r.waterLevel),
-      used_water_level: ContainerStatus.fromId(r.usedWaterLevel),
-      coffee_level: ContainerStatus.fromId(r.coffeeLevel),
-      filter_position: r.filterPosition,
-      mode_value: r.modeValue,
+      waterLevel: ContainerStatus.fromId(r.waterLevel),
+      usedWaterLevel: ContainerStatus.fromId(r.usedWaterLevel),
+      coffeeLevel: ContainerStatus.fromId(r.coffeeLevel),
+      filterPosition: r.filterPosition,
+      modeValue: r.modeValue,
     );
   }
 }
