@@ -43,8 +43,9 @@ class _ProjectListViewState extends State<ProjectListView> {
             if (state is ProjectListInitial) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is ProjectListError) {
+              print(state.message);
               return Center(
-                child: Text("Error: ${state.message}"),
+                child: Text(state.message),
               );
             } else if (state is ProjectListSuccess) {
               return ListView.builder(

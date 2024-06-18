@@ -1,0 +1,9 @@
+services:
+  envoy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9901:9901"  # Port mapping for Envoy admin interface
+      - "9001:9001"  # Port mapping for Envoy
+      - "9002:9002"  # Port mapping for Envoy
