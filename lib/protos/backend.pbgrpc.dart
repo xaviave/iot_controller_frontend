@@ -1273,6 +1273,171 @@ abstract class ProjectControllerServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.ProjectRequest request);
 }
 
+@$pb.GrpcServiceName('base_app.products_controller.UserController')
+class UserControllerClient extends $grpc.Client {
+  static final _$create = $grpc.ClientMethod<$0.UserRequest, $0.UserResponse>(
+      '/base_app.products_controller.UserController/Create',
+      ($0.UserRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.UserResponse.fromBuffer(value));
+  static final _$destroy = $grpc.ClientMethod<$0.UserDestroyRequest, $1.Empty>(
+      '/base_app.products_controller.UserController/Destroy',
+      ($0.UserDestroyRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+  static final _$list =
+      $grpc.ClientMethod<$0.UserListRequest, $0.UserListResponse>(
+          '/base_app.products_controller.UserController/List',
+          ($0.UserListRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) =>
+              $0.UserListResponse.fromBuffer(value));
+  static final _$partialUpdate =
+      $grpc.ClientMethod<$0.UserPartialUpdateRequest, $0.UserResponse>(
+          '/base_app.products_controller.UserController/PartialUpdate',
+          ($0.UserPartialUpdateRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) => $0.UserResponse.fromBuffer(value));
+  static final _$retrieve =
+      $grpc.ClientMethod<$0.UserRetrieveRequest, $0.UserResponse>(
+          '/base_app.products_controller.UserController/Retrieve',
+          ($0.UserRetrieveRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) => $0.UserResponse.fromBuffer(value));
+  static final _$update = $grpc.ClientMethod<$0.UserRequest, $0.UserResponse>(
+      '/base_app.products_controller.UserController/Update',
+      ($0.UserRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.UserResponse.fromBuffer(value));
+
+  UserControllerClient($grpc.ClientChannel channel,
+      {$grpc.CallOptions? options,
+      $core.Iterable<$grpc.ClientInterceptor>? interceptors})
+      : super(channel, options: options, interceptors: interceptors);
+
+  $grpc.ResponseFuture<$0.UserResponse> create($0.UserRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$create, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$1.Empty> destroy($0.UserDestroyRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$destroy, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.UserListResponse> list($0.UserListRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$list, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.UserResponse> partialUpdate(
+      $0.UserPartialUpdateRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$partialUpdate, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.UserResponse> retrieve($0.UserRetrieveRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$retrieve, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.UserResponse> update($0.UserRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$update, request, options: options);
+  }
+}
+
+@$pb.GrpcServiceName('base_app.products_controller.UserController')
+abstract class UserControllerServiceBase extends $grpc.Service {
+  $core.String get $name => 'base_app.products_controller.UserController';
+
+  UserControllerServiceBase() {
+    $addMethod($grpc.ServiceMethod<$0.UserRequest, $0.UserResponse>(
+        'Create',
+        create_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.UserRequest.fromBuffer(value),
+        ($0.UserResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.UserDestroyRequest, $1.Empty>(
+        'Destroy',
+        destroy_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.UserDestroyRequest.fromBuffer(value),
+        ($1.Empty value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.UserListRequest, $0.UserListResponse>(
+        'List',
+        list_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.UserListRequest.fromBuffer(value),
+        ($0.UserListResponse value) => value.writeToBuffer()));
+    $addMethod(
+        $grpc.ServiceMethod<$0.UserPartialUpdateRequest, $0.UserResponse>(
+            'PartialUpdate',
+            partialUpdate_Pre,
+            false,
+            false,
+            ($core.List<$core.int> value) =>
+                $0.UserPartialUpdateRequest.fromBuffer(value),
+            ($0.UserResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.UserRetrieveRequest, $0.UserResponse>(
+        'Retrieve',
+        retrieve_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.UserRetrieveRequest.fromBuffer(value),
+        ($0.UserResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.UserRequest, $0.UserResponse>(
+        'Update',
+        update_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.UserRequest.fromBuffer(value),
+        ($0.UserResponse value) => value.writeToBuffer()));
+  }
+
+  $async.Future<$0.UserResponse> create_Pre(
+      $grpc.ServiceCall call, $async.Future<$0.UserRequest> request) async {
+    return create(call, await request);
+  }
+
+  $async.Future<$1.Empty> destroy_Pre($grpc.ServiceCall call,
+      $async.Future<$0.UserDestroyRequest> request) async {
+    return destroy(call, await request);
+  }
+
+  $async.Future<$0.UserListResponse> list_Pre(
+      $grpc.ServiceCall call, $async.Future<$0.UserListRequest> request) async {
+    return list(call, await request);
+  }
+
+  $async.Future<$0.UserResponse> partialUpdate_Pre($grpc.ServiceCall call,
+      $async.Future<$0.UserPartialUpdateRequest> request) async {
+    return partialUpdate(call, await request);
+  }
+
+  $async.Future<$0.UserResponse> retrieve_Pre($grpc.ServiceCall call,
+      $async.Future<$0.UserRetrieveRequest> request) async {
+    return retrieve(call, await request);
+  }
+
+  $async.Future<$0.UserResponse> update_Pre(
+      $grpc.ServiceCall call, $async.Future<$0.UserRequest> request) async {
+    return update(call, await request);
+  }
+
+  $async.Future<$0.UserResponse> create(
+      $grpc.ServiceCall call, $0.UserRequest request);
+  $async.Future<$1.Empty> destroy(
+      $grpc.ServiceCall call, $0.UserDestroyRequest request);
+  $async.Future<$0.UserListResponse> list(
+      $grpc.ServiceCall call, $0.UserListRequest request);
+  $async.Future<$0.UserResponse> partialUpdate(
+      $grpc.ServiceCall call, $0.UserPartialUpdateRequest request);
+  $async.Future<$0.UserResponse> retrieve(
+      $grpc.ServiceCall call, $0.UserRetrieveRequest request);
+  $async.Future<$0.UserResponse> update(
+      $grpc.ServiceCall call, $0.UserRequest request);
+}
+
 @$pb.GrpcServiceName('base_app.products_controller.VideoModeController')
 class VideoModeControllerClient extends $grpc.Client {
   static final _$create =

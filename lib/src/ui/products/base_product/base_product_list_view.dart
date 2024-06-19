@@ -3,11 +3,12 @@ import 'package:iot_controller/src/models/products/base_product.dart';
 import 'package:iot_controller/src/models/products/coffee_machine.dart';
 import 'package:iot_controller/src/models/products/led/led_panel.dart';
 import 'package:iot_controller/src/ui/products/led/led_panel_details_view.dart';
+import 'package:vector_math/vector_math_64.dart' show Vector3;
 
 import '../coffee_machine/coffee_machine_details_view.dart';
 
 class BaseProductListView extends StatelessWidget {
-  final Function(BaseProduct, BuildContext) callbackUpdateProject;
+  final Function(BaseProduct) callbackUpdateProject;
   static const routeName = '/products';
 
   final Map<String, BaseProduct> products;
@@ -18,43 +19,49 @@ class BaseProductListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-        restorationId: 'BaseProductListView',
-        itemCount: products.length,
-        itemBuilder: (BuildContext context, int index) {
-          String name = products.keys.elementAt(index);
+      body: ListView.separated(
+          restorationId: 'BaseProductListView',
+          itemCount: products.length,
+          itemBuilder: (BuildContext context, int index) {
+            String name = products.keys.elementAt(index);
+            return ListTile(
+                // Decoration
+                // shape: RoundedRectangleBorder(
+                //   side: const BorderSide(color: Colors.white70, width: 2),
+                //   borderRadius: BorderRadius.circular(30),
+                // ),
 
-          return ListTile(
-            title: Text('BaseProduct $name'),
-            leading: const CircleAvatar(
-              foregroundImage: AssetImage('assets/images/flutter_logo.png'),
-            ),
-            onTap: () {
-              if (products[name] is LedPanel) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => LedPanelDetailsView(
-                        product: products[name] as LedPanel,
-                        callbackUpdateProject: callbackUpdateProject),
-                    settings: const RouteSettings(),
-                  ),
-                );
-              } else if (products[name] is CoffeeMachine) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CoffeeMachineDetailsView(
-                        product: products[name] as CoffeeMachine,
-                        callbackUpdateProject: callbackUpdateProject),
-                    settings: const RouteSettings(),
-                  ),
-                );
-              }
-            },
-          );
-        },
-      ),
+                // Code
+                // Should be updated to adapt each classes
+                title: LedPanelMinimalDetailsView(
+                    product: products[name] as LedPanel),
+                onTap: () {
+                  if (products[name] is LedPanel) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LedPanelDetailsView(
+                            product: products[name] as LedPanel,
+                            callbackUpdateProject: callbackUpdateProject),
+                        settings: const RouteSettings(),
+                      ),
+                    );
+                  } else if (products[name] is CoffeeMachine) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CoffeeMachineDetailsView(
+                            product: products[name] as CoffeeMachine,
+                            callbackUpdateProject: callbackUpdateProject),
+                        settings: const RouteSettings(),
+                      ),
+                    );
+                  }
+                });
+          },
+          separatorBuilder: (context, index) => const SizedBox(
+                height: 10,
+              )),
     );
   }
 }

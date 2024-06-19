@@ -1190,6 +1190,8 @@ class CoffeeMachinePartialUpdateRequest extends $pb.GeneratedMessage {
     $core.int? coffeeLevel,
     $core.bool? filterPosition,
     $core.int? modeValue,
+    $core.String? ipAddress,
+    $core.int? ipPort,
   }) {
     final $result = create();
     if (id != null) {
@@ -1225,6 +1227,12 @@ class CoffeeMachinePartialUpdateRequest extends $pb.GeneratedMessage {
     if (modeValue != null) {
       $result.modeValue = modeValue;
     }
+    if (ipAddress != null) {
+      $result.ipAddress = ipAddress;
+    }
+    if (ipPort != null) {
+      $result.ipPort = ipPort;
+    }
     return $result;
   }
   CoffeeMachinePartialUpdateRequest._() : super();
@@ -1254,6 +1262,8 @@ class CoffeeMachinePartialUpdateRequest extends $pb.GeneratedMessage {
     ..a<$core.int>(9, _omitFieldNames ? '' : 'coffeeLevel', $pb.PbFieldType.O3)
     ..aOB(10, _omitFieldNames ? '' : 'filterPosition')
     ..a<$core.int>(11, _omitFieldNames ? '' : 'modeValue', $pb.PbFieldType.O3)
+    ..aOS(12, _omitFieldNames ? '' : 'ipAddress')
+    ..a<$core.int>(13, _omitFieldNames ? '' : 'ipPort', $pb.PbFieldType.O3)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -1397,6 +1407,30 @@ class CoffeeMachinePartialUpdateRequest extends $pb.GeneratedMessage {
   $core.bool hasModeValue() => $_has(10);
   @$pb.TagNumber(11)
   void clearModeValue() => clearField(11);
+
+  @$pb.TagNumber(12)
+  $core.String get ipAddress => $_getSZ(11);
+  @$pb.TagNumber(12)
+  set ipAddress($core.String v) {
+    $_setString(11, v);
+  }
+
+  @$pb.TagNumber(12)
+  $core.bool hasIpAddress() => $_has(11);
+  @$pb.TagNumber(12)
+  void clearIpAddress() => clearField(12);
+
+  @$pb.TagNumber(13)
+  $core.int get ipPort => $_getIZ(12);
+  @$pb.TagNumber(13)
+  set ipPort($core.int v) {
+    $_setSignedInt32(12, v);
+  }
+
+  @$pb.TagNumber(13)
+  $core.bool hasIpPort() => $_has(12);
+  @$pb.TagNumber(13)
+  void clearIpPort() => clearField(13);
 }
 
 class CoffeeMachineRequest extends $pb.GeneratedMessage {
@@ -1411,6 +1445,8 @@ class CoffeeMachineRequest extends $pb.GeneratedMessage {
     $core.int? coffeeLevel,
     $core.bool? filterPosition,
     $core.int? modeValue,
+    $core.String? ipAddress,
+    $core.int? ipPort,
   }) {
     final $result = create();
     if (id != null) {
@@ -1443,6 +1479,12 @@ class CoffeeMachineRequest extends $pb.GeneratedMessage {
     if (modeValue != null) {
       $result.modeValue = modeValue;
     }
+    if (ipAddress != null) {
+      $result.ipAddress = ipAddress;
+    }
+    if (ipPort != null) {
+      $result.ipPort = ipPort;
+    }
     return $result;
   }
   CoffeeMachineRequest._() : super();
@@ -1471,6 +1513,8 @@ class CoffeeMachineRequest extends $pb.GeneratedMessage {
     ..a<$core.int>(8, _omitFieldNames ? '' : 'coffeeLevel', $pb.PbFieldType.O3)
     ..aOB(9, _omitFieldNames ? '' : 'filterPosition')
     ..a<$core.int>(10, _omitFieldNames ? '' : 'modeValue', $pb.PbFieldType.O3)
+    ..aOS(11, _omitFieldNames ? '' : 'ipAddress')
+    ..a<$core.int>(12, _omitFieldNames ? '' : 'ipPort', $pb.PbFieldType.O3)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -1607,6 +1651,30 @@ class CoffeeMachineRequest extends $pb.GeneratedMessage {
   $core.bool hasModeValue() => $_has(9);
   @$pb.TagNumber(10)
   void clearModeValue() => clearField(10);
+
+  @$pb.TagNumber(11)
+  $core.String get ipAddress => $_getSZ(10);
+  @$pb.TagNumber(11)
+  set ipAddress($core.String v) {
+    $_setString(10, v);
+  }
+
+  @$pb.TagNumber(11)
+  $core.bool hasIpAddress() => $_has(10);
+  @$pb.TagNumber(11)
+  void clearIpAddress() => clearField(11);
+
+  @$pb.TagNumber(12)
+  $core.int get ipPort => $_getIZ(11);
+  @$pb.TagNumber(12)
+  set ipPort($core.int v) {
+    $_setSignedInt32(11, v);
+  }
+
+  @$pb.TagNumber(12)
+  $core.bool hasIpPort() => $_has(11);
+  @$pb.TagNumber(12)
+  void clearIpPort() => clearField(12);
 }
 
 class CoffeeMachineResponse extends $pb.GeneratedMessage {
@@ -1622,6 +1690,8 @@ class CoffeeMachineResponse extends $pb.GeneratedMessage {
     $core.bool? filterPosition,
     $core.int? modeValue,
     $core.int? polymorphicCtype,
+    $core.String? ipAddress,
+    $core.int? ipPort,
   }) {
     final $result = create();
     if (id != null) {
@@ -1657,6 +1727,12 @@ class CoffeeMachineResponse extends $pb.GeneratedMessage {
     if (polymorphicCtype != null) {
       $result.polymorphicCtype = polymorphicCtype;
     }
+    if (ipAddress != null) {
+      $result.ipAddress = ipAddress;
+    }
+    if (ipPort != null) {
+      $result.ipPort = ipPort;
+    }
     return $result;
   }
   CoffeeMachineResponse._() : super();
@@ -1687,6 +1763,8 @@ class CoffeeMachineResponse extends $pb.GeneratedMessage {
     ..a<$core.int>(10, _omitFieldNames ? '' : 'modeValue', $pb.PbFieldType.O3)
     ..a<$core.int>(
         11, _omitFieldNames ? '' : 'polymorphicCtype', $pb.PbFieldType.O3)
+    ..aOS(12, _omitFieldNames ? '' : 'ipAddress')
+    ..a<$core.int>(13, _omitFieldNames ? '' : 'ipPort', $pb.PbFieldType.O3)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -1836,6 +1914,30 @@ class CoffeeMachineResponse extends $pb.GeneratedMessage {
   $core.bool hasPolymorphicCtype() => $_has(10);
   @$pb.TagNumber(11)
   void clearPolymorphicCtype() => clearField(11);
+
+  @$pb.TagNumber(12)
+  $core.String get ipAddress => $_getSZ(11);
+  @$pb.TagNumber(12)
+  set ipAddress($core.String v) {
+    $_setString(11, v);
+  }
+
+  @$pb.TagNumber(12)
+  $core.bool hasIpAddress() => $_has(11);
+  @$pb.TagNumber(12)
+  void clearIpAddress() => clearField(12);
+
+  @$pb.TagNumber(13)
+  $core.int get ipPort => $_getIZ(12);
+  @$pb.TagNumber(13)
+  set ipPort($core.int v) {
+    $_setSignedInt32(12, v);
+  }
+
+  @$pb.TagNumber(13)
+  $core.bool hasIpPort() => $_has(12);
+  @$pb.TagNumber(13)
+  void clearIpPort() => clearField(13);
 }
 
 class CoffeeMachineRetrieveRequest extends $pb.GeneratedMessage {
@@ -3266,6 +3368,8 @@ class LedPanelPartialUpdateRequest extends $pb.GeneratedMessage {
     $core.Iterable<$core.String>? partialUpdateFields,
     $core.int? status,
     $core.double? brightness,
+    $core.String? ipAddress,
+    $core.int? ipPort,
   }) {
     final $result = create();
     if (id != null) {
@@ -3288,6 +3392,12 @@ class LedPanelPartialUpdateRequest extends $pb.GeneratedMessage {
     }
     if (brightness != null) {
       $result.brightness = brightness;
+    }
+    if (ipAddress != null) {
+      $result.ipAddress = ipAddress;
+    }
+    if (ipPort != null) {
+      $result.ipPort = ipPort;
     }
     return $result;
   }
@@ -3315,6 +3425,8 @@ class LedPanelPartialUpdateRequest extends $pb.GeneratedMessage {
     ..a<$core.int>(6, _omitFieldNames ? '' : 'status', $pb.PbFieldType.O3)
     ..a<$core.double>(
         7, _omitFieldNames ? '' : 'brightness', $pb.PbFieldType.OD)
+    ..aOS(8, _omitFieldNames ? '' : 'ipAddress')
+    ..a<$core.int>(9, _omitFieldNames ? '' : 'ipPort', $pb.PbFieldType.O3)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -3411,6 +3523,30 @@ class LedPanelPartialUpdateRequest extends $pb.GeneratedMessage {
   $core.bool hasBrightness() => $_has(6);
   @$pb.TagNumber(7)
   void clearBrightness() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.String get ipAddress => $_getSZ(7);
+  @$pb.TagNumber(8)
+  set ipAddress($core.String v) {
+    $_setString(7, v);
+  }
+
+  @$pb.TagNumber(8)
+  $core.bool hasIpAddress() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearIpAddress() => clearField(8);
+
+  @$pb.TagNumber(9)
+  $core.int get ipPort => $_getIZ(8);
+  @$pb.TagNumber(9)
+  set ipPort($core.int v) {
+    $_setSignedInt32(8, v);
+  }
+
+  @$pb.TagNumber(9)
+  $core.bool hasIpPort() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearIpPort() => clearField(9);
 }
 
 class LedPanelRequest extends $pb.GeneratedMessage {
@@ -3421,6 +3557,8 @@ class LedPanelRequest extends $pb.GeneratedMessage {
     $core.Iterable<CategoryRequest>? categories,
     $core.int? status,
     $core.double? brightness,
+    $core.String? ipAddress,
+    $core.int? ipPort,
   }) {
     final $result = create();
     if (id != null) {
@@ -3440,6 +3578,12 @@ class LedPanelRequest extends $pb.GeneratedMessage {
     }
     if (brightness != null) {
       $result.brightness = brightness;
+    }
+    if (ipAddress != null) {
+      $result.ipAddress = ipAddress;
+    }
+    if (ipPort != null) {
+      $result.ipPort = ipPort;
     }
     return $result;
   }
@@ -3466,6 +3610,8 @@ class LedPanelRequest extends $pb.GeneratedMessage {
     ..a<$core.int>(5, _omitFieldNames ? '' : 'status', $pb.PbFieldType.O3)
     ..a<$core.double>(
         6, _omitFieldNames ? '' : 'brightness', $pb.PbFieldType.OD)
+    ..aOS(7, _omitFieldNames ? '' : 'ipAddress')
+    ..a<$core.int>(8, _omitFieldNames ? '' : 'ipPort', $pb.PbFieldType.O3)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -3555,6 +3701,30 @@ class LedPanelRequest extends $pb.GeneratedMessage {
   $core.bool hasBrightness() => $_has(5);
   @$pb.TagNumber(6)
   void clearBrightness() => clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.String get ipAddress => $_getSZ(6);
+  @$pb.TagNumber(7)
+  set ipAddress($core.String v) {
+    $_setString(6, v);
+  }
+
+  @$pb.TagNumber(7)
+  $core.bool hasIpAddress() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearIpAddress() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.int get ipPort => $_getIZ(7);
+  @$pb.TagNumber(8)
+  set ipPort($core.int v) {
+    $_setSignedInt32(7, v);
+  }
+
+  @$pb.TagNumber(8)
+  $core.bool hasIpPort() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearIpPort() => clearField(8);
 }
 
 class LedPanelResponse extends $pb.GeneratedMessage {
@@ -3566,6 +3736,8 @@ class LedPanelResponse extends $pb.GeneratedMessage {
     $core.int? status,
     $core.double? brightness,
     $core.int? polymorphicCtype,
+    $core.String? ipAddress,
+    $core.int? ipPort,
   }) {
     final $result = create();
     if (id != null) {
@@ -3588,6 +3760,12 @@ class LedPanelResponse extends $pb.GeneratedMessage {
     }
     if (polymorphicCtype != null) {
       $result.polymorphicCtype = polymorphicCtype;
+    }
+    if (ipAddress != null) {
+      $result.ipAddress = ipAddress;
+    }
+    if (ipPort != null) {
+      $result.ipPort = ipPort;
     }
     return $result;
   }
@@ -3616,6 +3794,8 @@ class LedPanelResponse extends $pb.GeneratedMessage {
         6, _omitFieldNames ? '' : 'brightness', $pb.PbFieldType.OD)
     ..a<$core.int>(
         7, _omitFieldNames ? '' : 'polymorphicCtype', $pb.PbFieldType.O3)
+    ..aOS(8, _omitFieldNames ? '' : 'ipAddress')
+    ..a<$core.int>(9, _omitFieldNames ? '' : 'ipPort', $pb.PbFieldType.O3)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -3717,6 +3897,30 @@ class LedPanelResponse extends $pb.GeneratedMessage {
   $core.bool hasPolymorphicCtype() => $_has(6);
   @$pb.TagNumber(7)
   void clearPolymorphicCtype() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.String get ipAddress => $_getSZ(7);
+  @$pb.TagNumber(8)
+  set ipAddress($core.String v) {
+    $_setString(7, v);
+  }
+
+  @$pb.TagNumber(8)
+  $core.bool hasIpAddress() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearIpAddress() => clearField(8);
+
+  @$pb.TagNumber(9)
+  $core.int get ipPort => $_getIZ(8);
+  @$pb.TagNumber(9)
+  set ipPort($core.int v) {
+    $_setSignedInt32(8, v);
+  }
+
+  @$pb.TagNumber(9)
+  $core.bool hasIpPort() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearIpPort() => clearField(9);
 }
 
 class LedPanelRetrieveRequest extends $pb.GeneratedMessage {
@@ -4607,7 +4811,7 @@ class ProjectPartialUpdateRequest extends $pb.GeneratedMessage {
     $core.Iterable<$core.String>? partialUpdateFields,
     $core.String? pubDate,
     $core.String? name,
-    $core.int? owner,
+    UserRequest? owner,
   }) {
     final $result = create();
     if (id != null) {
@@ -4650,7 +4854,8 @@ class ProjectPartialUpdateRequest extends $pb.GeneratedMessage {
     ..pPS(3, _omitFieldNames ? '' : 'PartialUpdateFields')
     ..aOS(4, _omitFieldNames ? '' : 'pubDate')
     ..aOS(5, _omitFieldNames ? '' : 'name')
-    ..a<$core.int>(6, _omitFieldNames ? '' : 'owner', $pb.PbFieldType.O3)
+    ..aOM<UserRequest>(6, _omitFieldNames ? '' : 'owner',
+        subBuilder: UserRequest.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -4723,16 +4928,18 @@ class ProjectPartialUpdateRequest extends $pb.GeneratedMessage {
   void clearName() => clearField(5);
 
   @$pb.TagNumber(6)
-  $core.int get owner => $_getIZ(5);
+  UserRequest get owner => $_getN(5);
   @$pb.TagNumber(6)
-  set owner($core.int v) {
-    $_setSignedInt32(5, v);
+  set owner(UserRequest v) {
+    setField(6, v);
   }
 
   @$pb.TagNumber(6)
   $core.bool hasOwner() => $_has(5);
   @$pb.TagNumber(6)
   void clearOwner() => clearField(6);
+  @$pb.TagNumber(6)
+  UserRequest ensureOwner() => $_ensure(5);
 }
 
 class ProjectRequest extends $pb.GeneratedMessage {
@@ -4741,7 +4948,7 @@ class ProjectRequest extends $pb.GeneratedMessage {
     $core.Iterable<BaseProductRequest>? products,
     $core.String? pubDate,
     $core.String? name,
-    $core.int? owner,
+    UserRequest? owner,
   }) {
     final $result = create();
     if (id != null) {
@@ -4780,7 +4987,8 @@ class ProjectRequest extends $pb.GeneratedMessage {
         subBuilder: BaseProductRequest.create)
     ..aOS(3, _omitFieldNames ? '' : 'pubDate')
     ..aOS(4, _omitFieldNames ? '' : 'name')
-    ..a<$core.int>(5, _omitFieldNames ? '' : 'owner', $pb.PbFieldType.O3)
+    ..aOM<UserRequest>(5, _omitFieldNames ? '' : 'owner',
+        subBuilder: UserRequest.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -4846,16 +5054,18 @@ class ProjectRequest extends $pb.GeneratedMessage {
   void clearName() => clearField(4);
 
   @$pb.TagNumber(5)
-  $core.int get owner => $_getIZ(4);
+  UserRequest get owner => $_getN(4);
   @$pb.TagNumber(5)
-  set owner($core.int v) {
-    $_setSignedInt32(4, v);
+  set owner(UserRequest v) {
+    setField(5, v);
   }
 
   @$pb.TagNumber(5)
   $core.bool hasOwner() => $_has(4);
   @$pb.TagNumber(5)
   void clearOwner() => clearField(5);
+  @$pb.TagNumber(5)
+  UserRequest ensureOwner() => $_ensure(4);
 }
 
 class ProjectResponse extends $pb.GeneratedMessage {
@@ -4864,7 +5074,7 @@ class ProjectResponse extends $pb.GeneratedMessage {
     $core.Iterable<BaseProductResponse>? products,
     $core.String? pubDate,
     $core.String? name,
-    $core.int? owner,
+    UserResponse? owner,
   }) {
     final $result = create();
     if (id != null) {
@@ -4903,7 +5113,8 @@ class ProjectResponse extends $pb.GeneratedMessage {
         subBuilder: BaseProductResponse.create)
     ..aOS(3, _omitFieldNames ? '' : 'pubDate')
     ..aOS(4, _omitFieldNames ? '' : 'name')
-    ..a<$core.int>(5, _omitFieldNames ? '' : 'owner', $pb.PbFieldType.O3)
+    ..aOM<UserResponse>(5, _omitFieldNames ? '' : 'owner',
+        subBuilder: UserResponse.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -4969,16 +5180,18 @@ class ProjectResponse extends $pb.GeneratedMessage {
   void clearName() => clearField(4);
 
   @$pb.TagNumber(5)
-  $core.int get owner => $_getIZ(4);
+  UserResponse get owner => $_getN(4);
   @$pb.TagNumber(5)
-  set owner($core.int v) {
-    $_setSignedInt32(4, v);
+  set owner(UserResponse v) {
+    setField(5, v);
   }
 
   @$pb.TagNumber(5)
   $core.bool hasOwner() => $_has(4);
   @$pb.TagNumber(5)
   void clearOwner() => clearField(5);
+  @$pb.TagNumber(5)
+  UserResponse ensureOwner() => $_ensure(4);
 }
 
 class ProjectRetrieveRequest extends $pb.GeneratedMessage {
@@ -5031,6 +5244,665 @@ class ProjectRetrieveRequest extends $pb.GeneratedMessage {
   static ProjectRetrieveRequest getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<ProjectRetrieveRequest>(create);
   static ProjectRetrieveRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+}
+
+class UserDestroyRequest extends $pb.GeneratedMessage {
+  factory UserDestroyRequest({
+    $core.int? id,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    return $result;
+  }
+  UserDestroyRequest._() : super();
+  factory UserDestroyRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory UserDestroyRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'UserDestroyRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  UserDestroyRequest clone() => UserDestroyRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  UserDestroyRequest copyWith(void Function(UserDestroyRequest) updates) =>
+      super.copyWith((message) => updates(message as UserDestroyRequest))
+          as UserDestroyRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static UserDestroyRequest create() => UserDestroyRequest._();
+  UserDestroyRequest createEmptyInstance() => create();
+  static $pb.PbList<UserDestroyRequest> createRepeated() =>
+      $pb.PbList<UserDestroyRequest>();
+  @$core.pragma('dart2js:noInline')
+  static UserDestroyRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<UserDestroyRequest>(create);
+  static UserDestroyRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+}
+
+class UserListRequest extends $pb.GeneratedMessage {
+  factory UserListRequest() => create();
+  UserListRequest._() : super();
+  factory UserListRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory UserListRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'UserListRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  UserListRequest clone() => UserListRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  UserListRequest copyWith(void Function(UserListRequest) updates) =>
+      super.copyWith((message) => updates(message as UserListRequest))
+          as UserListRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static UserListRequest create() => UserListRequest._();
+  UserListRequest createEmptyInstance() => create();
+  static $pb.PbList<UserListRequest> createRepeated() =>
+      $pb.PbList<UserListRequest>();
+  @$core.pragma('dart2js:noInline')
+  static UserListRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<UserListRequest>(create);
+  static UserListRequest? _defaultInstance;
+}
+
+class UserListResponse extends $pb.GeneratedMessage {
+  factory UserListResponse({
+    $core.Iterable<UserResponse>? results,
+    $core.int? count,
+  }) {
+    final $result = create();
+    if (results != null) {
+      $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
+    }
+    return $result;
+  }
+  UserListResponse._() : super();
+  factory UserListResponse.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory UserListResponse.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'UserListResponse',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..pc<UserResponse>(1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM,
+        subBuilder: UserResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  UserListResponse clone() => UserListResponse()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  UserListResponse copyWith(void Function(UserListResponse) updates) =>
+      super.copyWith((message) => updates(message as UserListResponse))
+          as UserListResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static UserListResponse create() => UserListResponse._();
+  UserListResponse createEmptyInstance() => create();
+  static $pb.PbList<UserListResponse> createRepeated() =>
+      $pb.PbList<UserListResponse>();
+  @$core.pragma('dart2js:noInline')
+  static UserListResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<UserListResponse>(create);
+  static UserListResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<UserResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) {
+    $_setSignedInt32(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
+}
+
+class UserPartialUpdateRequest extends $pb.GeneratedMessage {
+  factory UserPartialUpdateRequest({
+    $core.int? id,
+    $core.Iterable<$core.String>? partialUpdateFields,
+    $core.String? username,
+    $core.String? firstName,
+    $core.String? lastName,
+    $core.String? email,
+    $core.Iterable<$core.int>? groups,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (partialUpdateFields != null) {
+      $result.partialUpdateFields.addAll(partialUpdateFields);
+    }
+    if (username != null) {
+      $result.username = username;
+    }
+    if (firstName != null) {
+      $result.firstName = firstName;
+    }
+    if (lastName != null) {
+      $result.lastName = lastName;
+    }
+    if (email != null) {
+      $result.email = email;
+    }
+    if (groups != null) {
+      $result.groups.addAll(groups);
+    }
+    return $result;
+  }
+  UserPartialUpdateRequest._() : super();
+  factory UserPartialUpdateRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory UserPartialUpdateRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'UserPartialUpdateRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..pPS(2, _omitFieldNames ? '' : 'PartialUpdateFields')
+    ..aOS(6, _omitFieldNames ? '' : 'username')
+    ..aOS(7, _omitFieldNames ? '' : 'firstName')
+    ..aOS(8, _omitFieldNames ? '' : 'lastName')
+    ..aOS(9, _omitFieldNames ? '' : 'email')
+    ..p<$core.int>(13, _omitFieldNames ? '' : 'groups', $pb.PbFieldType.K3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  UserPartialUpdateRequest clone() =>
+      UserPartialUpdateRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  UserPartialUpdateRequest copyWith(
+          void Function(UserPartialUpdateRequest) updates) =>
+      super.copyWith((message) => updates(message as UserPartialUpdateRequest))
+          as UserPartialUpdateRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static UserPartialUpdateRequest create() => UserPartialUpdateRequest._();
+  UserPartialUpdateRequest createEmptyInstance() => create();
+  static $pb.PbList<UserPartialUpdateRequest> createRepeated() =>
+      $pb.PbList<UserPartialUpdateRequest>();
+  @$core.pragma('dart2js:noInline')
+  static UserPartialUpdateRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<UserPartialUpdateRequest>(create);
+  static UserPartialUpdateRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.List<$core.String> get partialUpdateFields => $_getList(1);
+
+  @$pb.TagNumber(6)
+  $core.String get username => $_getSZ(2);
+  @$pb.TagNumber(6)
+  set username($core.String v) {
+    $_setString(2, v);
+  }
+
+  @$pb.TagNumber(6)
+  $core.bool hasUsername() => $_has(2);
+  @$pb.TagNumber(6)
+  void clearUsername() => clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.String get firstName => $_getSZ(3);
+  @$pb.TagNumber(7)
+  set firstName($core.String v) {
+    $_setString(3, v);
+  }
+
+  @$pb.TagNumber(7)
+  $core.bool hasFirstName() => $_has(3);
+  @$pb.TagNumber(7)
+  void clearFirstName() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.String get lastName => $_getSZ(4);
+  @$pb.TagNumber(8)
+  set lastName($core.String v) {
+    $_setString(4, v);
+  }
+
+  @$pb.TagNumber(8)
+  $core.bool hasLastName() => $_has(4);
+  @$pb.TagNumber(8)
+  void clearLastName() => clearField(8);
+
+  @$pb.TagNumber(9)
+  $core.String get email => $_getSZ(5);
+  @$pb.TagNumber(9)
+  set email($core.String v) {
+    $_setString(5, v);
+  }
+
+  @$pb.TagNumber(9)
+  $core.bool hasEmail() => $_has(5);
+  @$pb.TagNumber(9)
+  void clearEmail() => clearField(9);
+
+  @$pb.TagNumber(13)
+  $core.List<$core.int> get groups => $_getList(6);
+}
+
+class UserRequest extends $pb.GeneratedMessage {
+  factory UserRequest({
+    $core.int? id,
+    $core.String? username,
+    $core.String? firstName,
+    $core.String? lastName,
+    $core.String? email,
+    $core.Iterable<$core.int>? groups,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (username != null) {
+      $result.username = username;
+    }
+    if (firstName != null) {
+      $result.firstName = firstName;
+    }
+    if (lastName != null) {
+      $result.lastName = lastName;
+    }
+    if (email != null) {
+      $result.email = email;
+    }
+    if (groups != null) {
+      $result.groups.addAll(groups);
+    }
+    return $result;
+  }
+  UserRequest._() : super();
+  factory UserRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory UserRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'UserRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOS(5, _omitFieldNames ? '' : 'username')
+    ..aOS(6, _omitFieldNames ? '' : 'firstName')
+    ..aOS(7, _omitFieldNames ? '' : 'lastName')
+    ..aOS(8, _omitFieldNames ? '' : 'email')
+    ..p<$core.int>(12, _omitFieldNames ? '' : 'groups', $pb.PbFieldType.K3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  UserRequest clone() => UserRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  UserRequest copyWith(void Function(UserRequest) updates) =>
+      super.copyWith((message) => updates(message as UserRequest))
+          as UserRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static UserRequest create() => UserRequest._();
+  UserRequest createEmptyInstance() => create();
+  static $pb.PbList<UserRequest> createRepeated() => $pb.PbList<UserRequest>();
+  @$core.pragma('dart2js:noInline')
+  static UserRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<UserRequest>(create);
+  static UserRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(5)
+  $core.String get username => $_getSZ(1);
+  @$pb.TagNumber(5)
+  set username($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasUsername() => $_has(1);
+  @$pb.TagNumber(5)
+  void clearUsername() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.String get firstName => $_getSZ(2);
+  @$pb.TagNumber(6)
+  set firstName($core.String v) {
+    $_setString(2, v);
+  }
+
+  @$pb.TagNumber(6)
+  $core.bool hasFirstName() => $_has(2);
+  @$pb.TagNumber(6)
+  void clearFirstName() => clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.String get lastName => $_getSZ(3);
+  @$pb.TagNumber(7)
+  set lastName($core.String v) {
+    $_setString(3, v);
+  }
+
+  @$pb.TagNumber(7)
+  $core.bool hasLastName() => $_has(3);
+  @$pb.TagNumber(7)
+  void clearLastName() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.String get email => $_getSZ(4);
+  @$pb.TagNumber(8)
+  set email($core.String v) {
+    $_setString(4, v);
+  }
+
+  @$pb.TagNumber(8)
+  $core.bool hasEmail() => $_has(4);
+  @$pb.TagNumber(8)
+  void clearEmail() => clearField(8);
+
+  @$pb.TagNumber(12)
+  $core.List<$core.int> get groups => $_getList(5);
+}
+
+class UserResponse extends $pb.GeneratedMessage {
+  factory UserResponse({
+    $core.int? id,
+    $core.String? username,
+    $core.String? firstName,
+    $core.String? lastName,
+    $core.String? email,
+    $core.Iterable<$core.int>? groups,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (username != null) {
+      $result.username = username;
+    }
+    if (firstName != null) {
+      $result.firstName = firstName;
+    }
+    if (lastName != null) {
+      $result.lastName = lastName;
+    }
+    if (email != null) {
+      $result.email = email;
+    }
+    if (groups != null) {
+      $result.groups.addAll(groups);
+    }
+    return $result;
+  }
+  UserResponse._() : super();
+  factory UserResponse.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory UserResponse.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'UserResponse',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOS(5, _omitFieldNames ? '' : 'username')
+    ..aOS(6, _omitFieldNames ? '' : 'firstName')
+    ..aOS(7, _omitFieldNames ? '' : 'lastName')
+    ..aOS(8, _omitFieldNames ? '' : 'email')
+    ..p<$core.int>(12, _omitFieldNames ? '' : 'groups', $pb.PbFieldType.K3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  UserResponse clone() => UserResponse()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  UserResponse copyWith(void Function(UserResponse) updates) =>
+      super.copyWith((message) => updates(message as UserResponse))
+          as UserResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static UserResponse create() => UserResponse._();
+  UserResponse createEmptyInstance() => create();
+  static $pb.PbList<UserResponse> createRepeated() =>
+      $pb.PbList<UserResponse>();
+  @$core.pragma('dart2js:noInline')
+  static UserResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<UserResponse>(create);
+  static UserResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(5)
+  $core.String get username => $_getSZ(1);
+  @$pb.TagNumber(5)
+  set username($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasUsername() => $_has(1);
+  @$pb.TagNumber(5)
+  void clearUsername() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.String get firstName => $_getSZ(2);
+  @$pb.TagNumber(6)
+  set firstName($core.String v) {
+    $_setString(2, v);
+  }
+
+  @$pb.TagNumber(6)
+  $core.bool hasFirstName() => $_has(2);
+  @$pb.TagNumber(6)
+  void clearFirstName() => clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.String get lastName => $_getSZ(3);
+  @$pb.TagNumber(7)
+  set lastName($core.String v) {
+    $_setString(3, v);
+  }
+
+  @$pb.TagNumber(7)
+  $core.bool hasLastName() => $_has(3);
+  @$pb.TagNumber(7)
+  void clearLastName() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.String get email => $_getSZ(4);
+  @$pb.TagNumber(8)
+  set email($core.String v) {
+    $_setString(4, v);
+  }
+
+  @$pb.TagNumber(8)
+  $core.bool hasEmail() => $_has(4);
+  @$pb.TagNumber(8)
+  void clearEmail() => clearField(8);
+
+  @$pb.TagNumber(12)
+  $core.List<$core.int> get groups => $_getList(5);
+}
+
+class UserRetrieveRequest extends $pb.GeneratedMessage {
+  factory UserRetrieveRequest({
+    $core.int? id,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    return $result;
+  }
+  UserRetrieveRequest._() : super();
+  factory UserRetrieveRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory UserRetrieveRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'UserRetrieveRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  UserRetrieveRequest clone() => UserRetrieveRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  UserRetrieveRequest copyWith(void Function(UserRetrieveRequest) updates) =>
+      super.copyWith((message) => updates(message as UserRetrieveRequest))
+          as UserRetrieveRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static UserRetrieveRequest create() => UserRetrieveRequest._();
+  UserRetrieveRequest createEmptyInstance() => create();
+  static $pb.PbList<UserRetrieveRequest> createRepeated() =>
+      $pb.PbList<UserRetrieveRequest>();
+  @$core.pragma('dart2js:noInline')
+  static UserRetrieveRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<UserRetrieveRequest>(create);
+  static UserRetrieveRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.int get id => $_getIZ(0);

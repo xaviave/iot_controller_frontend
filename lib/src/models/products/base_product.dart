@@ -6,9 +6,16 @@ import 'package:iot_controller/src/models/products/led/led_panel.dart';
 abstract class BaseProduct {
   int id;
   String name;
+  int ipPort;
+  String ipAddress;
   List<Category> categories;
 
-  BaseProduct({required this.id, required this.name, required this.categories});
+  BaseProduct(
+      {required this.id,
+      required this.name,
+      required this.ipAddress,
+      required this.ipPort,
+      required this.categories});
 
   BaseProductRequest getAbstractRequest() {
     return BaseProductRequest();

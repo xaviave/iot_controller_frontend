@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:iot_controller/src/providers/project.dart';
-import 'package:iot_controller/src/settings/settings_view.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iot_controller/src/blocs/project.dart';
+import 'package:iot_controller/src/blocs/settings_bloc.dart';
+import 'package:iot_controller/src/services/communication_service.dart';
+import 'package:iot_controller/src/ui/settings/settings_view.dart';
+import 'package:iot_controller/src/ui/utils/capitalize.dart';
 
 import 'project_details_view.dart';
 
 class ProjectListView extends StatefulWidget {
   const ProjectListView({super.key});
-  static const routeName = '/';
+  static const routeName = '/projects';
 
   @override
   State<ProjectListView> createState() => _ProjectListViewState();
@@ -16,51 +19,69 @@ class ProjectListView extends StatefulWidget {
 class _ProjectListViewState extends State<ProjectListView> {
   @override
   Widget build(BuildContext context) {
-    final projectProvider = Provider.of<ProjectProvider>(context);
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('List projects'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              Navigator.restorablePushNamed(context, SettingsView.routeName);
-            },
+    return BlocListener<SettingsBloc, SettingsState>(
+        listener: (BuildContext context, state) {
+          context.read<ProjectGRPCBloc>().add(ServerChangedEvent(
+              ProjectCommunication(
+                  serverName: state.serverName, serverPort: state.serverPort)));
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('List of projects'),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.settings),
+                onPressed: () {
+                  Navigator.restorablePushNamed(
+                      context, SettingsView.routeName);
+                },
+              ),
+            ],
           ),
-        ],
-      ),
-      body: ListView.builder(
-        restorationId: 'ProjectListView',
-        itemCount: projectProvider.projects.length,
-        itemBuilder: (BuildContext context, int index) {
-          String name = projectProvider.projects.keys.elementAt(index);
-
-          return ListTile(
-            title: Text('Project $name'),
-            leading: const CircleAvatar(
-              foregroundImage: AssetImage('assets/images/flutter_logo.png'),
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ProjectDetailsView(
-                      project: projectProvider.projects[name]!),
-                  settings: const RouteSettings(),
-                ),
+          body: BlocBuilder<ProjectGRPCBloc, ProjectState>(
+              builder: (context, state) {
+            if (state is ProjectListInitial) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is ProjectListError) {
+              return Center(
+                child: Text("Error: ${state.message}"),
               );
+            } else if (state is ProjectListSuccess) {
+              return ListView.builder(
+                  restorationId: 'ProjectListView',
+                  itemCount: state.projects.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    String name = state.projects.keys.elementAt(index);
+
+                    return ListTile(
+                      title: Text(name.capitalize),
+                      leading: const CircleAvatar(
+                        foregroundImage:
+                            AssetImage('assets/images/flutter_logo.png'),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProjectDetailsView(
+                                project: state.projects[name]!),
+                            settings: const RouteSettings(),
+                          ),
+                        );
+                      },
+                    );
+                  });
+            } else {
+              return const SizedBox(); // Handle unexpected states
+            }
+          }),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              context.read<ProjectGRPCBloc>().add(GetProjectListEvent());
             },
-          );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          projectProvider.getProjectItems();
-        },
-        tooltip: 'Refresh',
-        child: const Icon(Icons.refresh),
-      ),
-    );
+            tooltip: 'Refresh',
+            child: const Icon(Icons.refresh),
+          ),
+        ));
   }
 }

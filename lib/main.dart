@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-
-import 'src/ui/app.dart';
-import 'src/settings/settings_controller.dart';
-import 'src/settings/settings_service.dart';
+import 'package:iot_controller/src/app.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
 
-  final settingsController = SettingsController(SettingsService());
-
-  await settingsController.loadSettings();
-  runApp(MyApp(settingsController: settingsController));
+  runApp(MyApp(prefs: prefs));
 }
