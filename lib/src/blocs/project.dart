@@ -24,17 +24,17 @@ class UpdateProjectEvent extends ProjectEvent {
 sealed class ProjectState {
   const ProjectState();
 
-  Map<String, Project> get projects => {};
+  List<Project> get projects => [];
 }
 
 class ProjectListInitial extends ProjectState {}
 
 class ProjectListSuccess extends ProjectState {
-  final Map<String, Project> _projects;
+  final List<Project> _projects;
 
   const ProjectListSuccess(this._projects);
 
-  Map<String, Project> get projects => _projects;
+  List<Project> get projects => _projects;
 }
 
 class ProjectListError extends ProjectState {
@@ -83,7 +83,7 @@ class ProjectGRPCBloc extends Bloc<ProjectEvent, ProjectState> {
     try {
       var response = await projectGrpcClient.List();
       emit(ProjectListSuccess(
-          {for (var e in response.results) e.name: Project.fromResponse(e)}));
+          [for (var e in response.results) Project.fromResponse(e)]));
     } catch (error) {
       emit(ProjectListError(error.toString()));
     }

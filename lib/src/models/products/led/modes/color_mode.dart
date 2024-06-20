@@ -26,4 +26,9 @@ class ColorMode extends LedMode {
   static ColorMode fromResponse(ColorModeResponse r) {
     return ColorMode.fromHex(r.id, r.name, r.color);
   }
+
+  @override
+  String toString() {
+    return name;
+  }
 }

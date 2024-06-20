@@ -51,4 +51,9 @@ class LedPanel extends BaseProduct {
         brightness: r.brightness,
         mode: LedMode.fromResponse(r.mode));
   }
+
+  @override
+  String toString() {
+    return name;
+  }
 }

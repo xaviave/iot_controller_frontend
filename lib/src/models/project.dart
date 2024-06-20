@@ -42,4 +42,9 @@ class Project {
         pubDate: f.format(pubDate),
         products: products.values.map((x) => x.getAbstractRequest()).toList());
   }
+
+  @override
+  String toString() {
+    return name;
+  }
 }

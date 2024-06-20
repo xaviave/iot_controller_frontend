@@ -34,4 +34,9 @@ abstract class LedMode {
       return ColorMode.fromResponse(r);
     }
   }
+
+  @override
+  String toString() {
+    return name;
+  }
 }

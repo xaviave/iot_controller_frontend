@@ -44,4 +44,9 @@ class PatternMode extends LedMode {
         blink: r.blink,
         palette: r.palette.map((c) => colorFromHex(c)).toList());
   }
+
+  @override
+  String toString() {
+    return name;
+  }
 }

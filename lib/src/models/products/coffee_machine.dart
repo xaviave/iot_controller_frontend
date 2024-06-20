@@ -80,4 +80,9 @@ class CoffeeMachine extends BaseProduct {
       modeValue: r.modeValue,
     );
   }
+
+  @override
+  String toString() {
+    return name;
+  }
 }

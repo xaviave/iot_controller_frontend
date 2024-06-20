@@ -17,6 +17,7 @@ class LedModeListAlertView extends StatefulWidget {
 }
 
 class _LedModeListAlertViewState extends State<LedModeListAlertView> {
+  bool isHoveredCreate = false;
   late Function(LedMode) callbackUpdateMode;
 
   @override
@@ -36,42 +37,63 @@ class _LedModeListAlertViewState extends State<LedModeListAlertView> {
                   serverName: state.serverName, serverPort: state.serverPort)));
         },
         child: Scaffold(
-          body: BlocBuilder<LedModeGRPCBloc, LedModeState>(
-              builder: (context, state) {
-            if (state is LedModeListInitial) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state is LedModeListError) {
-              return Center(
-                child: Text("Error: ${state.message}"),
-              );
-            } else if (state is LedModeListSuccess) {
-              return ListView.builder(
-                  restorationId: 'LedModeListAlertView',
-                  itemCount: state.modes.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    String name = state.modes.keys.elementAt(index);
-                    return ListTile(
-                      title: Column(children: [
-                        Text("Led mode '$name'"),
-                        LedModePreview(mode: state.modes[name]!)
-                      ]),
-                      onTap: () {
-                        callbackUpdateMode(state.modes[name]!);
-                        Navigator.of(context).pop();
-                      },
-                    );
-                  });
-            } else {
-              return const SizedBox(); // Handle unexpected states
-            }
-          }),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              context.read<LedModeGRPCBloc>().add(GetLedModeListEvent());
-            },
-            tooltip: 'Refresh',
-            child: const Icon(Icons.refresh),
-          ),
-        ));
+            body: BlocBuilder<LedModeGRPCBloc, LedModeState>(
+                builder: (context, state) {
+              if (state is LedModeListInitial) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state is LedModeListError) {
+                return Center(
+                  child: Text("Error: ${state.message}"),
+                );
+              } else if (state is LedModeListSuccess) {
+                return ListView.builder(
+                    restorationId: 'LedModeListAlertView',
+                    itemCount: state.modes.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      String name = state.modes.keys.elementAt(index);
+                      return ListTile(
+                        title: Column(children: [
+                          Text("Led mode '$name'"),
+                          LedModePreview(mode: state.modes[name]!)
+                        ]),
+                        onTap: () {
+                          callbackUpdateMode(state.modes[name]!);
+                          Navigator.of(context).pop();
+                        },
+                      );
+                    });
+              } else {
+                return const SizedBox(); // Handle unexpected states
+              }
+            }),
+            floatingActionButton: Align(
+                alignment: Alignment.bottomRight,
+                child: MouseRegion(
+                    onEnter: (_) => setState(() => isHoveredCreate = true),
+                    onExit: (_) => setState(() => isHoveredCreate = false),
+                    child: AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 250),
+                        child: Container(
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              gradient: LinearGradient(
+                                colors: [Colors.purple, Colors.deepOrange],
+                              ),
+                            ),
+                            width: isHoveredCreate ? 150 : 56,
+                            child: FloatingActionButton.extended(
+                                onPressed: () {
+                                  // redirect to create form pop up
+                                },
+                                heroTag: "led_mode_create",
+                                backgroundColor: Colors.transparent,
+                                label: Row(children: [
+                                  const Icon(Icons.add),
+                                  isHoveredCreate
+                                      ? const Text("\tCreate")
+                                      : const SizedBox(),
+                                ]))))))));
   }
 }

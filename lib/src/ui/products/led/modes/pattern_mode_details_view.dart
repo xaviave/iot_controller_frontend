@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:iot_controller/src/models/products/led/default_palette.dart';
 import 'package:iot_controller/src/models/products/led/modes/led_mode.dart';
 import 'package:iot_controller/src/models/products/led/modes/pattern_mode.dart';
-import 'package:iot_controller/src/ui/utils/alert_popup.dart';
+import 'package:iot_controller/src/ui/utils/popup/alert_popup.dart';
 
 class PatternModeDetailsView extends StatefulWidget {
   final PatternMode mode;

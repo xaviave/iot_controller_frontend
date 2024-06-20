@@ -29,4 +29,9 @@ abstract class BaseProduct {
     LedPanelResponse r = request.ledPanel;
     return LedPanel.fromResponse(r);
   }
+
+  @override
+  String toString() {
+    return name;
+  }
 }
