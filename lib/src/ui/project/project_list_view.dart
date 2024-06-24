@@ -21,8 +21,9 @@ class ProjectListView extends StatefulWidget {
 }
 
 class _ProjectListViewState extends State<ProjectListView> {
-  void refreshProjectList(BuildContext context) {
+  Future<bool> refreshProjectList(BuildContext context) async {
     context.read<ProjectGRPCBloc>().add(GetProjectListEvent());
+    return true;
   }
 
   @override
@@ -86,12 +87,19 @@ class _ProjectListViewState extends State<ProjectListView> {
             floatingActionButton: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                const CreatePopup(formName: "project", form: ProjectForm()),
+                CreatePopup(
+                    name: "create",
+                    heroTag: "project_create_button",
+                    formName: "project",
+                    form: const ProjectForm(),
+                    onPressedCallBack: (_) {},
+                ),
                 const SizedBox(height: 10),
                 RefreshPopup(
-                    name: name,
-                    heroTag: heroTag,
-                    actionButtonText: actionButtonText)
+                    name: "refresh",
+                    heroTag: "project_refresh_button",
+                    onPressedCallBack: refreshProjectList,
+                )
               ],
             )));
   }

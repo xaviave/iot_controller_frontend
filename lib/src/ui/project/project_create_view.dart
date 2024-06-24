@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iot_controller/src/blocs/product.dart';
+import 'package:intl/intl.dart';
+import 'package:iot_controller/src/blocs/settings_bloc.dart';
+import 'package:iot_controller/src/blocs/user.dart';
 import 'package:iot_controller/src/models/products/base_product.dart';
+import 'package:iot_controller/src/models/project.dart';
 
 class ProjectForm extends StatefulWidget {
   const ProjectForm({super.key});
@@ -15,6 +19,14 @@ class ProjectForm extends StatefulWidget {
 
 class ProjectFormState extends State<ProjectForm> {
   final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
+  final _productController = MultiSelectController<BaseProduct>([]);
+
+  Project generateProject(String name, List<BaseProduct> products) {
+    final f = DateFormat('yyyy-MM-ddThh:mm:ss');
+    final activeUser = context.read<SettingsBloc>().state.activeUser;
+    return Project(id:-1, owner: activeUser, name: name, pubDate: DateTime.now(), products: products);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +38,7 @@ class ProjectFormState extends State<ProjectForm> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
+              controller: _nameController,
               decoration: const InputDecoration(
                 labelText: 'Project name',
               ),
@@ -37,6 +50,7 @@ class ProjectFormState extends State<ProjectForm> {
             ),
             const SizedBox(height: 16),
             CustomDropdown<BaseProduct>.multiSelect(
+                multiSelectController: _productController,
                 hintText: 'Select products',
                 items: state.products.values.toList(),
                 onListChanged: (value) {
@@ -62,25 +76,53 @@ class ProjectFormState extends State<ProjectForm> {
                 )),
             const SizedBox(height: 16),
             SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  if (!_formKey.currentState!.validate()) {
-                    if (_formKey.currentState!.validate()) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Processing Data')),
-                      );
-                      //   do something
-                    }
-                    return;
-                  }
-                },
-                child: const Text(
-                  'Submit',
-                  style: TextStyle(fontWeight: FontWeight.w600),
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    _productController.clear();
+                  },
+                  child: const Text(
+                    'Clear',
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                )),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                SizedBox(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      print("Submit, $_formKey");
+                      Navigator.of(context).pop(false);
+                      return;
+                    },
+                    child: const Text(
+                      'Cancel',
+                      style: TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                  ),
                 ),
-              ),
-            ),
+                SizedBox(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Processing Data')),
+                        );
+                        print("Submit, $_formKey");
+                        final a = generateProject();
+                        Navigator.of(context).pop(_formKey);
+                      }
+                      return;
+                    },
+                    child: const Text(
+                      'Submit',
+                      style: TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                )
+              ],
+            )
           ],
         ),
       );

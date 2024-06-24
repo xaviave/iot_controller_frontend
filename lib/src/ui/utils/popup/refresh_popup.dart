@@ -1,22 +1,22 @@
+import 'package:flutter/material.dart';
 import 'package:iot_controller/src/ui/utils/popup/abstract_popup.dart';
 
 class RefreshPopup extends AbstractPopup {
-  final Function(void) callback;
-
-  const RefreshPopup(this.callback,
-      {super.key,
-      required super.name,
-      required super.heroTag,
-      required super.actionButtonText});
+  RefreshPopup({
+    super.key,
+    required super.name,
+    required super.heroTag,
+    required super.onPressedCallBack,
+  });
 
   @override
-  _RefreshPopupState createState() => _RefreshPopupState();
+  State<RefreshPopup> createState() => _RefreshPopupState();
 }
 
-class _RefreshPopupState extends AbstractPopupState {
+class _RefreshPopupState extends AbstractPopupState<RefreshPopup> {
   @override
   void initState() {
     super.initState();
-    onPressedCallBack = widget.callback;
+    onPressedCallBack = widget.onPressedCallBack;
   }
 }

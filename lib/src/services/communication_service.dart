@@ -6,6 +6,7 @@ import 'package:iot_controller/src/models/products/led/led_panel.dart';
 import 'package:iot_controller/src/models/products/led/modes/pattern_mode.dart';
 import 'package:iot_controller/src/models/project.dart';
 import 'package:grpc/grpc.dart';
+import 'package:iot_controller/src/models/user.dart';
 
 class CategoryCommunication {
   late ClientChannel channel;
@@ -243,6 +244,52 @@ class CoffeeMachineCommunication {
   Future<CoffeeMachineResponse> Update(CoffeeMachine l) async {
     // print("Update CoffeeMachine");
     final response = await stub.update(l.getRequest());
+    return response;
+  }
+}
+
+class UserCommunication {
+  late ClientChannel channel;
+  late UserControllerClient stub;
+
+  UserCommunication({required String serverName, required int serverPort}) {
+    init(serverName, serverPort);
+  }
+
+  Future<void> init(String serverName, int serverPort) async {
+    channel = ClientChannel(serverName,
+        port: serverPort,
+        options:
+            const ChannelOptions(credentials: ChannelCredentials.insecure()));
+    stub = UserControllerClient(channel,
+        options: CallOptions(timeout: const Duration(seconds: 30)));
+  }
+
+  Future<void> clean() async {
+    await channel.shutdown();
+  }
+
+  Future<UserResponse> Create(User u) async {
+    final response = await stub.create(u.getRequest());
+    return response;
+  }
+
+  Future<void> Destroy(int id) async {
+    await stub.destroy(UserDestroyRequest(id: id));
+  }
+
+  Future<UserListResponse> List() async {
+    final response = await stub.list(UserListRequest());
+    return response;
+  }
+
+  Future<UserResponse> Retrieve(int id) async {
+    final response = await stub.retrieve(UserRetrieveRequest(id: id));
+    return response;
+  }
+
+  Future<UserResponse> Update(User u) async {
+    final response = await stub.update(u.getRequest());
     return response;
   }
 }
