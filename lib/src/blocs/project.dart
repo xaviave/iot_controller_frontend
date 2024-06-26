@@ -12,13 +12,18 @@ class ServerChangedEvent extends ProjectEvent {
 }
 
 class GetProjectListEvent extends ProjectEvent {
-  GetProjectListEvent();
 }
 
 class UpdateProjectEvent extends ProjectEvent {
   final Project project;
 
   UpdateProjectEvent({required this.project});
+}
+
+class CreateProjectEvent extends ProjectEvent {
+  final Project project;
+
+  CreateProjectEvent({required this.project});
 }
 
 sealed class ProjectState {
@@ -61,6 +66,22 @@ class UpdateProjectEventError extends ProjectState {
   String get errorMessage => message;
 }
 
+class CreateProjectEventSuccess extends ProjectState {
+  final String message;
+
+  const CreateProjectEventSuccess(this.message);
+
+  String get successMessage => message;
+}
+
+class CreateProjectEventError extends ProjectState {
+  final String message;
+
+  const CreateProjectEventError(this.message);
+
+  String get errorMessage => message;
+}
+
 class ProjectGRPCBloc extends Bloc<ProjectEvent, ProjectState> {
   late ProjectCommunication projectGrpcClient;
 
@@ -95,6 +116,15 @@ class ProjectGRPCBloc extends Bloc<ProjectEvent, ProjectState> {
       await projectGrpcClient.Update(event.project);
     } catch (error) {
       emit(UpdateProjectEventError(error.toString()));
+    }
+  }
+
+  void onCreateProjectEvent(
+      CreateProjectEvent event, Emitter<ProjectState> emit) async {
+    try {
+      await projectGrpcClient.Create(event.project);
+    } catch (error) {
+      emit(CreateProjectEventError(error.toString()));
     }
   }
 }

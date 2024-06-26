@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iot_controller/src/blocs/product.dart';
-import 'package:intl/intl.dart';
-import 'package:iot_controller/src/blocs/settings_bloc.dart';
+import 'package:iot_controller/src/blocs/project.dart';
 import 'package:iot_controller/src/blocs/user.dart';
 import 'package:iot_controller/src/models/products/base_product.dart';
 import 'package:iot_controller/src/models/project.dart';
@@ -23,9 +22,16 @@ class ProjectFormState extends State<ProjectForm> {
   final _productController = MultiSelectController<BaseProduct>([]);
 
   Project generateProject(String name, List<BaseProduct> products) {
-    final f = DateFormat('yyyy-MM-ddThh:mm:ss');
-    final activeUser = context.read<SettingsBloc>().state.activeUser;
-    return Project(id:-1, owner: activeUser, name: name, pubDate: DateTime.now(), products: products);
+    final activeUser =
+        (context.read<UserGRPCBloc>().state as AddActiveUserEventSuccess)
+            .activeUser;
+    print(activeUser);
+    return Project(
+        id: -1,
+        owner: activeUser,
+        name: name,
+        pubDate: DateTime.now(),
+        products: {for (var x in products) x.name: x});
   }
 
   @override
@@ -92,7 +98,6 @@ class ProjectFormState extends State<ProjectForm> {
                 SizedBox(
                   child: ElevatedButton(
                     onPressed: () {
-                      print("Submit, $_formKey");
                       Navigator.of(context).pop(false);
                       return;
                     },
@@ -109,9 +114,10 @@ class ProjectFormState extends State<ProjectForm> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text('Processing Data')),
                         );
-                        print("Submit, $_formKey");
-                        final a = generateProject();
-                        Navigator.of(context).pop(_formKey);
+                        context.read<ProjectGRPCBloc>().add(CreateProjectEvent(
+                            project: generateProject(_nameController.text,
+                                _productController.value)));
+                        Navigator.of(context).pop(true);
                       }
                       return;
                     },
@@ -127,5 +133,12 @@ class ProjectFormState extends State<ProjectForm> {
         ),
       );
     });
+  }
+
+  @override
+  void dispose() {
+    _productController.dispose();
+    _nameController.dispose();
+    super.dispose();
   }
 }

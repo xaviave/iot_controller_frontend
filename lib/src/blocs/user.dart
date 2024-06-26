@@ -1,30 +1,42 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iot_controller/src/blocs/settings_bloc.dart';
-import 'package:iot_controller/src/models/project.dart';
 import 'package:iot_controller/src/models/user.dart';
 import 'package:iot_controller/src/services/communication_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class UserEvent {}
 
 class ServerChangedEvent extends UserEvent {
-  final UserCommunication projectGrpcClient;
+  final UserCommunication userGrpcClient;
 
-  ServerChangedEvent(this.projectGrpcClient);
+  ServerChangedEvent(this.userGrpcClient);
 }
 
-class GetUserListEvent extends UserEvent {
-  GetUserListEvent();
-}
+class GetUserListEvent extends UserEvent {}
 
 class UpdateUserEvent extends UserEvent {
-  final User project;
+  final User user;
 
-  UpdateUserEvent({required this.project});
+  UpdateUserEvent({required this.user});
+}
+
+class RetrieveUserEvent extends UserEvent {
+  final int token;
+  // User user;
+
+  RetrieveUserEvent({required this.token});
+}
+
+class AddActiveUserEvent extends UserEvent {
+  final User user;
+
+  AddActiveUserEvent({required this.user});
 }
 
 sealed class UserState {
   const UserState();
 
+  String get message => "";
   List<User> get users => [];
 }
 
@@ -40,6 +52,7 @@ class UserListSuccess extends UserState {
 }
 
 class UserListError extends UserState {
+  @override
   final String message;
 
   const UserListError(this.message);
@@ -48,6 +61,7 @@ class UserListError extends UserState {
 }
 
 class UpdateUserEventSuccess extends UserState {
+  @override
   final String message;
 
   const UpdateUserEventSuccess(this.message);
@@ -56,6 +70,7 @@ class UpdateUserEventSuccess extends UserState {
 }
 
 class UpdateUserEventError extends UserState {
+  @override
   final String message;
 
   const UpdateUserEventError(this.message);
@@ -63,27 +78,90 @@ class UpdateUserEventError extends UserState {
   String get errorMessage => message;
 }
 
+class RetrieveUserEventSuccess extends UserState {
+  final User user;
+
+  const RetrieveUserEventSuccess(this.user);
+
+  String get successMessage => "Retrieve user: $user OK";
+}
+
+class RetrieveUserEventError extends UserState {
+  @override
+  final String message;
+
+  const RetrieveUserEventError(this.message);
+
+  String get errorMessage => message;
+}
+
+class AddActiveUserEventSuccess extends UserState {
+  final User activeUser;
+
+  const AddActiveUserEventSuccess(this.activeUser);
+}
+
+class AddActiveUserEventError extends UserState {
+  @override
+  final String message;
+
+  const AddActiveUserEventError(this.message);
+
+  String get errorMessage => message;
+}
+
 class UserGRPCBloc extends Bloc<UserEvent, UserState> {
-  late UserCommunication projectGrpcClient;
+  late UserCommunication userGrpcClient;
+
+  void initActiveUser() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String token = await prefs.getString("activeUserToken") ?? "";
+    if (token == "") {
+      return;
+    }
+    var activeUser =
+        User.fromResponse(await userGrpcClient.Retrieve(int.parse(token)));
+    add(AddActiveUserEvent(user: activeUser));
+  }
 
   UserGRPCBloc(SettingsState state) : super(UserListInitial()) {
-    projectGrpcClient = UserCommunication(
+    userGrpcClient = UserCommunication(
         serverName: state.serverName, serverPort: state.serverPort);
     on<ServerChangedEvent>(onServerChangedEvent);
     on<GetUserListEvent>(onGetUserListEvent);
-    add(GetUserListEvent());
+    on<AddActiveUserEvent>(onAddActiveUserEvent);
+    on<RetrieveUserEvent>(onRetrieveUserEvent);
+
+    // add(GetUserListEvent());
+    initActiveUser();
   }
 
-  void onServerChangedEvent(
-      ServerChangedEvent event, Emitter<UserState> emit) {
-    projectGrpcClient = event.projectGrpcClient;
-    add(GetUserListEvent());
+  void onServerChangedEvent(ServerChangedEvent event, Emitter<UserState> emit) {
+    userGrpcClient = event.userGrpcClient;
+    // add(GetUserListEvent());
+  }
+
+  void onAddActiveUserEvent(
+      AddActiveUserEvent event, Emitter<UserState> emit) async {
+    emit(AddActiveUserEventSuccess(event.user));
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString("activeUserToken", event.user.id.toString());
+  }
+
+  void onRetrieveUserEvent(
+      RetrieveUserEvent event, Emitter<UserState> emit) async {
+    try {
+      var response = await userGrpcClient.Retrieve(event.token);
+      emit(RetrieveUserEventSuccess(User.fromResponse(response)));
+    } catch (error) {
+      emit(RetrieveUserEventError(error.toString()));
+    }
   }
 
   void onGetUserListEvent(
       GetUserListEvent event, Emitter<UserState> emit) async {
     try {
-      var response = await projectGrpcClient.List();
+      var response = await userGrpcClient.List();
       emit(UserListSuccess(
           [for (var e in response.results) User.fromResponse(e)]));
     } catch (error) {
@@ -91,10 +169,9 @@ class UserGRPCBloc extends Bloc<UserEvent, UserState> {
     }
   }
 
-  void onUpdateUserEvent(
-      UpdateUserEvent event, Emitter<UserState> emit) async {
+  void onUpdateUserEvent(UpdateUserEvent event, Emitter<UserState> emit) async {
     try {
-      await projectGrpcClient.Update(event.project);
+      await userGrpcClient.Update(event.user);
     } catch (error) {
       emit(UpdateUserEventError(error.toString()));
     }

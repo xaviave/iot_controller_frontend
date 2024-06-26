@@ -18,7 +18,6 @@ class ServerChangedEvent extends LedModeEvent {
 }
 
 class GetLedModeListEvent extends LedModeEvent {
-  GetLedModeListEvent();
 }
 
 class UpdateLedModeEvent extends LedModeEvent {
@@ -86,8 +85,6 @@ class LedModeGRPCBloc extends Bloc<LedModeEvent, LedModeState> {
 
     on<GetLedModeListEvent>(onGetLedModeListEvent);
     on<UpdateLedModeEvent>(onUpdateLedModeEvent);
-
-    add(GetLedModeListEvent());
   }
 
   void onServerChangedEvent(

@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iot_controller/src/blocs/user.dart';
 import 'package:iot_controller/src/ui/utils/capitalize.dart';
 import 'package:iot_controller/src/ui/utils/popup/abstract_popup.dart';
 
-class CreatePopup extends AbstractPopup {
+class LoginPopup extends AbstractPopup {
   final Widget form;
   final String formName;
 
-  CreatePopup(
+  LoginPopup(
       {super.key,
-      super.name = "create",
+      super.name = "login",
       required super.heroTag,
       required super.onPressedCallBack,
       required this.form,
       required this.formName});
 
   @override
-  State<CreatePopup> createState() => _CreatePopupState();
+  State<LoginPopup> createState() => _LoginPopupState();
 }
 
-class _CreatePopupState extends AbstractPopupState<CreatePopup> {
+class _LoginPopupState extends AbstractPopupState<LoginPopup> {
   late Widget form;
   late String formName;
 
@@ -28,7 +30,8 @@ class _CreatePopupState extends AbstractPopupState<CreatePopup> {
   }
 
   Future<bool> displayFormCallBack(BuildContext context) async {
-    await showDialog(
+    context.read<UserGRPCBloc>().add(GetUserListEvent());
+    final result = await showDialog(
         context: context,
         builder: (BuildContext context) => AlertDialog(
               title: Text(
@@ -40,6 +43,7 @@ class _CreatePopupState extends AbstractPopupState<CreatePopup> {
                   width: MediaQuery.of(context).size.width, child: form),
             ));
     return true;
+    return result ?? false;
   }
 
   @override

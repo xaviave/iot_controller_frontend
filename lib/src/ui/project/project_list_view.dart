@@ -29,6 +29,10 @@ class _ProjectListViewState extends State<ProjectListView> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<SettingsBloc, SettingsState>(
+        listenWhen: (previousState, state) {
+          return previousState.serverPort != state.serverPort ||
+              previousState.serverName != state.serverName;
+        },
         listener: (BuildContext context, state) {
           context.read<ProjectGRPCBloc>().add(ServerChangedEvent(
               ProjectCommunication(
@@ -88,17 +92,16 @@ class _ProjectListViewState extends State<ProjectListView> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 CreatePopup(
-                    name: "create",
-                    heroTag: "project_create_button",
-                    formName: "project",
-                    form: const ProjectForm(),
-                    onPressedCallBack: (_) {},
+                  heroTag: "project_create_button",
+                  formName: "project",
+                  form: const ProjectForm(),
+                  onPressedCallBack: (_) {},
                 ),
                 const SizedBox(height: 10),
                 RefreshPopup(
-                    name: "refresh",
-                    heroTag: "project_refresh_button",
-                    onPressedCallBack: refreshProjectList,
+                  name: "refresh",
+                  heroTag: "project_refresh_button",
+                  onPressedCallBack: refreshProjectList,
                 )
               ],
             )));

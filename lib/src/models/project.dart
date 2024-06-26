@@ -19,6 +19,11 @@ class Project {
       required this.name,
       required this.products});
 
+  @override
+  String toString() {
+    return name;
+  }
+
   static Project fromResponse(ProjectResponse r) {
     Map<String, BaseProduct> products = <String, BaseProduct>{};
     for (var e in r.products) {
@@ -41,10 +46,5 @@ class Project {
         owner: owner.getRequest(),
         pubDate: f.format(pubDate),
         products: products.values.map((x) => x.getAbstractRequest()).toList());
-  }
-
-  @override
-  String toString() {
-    return name;
   }
 }

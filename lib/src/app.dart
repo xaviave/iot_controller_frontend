@@ -10,6 +10,7 @@ import 'blocs/led_mode.dart';
 import 'blocs/product.dart';
 import 'blocs/project.dart';
 import 'blocs/settings_bloc.dart';
+import 'blocs/user.dart';
 
 class MyApp extends StatelessWidget {
   final SharedPreferences prefs;
@@ -18,25 +19,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // could add an auth bloc there
+    // Settings is the main bloc provider that provide the IP of the server
+    // It allows every gRPC bloc to be init.
     return BlocProvider<SettingsBloc>(
         create: (context) => SettingsBloc(prefs),
         child:
             BlocBuilder<SettingsBloc, SettingsState>(builder: (context, state) {
           return MultiBlocProvider(
               providers: [
+                BlocProvider<UserGRPCBloc>(
+                    create: (BuildContext context) => UserGRPCBloc(state)),
                 BlocProvider<LedModeGRPCBloc>(
-                  create: (BuildContext context) => LedModeGRPCBloc(state),
-                ),
+                    create: (BuildContext context) => LedModeGRPCBloc(state)),
                 BlocProvider<BaseProductGRPCBloc>(
-                  create: (BuildContext context) => BaseProductGRPCBloc(state),
-                ),
+                    create: (BuildContext context) =>
+                        BaseProductGRPCBloc(state)),
                 BlocProvider<ProjectGRPCBloc>(
-                  create: (BuildContext context) => ProjectGRPCBloc(state),
-                ),
+                    create: (BuildContext context) => ProjectGRPCBloc(state)),
                 // BlocProvider<CategoryGRPCBloc>(
-                //   create: (BuildContext context) => CategoryGRPCBloc(),
-                // ),
+                //     create: (BuildContext context) => CategoryGRPCBloc(state)),
               ],
               child: MaterialApp(
                   restorationScopeId: 'app',
@@ -58,6 +59,7 @@ class MyApp extends StatelessWidget {
                     return MaterialPageRoute<void>(
                       settings: routeSettings,
                       builder: (BuildContext context) {
+                        // can add redirection to connection
                         switch (routeSettings.name) {
                           case SettingsView.routeName:
                             return const SettingsView();

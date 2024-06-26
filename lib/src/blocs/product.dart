@@ -17,7 +17,6 @@ class ServerChangedEvent extends BaseProductEvent {
 }
 
 class GetBaseProductListEvent extends BaseProductEvent {
-  GetBaseProductListEvent();
 }
 
 class UpdateBaseProductEvent extends BaseProductEvent {
@@ -83,8 +82,6 @@ class BaseProductGRPCBloc extends Bloc<BaseProductEvent, BaseProductState> {
 
     on<GetBaseProductListEvent>(onGetBaseProductListEvent);
     on<UpdateBaseProductEvent>(onUpdateBaseProductEvent);
-
-    add(GetBaseProductListEvent());
   }
 
   void onServerChangedEvent(
