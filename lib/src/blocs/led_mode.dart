@@ -17,8 +17,7 @@ class ServerChangedEvent extends LedModeEvent {
       {required this.colorModeGrpcClient, required this.patternModeGrpcClient});
 }
 
-class GetLedModeListEvent extends LedModeEvent {
-}
+class GetLedModeListEvent extends LedModeEvent {}
 
 class UpdateLedModeEvent extends LedModeEvent {
   final LedMode mode;

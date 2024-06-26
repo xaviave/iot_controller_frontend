@@ -49,7 +49,6 @@ class CategoryCommunication {
   }
 
   Future<CategoryResponse> Update(Category l) async {
-    // print("Update Category");
     final response = await stub.update(l.getRequest());
     return response;
   }
@@ -97,7 +96,6 @@ class ColorModeCommunication {
   }
 
   Future<ColorModeResponse> Update(ColorMode l) async {
-    // print("Update ColorMode");
     final response = await stub.update(l.getRequest());
     return response;
   }
@@ -181,8 +179,6 @@ class LedPanelCommunication {
   }
 
   Future<LedPanelListResponse> List() async {
-    print("List led");
-
     final response = await stub.list(LedPanelListRequest());
     return response;
   }
@@ -193,7 +189,6 @@ class LedPanelCommunication {
   }
 
   Future<LedPanelResponse> Update(LedPanel l) async {
-    // print("Update LedPanel");
     final response = await stub.update(l.getRequest());
     return response;
   }
@@ -231,7 +226,6 @@ class CoffeeMachineCommunication {
   }
 
   Future<CoffeeMachineListResponse> List() async {
-    print("List coffee");
     final response = await stub.list(CoffeeMachineListRequest());
     return response;
   }
@@ -242,7 +236,6 @@ class CoffeeMachineCommunication {
   }
 
   Future<CoffeeMachineResponse> Update(CoffeeMachine l) async {
-    // print("Update CoffeeMachine");
     final response = await stub.update(l.getRequest());
     return response;
   }
@@ -335,7 +328,6 @@ class ProjectCommunication {
   }
 
   Future<ProjectResponse> Update(Project p) async {
-    // print("Update Project");
     final response = await stub.update(p.getRequest());
     return response;
   }

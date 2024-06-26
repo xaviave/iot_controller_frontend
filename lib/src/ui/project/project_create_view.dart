@@ -22,10 +22,9 @@ class ProjectFormState extends State<ProjectForm> {
   final _productController = MultiSelectController<BaseProduct>([]);
 
   Project generateProject(String name, List<BaseProduct> products) {
-    final activeUser =
-        (context.read<UserGRPCBloc>().state as AddActiveUserEventSuccess)
-            .activeUser;
-    print(activeUser);
+    final state = context.read<UserGRPCBloc>().state;
+    // user need to be logged in to access there.
+    final activeUser = (state as AddActiveUserEventSuccess).activeUser;
     return Project(
         id: -1,
         owner: activeUser,
@@ -60,7 +59,7 @@ class ProjectFormState extends State<ProjectForm> {
                 hintText: 'Select products',
                 items: state.products.values.toList(),
                 onListChanged: (value) {
-                  print('changing value to: $value');
+                  // print('changing value to: $value');
                 },
                 listValidator: (value) =>
                     value.isEmpty ? "Must not be null" : null,
@@ -117,6 +116,9 @@ class ProjectFormState extends State<ProjectForm> {
                         context.read<ProjectGRPCBloc>().add(CreateProjectEvent(
                             project: generateProject(_nameController.text,
                                 _productController.value)));
+                        context
+                            .read<ProjectGRPCBloc>()
+                            .add(GetProjectListEvent());
                         Navigator.of(context).pop(true);
                       }
                       return;

@@ -16,8 +16,7 @@ class ServerChangedEvent extends BaseProductEvent {
       required this.coffeeMachineGrpcClient});
 }
 
-class GetBaseProductListEvent extends BaseProductEvent {
-}
+class GetBaseProductListEvent extends BaseProductEvent {}
 
 class UpdateBaseProductEvent extends BaseProductEvent {
   final BaseProduct product;

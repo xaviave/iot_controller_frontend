@@ -11,8 +11,7 @@ class ServerChangedEvent extends ProjectEvent {
   ServerChangedEvent(this.projectGrpcClient);
 }
 
-class GetProjectListEvent extends ProjectEvent {
-}
+class GetProjectListEvent extends ProjectEvent {}
 
 class UpdateProjectEvent extends ProjectEvent {
   final Project project;
@@ -90,6 +89,7 @@ class ProjectGRPCBloc extends Bloc<ProjectEvent, ProjectState> {
         serverName: state.serverName, serverPort: state.serverPort);
     on<ServerChangedEvent>(onServerChangedEvent);
     on<GetProjectListEvent>(onGetProjectListEvent);
+    on<CreateProjectEvent>(onCreateProjectEvent);
     add(GetProjectListEvent());
   }
 
