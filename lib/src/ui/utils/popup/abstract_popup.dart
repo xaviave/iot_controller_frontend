@@ -4,16 +4,25 @@ import 'package:iot_controller/src/ui/utils/capitalize.dart';
 class AbstractPopup extends StatefulWidget {
   final String name;
   final String heroTag;
+  final IconData icon;
+  final double smallButton;
+  final double bigButton;
+  final Alignment displacement;
 
   // Class variable to override
   Widget popupWidget = Container();
   final Function onPressedCallBack;
 
+
   AbstractPopup({
     super.key,
     required this.name,
     required this.heroTag,
+    required this.icon,
     required this.onPressedCallBack,
+    this.smallButton = 56,
+    this.bigButton = 150,
+    this.displacement = Alignment.bottomRight,
   });
 
   @override
@@ -26,6 +35,9 @@ class AbstractPopupState<T extends AbstractPopup> extends State<T> {
   late IconData icon;
   late String name;
   late String heroTag;
+  late double smallButton;
+  late double bigButton;
+  late Alignment displacement;
 
   Widget popupWidget = Container();
   // should return a Future<bool>
@@ -34,15 +46,18 @@ class AbstractPopupState<T extends AbstractPopup> extends State<T> {
   @override
   void initState() {
     super.initState();
-    icon = Icons.refresh;
     name = widget.name;
     heroTag = widget.heroTag;
+    icon = widget.icon;
+    smallButton = widget.smallButton;
+    bigButton = widget.bigButton;
+    displacement = widget.displacement;
   }
 
   @override
   Widget build(BuildContext context) {
     return Align(
-        alignment: Alignment.bottomRight,
+        alignment: displacement,
         child: MouseRegion(
             onEnter: (_) => setState(() => isHovered = true),
             onExit: (_) => setState(() => isHovered = false),
@@ -56,7 +71,7 @@ class AbstractPopupState<T extends AbstractPopup> extends State<T> {
                         colors: [Colors.purple, Colors.deepOrange],
                       ),
                     ),
-                    width: isHovered ? 150 : 56,
+                    width: isHovered ? bigButton : smallButton,
                     child: FloatingActionButton.extended(
                         onPressed: () {
                           onPressedCallBack(context).then((result) {

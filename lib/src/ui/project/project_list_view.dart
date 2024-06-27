@@ -102,7 +102,6 @@ class _ProjectListViewState extends State<ProjectListView> {
               ),
               const SizedBox(height: 10),
               RefreshPopup(
-                name: "refresh",
                 heroTag: "project_refresh_button",
                 onPressedCallBack: refreshProjectList,
               )

@@ -11,6 +11,10 @@ class LoginPopup extends AbstractPopup {
   LoginPopup(
       {super.key,
       super.name = "login",
+      super.icon = Icons.login,
+      super.smallButton = 400,
+      super.bigButton = 400,
+      super.displacement = Alignment.center,
       required super.heroTag,
       required super.onPressedCallBack,
       required this.form,
@@ -49,7 +53,6 @@ class _LoginPopupState extends AbstractPopupState<LoginPopup> {
   @override
   void initState() {
     super.initState();
-    icon = Icons.add;
     form = widget.form;
     formName = widget.formName;
 

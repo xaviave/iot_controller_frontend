@@ -110,9 +110,6 @@ class ProjectFormState extends State<ProjectForm> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Processing Data')),
-                        );
                         context.read<ProjectGRPCBloc>().add(CreateProjectEvent(
                             project: generateProject(_nameController.text,
                                 _productController.value)));

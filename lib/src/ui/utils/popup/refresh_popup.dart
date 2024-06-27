@@ -4,7 +4,8 @@ import 'package:iot_controller/src/ui/utils/popup/abstract_popup.dart';
 class RefreshPopup extends AbstractPopup {
   RefreshPopup({
     super.key,
-    required super.name,
+    super.icon = Icons.refresh,
+    super.name = "name",
     required super.heroTag,
     required super.onPressedCallBack,
   });

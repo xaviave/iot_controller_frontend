@@ -25,6 +25,12 @@ class CreateProjectEvent extends ProjectEvent {
   CreateProjectEvent({required this.project});
 }
 
+class DestroyProjectEvent extends ProjectEvent {
+  final int projectId;
+
+  DestroyProjectEvent({required this.projectId});
+}
+
 sealed class ProjectState {
   const ProjectState();
 
@@ -81,6 +87,22 @@ class CreateProjectEventError extends ProjectState {
   String get errorMessage => message;
 }
 
+class DestroyProjectEventSuccess extends ProjectState {
+  final String message;
+
+  const DestroyProjectEventSuccess(this.message);
+
+  String get successMessage => message;
+}
+
+class DestroyProjectEventError extends ProjectState {
+  final String message;
+
+  const DestroyProjectEventError(this.message);
+
+  String get errorMessage => message;
+}
+
 class ProjectGRPCBloc extends Bloc<ProjectEvent, ProjectState> {
   late ProjectCommunication projectGrpcClient;
 
@@ -90,6 +112,8 @@ class ProjectGRPCBloc extends Bloc<ProjectEvent, ProjectState> {
     on<ServerChangedEvent>(onServerChangedEvent);
     on<GetProjectListEvent>(onGetProjectListEvent);
     on<CreateProjectEvent>(onCreateProjectEvent);
+    on<DestroyProjectEvent>(onDestroyProjectEvent);
+
     add(GetProjectListEvent());
   }
 
@@ -125,6 +149,15 @@ class ProjectGRPCBloc extends Bloc<ProjectEvent, ProjectState> {
       await projectGrpcClient.Create(event.project);
     } catch (error) {
       emit(CreateProjectEventError(error.toString()));
+    }
+  }
+
+  void onDestroyProjectEvent(
+      DestroyProjectEvent event, Emitter<ProjectState> emit) async {
+    try {
+      await projectGrpcClient.Destroy(event.projectId);
+    } catch (error) {
+      emit(DestroyProjectEventError(error.toString()));
     }
   }
 }

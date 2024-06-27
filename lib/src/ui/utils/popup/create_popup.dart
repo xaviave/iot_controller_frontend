@@ -9,6 +9,7 @@ class CreatePopup extends AbstractPopup {
   CreatePopup(
       {super.key,
       super.name = "create",
+      super.icon = Icons.add,
       required super.heroTag,
       required super.onPressedCallBack,
       required this.form,
@@ -21,11 +22,6 @@ class CreatePopup extends AbstractPopup {
 class _CreatePopupState extends AbstractPopupState<CreatePopup> {
   late Widget form;
   late String formName;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
 
   Future<bool> displayFormCallBack(BuildContext context) async {
     await showDialog(
@@ -45,7 +41,6 @@ class _CreatePopupState extends AbstractPopupState<CreatePopup> {
   @override
   void initState() {
     super.initState();
-    icon = Icons.add;
     form = widget.form;
     formName = widget.formName;
 

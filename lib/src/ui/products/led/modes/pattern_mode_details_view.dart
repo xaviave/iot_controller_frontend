@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:iot_controller/src/models/products/led/default_palette.dart';
 import 'package:iot_controller/src/models/products/led/modes/led_mode.dart';
 import 'package:iot_controller/src/models/products/led/modes/pattern_mode.dart';
-import 'package:iot_controller/src/ui/utils/popup/alert_popup.dart';
+import 'package:iot_controller/src/ui/utils/popup/abstract_popup.dart';
 
 class PatternModeDetailsView extends StatefulWidget {
   final PatternMode mode;
@@ -32,13 +32,25 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
     callbackUpdateMode = widget.callbackUpdateMode;
   }
 
-  void callbackUpdatePaletteColor(int index, Color newColor, bool addNewColor) {
+  Future<void> callbackUpdatePaletteColor(
+      int index, Color newColor, bool addNewColor) async {
     if (mode.palette.length >= PatternMode.maxPaletteLength) {
-      showInfoDialog(
-          context,
-          "Maximum palette size reached",
-          "The maximum of colors in a palette is: ${PatternMode.maxPaletteLength}",
-          "Ok");
+      await showDialog(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+                  title: const Text(
+                    "Maximum palette size reached",
+                  ),
+                  content: const Text(
+                      "The maximum of colors in a palette is: ${PatternMode.maxPaletteLength}"),
+                  actions: [
+                    TextButton(
+                      child: const Text("Ok"),
+                      onPressed: () {
+                        Navigator.of(context).pop(); // dismiss dialog
+                      },
+                    )
+                  ]));
       return;
     }
     setState(() {
@@ -64,6 +76,7 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
           setState(() {
             if (addNewColor == false) {
               mode.palette.removeAt(index);
+              callbackUpdateMode(mode);
             }
           });
         },
@@ -152,8 +165,16 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
         Wrap(
             children: List.generate(mode.palette.length, (i) => i).map((index) {
           return addColorWidget(index, mode.palette[index], false);
-        }).toList()
-              ..add(addColorWidget(0, Colors.black, true))),
+        }).toList()),
+        AbstractPopup(
+          name: "Add Color",
+          heroTag: "add_pattern_color",
+          icon: Icons.add,
+          displacement: Alignment.center,
+          onPressedCallBack: () {
+            addColorWidget(0, Colors.black, true);
+          }
+        ),
         ElevatedButton(
           onPressed: () {
             showDialog(

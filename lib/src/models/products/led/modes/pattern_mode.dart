@@ -7,7 +7,7 @@ import 'package:iot_controller/src/ui/utils/math.dart';
 import 'led_mode.dart';
 
 class PatternMode extends LedMode {
-  static const int maxPaletteLength = 30;
+  static const int maxPaletteLength = 3;
 
   double fps;
   double blink;

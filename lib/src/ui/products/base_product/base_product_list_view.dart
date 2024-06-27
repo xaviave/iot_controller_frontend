@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:iot_controller/src/models/products/base_product.dart';
 import 'package:iot_controller/src/models/products/coffee_machine.dart';
 import 'package:iot_controller/src/models/products/led/led_panel.dart';
+import 'package:iot_controller/src/ui/products/coffee_machine/coffee_machine_minimal_view.dart';
 import 'package:iot_controller/src/ui/products/led/led_panel_details_view.dart';
+import 'package:iot_controller/src/ui/products/led/led_panel_minimal_detail_view.dart';
 import 'package:vector_math/vector_math_64.dart' show Vector3;
 
 import '../coffee_machine/coffee_machine_details_view.dart';
@@ -49,31 +51,37 @@ class _BaseProductListViewState extends State<BaseProductListView> {
 
                   // Code
                   // Should be updated to adapt each classes
-                  title: LedPanelMinimalDetailsView(
-                      product: products[name] as LedPanel),
-                  onTap: () {
-                    if (products[name] is LedPanel) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LedPanelDetailsView(
-                              product: products[name] as LedPanel,
-                              callbackUpdateProject: callbackUpdateProject),
-                          settings: const RouteSettings(),
-                        ),
-                      );
-                    } else if (products[name] is CoffeeMachine) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CoffeeMachineDetailsView(
-                              product: products[name] as CoffeeMachine,
-                              callbackUpdateProject: callbackUpdateProject),
-                          settings: const RouteSettings(),
-                        ),
-                      );
-                    }
-                  });
+                  title: () {
+                if (products[name] is LedPanel) {
+                  return LedPanelMinimalDetailsView(
+                      product: products[name] as LedPanel);
+                } else if (products[name] is CoffeeMachine) {
+                  return CoffeeMachineMinimalDetailsView(
+                      product: products[name] as CoffeeMachine);
+                }
+              }(), onTap: () {
+                if (products[name] is LedPanel) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => LedPanelDetailsView(
+                          product: products[name] as LedPanel,
+                          callbackUpdateProject: callbackUpdateProject),
+                      settings: const RouteSettings(),
+                    ),
+                  );
+                } else if (products[name] is CoffeeMachine) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CoffeeMachineDetailsView(
+                          product: products[name] as CoffeeMachine,
+                          callbackUpdateProject: callbackUpdateProject),
+                      settings: const RouteSettings(),
+                    ),
+                  );
+                }
+              });
             },
             separatorBuilder: (context, index) => const SizedBox(
                   height: 10,
