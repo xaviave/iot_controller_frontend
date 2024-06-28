@@ -1,9 +1,9 @@
+import "package:flutter/material.dart";
 import "package:iot_controller/src/blocs/product.dart";
 import "package:iot_controller/src/models/products/base_product.dart";
-import "package:iot_controller/src/models/products/led/modes/led_mode.dart";
 import "package:iot_controller/src/models/products/led/led_panel.dart";
+import "package:iot_controller/src/models/products/led/modes/led_mode.dart";
 import "package:iot_controller/src/models/status.dart";
-import "package:flutter/material.dart";
 import "package:iot_controller/src/ui/products/base_product/update_ip_alert_view.dart";
 import "package:iot_controller/src/ui/products/led/modes/led_mode_list_alert_view.dart";
 import "package:iot_controller/src/ui/settings/settings_view.dart";

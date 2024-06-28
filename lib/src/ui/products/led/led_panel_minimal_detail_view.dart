@@ -47,6 +47,11 @@ class _LedPanelMinimalDetailsViewState
             width: double.infinity,
             child: Column(
               children: [
+                ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.network(
+                      "https://indieground.net/wp-content/uploads/2022/06/floppydiskdesign-indiegroundblog_four_tet-1024x1024.jpg",
+                    )),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

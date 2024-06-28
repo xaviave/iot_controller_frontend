@@ -5,7 +5,6 @@ import 'package:iot_controller/src/models/products/led/led_panel.dart';
 import 'package:iot_controller/src/ui/products/coffee_machine/coffee_machine_minimal_view.dart';
 import 'package:iot_controller/src/ui/products/led/led_panel_details_view.dart';
 import 'package:iot_controller/src/ui/products/led/led_panel_minimal_detail_view.dart';
-import 'package:vector_math/vector_math_64.dart' show Vector3;
 
 import '../coffee_machine/coffee_machine_details_view.dart';
 
