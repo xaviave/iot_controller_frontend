@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iot_controller/protos/backend.pb.dart';
 import 'package:iot_controller/src/blocs/settings_bloc.dart';
 import 'package:iot_controller/src/models/products/base_product.dart';
 import 'package:iot_controller/src/models/products/coffee_machine.dart';
@@ -87,10 +88,20 @@ class UpdateBaseProductEventError extends BaseProductState {
   String get errorMessage => message;
 }
 
-class CreateBaseProductEventSuccess extends BaseProductState {
+class CreateCoffeeMachineEventSuccess extends BaseProductState {
   final String message;
+  final CoffeeMachineResponse product;
 
-  const CreateBaseProductEventSuccess(this.message);
+  const CreateCoffeeMachineEventSuccess(this.message, this.product);
+
+  String get successMessage => message;
+}
+
+class CreateLedPanelEventSuccess extends BaseProductState {
+  final String message;
+  final LedPanelResponse product;
+
+  const CreateLedPanelEventSuccess(this.message, this.product);
 
   String get successMessage => message;
 }
@@ -142,7 +153,6 @@ class BaseProductGRPCBloc extends Bloc<BaseProductEvent, BaseProductState> {
       ServerChangedEvent event, Emitter<BaseProductState> emit) {
     ledPanelGrpcClient = event.ledPanelGrpcClient;
     coffeeMachineGrpcClient = event.coffeeMachineGrpcClient;
-    add(GetBaseProductListEvent());
   }
 
   Future<Map<String, LedPanel>> getLedPanelItems() async {
@@ -174,9 +184,13 @@ class BaseProductGRPCBloc extends Bloc<BaseProductEvent, BaseProductState> {
       CreateBaseProductEvent event, Emitter<BaseProductState> emit) async {
     try {
       if (event.product is CoffeeMachine) {
-        await coffeeMachineGrpcClient.create(event.product as CoffeeMachine);
+        var response = await coffeeMachineGrpcClient
+            .create(event.product as CoffeeMachine);
+        emit(CreateCoffeeMachineEventSuccess("success", response));
       } else {
-        await ledPanelGrpcClient.create(event.product as LedPanel);
+        var response =
+            await ledPanelGrpcClient.create(event.product as LedPanel);
+        emit(CreateLedPanelEventSuccess("success", response));
       }
     } catch (error) {
       emit(CreateBaseProductEventError(error.toString()));

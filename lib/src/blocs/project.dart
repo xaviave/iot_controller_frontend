@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iot_controller/protos/backend.pb.dart';
 import 'package:iot_controller/src/blocs/settings_bloc.dart';
 import 'package:iot_controller/src/models/project.dart';
 import 'package:iot_controller/src/services/communication_service.dart';
@@ -80,8 +81,9 @@ class UpdateProjectEventError extends ProjectState {
 
 class CreateProjectEventSuccess extends ProjectState {
   final String message;
+  final ProjectResponse project;
 
-  const CreateProjectEventSuccess(this.message);
+  const CreateProjectEventSuccess(this.message, this.project);
 
   String get successMessage => message;
 }
@@ -163,7 +165,9 @@ class ProjectGRPCBloc extends Bloc<ProjectEvent, ProjectState> {
   void onCreateProjectEvent(
       CreateProjectEvent event, Emitter<ProjectState> emit) async {
     try {
-      await projectGrpcClient.create(event.project);
+      var response = await projectGrpcClient.create(event.project);
+      print(response);
+      emit(CreateProjectEventSuccess("success", response));
     } catch (error) {
       emit(CreateProjectEventError(error.toString()));
     }

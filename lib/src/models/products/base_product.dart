@@ -2,6 +2,7 @@ import 'package:iot_controller/protos/backend.pb.dart';
 import 'package:iot_controller/src/models/category.dart';
 import 'package:iot_controller/src/models/products/coffee_machine.dart';
 import 'package:iot_controller/src/models/products/led/led_panel.dart';
+import 'package:iot_controller/src/models/products/power_automation.dart';
 
 abstract class BaseProduct {
   int id;
@@ -9,13 +10,15 @@ abstract class BaseProduct {
   int ipPort;
   String ipAddress;
   List<Category> categories;
+  final PowerAutomation powerSetting = NoPowerAutomation(name: "");
 
-  BaseProduct(
-      {required this.id,
-      required this.name,
-      required this.ipAddress,
-      required this.ipPort,
-      required this.categories});
+  BaseProduct({
+    required this.id,
+    required this.name,
+    required this.ipAddress,
+    required this.ipPort,
+    required this.categories,
+  });
 
   BaseProductRequest getAbstractRequest() {
     return BaseProductRequest();

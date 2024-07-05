@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iot_controller/protos/backend.pb.dart';
 import 'package:iot_controller/src/blocs/settings_bloc.dart';
 import 'package:iot_controller/src/models/products/led/modes/color_mode.dart';
 import 'package:iot_controller/src/models/products/led/modes/led_mode.dart';
@@ -87,10 +88,20 @@ class UpdateLedModeEventError extends LedModeState {
   String get errorMessage => message;
 }
 
-class CreateLedModeEventSuccess extends LedModeState {
+class CreateColorModeEventSuccess extends LedModeState {
   final String message;
+  final ColorModeResponse mode;
 
-  const CreateLedModeEventSuccess(this.message);
+  const CreateColorModeEventSuccess(this.message, this.mode);
+
+  String get successMessage => message;
+}
+
+class CreatePatternModeEventSuccess extends LedModeState {
+  final String message;
+  final PatternModeResponse mode;
+
+  const CreatePatternModeEventSuccess(this.message, this.mode);
 
   String get successMessage => message;
 }
@@ -176,9 +187,13 @@ class LedModeGRPCBloc extends Bloc<LedModeEvent, LedModeState> {
       CreateLedModeEvent event, Emitter<LedModeState> emit) async {
     try {
       if (event.mode is ColorMode) {
-        await colorModeGrpcClient.create(event.mode as ColorMode);
+        var response =
+            await colorModeGrpcClient.create(event.mode as ColorMode);
+        emit(CreateColorModeEventSuccess("success", response));
       } else {
-        await patternModeGrpcClient.create(event.mode as PatternMode);
+        var response =
+            await patternModeGrpcClient.create(event.mode as PatternMode);
+        emit(CreatePatternModeEventSuccess("success", response));
       }
     } catch (error) {
       emit(CreateLedModeEventError(error.toString()));

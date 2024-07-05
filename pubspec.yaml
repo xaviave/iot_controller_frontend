@@ -22,6 +22,7 @@ dependencies:
   flutter_launcher_icons: ^0.11.0
   flutter_bloc: ^8.1.5
   animated_custom_dropdown: ^3.1.1
+  wifi_iot: ^0.3.19
 
 dev_dependencies:
   flutter_test:
