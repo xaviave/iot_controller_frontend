@@ -43,6 +43,7 @@ class _CreatePopupState extends AbstractPopupState<CreatePopup> {
     super.initState();
     form = widget.form;
     formName = widget.formName;
+    name = "$name $formName";
 
     onPressedCallBack = displayFormCallBack;
   }

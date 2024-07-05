@@ -19,6 +19,13 @@ class UpdateProjectEvent extends ProjectEvent {
   UpdateProjectEvent({required this.project});
 }
 
+class PartialUpdateProjectEvent extends ProjectEvent {
+  final Project project;
+  Map<String, dynamic> fields;
+
+  PartialUpdateProjectEvent({required this.project, required this.fields});
+}
+
 class CreateProjectEvent extends ProjectEvent {
   final Project project;
 
@@ -113,6 +120,7 @@ class ProjectGRPCBloc extends Bloc<ProjectEvent, ProjectState> {
     on<GetProjectListEvent>(onGetProjectListEvent);
     on<CreateProjectEvent>(onCreateProjectEvent);
     on<DestroyProjectEvent>(onDestroyProjectEvent);
+    on<PartialUpdateProjectEvent>(onPartialUpdateProjectEvent);
 
     add(GetProjectListEvent());
   }
@@ -126,7 +134,7 @@ class ProjectGRPCBloc extends Bloc<ProjectEvent, ProjectState> {
   void onGetProjectListEvent(
       GetProjectListEvent event, Emitter<ProjectState> emit) async {
     try {
-      var response = await projectGrpcClient.List();
+      var response = await projectGrpcClient.list();
       emit(ProjectListSuccess(
           [for (var e in response.results) Project.fromResponse(e)]));
     } catch (error) {
@@ -137,7 +145,16 @@ class ProjectGRPCBloc extends Bloc<ProjectEvent, ProjectState> {
   void onUpdateProjectEvent(
       UpdateProjectEvent event, Emitter<ProjectState> emit) async {
     try {
-      await projectGrpcClient.Update(event.project);
+      await projectGrpcClient.update(event.project);
+    } catch (error) {
+      emit(UpdateProjectEventError(error.toString()));
+    }
+  }
+
+  void onPartialUpdateProjectEvent(
+      PartialUpdateProjectEvent event, Emitter<ProjectState> emit) async {
+    try {
+      await projectGrpcClient.partialUpdate(event.project, event.fields);
     } catch (error) {
       emit(UpdateProjectEventError(error.toString()));
     }
@@ -146,7 +163,7 @@ class ProjectGRPCBloc extends Bloc<ProjectEvent, ProjectState> {
   void onCreateProjectEvent(
       CreateProjectEvent event, Emitter<ProjectState> emit) async {
     try {
-      await projectGrpcClient.Create(event.project);
+      await projectGrpcClient.create(event.project);
     } catch (error) {
       emit(CreateProjectEventError(error.toString()));
     }
@@ -155,7 +172,7 @@ class ProjectGRPCBloc extends Bloc<ProjectEvent, ProjectState> {
   void onDestroyProjectEvent(
       DestroyProjectEvent event, Emitter<ProjectState> emit) async {
     try {
-      await projectGrpcClient.Destroy(event.projectId);
+      await projectGrpcClient.destroy(event.projectId);
     } catch (error) {
       emit(DestroyProjectEventError(error.toString()));
     }

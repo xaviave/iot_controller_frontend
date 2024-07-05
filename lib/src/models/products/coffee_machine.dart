@@ -41,13 +41,18 @@ class CoffeeMachine extends BaseProduct {
     required this.modeValue,
   });
 
+  @override
+  String toString() {
+    return name;
+  }
+
   CoffeeMachineRequest getRequest() {
     return CoffeeMachineRequest(
       id: id,
       name: name,
       ipPort: ipPort,
       ipAddress: ipAddress,
-      categories: categories.map((x) => x.getRequest()).toList(),
+      categories: categories.map((x) => x.getRequest()),
       status: status.id,
       heat: heat,
       waterLevel: waterLevel.id,
@@ -55,6 +60,25 @@ class CoffeeMachine extends BaseProduct {
       coffeeLevel: coffeeLevel.id,
       filterPosition: filterPosition,
       modeValue: modeValue,
+    );
+  }
+
+  CoffeeMachinePartialUpdateRequest getPartialRequest(
+      Map<String, dynamic> fields) {
+    return CoffeeMachinePartialUpdateRequest(
+      id: id,
+      partialUpdateFields: fields.keys,
+      name: fields["name"],
+      ipPort: fields["ipPort"],
+      ipAddress: fields["ipAddress"],
+      categories: fields["categories"],
+      status: fields["status"],
+      heat: fields["heat"],
+      waterLevel: fields["waterLevel"],
+      usedWaterLevel: fields["usedWaterLevel"],
+      coffeeLevel: fields["coffeeLevel"],
+      filterPosition: fields["filterPosition"],
+      modeValue: fields["modeValue"],
     );
   }
 
@@ -79,10 +103,5 @@ class CoffeeMachine extends BaseProduct {
       filterPosition: r.filterPosition,
       modeValue: r.modeValue,
     );
-  }
-
-  @override
-  String toString() {
-    return name;
   }
 }

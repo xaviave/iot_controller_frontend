@@ -120,7 +120,7 @@ class UserGRPCBloc extends Bloc<UserEvent, UserState> {
       return;
     }
     var activeUser =
-        User.fromResponse(await userGrpcClient.Retrieve(int.parse(token)));
+        User.fromResponse(await userGrpcClient.retrieve(int.parse(token)));
     add(AddActiveUserEvent(user: activeUser));
   }
 
@@ -151,7 +151,7 @@ class UserGRPCBloc extends Bloc<UserEvent, UserState> {
   void onRetrieveUserEvent(
       RetrieveUserEvent event, Emitter<UserState> emit) async {
     try {
-      var response = await userGrpcClient.Retrieve(event.token);
+      var response = await userGrpcClient.retrieve(event.token);
       emit(RetrieveUserEventSuccess(User.fromResponse(response)));
     } catch (error) {
       emit(RetrieveUserEventError(error.toString()));
@@ -161,7 +161,7 @@ class UserGRPCBloc extends Bloc<UserEvent, UserState> {
   void onGetUserListEvent(
       GetUserListEvent event, Emitter<UserState> emit) async {
     try {
-      var response = await userGrpcClient.List();
+      var response = await userGrpcClient.list();
       emit(UserListSuccess(
           [for (var e in response.results) User.fromResponse(e)]));
     } catch (error) {
@@ -171,7 +171,7 @@ class UserGRPCBloc extends Bloc<UserEvent, UserState> {
 
   void onUpdateUserEvent(UpdateUserEvent event, Emitter<UserState> emit) async {
     try {
-      await userGrpcClient.Update(event.user);
+      await userGrpcClient.update(event.user);
     } catch (error) {
       emit(UpdateUserEventError(error.toString()));
     }

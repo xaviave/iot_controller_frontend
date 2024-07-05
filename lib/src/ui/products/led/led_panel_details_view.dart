@@ -1,11 +1,13 @@
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:iot_controller/src/blocs/led_mode.dart";
 import "package:iot_controller/src/blocs/product.dart";
 import "package:iot_controller/src/models/products/base_product.dart";
 import "package:iot_controller/src/models/products/led/led_panel.dart";
 import "package:iot_controller/src/models/products/led/modes/led_mode.dart";
 import "package:iot_controller/src/models/status.dart";
 import "package:iot_controller/src/ui/products/base_product/update_ip_alert_view.dart";
-import "package:iot_controller/src/ui/products/led/modes/led_mode_list_alert_view.dart";
+import "package:iot_controller/src/ui/products/led/modes/led_mode_list_view.dart";
 import "package:iot_controller/src/ui/settings/settings_view.dart";
 import "package:iot_controller/src/ui/utils/capitalize.dart";
 import "package:iot_controller/src/ui/utils/on_off_button.dart";
@@ -29,9 +31,9 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
   late Color colorBrightness;
   late Function(BaseProduct) callbackUpdateProject;
 
-  void updateMode(LedMode m) {
+  void updateMode(LedMode m, bool serverUpdateProduct) {
     setState(() => product.mode = m);
-    updateProduct();
+    if (serverUpdateProduct == true) updateProduct();
   }
 
   void updateIp(String ipAddress, int ipPort) {
@@ -74,7 +76,10 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
             IconButton(
               icon: const Icon(Icons.settings),
               onPressed: () {
-                Navigator.restorablePushNamed(context, SettingsView.routeName);
+                Navigator.restorablePushNamed(
+                  context,
+                  SettingsView.routeName,
+                );
               },
             ),
           ],
@@ -84,7 +89,9 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
             children: [
               // add categories
               OnOffButton(
-                  status: product.status, callbackUpdateStatus: updateStatus),
+                status: product.status,
+                callbackUpdateStatus: updateStatus,
+              ),
               const SizedBox(height: 10),
               TextButton(
                 onPressed: () {
@@ -99,9 +106,10 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                             content: SizedBox(
                                 width: MediaQuery.of(context).size.width,
                                 child: IpUpdateAlertView(
-                                    ipAddress: product.ipAddress,
-                                    ipPort: product.ipPort,
-                                    callbackUpdateIp: updateIp)),
+                                  ipAddress: product.ipAddress,
+                                  ipPort: product.ipPort,
+                                  callbackUpdateIp: updateIp,
+                                )),
                             actions: [
                               TextButton(
                                 child: const Text("Cancel"),
@@ -131,51 +139,56 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                       product.brightness =
                           double.parse(value.toStringAsFixed(2));
                       colorBrightness = Color.lerp(
-                          Colors.black, Colors.yellow, product.brightness)!;
+                        Colors.black,
+                        Colors.yellow,
+                        product.brightness,
+                      )!;
                     });
                   },
                   onChangeEnd: (value) {
                     updateProduct();
                   }),
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                Container(
-                    margin: const EdgeInsets.all(10),
-                    child: Text(
-                      product.mode.name.capitalize,
-                      style: const TextStyle(fontSize: 28),
-                    )),
-                TextButton(
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) => AlertDialog(
-                              title: const Text("Change Mode"),
-                              insetPadding: const EdgeInsets.all(50),
-                              content: SizedBox(
-                                  width: MediaQuery.of(context).size.width,
-                                  child: LedModeListAlertView(
-                                      callbackUpdateMode: updateMode)),
-                              actions: [
-                                TextButton(
-                                  child: const Text("Cancel"),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                )
-                              ],
-                            ));
-                  },
-                  child: Container(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
                       margin: const EdgeInsets.all(10),
-                      child: const Text(
-                        "Update mode",
-                        style: TextStyle(fontSize: 28),
-                      )),
-                )
-              ]),
+                      child: Text(product.mode.name.capitalize,
+                          style: const TextStyle(fontSize: 28))),
+                  TextButton(
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                                  title: const Text("Change Mode"),
+                                  insetPadding: const EdgeInsets.all(50),
+                                  content: SizedBox(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: LedModeListView(
+                                        callbackUpdateLedMode: updateMode,
+                                      )),
+                                  actions: [
+                                    TextButton(
+                                        child: const Text("Cancel"),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        })
+                                  ]));
+                    },
+                    child: Container(
+                        margin: const EdgeInsets.all(10),
+                        child: const Text(
+                          "Update mode",
+                          style: TextStyle(fontSize: 28),
+                        )),
+                  )
+                ],
+              ),
               const SizedBox(height: 10),
               LedModeDetailsView(
-                  mode: product.mode, callbackUpdateMode: updateMode),
+                mode: product.mode,
+                callbackUpdateLedMode: updateMode,
+              ),
             ],
           ),
         ));

@@ -25,6 +25,25 @@ class UpdateLedModeEvent extends LedModeEvent {
   UpdateLedModeEvent({required this.mode});
 }
 
+class PartialUpdateLedModeEvent extends LedModeEvent {
+  final LedMode mode;
+  Map<String, dynamic> fields;
+
+  PartialUpdateLedModeEvent({required this.mode, required this.fields});
+}
+
+class CreateLedModeEvent extends LedModeEvent {
+  final LedMode mode;
+
+  CreateLedModeEvent({required this.mode});
+}
+
+class DestroyLedModeEvent extends LedModeEvent {
+  final LedMode mode;
+
+  DestroyLedModeEvent({required this.mode});
+}
+
 sealed class LedModeState {
   const LedModeState();
 
@@ -68,6 +87,38 @@ class UpdateLedModeEventError extends LedModeState {
   String get errorMessage => message;
 }
 
+class CreateLedModeEventSuccess extends LedModeState {
+  final String message;
+
+  const CreateLedModeEventSuccess(this.message);
+
+  String get successMessage => message;
+}
+
+class CreateLedModeEventError extends LedModeState {
+  final String message;
+
+  const CreateLedModeEventError(this.message);
+
+  String get errorMessage => message;
+}
+
+class DestroyLedModeEventSuccess extends LedModeState {
+  final String message;
+
+  const DestroyLedModeEventSuccess(this.message);
+
+  String get successMessage => message;
+}
+
+class DestroyLedModeEventError extends LedModeState {
+  final String message;
+
+  const DestroyLedModeEventError(this.message);
+
+  String get errorMessage => message;
+}
+
 class LedModeGRPCBloc extends Bloc<LedModeEvent, LedModeState> {
   late ColorModeCommunication colorModeGrpcClient;
   late PatternModeCommunication patternModeGrpcClient;
@@ -84,6 +135,9 @@ class LedModeGRPCBloc extends Bloc<LedModeEvent, LedModeState> {
 
     on<GetLedModeListEvent>(onGetLedModeListEvent);
     on<UpdateLedModeEvent>(onUpdateLedModeEvent);
+    on<PartialUpdateLedModeEvent>(onPartialUpdateLedModeEvent);
+    on<DestroyLedModeEvent>(onDestroyLedModeEvent);
+    on<CreateLedModeEvent>(onCreateLedModeEvent);
   }
 
   void onServerChangedEvent(
@@ -94,7 +148,7 @@ class LedModeGRPCBloc extends Bloc<LedModeEvent, LedModeState> {
   }
 
   Future<Map<String, PatternMode>> getPatternModeItems() async {
-    var responsePatternMode = await patternModeGrpcClient.List();
+    var responsePatternMode = await patternModeGrpcClient.list();
     return {
       for (var e in responsePatternMode.results)
         e.name: PatternMode.fromResponse(e)
@@ -102,7 +156,7 @@ class LedModeGRPCBloc extends Bloc<LedModeEvent, LedModeState> {
   }
 
   Future<Map<String, ColorMode>> getColorModeItems() async {
-    var responseColorMode = await colorModeGrpcClient.List();
+    var responseColorMode = await colorModeGrpcClient.list();
     return {
       for (var e in responseColorMode.results) e.name: ColorMode.fromResponse(e)
     };
@@ -118,16 +172,57 @@ class LedModeGRPCBloc extends Bloc<LedModeEvent, LedModeState> {
     }
   }
 
+  void onCreateLedModeEvent(
+      CreateLedModeEvent event, Emitter<LedModeState> emit) async {
+    try {
+      if (event.mode is ColorMode) {
+        await colorModeGrpcClient.create(event.mode as ColorMode);
+      } else {
+        await patternModeGrpcClient.create(event.mode as PatternMode);
+      }
+    } catch (error) {
+      emit(CreateLedModeEventError(error.toString()));
+    }
+  }
+
   void onUpdateLedModeEvent(
       UpdateLedModeEvent event, Emitter<LedModeState> emit) async {
     try {
       if (event.mode is ColorMode) {
-        await colorModeGrpcClient.Update(event.mode as ColorMode);
+        await colorModeGrpcClient.update(event.mode as ColorMode);
       } else {
-        await patternModeGrpcClient.Update(event.mode as PatternMode);
+        await patternModeGrpcClient.update(event.mode as PatternMode);
       }
     } catch (error) {
       emit(UpdateLedModeEventError(error.toString()));
+    }
+  }
+
+  void onPartialUpdateLedModeEvent(
+      PartialUpdateLedModeEvent event, Emitter<LedModeState> emit) async {
+    try {
+      if (event.mode is ColorMode) {
+        await colorModeGrpcClient.partialUpdate(
+            event.mode as ColorMode, event.fields);
+      } else {
+        await patternModeGrpcClient.partialUpdate(
+            event.mode as PatternMode, event.fields);
+      }
+    } catch (error) {
+      emit(UpdateLedModeEventError(error.toString()));
+    }
+  }
+
+  void onDestroyLedModeEvent(
+      DestroyLedModeEvent event, Emitter<LedModeState> emit) async {
+    try {
+      if (event.mode is ColorMode) {
+        await colorModeGrpcClient.destroy(event.mode.id);
+      } else {
+        await patternModeGrpcClient.destroy(event.mode.id);
+      }
+    } catch (error) {
+      emit(DestroyLedModeEventError(error.toString()));
     }
   }
 }

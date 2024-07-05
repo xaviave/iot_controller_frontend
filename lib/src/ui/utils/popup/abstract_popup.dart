@@ -10,9 +10,7 @@ class AbstractPopup extends StatefulWidget {
   final Alignment displacement;
 
   // Class variable to override
-  Widget popupWidget = Container();
   final Function onPressedCallBack;
-
 
   AbstractPopup({
     super.key,
@@ -39,7 +37,6 @@ class AbstractPopupState<T extends AbstractPopup> extends State<T> {
   late double bigButton;
   late Alignment displacement;
 
-  Widget popupWidget = Container();
   // should return a Future<bool>
   Function onPressedCallBack = (_) => {};
 

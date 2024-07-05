@@ -24,6 +24,25 @@ class UpdateBaseProductEvent extends BaseProductEvent {
   UpdateBaseProductEvent({required this.product});
 }
 
+class PartialUpdateBaseProductEvent extends BaseProductEvent {
+  final BaseProduct product;
+  Map<String, dynamic> fields;
+
+  PartialUpdateBaseProductEvent({required this.product, required this.fields});
+}
+
+class CreateBaseProductEvent extends BaseProductEvent {
+  final BaseProduct product;
+
+  CreateBaseProductEvent({required this.product});
+}
+
+class DestroyBaseProductEvent extends BaseProductEvent {
+  final BaseProduct product;
+
+  DestroyBaseProductEvent({required this.product});
+}
+
 sealed class BaseProductState {
   const BaseProductState();
 
@@ -40,6 +59,7 @@ class BaseProductListSuccess extends BaseProductState {
 
   Map<String, LedPanel> get ledPanels => _ledPanels;
   Map<String, CoffeeMachine> get coffeeMachines => _coffeeMachines;
+  @override
   Map<String, BaseProduct> get products => {..._ledPanels, ..._coffeeMachines};
 }
 
@@ -67,6 +87,38 @@ class UpdateBaseProductEventError extends BaseProductState {
   String get errorMessage => message;
 }
 
+class CreateBaseProductEventSuccess extends BaseProductState {
+  final String message;
+
+  const CreateBaseProductEventSuccess(this.message);
+
+  String get successMessage => message;
+}
+
+class CreateBaseProductEventError extends BaseProductState {
+  final String message;
+
+  const CreateBaseProductEventError(this.message);
+
+  String get errorMessage => message;
+}
+
+class DestroyBaseProductEventSuccess extends BaseProductState {
+  final String message;
+
+  const DestroyBaseProductEventSuccess(this.message);
+
+  String get successMessage => message;
+}
+
+class DestroyBaseProductEventError extends BaseProductState {
+  final String message;
+
+  const DestroyBaseProductEventError(this.message);
+
+  String get errorMessage => message;
+}
+
 class BaseProductGRPCBloc extends Bloc<BaseProductEvent, BaseProductState> {
   late LedPanelCommunication ledPanelGrpcClient;
   late CoffeeMachineCommunication coffeeMachineGrpcClient;
@@ -81,6 +133,9 @@ class BaseProductGRPCBloc extends Bloc<BaseProductEvent, BaseProductState> {
 
     on<GetBaseProductListEvent>(onGetBaseProductListEvent);
     on<UpdateBaseProductEvent>(onUpdateBaseProductEvent);
+    on<CreateBaseProductEvent>(onCreateBaseProductEvent);
+    on<DestroyBaseProductEvent>(onDestroyBaseProductEvent);
+    on<PartialUpdateBaseProductEvent>(onPartialUpdateBaseProductEvent);
   }
 
   void onServerChangedEvent(
@@ -91,14 +146,14 @@ class BaseProductGRPCBloc extends Bloc<BaseProductEvent, BaseProductState> {
   }
 
   Future<Map<String, LedPanel>> getLedPanelItems() async {
-    var responseLedPanel = await ledPanelGrpcClient.List();
+    var responseLedPanel = await ledPanelGrpcClient.list();
     return {
       for (var e in responseLedPanel.results) e.name: LedPanel.fromResponse(e)
     };
   }
 
   Future<Map<String, CoffeeMachine>> getCoffeeMachineItems() async {
-    var responseCoffeeMachine = await coffeeMachineGrpcClient.List();
+    var responseCoffeeMachine = await coffeeMachineGrpcClient.list();
     return {
       for (var e in responseCoffeeMachine.results)
         e.name: CoffeeMachine.fromResponse(e)
@@ -115,16 +170,57 @@ class BaseProductGRPCBloc extends Bloc<BaseProductEvent, BaseProductState> {
     }
   }
 
+  void onCreateBaseProductEvent(
+      CreateBaseProductEvent event, Emitter<BaseProductState> emit) async {
+    try {
+      if (event.product is CoffeeMachine) {
+        await coffeeMachineGrpcClient.create(event.product as CoffeeMachine);
+      } else {
+        await ledPanelGrpcClient.create(event.product as LedPanel);
+      }
+    } catch (error) {
+      emit(CreateBaseProductEventError(error.toString()));
+    }
+  }
+
   void onUpdateBaseProductEvent(
       UpdateBaseProductEvent event, Emitter<BaseProductState> emit) async {
     try {
       if (event.product is LedPanel) {
-        await ledPanelGrpcClient.Update(event.product as LedPanel);
+        await ledPanelGrpcClient.update(event.product as LedPanel);
       } else {
-        await coffeeMachineGrpcClient.Update(event.product as CoffeeMachine);
+        await coffeeMachineGrpcClient.update(event.product as CoffeeMachine);
       }
     } catch (error) {
       emit(UpdateBaseProductEventError(error.toString()));
+    }
+  }
+
+  void onPartialUpdateBaseProductEvent(PartialUpdateBaseProductEvent event,
+      Emitter<BaseProductState> emit) async {
+    try {
+      if (event.product is CoffeeMachine) {
+        await coffeeMachineGrpcClient.partialUpdate(
+            event.product as CoffeeMachine, event.fields);
+      } else {
+        await ledPanelGrpcClient.partialUpdate(
+            event.product as LedPanel, event.fields);
+      }
+    } catch (error) {
+      emit(UpdateBaseProductEventError(error.toString()));
+    }
+  }
+
+  void onDestroyBaseProductEvent(
+      DestroyBaseProductEvent event, Emitter<BaseProductState> emit) async {
+    try {
+      if (event.product is CoffeeMachine) {
+        await coffeeMachineGrpcClient.destroy(event.product.id);
+      } else {
+        await ledPanelGrpcClient.destroy(event.product.id);
+      }
+    } catch (error) {
+      emit(DestroyBaseProductEventError(error.toString()));
     }
   }
 }

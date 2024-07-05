@@ -1,13 +1,18 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iot_controller/src/blocs/product.dart';
 import 'package:iot_controller/src/blocs/project.dart';
 import 'package:iot_controller/src/models/products/base_product.dart';
+import 'package:iot_controller/src/ui/products/base_product/base_product_create_view.dart';
 import 'package:iot_controller/src/ui/products/base_product/base_product_list_view.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:iot_controller/src/models/project.dart';
+import 'package:iot_controller/src/ui/project/project_create_view.dart';
 import 'package:iot_controller/src/ui/settings/settings_view.dart';
 import 'package:iot_controller/src/ui/utils/capitalize.dart';
+import 'package:iot_controller/src/ui/utils/popup/create_popup.dart';
 import 'package:iot_controller/src/ui/utils/popup/delete_popup.dart';
+import 'package:iot_controller/src/ui/utils/popup/refresh_popup.dart';
 
 class ProjectDetailsView extends StatefulWidget {
   final Project project;
@@ -21,12 +26,23 @@ class ProjectDetailsView extends StatefulWidget {
 class _ProjectDetailsViewState extends State<ProjectDetailsView> {
   late Project project;
 
-  void updateProduct(BaseProduct p) {
-    setState(() => project.products[p.name] = p);
+  void callbackDeleteProject() {
+    context
+        .read<ProjectGRPCBloc>()
+        .add(DestroyProjectEvent(projectId: project.id));
+    context.read<ProjectGRPCBloc>().add(GetProjectListEvent());
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil('/projects', (Route<dynamic> route) => false);
   }
 
-  Future<bool> refreshProjectList(BuildContext context) async {
-    context.read<ProjectGRPCBloc>().add(GetProjectListEvent());
+  void updateProduct(BaseProduct p) {
+    setState(() => project.products[p.name] = p);
+    context.read<ProjectGRPCBloc>().add(PartialUpdateProjectEvent(
+        project: project, fields: {"products": project.products}));
+  }
+
+  Future<bool> refreshBaseProductList(BuildContext context) async {
+    context.read<BaseProductGRPCBloc>().add(GetBaseProductListEvent());
     return true;
   }
 
@@ -64,15 +80,35 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
                   style: const TextStyle(fontSize: 20),
                 )),
             Expanded(
-                child: BaseProductListView(
-                    products: project.products,
-                    callbackUpdateProject: updateProduct)),
+              child: BaseProductListView(
+                products: project.products,
+                callbackUpdateProject: updateProduct,
+              ),
+            ),
           ],
         ),
-        floatingActionButton: DeletePopup(
-          project: project,
-          heroTag: "project_delete_button",
-          onPressedCallBack: (_) {},
+        floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            DeletePopup(
+                name: "project",
+                objectName: project.name,
+                heroTag: "project_delete_button",
+                deleteCallBack: callbackDeleteProject,
+                onPressedCallBack: () {}),
+            const SizedBox(height: 10),
+            CreatePopup(
+              formName: "product",
+              heroTag: "product_create_button",
+              form: BaseProductForm(callbackUpdateProject: updateProduct),
+              onPressedCallBack: () {},
+            ),
+            const SizedBox(height: 10),
+            RefreshPopup(
+              heroTag: "project_refresh_button",
+              onPressedCallBack: refreshBaseProductList,
+            )
+          ],
         ));
   }
 }

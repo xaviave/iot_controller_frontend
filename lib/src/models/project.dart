@@ -24,6 +24,35 @@ class Project {
     return name;
   }
 
+  ProjectRequest getRequest() {
+    return ProjectRequest(
+      id: id,
+      name: name,
+      owner: owner.getRequest(),
+      pubDate: f.format(pubDate),
+      products: products.values.map((x) => x.getAbstractRequest()).toList(),
+    );
+  }
+
+  ProjectPartialUpdateRequest getPartialRequest(Map<String, dynamic> fields) {
+    List<BaseProductRequest> aa = [];
+    fields["products"].forEach((k, v) {
+      aa.add(v.getAbstractRequest());
+    });
+    List<BaseProductRequest> bb = fields["products"].values.map((v) => v.getAbstractRequest()).toList();
+    if (aa == bb) {
+      print("similiar");
+    }
+    return ProjectPartialUpdateRequest(
+      id: id,
+      partialUpdateFields: fields.keys,
+      pubDate: null,
+      name: fields["name"],
+      owner: null,
+      products: aa,
+    );
+  }
+
   static Project fromResponse(ProjectResponse r) {
     Map<String, BaseProduct> products = <String, BaseProduct>{};
     for (var e in r.products) {
@@ -37,14 +66,5 @@ class Project {
         pubDate: DateTime.parse(r.pubDate),
         name: r.name,
         products: products);
-  }
-
-  ProjectRequest getRequest() {
-    return ProjectRequest(
-        id: id,
-        name: name,
-        owner: owner.getRequest(),
-        pubDate: f.format(pubDate),
-        products: products.values.map((x) => x.getAbstractRequest()).toList());
   }
 }

@@ -5,7 +5,7 @@ class RefreshPopup extends AbstractPopup {
   RefreshPopup({
     super.key,
     super.icon = Icons.refresh,
-    super.name = "name",
+    super.name = "refresh",
     required super.heroTag,
     required super.onPressedCallBack,
   });

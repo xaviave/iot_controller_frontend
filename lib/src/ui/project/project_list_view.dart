@@ -95,8 +95,8 @@ class _ProjectListViewState extends State<ProjectListView> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               CreatePopup(
-                heroTag: "project_create_button",
                 formName: "project",
+                heroTag: "project_create_button",
                 form: const ProjectForm(),
                 onPressedCallBack: (_) {},
               ),

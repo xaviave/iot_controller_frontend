@@ -21,6 +21,11 @@ class LedPanel extends BaseProduct {
     required this.mode,
   });
 
+  @override
+  String toString() {
+    return name;
+  }
+
   LedPanelRequest getRequest() {
     return LedPanelRequest(
       id: id,
@@ -31,6 +36,20 @@ class LedPanel extends BaseProduct {
       status: status.id,
       brightness: truncateToDecimalPlaces(brightness, 2),
       mode: mode.getAbstractRequest(),
+    );
+  }
+
+  LedPanelPartialUpdateRequest getPartialRequest(Map<String, dynamic> fields) {
+    return LedPanelPartialUpdateRequest(
+      id: id,
+      partialUpdateFields: fields.keys,
+      name: fields["name"],
+      ipPort: fields["ipPort"],
+      ipAddress: fields["ipAddress"],
+      categories: fields["categories"],
+      status: fields["status"],
+      brightness: fields["brightness"],
+      mode: fields["mode"],
     );
   }
 
@@ -50,10 +69,5 @@ class LedPanel extends BaseProduct {
         status: Status.fromId(r.status),
         brightness: r.brightness,
         mode: LedMode.fromResponse(r.mode));
-  }
-
-  @override
-  String toString() {
-    return name;
   }
 }

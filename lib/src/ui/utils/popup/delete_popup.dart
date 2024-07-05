@@ -6,29 +6,32 @@ import 'package:iot_controller/src/ui/utils/capitalize.dart';
 import 'package:iot_controller/src/ui/utils/popup/abstract_popup.dart';
 
 class DeletePopup extends AbstractPopup {
-  final Project project;
+  final String objectName;
+  final Function deleteCallBack;
 
   DeletePopup(
       {super.key,
-      super.name = "delete",
       super.icon = Icons.delete,
+      required super.name,
       required super.heroTag,
       required super.onPressedCallBack,
-      required this.project});
+      required this.deleteCallBack,
+      required this.objectName});
 
   @override
   State<DeletePopup> createState() => _DeletePopupState();
 }
 
 class _DeletePopupState extends AbstractPopupState<DeletePopup> {
-  late Project project;
+  late String objectName;
+  late Function deleteCallBack;
 
   Future<bool> displayFormCallBack(BuildContext context) async {
     final result = await showDialog(
         context: context,
         builder: (BuildContext context) => AlertDialog(
               title: Text(
-                "Are you sure you want to delete the project '${project.name.capitalize}'",
+                "Are you sure you want to delete the $name '${objectName.capitalize}'",
                 textAlign: TextAlign.center,
               ),
               insetPadding: const EdgeInsets.all(50),
@@ -51,13 +54,7 @@ class _DeletePopupState extends AbstractPopupState<DeletePopup> {
                       SizedBox(
                         child: ElevatedButton(
                           onPressed: () {
-                            context.read<ProjectGRPCBloc>().add(
-                                DestroyProjectEvent(projectId: project.id));
-                            context
-                                .read<ProjectGRPCBloc>()
-                                .add(GetProjectListEvent());
-                            Navigator.of(context).pushNamedAndRemoveUntil(
-                                '/projects', (Route<dynamic> route) => false);
+                            deleteCallBack();
                           },
                           child: const Text(
                             'Submit',
@@ -74,7 +71,9 @@ class _DeletePopupState extends AbstractPopupState<DeletePopup> {
   @override
   void initState() {
     super.initState();
-    project = widget.project;
+    name = "delete ${widget.name}";
+    objectName = widget.objectName;
+    deleteCallBack = widget.deleteCallBack;
 
     onPressedCallBack = displayFormCallBack;
   }

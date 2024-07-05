@@ -5,26 +5,45 @@ import 'package:iot_controller/src/blocs/settings_bloc.dart';
 import 'package:iot_controller/src/models/products/led/modes/led_mode.dart';
 import 'package:iot_controller/src/services/communication_service.dart';
 import 'package:iot_controller/src/ui/products/led/modes/led_mode_details_view.dart';
+import 'package:iot_controller/src/ui/utils/popup/create_popup.dart';
+import 'package:iot_controller/src/ui/utils/popup/delete_popup.dart';
+import 'package:iot_controller/src/ui/utils/popup/refresh_popup.dart';
 
-class LedModeListAlertView extends StatefulWidget {
-  final Function(LedMode) callbackUpdateMode;
+import 'led_mode_create_view.dart';
 
-  const LedModeListAlertView({super.key, required this.callbackUpdateMode});
+class LedModeListView extends StatefulWidget {
+  final Function(LedMode, bool) callbackUpdateLedMode;
+
+  const LedModeListView({super.key, required this.callbackUpdateLedMode});
   static const routeName = '/led_modes';
 
   @override
-  State<LedModeListAlertView> createState() => _LedModeListAlertViewState();
+  State<LedModeListView> createState() => _LedModeListViewState();
 }
 
-class _LedModeListAlertViewState extends State<LedModeListAlertView> {
+class _LedModeListViewState extends State<LedModeListView> {
   bool isHoveredCreate = false;
-  late Function(LedMode) callbackUpdateMode;
+  late Function(LedMode, bool) callbackUpdateLedMode;
 
   @override
   void initState() {
     super.initState();
-    callbackUpdateMode = widget.callbackUpdateMode;
+    callbackUpdateLedMode = widget.callbackUpdateLedMode;
   }
+
+  Future<bool> refreshLedModeList(BuildContext context) async {
+    context.read<LedModeGRPCBloc>().add(GetLedModeListEvent());
+    return true;
+  }
+//   void callbackDeleteLedMode(LedMode m) {
+//   context.read<LedModeGRPCBloc>().add(
+//   DestroyLedModeEvent(mode: m));
+//   context
+//       .read<LedModeGRPCBloc>()
+//       .add(GetLedModeListEvent());
+//   Navigator.of(context)
+//       .pushNamedAndRemoveUntil('/products', (Route<dynamic> route) => false);
+// }
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +66,7 @@ class _LedModeListAlertViewState extends State<LedModeListAlertView> {
                 );
               } else if (state is LedModeListSuccess) {
                 return ListView.builder(
-                    restorationId: 'LedModeListAlertView',
+                    restorationId: 'LedModeListView',
                     itemCount: state.modes.length,
                     itemBuilder: (BuildContext context, int index) {
                       String name = state.modes.keys.elementAt(index);
@@ -57,7 +76,7 @@ class _LedModeListAlertViewState extends State<LedModeListAlertView> {
                           LedModePreview(mode: state.modes[name]!)
                         ]),
                         onTap: () {
-                          callbackUpdateMode(state.modes[name]!);
+                          callbackUpdateLedMode(state.modes[name]!, true);
                           Navigator.of(context).pop();
                         },
                       );
@@ -66,34 +85,29 @@ class _LedModeListAlertViewState extends State<LedModeListAlertView> {
                 return const SizedBox(); // Handle unexpected states
               }
             }),
-            floatingActionButton: Align(
-                alignment: Alignment.bottomRight,
-                child: MouseRegion(
-                    onEnter: (_) => setState(() => isHoveredCreate = true),
-                    onExit: (_) => setState(() => isHoveredCreate = false),
-                    child: AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 250),
-                        child: Container(
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.rectangle,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                              gradient: LinearGradient(
-                                colors: [Colors.purple, Colors.deepOrange],
-                              ),
-                            ),
-                            width: isHoveredCreate ? 150 : 56,
-                            child: FloatingActionButton.extended(
-                                onPressed: () {
-                                  // redirect to create form pop up
-                                },
-                                heroTag: "led_mode_create",
-                                backgroundColor: Colors.transparent,
-                                label: Row(children: [
-                                  const Icon(Icons.add),
-                                  isHoveredCreate
-                                      ? const Text("\tCreate")
-                                      : const SizedBox(),
-                                ]))))))));
+            floatingActionButton: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                // DeletePopup(
+                // objectName: "mode",
+                // heroTag: "mode_delete_button",
+                // deleteCallBack: callbackDeleteLedMode,
+                // onPressedCallBack: () {}
+                // ),
+                // const SizedBox(height: 10),
+                CreatePopup(
+                  heroTag: "led_mode_create_button",
+                  formName: "led mode",
+                  form:
+                      LedModeForm(callbackUpdateLedMode: callbackUpdateLedMode),
+                  onPressedCallBack: (_) {},
+                ),
+                const SizedBox(height: 10),
+                RefreshPopup(
+                  heroTag: "led_mode_refresh_button",
+                  onPressedCallBack: refreshLedModeList,
+                )
+              ],
+            )));
   }
 }

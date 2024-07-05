@@ -12,29 +12,36 @@ import 'video_mode_details_view.dart';
 
 class LedModeDetailsView extends StatelessWidget {
   final LedMode mode;
-  final Function(LedMode) callbackUpdateMode;
+  final Function(LedMode, bool) callbackUpdateLedMode;
 
-  const LedModeDetailsView(
-      {super.key, required this.mode, required this.callbackUpdateMode});
+  const LedModeDetailsView({
+    super.key,
+    required this.mode,
+    required this.callbackUpdateLedMode,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
       if (mode is PatternMode) {
         return PatternModeDetailsView(
-            mode: mode as PatternMode, callbackUpdateMode: callbackUpdateMode);
+          mode: mode as PatternMode,
+          callbackUpdateLedMode: callbackUpdateLedMode,
+        );
       }
-      if (mode is ImageMode) {
-        return ImageModeDetailsView(
-            mode: mode as ImageMode, callbackUpdateMode: callbackUpdateMode);
-      }
-      if (mode is VideoMode) {
-        return VideoModeDetailsView(
-            mode: mode as VideoMode, callbackUpdateMode: callbackUpdateMode);
-      }
+      // if (mode is ImageMode) {
+      //   return ImageModeDetailsView(
+      //       mode: mode as ImageMode);
+      // }
+      // if (mode is VideoMode) {
+      //   return VideoModeDetailsView(
+      //       mode: mode as VideoMode);
+      // }
       if (mode is ColorMode) {
         return ColorModeDetailsView(
-            mode: mode as ColorMode, callbackUpdateMode: callbackUpdateMode);
+          mode: mode as ColorMode,
+          callbackUpdateLedMode: callbackUpdateLedMode,
+        );
       }
       return Container(
         width: double.infinity,
