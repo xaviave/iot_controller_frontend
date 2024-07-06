@@ -82,8 +82,9 @@ class UpdateBaseProductEventSuccess extends BaseProductState {
 
 class UpdateBaseProductEventError extends BaseProductState {
   final String message;
+  final String productName;
 
-  const UpdateBaseProductEventError(this.message);
+  const UpdateBaseProductEventError(this.message, this.productName);
 
   String get errorMessage => message;
 }
@@ -206,7 +207,7 @@ class BaseProductGRPCBloc extends Bloc<BaseProductEvent, BaseProductState> {
         await coffeeMachineGrpcClient.update(event.product as CoffeeMachine);
       }
     } catch (error) {
-      emit(UpdateBaseProductEventError(error.toString()));
+      emit(UpdateBaseProductEventError(error.toString(), event.product.name));
     }
   }
 
@@ -221,7 +222,7 @@ class BaseProductGRPCBloc extends Bloc<BaseProductEvent, BaseProductState> {
             event.product as LedPanel, event.fields);
       }
     } catch (error) {
-      emit(UpdateBaseProductEventError(error.toString()));
+      emit(UpdateBaseProductEventError(error.toString(), event.product.name));
     }
   }
 

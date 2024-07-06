@@ -1,5 +1,5 @@
-import 'package:iot_controller/protos/backend.pb.dart';
 import 'package:intl/intl.dart';
+import 'package:iot_controller/protos/backend.pb.dart';
 import 'package:iot_controller/src/models/user.dart';
 
 import 'products/base_product.dart';
@@ -39,10 +39,6 @@ class Project {
     fields["products"].forEach((k, v) {
       aa.add(v.getAbstractRequest());
     });
-    List<BaseProductRequest> bb = fields["products"].values.map((v) => v.getAbstractRequest()).toList();
-    if (aa == bb) {
-      print("similiar");
-    }
     return ProjectPartialUpdateRequest(
       id: id,
       partialUpdateFields: fields.keys,

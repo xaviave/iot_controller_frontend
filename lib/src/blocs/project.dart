@@ -65,8 +65,9 @@ class ProjectListError extends ProjectState {
 
 class UpdateProjectEventSuccess extends ProjectState {
   final String message;
+  final ProjectResponse project;
 
-  const UpdateProjectEventSuccess(this.message);
+  const UpdateProjectEventSuccess(this.message, this.project);
 
   String get successMessage => message;
 }
@@ -156,7 +157,10 @@ class ProjectGRPCBloc extends Bloc<ProjectEvent, ProjectState> {
   void onPartialUpdateProjectEvent(
       PartialUpdateProjectEvent event, Emitter<ProjectState> emit) async {
     try {
-      await projectGrpcClient.partialUpdate(event.project, event.fields);
+      var response =
+          await projectGrpcClient.partialUpdate(event.project, event.fields);
+      print(response);
+      emit(UpdateProjectEventSuccess("success", response));
     } catch (error) {
       emit(UpdateProjectEventError(error.toString()));
     }
