@@ -35,6 +35,9 @@ class ProjectFormState extends State<ProjectForm> {
 
   @override
   Widget build(BuildContext context) {
+    context
+        .read<BaseProductGRPCBloc>()
+        .add(GetBaseProductListEvent());
     return BlocBuilder<BaseProductGRPCBloc, BaseProductState>(
         builder: (context, state) {
       return Form(
@@ -110,9 +113,13 @@ class ProjectFormState extends State<ProjectForm> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
+                        ProjectState state =
+                            BlocProvider.of<ProjectGRPCBloc>(context).state;
+
                         context.read<ProjectGRPCBloc>().add(CreateProjectEvent(
-                            project: generateProject(_nameController.text,
-                                _productController.value)));
+                            project: generateProject(
+                                _nameController.text, _productController.value),
+                            projects: state.projects));
                         context
                             .read<ProjectGRPCBloc>()
                             .add(GetProjectListEvent());

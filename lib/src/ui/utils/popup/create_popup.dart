@@ -27,14 +27,14 @@ class _CreatePopupState extends AbstractPopupState<CreatePopup> {
     await showDialog(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-              title: Text(
-                "${name.capitalize} ${formName.capitalize}",
-                textAlign: TextAlign.center,
-              ),
-              insetPadding: const EdgeInsets.all(50),
-              content: SizedBox(
-                  width: MediaQuery.of(context).size.width, child: form),
-            ));
+            title: Text(
+              "${name.capitalize} ${formName.capitalize}",
+              textAlign: TextAlign.center,
+            ),
+            insetPadding: const EdgeInsets.all(50),
+            content: SingleChildScrollView(
+                child: SizedBox(
+                    width: MediaQuery.of(context).size.width, child: form))));
     return true;
   }
 
