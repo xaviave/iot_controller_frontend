@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iot_controller/src/ui/utils/popup/abstract_popup.dart';
 
 class RefreshPopup extends AbstractPopup {
-  RefreshPopup({
+  const RefreshPopup({
     super.key,
     super.icon = Icons.refresh,
     super.name = "refresh",

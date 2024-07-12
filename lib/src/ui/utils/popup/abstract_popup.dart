@@ -12,7 +12,7 @@ class AbstractPopup extends StatefulWidget {
   // Class variable to override
   final Function onPressedCallBack;
 
-  AbstractPopup({
+  const AbstractPopup({
     super.key,
     required this.name,
     required this.heroTag,

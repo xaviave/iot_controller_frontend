@@ -20,15 +20,12 @@ class _CoffeeMachineMinimalDetailsViewState
     extends State<CoffeeMachineMinimalDetailsView> {
   late CoffeeMachine product;
 
-  void updateStatus(Status s) {
-    setState(() => product.status = s);
-    updateProduct();
-  }
+  void updateStatus(Map<String, dynamic> fields) {}
 
   void updateProduct() {
-    context
-        .read<BaseProductGRPCBloc>()
-        .add(UpdateBaseProductEvent(product: product));
+    // context
+    //     .read<BaseProductGRPCBloc>()
+    //     .add(UpdateBaseProductEvent(product: product));
   }
 
   @override

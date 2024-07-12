@@ -24,12 +24,12 @@ abstract class BaseProduct {
     return BaseProductRequest();
   }
 
-  static BaseProduct fromResponse(BaseProductResponse request) {
-    if (request.whichProduct() == BaseProductResponse_Product.coffeeMachine) {
-      CoffeeMachineResponse r = request.coffeeMachine;
+  static BaseProduct fromResponse(BaseProductResponse response) {
+    if (response.whichProduct() == BaseProductResponse_Product.coffeeMachine) {
+      CoffeeMachineResponse r = response.coffeeMachine;
       return CoffeeMachine.fromResponse(r);
     }
-    LedPanelResponse r = request.ledPanel;
+    LedPanelResponse r = response.ledPanel;
     return LedPanel.fromResponse(r);
   }
 

@@ -9,7 +9,7 @@ import 'package:iot_controller/src/ui/utils/popup/abstract_popup.dart';
 
 class PatternModeDetailsView extends StatefulWidget {
   final PatternMode mode;
-  final Function(LedMode, bool) callbackUpdateLedMode;
+  final Function(Map<String, dynamic>) callbackUpdateLedMode;
 
   const PatternModeDetailsView({
     super.key,
@@ -25,7 +25,7 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
   late PatternMode mode;
   late Color fpsColor;
   late Color blinkColor;
-  late Function(LedMode, bool) callbackUpdateLedMode;
+  late Function(Map<String, dynamic>) callbackUpdateLedMode;
   Map<String, PatternMode> patterns = <String, PatternMode>{};
 
   @override
@@ -41,7 +41,7 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
     context
         .read<LedModeGRPCBloc>()
         .add(PartialUpdateLedModeEvent(mode: mode, fields: fields));
-    callbackUpdateLedMode(mode, false);
+    callbackUpdateLedMode({"mode": mode});
   }
 
   Future<void> updatePaletteColor(

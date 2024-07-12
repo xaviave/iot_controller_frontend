@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
+import "package:iot_controller/protos/backend.pbjson.dart";
 import "package:iot_controller/src/blocs/led_mode.dart";
 import "package:iot_controller/src/blocs/product.dart";
 import "package:iot_controller/src/models/products/base_product.dart";
@@ -11,86 +12,118 @@ import "package:iot_controller/src/ui/products/led/modes/led_mode_list_view.dart
 import "package:iot_controller/src/ui/settings/settings_view.dart";
 import "package:iot_controller/src/ui/utils/capitalize.dart";
 import "package:iot_controller/src/ui/utils/on_off_button.dart";
+import "package:iot_controller/src/ui/utils/popup/delete_popup.dart";
+import "package:iot_controller/src/ui/utils/popup/refresh_popup.dart";
 import "package:provider/provider.dart";
 
 import "modes/led_mode_details_view.dart";
 
 class LedPanelDetailsView extends StatefulWidget {
-  final LedPanel product;
   final Function(BaseProduct) callbackUpdateProject;
 
-  const LedPanelDetailsView(
-      {super.key, required this.product, required this.callbackUpdateProject});
+  const LedPanelDetailsView({super.key, required this.callbackUpdateProject});
 
   @override
   State<LedPanelDetailsView> createState() => _LedPanelDetailsViewState();
 }
 
 class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
-  late LedPanel product;
   late Color colorBrightness;
   late Function(BaseProduct) callbackUpdateProject;
 
-  void updateMode(LedMode m, bool serverUpdateProduct) {
-    setState(() => product.mode = m);
-    if (serverUpdateProduct == true) updateProduct();
+  Future<bool> refreshLedPanel(BuildContext context) async {
+    BaseProductState state =
+        BlocProvider.of<BaseProductGRPCBloc>(context).state;
+
+    context.read<BaseProductGRPCBloc>().add(RetrieveBaseProductEvent(
+        product: state.product!, products: state.products));
+    return true;
   }
 
-  void updateIp(String ipAddress, int ipPort) {
-    setState(() {
-      product.ipAddress = ipAddress;
-      product.ipPort = ipPort;
-    });
-    updateProduct();
+  void callbackDeleteLedPanel() {
+    BaseProductState state =
+        BlocProvider.of<BaseProductGRPCBloc>(context).state;
+
+    context.read<BaseProductGRPCBloc>().add(DestroyBaseProductEvent(
+        product: state.product!, products: state.products));
+    print("check redirection and path");
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil('/products', (Route<dynamic> route) => false);
   }
 
-  void updateStatus(Status s) {
-    setState(() => product.status = s);
-    updateProduct();
-  }
+  void updateProduct(Map<String, dynamic> fields) {
+    BaseProductState state =
+        BlocProvider.of<BaseProductGRPCBloc>(context).state;
 
-  void updateProduct() {
-    context
-        .read<BaseProductGRPCBloc>()
-        .add(UpdateBaseProductEvent(product: product));
+    context.read<BaseProductGRPCBloc>().add(PartialUpdateBaseProductEvent(
+        product: state.product!, fields: fields, products: state.products));
   }
 
   @override
   void initState() {
     super.initState();
-    product = widget.product;
     callbackUpdateProject = widget.callbackUpdateProject;
-    colorBrightness =
-        Color.lerp(Colors.black, Colors.yellow, product.brightness)!;
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget headerView(BuildContext context, BaseProductState state,
+      String titleView, Widget bodyView, Widget? buttons) {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            product.name.capitalize,
+            titleView,
             style: const TextStyle(fontSize: 28),
+          ),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              if (state.products == []) {
+                context
+                    .read<BaseProductGRPCBloc>()
+                    .add(GetBaseProductListEvent([]));
+              }
+              Navigator.pop(context);
+            },
           ),
           actions: [
             IconButton(
               icon: const Icon(Icons.settings),
               onPressed: () {
-                Navigator.restorablePushNamed(
-                  context,
-                  SettingsView.routeName,
-                );
+                Navigator.restorablePushNamed(context, SettingsView.routeName);
               },
             ),
           ],
         ),
-        body: SingleChildScrollView(
+        body: bodyView,
+        floatingActionButton: buttons ?? const SizedBox());
+  }
+
+  Widget errorBuild(BuildContext context, BaseProductState errorState) {
+    return headerView(
+      context,
+      errorState,
+      "Error Led panel",
+      Center(child: Text(errorState.message)),
+      null,
+    );
+  }
+
+  Widget ledPanelBuild(BuildContext context, BaseProductState state) {
+    final LedPanel product = state.product! as LedPanel;
+
+    colorBrightness =
+        Color.lerp(Colors.black, Colors.yellow, product.brightness)!;
+
+    return headerView(
+        context,
+        state,
+        product.name.capitalize,
+        SingleChildScrollView(
           child: Column(
             children: [
               // add categories
               OnOffButton(
                 status: product.status,
-                callbackUpdateStatus: updateStatus,
+                callbackUpdateStatus: updateProduct,
               ),
               const SizedBox(height: 10),
               TextButton(
@@ -108,7 +141,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                                 child: IpUpdateAlertView(
                                   ipAddress: product.ipAddress,
                                   ipPort: product.ipPort,
-                                  callbackUpdateIp: updateIp,
+                                  callbackUpdateIp: updateProduct,
                                 )),
                             actions: [
                               TextButton(
@@ -146,7 +179,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                     });
                   },
                   onChangeEnd: (value) {
-                    updateProduct();
+                    updateProduct({"brightness": value});
                   }),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -165,7 +198,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                                   content: SizedBox(
                                       width: MediaQuery.of(context).size.width,
                                       child: LedModeListView(
-                                        callbackUpdateLedMode: updateMode,
+                                        callbackUpdateLedMode: updateProduct,
                                       )),
                                   actions: [
                                     TextButton(
@@ -187,10 +220,45 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
               const SizedBox(height: 10),
               LedModeDetailsView(
                 mode: product.mode,
-                callbackUpdateLedMode: updateMode,
+                callbackUpdateLedMode: updateProduct,
               ),
             ],
           ),
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            DeletePopup(
+                name: "led_panel",
+                objectName: product.name,
+                heroTag: "led_panel_delete_button",
+                deleteCallBack: callbackDeleteLedPanel,
+                onPressedCallBack: () {}),
+            const SizedBox(height: 10),
+            RefreshPopup(
+              heroTag: "led_panel_refresh_button",
+              onPressedCallBack: refreshLedPanel,
+            )
+          ],
         ));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<BaseProductGRPCBloc, BaseProductState>(
+        builder: (context, state) {
+      print("fw $state");
+      if (state is BaseProductListInitial || state is BaseProductLoading) {
+        return const Center(child: CircularProgressIndicator());
+      } else if (state is GetBaseProductSuccess ||
+          state is RetrieveBaseProductSuccess ||
+          state is UpdateBaseProductSuccess ||
+          state is CreateBaseProductSuccess ||
+          state is DestroyBaseProductSuccess) {
+        return ledPanelBuild(context, state);
+      } else {
+        return errorBuild(context, state);
+      }
+    });
   }
 }

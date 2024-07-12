@@ -12,7 +12,7 @@ import 'package:iot_controller/src/ui/utils/popup/refresh_popup.dart';
 import 'led_mode_create_view.dart';
 
 class LedModeListView extends StatefulWidget {
-  final Function(LedMode, bool) callbackUpdateLedMode;
+  final Function(Map<String, dynamic>) callbackUpdateLedMode;
 
   const LedModeListView({super.key, required this.callbackUpdateLedMode});
   static const routeName = '/led_modes';
@@ -23,7 +23,7 @@ class LedModeListView extends StatefulWidget {
 
 class _LedModeListViewState extends State<LedModeListView> {
   bool isHoveredCreate = false;
-  late Function(LedMode, bool) callbackUpdateLedMode;
+  late Function(Map<String, dynamic>) callbackUpdateLedMode;
 
   @override
   void initState() {
@@ -76,7 +76,7 @@ class _LedModeListViewState extends State<LedModeListView> {
                           LedModePreview(mode: state.modes[name]!)
                         ]),
                         onTap: () {
-                          callbackUpdateLedMode(state.modes[name]!, true);
+                          callbackUpdateLedMode({"mode": state.modes[name]!});
                           Navigator.of(context).pop();
                         },
                       );

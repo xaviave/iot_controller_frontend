@@ -19,7 +19,7 @@ final Map<String, Function(String)> ledModeTypes = {
 };
 
 class LedModeForm extends StatefulWidget {
-  final Function(LedMode, bool) callbackUpdateLedMode;
+  final Function(Map<String, dynamic>) callbackUpdateLedMode;
   const LedModeForm({super.key, required this.callbackUpdateLedMode});
 
   @override
@@ -33,7 +33,7 @@ class LedModeFormState extends State<LedModeForm> {
   final _nameController = TextEditingController();
   String _ledModeController = ledModeTypes.keys.first;
 
-  late Function(LedMode, bool) callbackUpdateLedMode;
+  late Function(Map<String, dynamic>) callbackUpdateLedMode;
 
   @override
   void initState() {
@@ -99,7 +99,7 @@ class LedModeFormState extends State<LedModeForm> {
                       LedMode m = ledModeTypes[_ledModeController]!(
                           _nameController.text);
 
-                      callbackUpdateLedMode(m, true);
+                      callbackUpdateLedMode({"mode": m});
                       context
                           .read<LedModeGRPCBloc>()
                           .add(GetLedModeListEvent());

@@ -30,14 +30,12 @@ class ProjectFormState extends State<ProjectForm> {
         owner: activeUser,
         name: name,
         pubDate: DateTime.now(),
-        products: {for (var x in products) x.name: x});
+        products: products);
   }
 
   @override
   Widget build(BuildContext context) {
-    context
-        .read<BaseProductGRPCBloc>()
-        .add(GetBaseProductListEvent());
+    context.read<BaseProductGRPCBloc>().add(GetBaseProductListEvent([]));
     return BlocBuilder<BaseProductGRPCBloc, BaseProductState>(
         builder: (context, state) {
       return Form(
@@ -60,7 +58,7 @@ class ProjectFormState extends State<ProjectForm> {
             CustomDropdown<BaseProduct>.multiSelect(
                 multiSelectController: _productController,
                 hintText: 'Select products',
-                items: state.products.values.toList(),
+                items: state.products,
                 onListChanged: (value) {
                   // print('changing value to: $value');
                 },

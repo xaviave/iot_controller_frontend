@@ -33,11 +33,10 @@ class LedPanelFormState extends State<LedPanelForm> {
     callbackAddBaseProduct = widget.callbackAddBaseProduct;
   }
 
-  void updateMode(LedMode m, bool updateServer) {
-    setState(() => mode = m);
-    if (updateServer) {
-      context.read<LedModeGRPCBloc>().add(CreateLedModeEvent(mode: m));
-    }
+  void updateMode(Map<String, dynamic> fields) {
+    context
+        .read<LedModeGRPCBloc>()
+        .add(CreateLedModeEvent(mode: fields["mode"]));
     callbackAddBaseProduct(LedPanel(
       id: -1,
       name: "",

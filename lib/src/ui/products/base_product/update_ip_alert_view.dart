@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class IpUpdateAlertView extends StatelessWidget {
   final String ipAddress;
   final int ipPort;
-  final Function(String, int) callbackUpdateIp;
+  final Function(Map<String, dynamic>) callbackUpdateIp;
 
   const IpUpdateAlertView(
       {super.key,
@@ -27,7 +27,7 @@ class IpUpdateAlertView extends StatelessWidget {
                         hintText: 'Current Product IP: $ipAddress'),
                     onSubmitted: (value) {
                       // add validator for IP
-                      callbackUpdateIp(value, ipPort);
+                      callbackUpdateIp({"ipValue": value});
                     },
                   ),
                 ),
@@ -42,7 +42,7 @@ class IpUpdateAlertView extends StatelessWidget {
                     keyboardType: TextInputType.number,
                     onSubmitted: (value) {
                       // add validator for port
-                      callbackUpdateIp(ipAddress, int.parse(value));
+                      callbackUpdateIp({"ipPort": int.parse(value)});
                     },
                   ),
                 ),

@@ -9,7 +9,7 @@ class Project {
   User owner;
   DateTime pubDate;
   String name;
-  Map<String, BaseProduct> products;
+  List<BaseProduct> products;
   final f = DateFormat('yyyy-MM-ddThh:mm:ss');
 
   Project(
@@ -30,7 +30,7 @@ class Project {
       name: name,
       owner: owner.getRequest(),
       pubDate: f.format(pubDate),
-      products: products.values.map((x) => x.getAbstractRequest()).toList(),
+      products: products.map((x) => x.getAbstractRequest()).toList(),
     );
   }
 
@@ -50,17 +50,11 @@ class Project {
   }
 
   static Project fromResponse(ProjectResponse r) {
-    Map<String, BaseProduct> products = <String, BaseProduct>{};
-    for (var e in r.products) {
-      BaseProduct p = BaseProduct.fromResponse(e);
-      products[p.name] = p;
-    }
-
     return Project(
         id: r.id,
         owner: User.fromResponse(r.owner),
         pubDate: DateTime.parse(r.pubDate),
         name: r.name,
-        products: products);
+        products: r.products.map((e) => BaseProduct.fromResponse(e)).toList());
   }
 }

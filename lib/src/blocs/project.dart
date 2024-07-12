@@ -14,6 +14,27 @@ class ServerChangedEvent extends ProjectEvent {
 
 class GetProjectListEvent extends ProjectEvent {}
 
+class GetProjectEvent extends ProjectEvent {
+  final Project project;
+  final List<Project> projects;
+
+  GetProjectEvent({required this.project, required this.projects});
+}
+
+class RetrieveProjectEvent extends ProjectEvent {
+  final int projectId;
+  final List<Project> projects;
+
+  RetrieveProjectEvent({required this.projectId, required this.projects});
+}
+
+class CreateProjectEvent extends ProjectEvent {
+  final Project project;
+  final List<Project> projects;
+
+  CreateProjectEvent({required this.project, required this.projects});
+}
+
 class UpdateProjectEvent extends ProjectEvent {
   final Project project;
   final List<Project> projects;
@@ -28,20 +49,6 @@ class PartialUpdateProjectEvent extends ProjectEvent {
 
   PartialUpdateProjectEvent(
       {required this.project, required this.fields, required this.projects});
-}
-
-class GetProjectEvent extends ProjectEvent {
-  final Project project;
-  final List<Project> projects;
-
-  GetProjectEvent({required this.project, required this.projects});
-}
-
-class CreateProjectEvent extends ProjectEvent {
-  final Project project;
-  final List<Project> projects;
-
-  CreateProjectEvent({required this.project, required this.projects});
 }
 
 class DestroyProjectEvent extends ProjectEvent {
@@ -61,7 +68,7 @@ sealed class ProjectState {
 
 class ProjectListInitial extends ProjectState {}
 
-class ProjectListLoading extends ProjectState {}
+class ProjectLoading extends ProjectState {}
 
 class ProjectListSuccess extends ProjectState {
   final List<Project> _projects;
@@ -80,8 +87,6 @@ class ProjectListError extends ProjectState {
   @override
   String get message => _message;
 }
-
-class ProjectLoading extends ProjectState {}
 
 class GetProjectSuccess extends ProjectState {
   final Project _project;
@@ -104,25 +109,22 @@ class GetProjectError extends ProjectState {
   String get message => _message;
 }
 
-class UpdateProjectSuccess extends ProjectState {
-  final String _message;
+class RetrieveProjectSuccess extends ProjectState {
   final Project _project;
   final List<Project> _projects;
 
-  const UpdateProjectSuccess(this._message, this._project, this._projects);
+  const RetrieveProjectSuccess(this._project, this._projects);
 
-  @override
-  String get message => _message;
   @override
   Project? get project => _project;
   @override
   List<Project> get projects => _projects;
 }
 
-class UpdateProjectError extends ProjectState {
+class RetrieveProjectError extends ProjectState {
   final String _message;
 
-  const UpdateProjectError(this._message);
+  const RetrieveProjectError(this._message);
 
   @override
   String get message => _message;
@@ -147,6 +149,30 @@ class CreateProjectError extends ProjectState {
   final String _message;
 
   const CreateProjectError(this._message);
+
+  @override
+  String get message => _message;
+}
+
+class UpdateProjectSuccess extends ProjectState {
+  final String _message;
+  final Project _project;
+  final List<Project> _projects;
+
+  const UpdateProjectSuccess(this._message, this._project, this._projects);
+
+  @override
+  String get message => _message;
+  @override
+  Project? get project => _project;
+  @override
+  List<Project> get projects => _projects;
+}
+
+class UpdateProjectError extends ProjectState {
+  final String _message;
+
+  const UpdateProjectError(this._message);
 
   @override
   String get message => _message;
@@ -181,11 +207,13 @@ class ProjectGRPCBloc extends Bloc<ProjectEvent, ProjectState> {
         serverName: state.serverName, serverPort: state.serverPort);
     on<ServerChangedEvent>(onServerChangedEvent);
 
-    on<GetProjectEvent>(onGetProjectEvent);
     on<GetProjectListEvent>(onGetProjectListEvent);
+    on<GetProjectEvent>(onGetProjectEvent);
+    on<RetrieveProjectEvent>(onRetrieveProjectEvent);
     on<CreateProjectEvent>(onCreateProjectEvent);
-    on<DestroyProjectEvent>(onDestroyProjectEvent);
+    on<UpdateProjectEvent>(onUpdateProjectEvent);
     on<PartialUpdateProjectEvent>(onPartialUpdateProjectEvent);
+    on<DestroyProjectEvent>(onDestroyProjectEvent);
 
     add(GetProjectListEvent());
   }
@@ -196,20 +224,48 @@ class ProjectGRPCBloc extends Bloc<ProjectEvent, ProjectState> {
     add(GetProjectListEvent());
   }
 
-  void onGetProjectEvent(
-      GetProjectEvent event, Emitter<ProjectState> emit) async {
-    emit(GetProjectSuccess(event.project, event.projects));
-  }
-
   void onGetProjectListEvent(
       GetProjectListEvent event, Emitter<ProjectState> emit) async {
-    emit(ProjectListLoading());
+    emit(ProjectLoading());
     try {
       var response = await projectGrpcClient.list();
       emit(ProjectListSuccess(
           [for (var e in response.results) Project.fromResponse(e)]));
     } catch (error) {
       emit(ProjectListError(error.toString()));
+    }
+  }
+
+  void onGetProjectEvent(
+      GetProjectEvent event, Emitter<ProjectState> emit) async {
+    emit(GetProjectSuccess(event.project, event.projects));
+  }
+
+  void onRetrieveProjectEvent(
+      RetrieveProjectEvent event, Emitter<ProjectState> emit) async {
+    try {
+      ProjectResponse response =
+          await projectGrpcClient.retrieve(event.projectId);
+
+      Project p = Project.fromResponse(response);
+      event.projects[event.projects
+          .indexWhere((element) => element.id == event.projectId)] = p;
+      emit(RetrieveProjectSuccess(p, event.projects));
+    } catch (error) {
+      emit(RetrieveProjectError(error.toString()));
+    }
+  }
+
+  void onCreateProjectEvent(
+      CreateProjectEvent event, Emitter<ProjectState> emit) async {
+    emit(ProjectLoading());
+    try {
+      ProjectResponse response = await projectGrpcClient.create(event.project);
+      Project p = Project.fromResponse(response);
+
+      emit(CreateProjectSuccess("success", p, event.projects..add(p)));
+    } catch (error) {
+      emit(CreateProjectError(error.toString()));
     }
   }
 
@@ -242,20 +298,6 @@ class ProjectGRPCBloc extends Bloc<ProjectEvent, ProjectState> {
       emit(UpdateProjectSuccess("success", p, event.projects));
     } catch (error) {
       emit(UpdateProjectError(error.toString()));
-    }
-  }
-
-  void onCreateProjectEvent(
-      CreateProjectEvent event, Emitter<ProjectState> emit) async {
-    emit(ProjectLoading());
-    try {
-      ProjectResponse response = await projectGrpcClient.create(event.project);
-
-      Project p = Project.fromResponse(response);
-      event.projects.add(p);
-      emit(CreateProjectSuccess("success", p, event.projects));
-    } catch (error) {
-      emit(CreateProjectError(error.toString()));
     }
   }
 

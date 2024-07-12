@@ -11,7 +11,7 @@ import 'package:iot_controller/src/ui/utils/capitalize.dart';
 import 'package:iot_controller/src/ui/utils/popup/create_popup.dart';
 import 'package:iot_controller/src/ui/utils/popup/refresh_popup.dart';
 
-import 'project_details_view2.dart';
+import 'project_details_view.dart';
 
 class ProjectListView extends StatefulWidget {
   const ProjectListView({super.key});
@@ -62,11 +62,13 @@ class _ProjectListViewState extends State<ProjectListView> {
               ),
               body: BlocBuilder<project_bloc.ProjectGRPCBloc,
                   project_bloc.ProjectState>(builder: (context, state) {
+                print(state);
                 if (state is project_bloc.ProjectListInitial ||
-                    state is project_bloc.ProjectListLoading) {
+                    state is project_bloc.ProjectLoading) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (state is project_bloc.ProjectListSuccess ||
                     state is project_bloc.GetProjectSuccess ||
+                    state is project_bloc.RetrieveProjectSuccess ||
                     state is project_bloc.UpdateProjectSuccess ||
                     state is project_bloc.CreateProjectSuccess ||
                     state is project_bloc.DestroyProjectSuccess) {

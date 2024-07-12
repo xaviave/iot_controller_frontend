@@ -1,14 +1,15 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iot_controller/src/blocs/product.dart';
 import 'package:iot_controller/src/models/products/base_product.dart';
 import 'package:iot_controller/src/models/products/coffee_machine.dart';
 import 'package:flutter/material.dart';
 import 'package:iot_controller/src/ui/settings/settings_view.dart';
 
 class CoffeeMachineDetailsView extends StatefulWidget {
-  final CoffeeMachine product;
   final Function(BaseProduct) callbackUpdateProject;
 
   const CoffeeMachineDetailsView(
-      {super.key, required this.product, required this.callbackUpdateProject});
+      {super.key, required this.callbackUpdateProject});
 
   @override
   State<CoffeeMachineDetailsView> createState() =>
@@ -16,18 +17,20 @@ class CoffeeMachineDetailsView extends StatefulWidget {
 }
 
 class _CoffeeMachineDetailsViewState extends State<CoffeeMachineDetailsView> {
-  late CoffeeMachine product;
   late Function(BaseProduct) callbackUpdateProject;
 
   @override
   void initState() {
     super.initState();
-    product = widget.product;
     callbackUpdateProject = widget.callbackUpdateProject;
   }
 
   @override
   Widget build(BuildContext context) {
+    BaseProductState state =
+        BlocProvider.of<BaseProductGRPCBloc>(context).state;
+
+    CoffeeMachine product = state.product! as CoffeeMachine;
     // missing settings
     return Scaffold(
       appBar: AppBar(

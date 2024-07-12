@@ -21,15 +21,12 @@ class _LedPanelMinimalDetailsViewState
   late LedPanel product;
   late Color colorBrightness;
 
-  void updateStatus(Status s) {
-    setState(() => product.status = s);
-    updateProduct();
-  }
+  void updateProduct(Map<String, dynamic> fields) {
+    BaseProductState state =
+        BlocProvider.of<BaseProductGRPCBloc>(context).state;
 
-  void updateProduct() {
-    context
-        .read<BaseProductGRPCBloc>()
-        .add(UpdateBaseProductEvent(product: product));
+    context.read<BaseProductGRPCBloc>().add(PartialUpdateBaseProductEvent(
+        product: state.product!, fields: fields, products: state.products));
   }
 
   @override
@@ -62,7 +59,7 @@ class _LedPanelMinimalDetailsViewState
                       ),
                       OnOffButton(
                           status: product.status,
-                          callbackUpdateStatus: updateStatus)
+                          callbackUpdateStatus: updateProduct)
                     ]),
                 Slider(
                     min: 0,
@@ -80,7 +77,7 @@ class _LedPanelMinimalDetailsViewState
                       });
                     },
                     onChangeEnd: (value) {
-                      updateProduct();
+                      updateProduct({"brightness": value});
                     }),
               ],
             )));
