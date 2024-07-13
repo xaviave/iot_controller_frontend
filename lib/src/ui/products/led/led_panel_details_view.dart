@@ -1,12 +1,8 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
-import "package:iot_controller/protos/backend.pbjson.dart";
-import "package:iot_controller/src/blocs/led_mode.dart";
 import "package:iot_controller/src/blocs/product.dart";
 import "package:iot_controller/src/models/products/base_product.dart";
 import "package:iot_controller/src/models/products/led/led_panel.dart";
-import "package:iot_controller/src/models/products/led/modes/led_mode.dart";
-import "package:iot_controller/src/models/status.dart";
 import "package:iot_controller/src/ui/products/base_product/update_ip_alert_view.dart";
 import "package:iot_controller/src/ui/products/led/modes/led_mode_list_view.dart";
 import "package:iot_controller/src/ui/settings/settings_view.dart";
@@ -14,7 +10,6 @@ import "package:iot_controller/src/ui/utils/capitalize.dart";
 import "package:iot_controller/src/ui/utils/on_off_button.dart";
 import "package:iot_controller/src/ui/utils/popup/delete_popup.dart";
 import "package:iot_controller/src/ui/utils/popup/refresh_popup.dart";
-import "package:provider/provider.dart";
 
 import "modes/led_mode_details_view.dart";
 
@@ -179,7 +174,8 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                     });
                   },
                   onChangeEnd: (value) {
-                    updateProduct({"brightness": value});
+                    updateProduct(
+                        {"brightness": double.parse(value.toStringAsFixed(2))});
                   }),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
