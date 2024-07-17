@@ -33,7 +33,7 @@ class _BaseProductListViewState extends State<BaseProductListView> {
   Widget build(BuildContext context) {
     return BlocBuilder<BaseProductGRPCBloc, BaseProductState>(
         builder: (context, state) {
-          print("BaseProduct list view $state");
+      print("BaseProduct list view $state");
       if (state is BaseProductListInitial || state is BaseProductLoading) {
         return const Center(child: CircularProgressIndicator());
       } else if (state is BaseProductListSuccess ||
@@ -49,11 +49,9 @@ class _BaseProductListViewState extends State<BaseProductListView> {
             itemBuilder: (BuildContext context, int index) {
               return ListTile(title: () {
                 if (products[index] is LedPanel) {
-                  return LedPanelMinimalDetailsView(
-                      product: products[index] as LedPanel);
+                  return LedPanelMinimalDetailsView(productIndex: index);
                 } else if (products[index] is CoffeeMachine) {
-                  return CoffeeMachineMinimalDetailsView(
-                      product: products[index] as CoffeeMachine);
+                  return CoffeeMachineMinimalDetailsView(productIndex: index);
                 }
               }(), onTap: () {
                 context.read<BaseProductGRPCBloc>().add(GetBaseProductEvent(

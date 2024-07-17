@@ -7,9 +7,10 @@ import 'package:iot_controller/src/ui/utils/capitalize.dart';
 import 'package:iot_controller/src/ui/utils/on_off_button.dart';
 
 class CoffeeMachineMinimalDetailsView extends StatefulWidget {
-  final CoffeeMachine product;
+  final int productIndex;
 
-  const CoffeeMachineMinimalDetailsView({super.key, required this.product});
+  const CoffeeMachineMinimalDetailsView(
+      {super.key, required this.productIndex});
 
   @override
   State<CoffeeMachineMinimalDetailsView> createState() =>
@@ -18,24 +19,23 @@ class CoffeeMachineMinimalDetailsView extends StatefulWidget {
 
 class _CoffeeMachineMinimalDetailsViewState
     extends State<CoffeeMachineMinimalDetailsView> {
-  late CoffeeMachine product;
+  void updateProduct(Map<String, dynamic> fields) {
+    BaseProductState state =
+        BlocProvider.of<BaseProductGRPCBloc>(context).state;
 
-  void updateStatus(Map<String, dynamic> fields) {}
-
-  void updateProduct() {
-    // context
-    //     .read<BaseProductGRPCBloc>()
-    //     .add(UpdateBaseProductEvent(product: product));
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    product = widget.product;
+    context.read<BaseProductGRPCBloc>().add(PartialUpdateBaseProductEvent(
+        product: state.products[widget.productIndex],
+        fields: fields,
+        products: state.products));
   }
 
   @override
   Widget build(BuildContext context) {
+    BaseProductState state =
+        BlocProvider.of<BaseProductGRPCBloc>(context).state;
+    CoffeeMachine product =
+        state.products[widget.productIndex] as CoffeeMachine;
+
     return Card(
         child: SizedBox(
       width: double.infinity,
@@ -45,7 +45,7 @@ class _CoffeeMachineMinimalDetailsViewState
           style: const TextStyle(fontSize: 28),
           textAlign: TextAlign.center,
         ),
-        OnOffButton(status: product.status, callbackUpdateStatus: updateStatus)
+        OnOffButton(status: product.status, callbackUpdateStatus: updateProduct)
       ]),
     ));
   }
