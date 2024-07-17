@@ -3,6 +3,7 @@ import 'package:iot_controller/src/models/products/base_product.dart';
 
 class BaseProductDetailsView extends StatelessWidget {
   const BaseProductDetailsView({super.key});
+  static const routeName = '/product_detail';
 
   @override
   Widget build(BuildContext context) {

@@ -44,9 +44,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
 
     context.read<BaseProductGRPCBloc>().add(DestroyBaseProductEvent(
         product: state.product!, products: state.products));
-    print("check redirection and path");
-    Navigator.of(context)
-        .pushNamedAndRemoveUntil('/products', (Route<dynamic> route) => false);
+    Navigator.pushReplacementNamed(context, '/project_detail');
   }
 
   void updateProduct(Map<String, dynamic> fields) {
@@ -267,8 +265,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
       } else if (state is GetBaseProductSuccess ||
           state is RetrieveBaseProductSuccess ||
           state is UpdateBaseProductSuccess ||
-          state is CreateBaseProductSuccess ||
-          state is DestroyBaseProductSuccess) {
+          state is CreateBaseProductSuccess) {
         return ledPanelBuild(context, state);
       } else {
         return errorBuild(context, state);

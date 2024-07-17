@@ -16,6 +16,7 @@ import 'package:iot_controller/src/ui/utils/popup/refresh_popup.dart';
 
 class ProjectDetailsView extends StatefulWidget {
   const ProjectDetailsView({super.key});
+  static const routeName = '/project_detail';
 
   @override
   State<ProjectDetailsView> createState() => _ProjectDetailsViewState();
@@ -46,7 +47,6 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
 
     context.read<ProjectGRPCBloc>().add(DestroyProjectEvent(
         projectId: state.project!.id, projects: state.projects));
-    context.read<ProjectGRPCBloc>().add(GetProjectListEvent());
     Navigator.of(context)
         .pushNamedAndRemoveUntil('/projects', (Route<dynamic> route) => false);
   }
@@ -78,7 +78,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
           ],
         ),
         body: bodyView,
-        floatingActionButton: buttons!);
+        floatingActionButton: buttons  ?? const SizedBox());
   }
 
   Widget errorBuild(BuildContext context, ProjectState errorState) {
@@ -147,7 +147,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
   Widget build(BuildContext context) {
     return BlocBuilder<ProjectGRPCBloc, ProjectState>(
         builder: (context, state) {
-          print("Project detail view $state");
+      print("Project detail view $state");
       if (state is ProjectLoading) {
         return const Center(child: CircularProgressIndicator());
       } else if (state is GetProjectSuccess ||

@@ -298,7 +298,6 @@ class BaseProductGRPCBloc extends Bloc<BaseProductEvent, BaseProductState> {
 
   void onCreateBaseProductEvent(
       CreateBaseProductEvent event, Emitter<BaseProductState> emit) async {
-    // emit(BaseProductLoading());
     try {
       if (event.product is CoffeeMachine) {
         var response = await coffeeMachineGrpcClient
@@ -322,7 +321,6 @@ class BaseProductGRPCBloc extends Bloc<BaseProductEvent, BaseProductState> {
 
   void onUpdateBaseProductEvent(
       UpdateBaseProductEvent event, Emitter<BaseProductState> emit) async {
-    // emit(BaseProductLoading());
     try {
       BaseProduct p;
 
@@ -346,7 +344,6 @@ class BaseProductGRPCBloc extends Bloc<BaseProductEvent, BaseProductState> {
 
   void onPartialUpdateBaseProductEvent(PartialUpdateBaseProductEvent event,
       Emitter<BaseProductState> emit) async {
-    // emit(BaseProductLoading());
     try {
       BaseProduct p;
       if (event.product is CoffeeMachine) {
@@ -368,7 +365,6 @@ class BaseProductGRPCBloc extends Bloc<BaseProductEvent, BaseProductState> {
 
   void onDestroyBaseProductEvent(
       DestroyBaseProductEvent event, Emitter<BaseProductState> emit) async {
-    // emit(BaseProductLoading());
     try {
       if (event.product is CoffeeMachine) {
         await coffeeMachineGrpcClient.destroy(event.product.id);

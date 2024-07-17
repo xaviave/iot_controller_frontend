@@ -13,7 +13,6 @@ class BaseProductListView extends StatefulWidget {
   const BaseProductListView({super.key, required this.callbackUpdateProject});
 
   final Function(BaseProduct) callbackUpdateProject;
-  static const routeName = '/products';
 
   @override
   State<BaseProductListView> createState() => _BaseProductListViewState();
@@ -69,7 +68,7 @@ class _BaseProductListViewState extends State<BaseProductListView> {
             },
             separatorBuilder: (context, index) => const SizedBox(height: 10));
       } else {
-        return SizedBox();
+        return const SizedBox();
       }
     });
   }

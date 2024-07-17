@@ -20,7 +20,6 @@ class LedModeListView extends StatefulWidget {
     this.onlyBody = false,
     required this.callbackUpdateProductLedMode,
   });
-  static const routeName = '/led_modes';
 
   @override
   State<LedModeListView> createState() => _LedModeListViewState();

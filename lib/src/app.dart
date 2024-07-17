@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:iot_controller/src/ui/products/base_product/base_product_details_view.dart';
+import 'package:iot_controller/src/ui/products/base_product/base_product_list_view.dart';
+import 'package:iot_controller/src/ui/project/project_details_view.dart';
 import 'package:iot_controller/src/ui/project/project_list_view.dart';
 import 'package:iot_controller/src/ui/settings/settings_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -63,6 +66,10 @@ class MyApp extends StatelessWidget {
                         switch (routeSettings.name) {
                           case SettingsView.routeName:
                             return const SettingsView();
+                          case BaseProductDetailsView.routeName:
+                            return const BaseProductDetailsView();
+                          case ProjectDetailsView.routeName:
+                            return const ProjectDetailsView();
                           case ProjectListView.routeName:
                           default:
                             return const ProjectListView();
