@@ -35,7 +35,7 @@ class ProjectFormState extends State<ProjectForm> {
 
   @override
   Widget build(BuildContext context) {
-    context.read<BaseProductGRPCBloc>().add(GetBaseProductListEvent([]));
+    context.read<BaseProductGRPCBloc>().add(GetBaseProductListEvent(null));
     return BlocBuilder<BaseProductGRPCBloc, BaseProductState>(
         builder: (context, state) {
       return Form(

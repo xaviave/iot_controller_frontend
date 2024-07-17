@@ -1,8 +1,10 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
+import "package:iot_controller/src/blocs/led_mode.dart";
 import "package:iot_controller/src/blocs/product.dart";
 import "package:iot_controller/src/models/products/base_product.dart";
 import "package:iot_controller/src/models/products/led/led_panel.dart";
+import "package:iot_controller/src/models/products/led/modes/led_mode.dart";
 import "package:iot_controller/src/ui/products/base_product/update_ip_alert_view.dart";
 import "package:iot_controller/src/ui/products/led/modes/led_mode_list_view.dart";
 import "package:iot_controller/src/ui/settings/settings_view.dart";
@@ -24,6 +26,7 @@ class LedPanelDetailsView extends StatefulWidget {
 
 class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
   late Color colorBrightness;
+  late double productBrightness;
   late Function(BaseProduct) callbackUpdateProject;
 
   Future<bool> refreshLedPanel(BuildContext context) async {
@@ -54,10 +57,24 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
         product: state.product!, fields: fields, products: state.products));
   }
 
+  void setLedMode(LedMode mode) {
+    LedModeState ledModeState = BlocProvider.of<LedModeGRPCBloc>(context).state;
+
+    context
+        .read<LedModeGRPCBloc>()
+        .add(GetLedModeEvent(mode: mode, modes: ledModeState.modes));
+  }
+
   @override
   void initState() {
     super.initState();
     callbackUpdateProject = widget.callbackUpdateProject;
+
+    BaseProductState state =
+        BlocProvider.of<BaseProductGRPCBloc>(context).state;
+    productBrightness = (state.product! as LedPanel).brightness;
+    colorBrightness =
+        Color.lerp(Colors.black, Colors.yellow, productBrightness)!;
   }
 
   Widget headerView(BuildContext context, BaseProductState state,
@@ -105,9 +122,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
   Widget ledPanelBuild(BuildContext context, BaseProductState state) {
     final LedPanel product = state.product! as LedPanel;
 
-    colorBrightness =
-        Color.lerp(Colors.black, Colors.yellow, product.brightness)!;
-
+    setLedMode(product.mode);
     return headerView(
         context,
         state,
@@ -142,6 +157,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                               TextButton(
                                 child: const Text("Cancel"),
                                 onPressed: () {
+                                  setLedMode(product.mode);
                                   Navigator.of(context).pop();
                                 },
                               )
@@ -161,21 +177,20 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                   activeColor: colorBrightness,
                   inactiveColor: Colors.grey,
                   thumbColor: colorBrightness,
-                  value: product.brightness,
+                  value: productBrightness,
                   onChanged: (value) {
                     setState(() {
-                      product.brightness =
+                      productBrightness =
                           double.parse(value.toStringAsFixed(2));
                       colorBrightness = Color.lerp(
                         Colors.black,
                         Colors.yellow,
-                        product.brightness,
+                        productBrightness,
                       )!;
                     });
                   },
-                  onChangeEnd: (value) {
-                    updateProduct(
-                        {"brightness": double.parse(value.toStringAsFixed(2))});
+                  onChangeEnd: (_) {
+                    updateProduct({"brightness": productBrightness});
                   }),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -188,21 +203,26 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                     onPressed: () {
                       showDialog(
                           context: context,
-                          builder: (BuildContext context) => AlertDialog(
+                          builder: (BuildContext context) => PopScope(
+                              onPopInvokedWithResult: (bool didPop, _) =>
+                                  setLedMode(product.mode),
+                              child: AlertDialog(
                                   title: const Text("Change Mode"),
                                   insetPadding: const EdgeInsets.all(50),
                                   content: SizedBox(
                                       width: MediaQuery.of(context).size.width,
                                       child: LedModeListView(
-                                        callbackUpdateLedMode: updateProduct,
+                                        callbackUpdateProductLedMode:
+                                            updateProduct,
                                       )),
                                   actions: [
                                     TextButton(
                                         child: const Text("Cancel"),
                                         onPressed: () {
+                                          setLedMode(product.mode);
                                           Navigator.of(context).pop();
                                         })
-                                  ]));
+                                  ])));
                     },
                     child: Container(
                         margin: const EdgeInsets.all(10),
@@ -215,8 +235,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
               ),
               const SizedBox(height: 10),
               LedModeDetailsView(
-                mode: product.mode,
-                callbackUpdateLedMode: updateProduct,
+                callbackUpdateProductLedMode: updateProduct,
               ),
             ],
           ),
@@ -243,7 +262,6 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
   Widget build(BuildContext context) {
     return BlocBuilder<BaseProductGRPCBloc, BaseProductState>(
         builder: (context, state) {
-      print("fw $state");
       if (state is BaseProductListInitial || state is BaseProductLoading) {
         return const Center(child: CircularProgressIndicator());
       } else if (state is GetBaseProductSuccess ||

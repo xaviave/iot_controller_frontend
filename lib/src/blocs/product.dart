@@ -253,10 +253,10 @@ class BaseProductGRPCBloc extends Bloc<BaseProductEvent, BaseProductState> {
 
   void onGetBaseProductListEvent(
       GetBaseProductListEvent event, Emitter<BaseProductState> emit) async {
-    // emit(BaseProductLoading());
     try {
       // if empty, query, else use the products given
       if (event.products == null) {
+        emit(BaseProductLoading());
         emit(BaseProductListSuccess(
             [...await getLedPanelItems(), ...await getCoffeeMachineItems()]));
       } else {

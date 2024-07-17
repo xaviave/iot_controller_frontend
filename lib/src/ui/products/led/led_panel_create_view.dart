@@ -34,9 +34,6 @@ class LedPanelFormState extends State<LedPanelForm> {
   }
 
   void updateMode(Map<String, dynamic> fields) {
-    context
-        .read<LedModeGRPCBloc>()
-        .add(CreateLedModeEvent(mode: fields["mode"]));
     callbackAddBaseProduct(LedPanel(
       id: -1,
       name: "",
@@ -45,72 +42,20 @@ class LedPanelFormState extends State<LedPanelForm> {
       categories: [],
       status: Status.off,
       brightness: 0,
-      mode: mode,
+      mode: fields["mode"],
     ));
   }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextButton(
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) => AlertDialog(
-                            title: const Text("Choose existing Mode"),
-                            insetPadding: const EdgeInsets.all(50),
-                            content: SizedBox(
-                                width: MediaQuery.of(context).size.width,
-                                child: LedModeListView(
-                                  callbackUpdateLedMode: updateMode,
-                                )),
-                            actions: [
-                              TextButton(
-                                  child: const Text("Cancel"),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  })
-                            ]));
-              },
-              child: Container(
-                  margin: const EdgeInsets.all(10),
-                  child: const Text(
-                    "Use existing mode",
-                    style: TextStyle(fontSize: 28),
-                  )),
-            ),
-            const SizedBox(height: 16),
-            TextButton(
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) => AlertDialog(
-                            title: const Text("Create Mode"),
-                            insetPadding: const EdgeInsets.all(50),
-                            content: SizedBox(
-                                width: MediaQuery.of(context).size.width,
-                                child: LedModeForm(
-                                    callbackUpdateLedMode: updateMode)),
-                            actions: [
-                              TextButton(
-                                  child: const Text("Cancel"),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  })
-                            ]));
-              },
-              child: Container(
-                  margin: const EdgeInsets.all(10),
-                  child: const Text(
-                    "Create mode",
-                    style: TextStyle(fontSize: 28),
-                  )),
-            )
-          ],
-        ));
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        LedModeListView(
+          onlyBody: true,
+          callbackUpdateProductLedMode: updateMode,
+        ),
+      ],
+    );
   }
 }

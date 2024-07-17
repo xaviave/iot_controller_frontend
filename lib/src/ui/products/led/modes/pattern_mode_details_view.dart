@@ -8,13 +8,11 @@ import 'package:iot_controller/src/models/products/led/modes/pattern_mode.dart';
 import 'package:iot_controller/src/ui/utils/popup/abstract_popup.dart';
 
 class PatternModeDetailsView extends StatefulWidget {
-  final PatternMode mode;
-  final Function(Map<String, dynamic>) callbackUpdateLedMode;
+  final Function(Map<String, dynamic>) callbackUpdateProductLedMode;
 
   const PatternModeDetailsView({
     super.key,
-    required this.mode,
-    required this.callbackUpdateLedMode,
+    required this.callbackUpdateProductLedMode,
   });
 
   @override
@@ -25,24 +23,25 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
   late PatternMode mode;
   late Color fpsColor;
   late Color blinkColor;
-  late Function(Map<String, dynamic>) callbackUpdateLedMode;
+  late Function(Map<String, dynamic>) callbackUpdateProductLedMode;
   Map<String, PatternMode> patterns = <String, PatternMode>{};
 
   @override
   void initState() {
     super.initState();
-    mode = widget.mode;
-    callbackUpdateLedMode = widget.callbackUpdateLedMode;
+    callbackUpdateProductLedMode = widget.callbackUpdateProductLedMode;
+
+    mode = BlocProvider.of<LedModeGRPCBloc>(context).state.mode as PatternMode;
     fpsColor = Color.lerp(Colors.black, Colors.white, mode.fps)!;
     blinkColor = Color.lerp(Colors.black, Colors.white, mode.blink)!;
   }
 
-  void serverPartialUpdate(Map<String, dynamic> fields) {
-    context
-        .read<LedModeGRPCBloc>()
-        .add(PartialUpdateLedModeEvent(mode: mode, fields: fields));
-    callbackUpdateLedMode({"mode": mode});
-  }
+  // void serverPartialUpdate(Map<String, dynamic> fields) {
+  //   context
+  //       .read<LedModeGRPCBloc>()
+  //       .add(PartialUpdateLedModeEvent(mode: mode, fields: fields));
+  //   callbackUpdateLedMode({"mode": mode});
+  // }
 
   Future<void> updatePaletteColor(
       int index, Color newColor, bool addNewColor) async {
@@ -72,7 +71,7 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
         mode.palette[index] = newColor;
       }
     });
-    serverPartialUpdate({"palette": mode.palette});
+    callbackUpdateProductLedMode({"mode": mode});
   }
 
   GestureDetector addColorWidget(int index, Color c, bool addNewColor) {
@@ -81,7 +80,7 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
           setState(() {
             if (addNewColor == false) {
               mode.palette.removeAt(index);
-              serverPartialUpdate({"palette": mode.palette});
+              callbackUpdateProductLedMode({"mode": mode});
             }
           });
         },
@@ -108,7 +107,7 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
                 showColorCode: true,
                 colorCodeHasColor: true,
                 pickersEnabled: <ColorPickerType, bool>{
-                  ColorPickerType.wheel: true,
+                  ColorPickerType.wheel: true
                 },
                 copyPasteBehavior: const ColorPickerCopyPasteBehavior(
                   copyButton: true,
@@ -129,6 +128,8 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
 
   @override
   Widget build(BuildContext context) {
+    mode = BlocProvider.of<LedModeGRPCBloc>(context).state.mode as PatternMode;
+
     // missing settings
     return Column(
       children: [
@@ -147,8 +148,7 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
               });
             },
             onChangeEnd: (value) {
-              serverPartialUpdate({"fps": value});
-              // callbackUpdateMode(mode, true);
+              callbackUpdateProductLedMode({"mode": mode});
             }),
         const Text('Blink interval'),
         Slider(
@@ -166,7 +166,7 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
               });
             },
             onChangeEnd: (value) {
-              serverPartialUpdate({"blink": value});
+              callbackUpdateProductLedMode({"mode": mode});
             }),
         Wrap(
             children: List.generate(mode.palette.length, (i) => i).map((index) {
@@ -205,7 +205,8 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
                 setState(() {
                   mode.palette = selectedPalette.p;
                 });
-                serverPartialUpdate({"palette": mode.palette});
+                callbackUpdateProductLedMode(
+                    {"mode": mode});
               }
             });
           },

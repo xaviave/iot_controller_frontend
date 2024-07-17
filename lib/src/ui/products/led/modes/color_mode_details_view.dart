@@ -6,13 +6,11 @@ import 'package:iot_controller/src/models/products/led/modes/color_mode.dart';
 import 'package:iot_controller/src/models/products/led/modes/led_mode.dart';
 
 class ColorModeDetailsView extends StatefulWidget {
-  final ColorMode mode;
-  final Function(Map<String, dynamic>) callbackUpdateLedMode;
+  final Function(Map<String, dynamic>) callbackUpdateProductLedMode;
 
   const ColorModeDetailsView({
     super.key,
-    required this.mode,
-    required this.callbackUpdateLedMode,
+    required this.callbackUpdateProductLedMode,
   });
 
   @override
@@ -21,20 +19,19 @@ class ColorModeDetailsView extends StatefulWidget {
 
 class _ColorModeDetailsViewState extends State<ColorModeDetailsView> {
   late ColorMode mode;
-  late Function(Map<String, dynamic>) callbackUpdateLedMode;
+  late Function(Map<String, dynamic>) callbackUpdateProductLedMode;
 
   @override
   void initState() {
     super.initState();
-    mode = widget.mode;
-    callbackUpdateLedMode = widget.callbackUpdateLedMode;
+    callbackUpdateProductLedMode = widget.callbackUpdateProductLedMode;
   }
 
   void callbackUpdatePalette(Color newColor) {
     setState(() => mode.color = newColor);
-    context.read<LedModeGRPCBloc>().add(
-        PartialUpdateLedModeEvent(mode: mode, fields: {"color": newColor}));
-    callbackUpdateLedMode({"mode": mode});
+    // context.read<LedModeGRPCBloc>().add(
+    //     PartialUpdateLedModeEvent(mode: mode, fields: {"color": newColor}));
+    callbackUpdateProductLedMode({"mode": mode});
   }
 
   ColorIndicator addColorWidget(Color c) {
@@ -81,6 +78,8 @@ class _ColorModeDetailsViewState extends State<ColorModeDetailsView> {
 
   @override
   Widget build(BuildContext context) {
+    mode =
+        BlocProvider.of<LedModeGRPCBloc>(context).state.mode as ColorMode;
     return Container(
         decoration: const BoxDecoration(
             gradient: RadialGradient(

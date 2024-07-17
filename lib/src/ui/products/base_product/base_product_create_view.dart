@@ -42,7 +42,6 @@ class BaseProductFormState extends State<BaseProductForm> {
 
   @override
   Widget build(BuildContext context) {
-    print("add the choice to select a product a list");
     return Form(
       key: _formKey,
       child: Column(

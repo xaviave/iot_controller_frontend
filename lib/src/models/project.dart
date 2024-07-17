@@ -35,17 +35,18 @@ class Project {
   }
 
   ProjectPartialUpdateRequest getPartialRequest(Map<String, dynamic> fields) {
-    List<BaseProductRequest> aa = [];
-    fields["products"].forEach((k, v) {
-      aa.add(v.getAbstractRequest());
-    });
+    List<BaseProductRequest> productsRequest = [];
+
+    for (var x in fields["products"]) {
+      productsRequest.add(x.getAbstractRequest());
+    }
     return ProjectPartialUpdateRequest(
       id: id,
       partialUpdateFields: fields.keys,
       pubDate: null,
       name: fields["name"],
       owner: null,
-      products: aa,
+      products: productsRequest,
     );
   }
 

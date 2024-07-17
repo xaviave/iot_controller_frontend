@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:iot_controller/src/blocs/product.dart';
 import 'package:iot_controller/src/blocs/project.dart';
 import 'package:iot_controller/src/models/products/base_product.dart';
+import 'package:iot_controller/src/models/products/led/led_panel.dart';
 import 'package:iot_controller/src/models/project.dart';
 import 'package:iot_controller/src/ui/products/base_product/base_product_create_view.dart';
 import 'package:iot_controller/src/ui/products/base_product/base_product_list_view.dart';
@@ -146,6 +147,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
   Widget build(BuildContext context) {
     return BlocBuilder<ProjectGRPCBloc, ProjectState>(
         builder: (context, state) {
+          print("Project detail view $state");
       if (state is ProjectLoading) {
         return const Center(child: CircularProgressIndicator());
       } else if (state is GetProjectSuccess ||

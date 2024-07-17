@@ -14,120 +14,202 @@ class ServerChangedEvent extends LedModeEvent {
   // final ImageModeCommunication imageModeGrpcClient;
   // final VideoModeCommunication videoModeGrpcClient;
 
-  ServerChangedEvent(
-      {required this.colorModeGrpcClient, required this.patternModeGrpcClient});
+  ServerChangedEvent({
+    required this.colorModeGrpcClient,
+    required this.patternModeGrpcClient,
+  });
 }
 
-class GetLedModeListEvent extends LedModeEvent {}
+class GetLedModeListEvent extends LedModeEvent {
+  final List<LedMode>? modes;
+
+  GetLedModeListEvent(this.modes);
+}
+
+class GetLedModeEvent extends LedModeEvent {
+  final LedMode mode;
+  final List<LedMode> modes;
+
+  GetLedModeEvent({required this.mode, required this.modes});
+}
+
+class RetrieveLedModeEvent extends LedModeEvent {
+  final LedMode mode;
+  final List<LedMode> modes;
+
+  RetrieveLedModeEvent({required this.mode, required this.modes});
+}
+
+class CreateLedModeEvent extends LedModeEvent {
+  final LedMode mode;
+  final List<LedMode> modes;
+
+  CreateLedModeEvent({required this.mode, required this.modes});
+}
 
 class UpdateLedModeEvent extends LedModeEvent {
   final LedMode mode;
+  final List<LedMode> modes;
 
-  UpdateLedModeEvent({required this.mode});
+  UpdateLedModeEvent({required this.mode, required this.modes});
 }
 
 class PartialUpdateLedModeEvent extends LedModeEvent {
   final LedMode mode;
   Map<String, dynamic> fields;
+  final List<LedMode> modes;
 
-  PartialUpdateLedModeEvent({required this.mode, required this.fields});
-}
-
-class CreateLedModeEvent extends LedModeEvent {
-  final LedMode mode;
-
-  CreateLedModeEvent({required this.mode});
+  PartialUpdateLedModeEvent(
+      {required this.mode, required this.fields, required this.modes});
 }
 
 class DestroyLedModeEvent extends LedModeEvent {
   final LedMode mode;
+  final List<LedMode> modes;
 
-  DestroyLedModeEvent({required this.mode});
+  DestroyLedModeEvent({required this.mode, required this.modes});
 }
 
 sealed class LedModeState {
   const LedModeState();
 
-  Map<String, LedMode> get ledModes => {};
+  String get message => "";
+  LedMode? get mode => null;
+  List<LedMode> get modes => [];
 }
 
 class LedModeListInitial extends LedModeState {}
 
+class LedModeLoading extends LedModeState {}
+
 class LedModeListSuccess extends LedModeState {
-  final Map<String, ColorMode> _colorModes;
-  final Map<String, PatternMode> _patternModes;
+  final List<LedMode> _modes;
 
-  const LedModeListSuccess(this._colorModes, this._patternModes);
+  const LedModeListSuccess(this._modes);
 
-  Map<String, ColorMode> get coffeeMachines => _colorModes;
-  Map<String, PatternMode> get patternMode => _patternModes;
-  Map<String, LedMode> get modes => {..._colorModes, ..._patternModes};
+  @override
+  List<LedMode> get modes => _modes;
 }
 
 class LedModeListError extends LedModeState {
-  final String message;
+  final String _message;
 
-  const LedModeListError(this.message);
+  const LedModeListError(this._message);
 
-  String get errorMessage => message;
+  @override
+  String get message => _message;
 }
 
-class UpdateLedModeEventSuccess extends LedModeState {
-  final String message;
+class GetLedModeSuccess extends LedModeState {
+  final LedMode _mode;
+  final List<LedMode> _modes;
 
-  const UpdateLedModeEventSuccess(this.message);
+  const GetLedModeSuccess(this._mode, this._modes);
 
-  String get successMessage => message;
+  @override
+  LedMode? get mode => _mode;
+  @override
+  List<LedMode> get modes => _modes;
 }
 
-class UpdateLedModeEventError extends LedModeState {
-  final String message;
+class GetLedModeError extends LedModeState {
+  final String _message;
 
-  const UpdateLedModeEventError(this.message);
+  const GetLedModeError(this._message);
 
-  String get errorMessage => message;
+  @override
+  String get message => _message;
 }
 
-class CreateColorModeEventSuccess extends LedModeState {
-  final String message;
-  final ColorModeResponse mode;
+class RetrieveLedModeSuccess extends LedModeState {
+  final LedMode _mode;
+  final List<LedMode> _modes;
 
-  const CreateColorModeEventSuccess(this.message, this.mode);
+  const RetrieveLedModeSuccess(this._mode, this._modes);
 
-  String get successMessage => message;
+  @override
+  LedMode? get mode => _mode;
+  @override
+  List<LedMode> get modes => _modes;
 }
 
-class CreatePatternModeEventSuccess extends LedModeState {
-  final String message;
-  final PatternModeResponse mode;
+class RetrieveLedModeError extends LedModeState {
+  final String _message;
 
-  const CreatePatternModeEventSuccess(this.message, this.mode);
+  const RetrieveLedModeError(this._message);
 
-  String get successMessage => message;
+  @override
+  String get message => _message;
 }
 
-class CreateLedModeEventError extends LedModeState {
-  final String message;
+class CreateLedModeSuccess extends LedModeState {
+  final String _message;
+  final LedMode _mode;
+  final List<LedMode> _modes;
 
-  const CreateLedModeEventError(this.message);
+  const CreateLedModeSuccess(this._message, this._mode, this._modes);
 
-  String get errorMessage => message;
+  @override
+  String get message => _message;
+  @override
+  LedMode? get mode => _mode;
+  @override
+  List<LedMode> get modes => _modes;
 }
 
-class DestroyLedModeEventSuccess extends LedModeState {
-  final String message;
+class CreateLedModeError extends LedModeState {
+  final String _message;
 
-  const DestroyLedModeEventSuccess(this.message);
+  const CreateLedModeError(this._message);
 
-  String get successMessage => message;
+  @override
+  String get message => _message;
 }
 
-class DestroyLedModeEventError extends LedModeState {
-  final String message;
+class UpdateLedModeSuccess extends LedModeState {
+  final String _message;
+  final LedMode _mode;
+  final List<LedMode> _modes;
 
-  const DestroyLedModeEventError(this.message);
+  const UpdateLedModeSuccess(this._message, this._mode, this._modes);
 
-  String get errorMessage => message;
+  @override
+  String get message => _message;
+  @override
+  LedMode? get mode => _mode;
+  @override
+  List<LedMode> get modes => _modes;
+}
+
+class UpdateLedModeError extends LedModeState {
+  final String _message;
+  final String modeName;
+
+  const UpdateLedModeError(this._message, this.modeName);
+
+  @override
+  String get message => _message;
+}
+
+class DestroyLedModeSuccess extends LedModeState {
+  final String _message;
+  final List<LedMode> _modes;
+
+  const DestroyLedModeSuccess(this._message, this._modes);
+
+  @override
+  String get message => _message;
+  @override
+  List<LedMode> get modes => _modes;
+}
+
+class DestroyLedModeError extends LedModeState {
+  final String _message;
+
+  const DestroyLedModeError(this._message);
+
+  @override
+  String get message => _message;
 }
 
 class LedModeGRPCBloc extends Bloc<LedModeEvent, LedModeState> {
@@ -145,99 +227,156 @@ class LedModeGRPCBloc extends Bloc<LedModeEvent, LedModeState> {
             serverName: state.serverName, serverPort: state.serverPort)));
 
     on<GetLedModeListEvent>(onGetLedModeListEvent);
+    on<GetLedModeEvent>(onGetLedModeEvent);
+    on<CreateLedModeEvent>(onCreateLedModeEvent);
     on<UpdateLedModeEvent>(onUpdateLedModeEvent);
     on<PartialUpdateLedModeEvent>(onPartialUpdateLedModeEvent);
     on<DestroyLedModeEvent>(onDestroyLedModeEvent);
-    on<CreateLedModeEvent>(onCreateLedModeEvent);
   }
 
   void onServerChangedEvent(
       ServerChangedEvent event, Emitter<LedModeState> emit) {
     colorModeGrpcClient = event.colorModeGrpcClient;
     patternModeGrpcClient = event.patternModeGrpcClient;
-    add(GetLedModeListEvent());
   }
 
-  Future<Map<String, PatternMode>> getPatternModeItems() async {
-    var responsePatternMode = await patternModeGrpcClient.list();
-    return {
-      for (var e in responsePatternMode.results)
-        e.name: PatternMode.fromResponse(e)
-    };
+  Future<List<ColorMode>> getColorModeItems() async {
+    var responseLedPanel = await colorModeGrpcClient.list();
+    return responseLedPanel.results
+        .map((e) => ColorMode.fromResponse(e))
+        .toList();
   }
 
-  Future<Map<String, ColorMode>> getColorModeItems() async {
-    var responseColorMode = await colorModeGrpcClient.list();
-    return {
-      for (var e in responseColorMode.results) e.name: ColorMode.fromResponse(e)
-    };
+  Future<List<PatternMode>> getPatternModeItems() async {
+    var responseCoffeeMachine = await patternModeGrpcClient.list();
+    return responseCoffeeMachine.results
+        .map((e) => PatternMode.fromResponse(e))
+        .toList();
   }
 
   void onGetLedModeListEvent(
       GetLedModeListEvent event, Emitter<LedModeState> emit) async {
     try {
-      emit(LedModeListSuccess(
-          await getColorModeItems(), await getPatternModeItems()));
+      // if empty, query, else use the modes given
+      if (event.modes == null) {
+        emit(LedModeLoading());
+        emit(LedModeListSuccess(
+            [...await getColorModeItems(), ...await getPatternModeItems()]));
+      } else {
+        emit(LedModeListSuccess(event.modes!));
+      }
     } catch (error) {
       emit(LedModeListError(error.toString()));
     }
   }
 
+  void onGetLedModeEvent(
+      GetLedModeEvent event, Emitter<LedModeState> emit) async {
+    emit(GetLedModeSuccess(event.mode, event.modes));
+  }
+
+  void onRetrieveLedModeEvent(
+      RetrieveLedModeEvent event, Emitter<LedModeState> emit) async {
+    try {
+      LedMode p;
+      if (event.mode is PatternMode) {
+        PatternModeResponse response =
+            await patternModeGrpcClient.retrieve(event.mode.id);
+
+        p = PatternMode.fromResponse(response);
+      } else {
+        ColorModeResponse response =
+            await colorModeGrpcClient.retrieve(event.mode.id);
+
+        p = ColorMode.fromResponse(response);
+      }
+
+      event.modes[event.modes.indexWhere((element) => element.id == p.id)] = p;
+      emit(RetrieveLedModeSuccess(p, event.modes));
+    } catch (error) {
+      emit(RetrieveLedModeError(error.toString()));
+    }
+  }
+
   void onCreateLedModeEvent(
       CreateLedModeEvent event, Emitter<LedModeState> emit) async {
+    // emit(LedModeLoading());
     try {
-      if (event.mode is ColorMode) {
-        var response =
-            await colorModeGrpcClient.create(event.mode as ColorMode);
-        emit(CreateColorModeEventSuccess("success", response));
-      } else {
+      if (event.mode is PatternMode) {
         var response =
             await patternModeGrpcClient.create(event.mode as PatternMode);
-        emit(CreatePatternModeEventSuccess("success", response));
+        PatternMode mode = PatternMode.fromResponse(response);
+
+        emit(CreateLedModeSuccess("success", mode, event.modes..add(mode)));
+      } else {
+        var response =
+            await colorModeGrpcClient.create(event.mode as ColorMode);
+        ColorMode mode = ColorMode.fromResponse(response);
+
+        emit(CreateLedModeSuccess("success", mode, event.modes..add(mode)));
       }
     } catch (error) {
-      emit(CreateLedModeEventError(error.toString()));
+      emit(CreateLedModeError(error.toString()));
     }
   }
 
   void onUpdateLedModeEvent(
       UpdateLedModeEvent event, Emitter<LedModeState> emit) async {
+    // emit(LedModeLoading());
     try {
-      if (event.mode is ColorMode) {
-        await colorModeGrpcClient.update(event.mode as ColorMode);
+      LedMode p;
+
+      if (event.mode is PatternMode) {
+        var response =
+            await patternModeGrpcClient.update(event.mode as PatternMode);
+        p = PatternMode.fromResponse(response);
       } else {
-        await patternModeGrpcClient.update(event.mode as PatternMode);
+        var response =
+            await colorModeGrpcClient.update(event.mode as ColorMode);
+        p = ColorMode.fromResponse(response);
       }
+
+      event.modes[event.modes.indexWhere((element) => element.id == p.id)] = p;
+      emit(UpdateLedModeSuccess("success", p, event.modes));
     } catch (error) {
-      emit(UpdateLedModeEventError(error.toString()));
+      emit(UpdateLedModeError(error.toString(), event.mode.name));
     }
   }
 
   void onPartialUpdateLedModeEvent(
       PartialUpdateLedModeEvent event, Emitter<LedModeState> emit) async {
+    // emit(LedModeLoading());
     try {
-      if (event.mode is ColorMode) {
-        await colorModeGrpcClient.partialUpdate(
-            event.mode as ColorMode, event.fields);
-      } else {
-        await patternModeGrpcClient.partialUpdate(
+      LedMode p;
+      if (event.mode is PatternMode) {
+        var response = await patternModeGrpcClient.partialUpdate(
             event.mode as PatternMode, event.fields);
+        p = PatternMode.fromResponse(response);
+      } else {
+        var response = await colorModeGrpcClient.partialUpdate(
+            event.mode as ColorMode, event.fields);
+        p = ColorMode.fromResponse(response);
       }
+      event.modes[event.modes.indexWhere((element) => element.id == p.id)] = p;
+      emit(UpdateLedModeSuccess("success", p, event.modes));
     } catch (error) {
-      emit(UpdateLedModeEventError(error.toString()));
+      emit(UpdateLedModeError(error.toString(), event.mode.name));
     }
   }
 
   void onDestroyLedModeEvent(
       DestroyLedModeEvent event, Emitter<LedModeState> emit) async {
     try {
-      if (event.mode is ColorMode) {
-        await colorModeGrpcClient.destroy(event.mode.id);
-      } else {
+      if (event.mode is PatternMode) {
         await patternModeGrpcClient.destroy(event.mode.id);
+      } else {
+        await colorModeGrpcClient.destroy(event.mode.id);
       }
+
+      event.modes.removeWhere((item) => item.id == event.mode.id);
+      emit(DestroyLedModeSuccess("Successfully deleted mode", event.modes));
     } catch (error) {
-      emit(DestroyLedModeEventError(error.toString()));
+      emit(DestroyLedModeError(error.toString()));
     }
   }
 }

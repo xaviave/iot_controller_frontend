@@ -62,7 +62,7 @@ class _ProjectListViewState extends State<ProjectListView> {
               ),
               body: BlocBuilder<project_bloc.ProjectGRPCBloc,
                   project_bloc.ProjectState>(builder: (context, state) {
-                print(state);
+                print("Project list view $state");
                 if (state is project_bloc.ProjectListInitial ||
                     state is project_bloc.ProjectLoading) {
                   return const Center(child: CircularProgressIndicator());
