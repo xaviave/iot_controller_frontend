@@ -10,19 +10,11 @@ import 'package:iot_controller/src/ui/utils/capitalize.dart';
 import 'package:iot_controller/src/ui/utils/popup/delete_popup.dart';
 import 'package:iot_controller/src/ui/utils/popup/refresh_popup.dart';
 
-class CoffeeMachineDetailsView extends StatefulWidget {
+class CoffeeMachineDetailsView extends StatelessWidget {
   final Function(BaseProduct) callbackUpdateProject;
 
   const CoffeeMachineDetailsView(
       {super.key, required this.callbackUpdateProject});
-
-  @override
-  State<CoffeeMachineDetailsView> createState() =>
-      _CoffeeMachineDetailsViewState();
-}
-
-class _CoffeeMachineDetailsViewState extends State<CoffeeMachineDetailsView> {
-  late Function(BaseProduct) callbackUpdateProject;
 
   Future<bool> refreshCoffeeMachine(BuildContext context) async {
     BaseProductState state =
@@ -33,27 +25,21 @@ class _CoffeeMachineDetailsViewState extends State<CoffeeMachineDetailsView> {
     return true;
   }
 
-  void callbackDeleteCoffeeMachine() {
+  void callbackDeleteCoffeeMachine(BuildContext context) {
     BaseProductState state =
         BlocProvider.of<BaseProductGRPCBloc>(context).state;
 
     context.read<BaseProductGRPCBloc>().add(DestroyBaseProductEvent(
         product: state.product!, products: state.products));
-    context.goNamed("project_detail");
+    context.pushNamed("project_detail");
   }
 
-  void updateProduct(Map<String, dynamic> fields) {
+  void updateProduct(BuildContext context, Map<String, dynamic> fields) {
     BaseProductState state =
         BlocProvider.of<BaseProductGRPCBloc>(context).state;
 
     context.read<BaseProductGRPCBloc>().add(PartialUpdateBaseProductEvent(
         product: state.product!, fields: fields, products: state.products));
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    callbackUpdateProject = widget.callbackUpdateProject;
   }
 
   Widget headerView(BuildContext context, BaseProductState state,

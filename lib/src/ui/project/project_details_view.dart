@@ -43,12 +43,12 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
     return true;
   }
 
-  void callbackDeleteProject() {
+  void callbackDeleteProject(BuildContext context) {
     ProjectState state = BlocProvider.of<ProjectGRPCBloc>(context).state;
 
     context.read<ProjectGRPCBloc>().add(DestroyProjectEvent(
         projectId: state.project!.id, projects: state.projects));
-    context.goNamed("projects");
+    context.pushNamed("projects");
   }
 
   Widget headerView(BuildContext context, ProjectState state, String titleView,

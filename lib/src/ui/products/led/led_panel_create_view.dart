@@ -9,41 +9,29 @@ import 'package:iot_controller/src/models/status.dart';
 import 'modes/led_mode_create_view.dart';
 import 'modes/led_mode_list_view.dart';
 
-class LedPanelForm extends StatefulWidget {
+class LedPanelForm extends StatelessWidget {
   final name = "led panel";
-  final Function(BaseProduct) callbackAddBaseProduct;
+  final Function(BuildContext, BaseProduct) callbackAddBaseProduct;
   const LedPanelForm({super.key, required this.callbackAddBaseProduct});
-
-  @override
-  LedPanelFormState createState() => LedPanelFormState();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return name;
   }
-}
 
-class LedPanelFormState extends State<LedPanelForm> {
-  late LedMode mode;
-  late Function(BaseProduct) callbackAddBaseProduct;
-
-  @override
-  void initState() {
-    super.initState();
-    callbackAddBaseProduct = widget.callbackAddBaseProduct;
-  }
-
-  void updateMode(Map<String, dynamic> fields) {
-    callbackAddBaseProduct(LedPanel(
-      id: -1,
-      name: "",
-      ipPort: -1,
-      ipAddress: "",
-      categories: [],
-      status: Status.off,
-      brightness: 0,
-      mode: fields["mode"],
-    ));
+  void updateMode(BuildContext context, Map<String, dynamic> fields) {
+    callbackAddBaseProduct(
+        context,
+        LedPanel(
+          id: -1,
+          name: "",
+          ipPort: -1,
+          ipAddress: "",
+          categories: [],
+          status: Status.off,
+          brightness: 0,
+          mode: fields["mode"],
+        ));
   }
 
   @override

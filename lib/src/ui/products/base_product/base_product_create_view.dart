@@ -25,7 +25,7 @@ class BaseProductFormState extends State<BaseProductForm> {
   late List<Widget> baseProductTypes;
   late Function(BaseProduct) callbackUpdateProject;
 
-  void addBaseProduct(BaseProduct p) {
+  void addBaseProduct(BuildContext context, BaseProduct p) {
     setState(() => product = p);
   }
 

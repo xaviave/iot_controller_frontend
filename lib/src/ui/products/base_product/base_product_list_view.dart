@@ -9,24 +9,11 @@ import 'package:iot_controller/src/ui/products/coffee_machine/coffee_machine_min
 import 'package:iot_controller/src/ui/products/led/led_panel_details_view.dart';
 import 'package:iot_controller/src/ui/products/led/led_panel_minimal_detail_view.dart';
 
-class BaseProductListView extends StatefulWidget {
-  const BaseProductListView({super.key, required this.callbackUpdateProject});
-
+class BaseProductListView extends StatelessWidget {
+  // separate Project bloc from BaseProduct Bloc
   final Function(BaseProduct) callbackUpdateProject;
 
-  @override
-  State<BaseProductListView> createState() => _BaseProductListViewState();
-}
-
-class _BaseProductListViewState extends State<BaseProductListView> {
-  // separate Project bloc from BaseProduct Bloc
-  late Function(BaseProduct) callbackUpdateProject;
-
-  @override
-  void initState() {
-    super.initState();
-    callbackUpdateProject = widget.callbackUpdateProject;
-  }
+  const BaseProductListView({super.key, required this.callbackUpdateProject});
 
   @override
   Widget build(BuildContext context) {

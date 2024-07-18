@@ -13,7 +13,8 @@ import 'led_mode_create_view.dart';
 
 class LedModeListView extends StatefulWidget {
   final bool onlyBody;
-  final Function(Map<String, dynamic>) callbackUpdateProductLedMode;
+  final Function(BuildContext, Map<String, dynamic>)
+      callbackUpdateProductLedMode;
 
   const LedModeListView({
     super.key,
@@ -26,7 +27,8 @@ class LedModeListView extends StatefulWidget {
 }
 
 class _LedModeListViewState extends State<LedModeListView> {
-  late Function(Map<String, dynamic>) callbackUpdateProductLedMode;
+  late Function(BuildContext, Map<String, dynamic>)
+      callbackUpdateProductLedMode;
 
   @override
   void initState() {
@@ -79,11 +81,13 @@ class _LedModeListViewState extends State<LedModeListView> {
                 onTap: () {
                   if (widget.onlyBody == false) {
                     callbackUpdateProductLedMode(
+                      context,
                       {"mode": state.modes[index].getAbstractRequest()},
                     );
                     Navigator.of(context).pop();
                   } else {
                     callbackUpdateProductLedMode(
+                      context,
                       {"mode": state.modes[index]},
                     );
                   }

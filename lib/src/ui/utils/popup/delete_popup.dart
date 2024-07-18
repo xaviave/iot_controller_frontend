@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:iot_controller/src/blocs/project.dart';
-import 'package:iot_controller/src/models/project.dart';
 import 'package:iot_controller/src/ui/utils/capitalize.dart';
 import 'package:iot_controller/src/ui/utils/popup/abstract_popup.dart';
 
@@ -9,7 +6,7 @@ class DeletePopup extends AbstractPopup {
   final String objectName;
   final Function deleteCallBack;
 
-  DeletePopup(
+  const DeletePopup(
       {super.key,
       super.icon = Icons.delete,
       required super.name,
@@ -54,7 +51,8 @@ class _DeletePopupState extends AbstractPopupState<DeletePopup> {
                       SizedBox(
                         child: ElevatedButton(
                           onPressed: () {
-                            deleteCallBack();
+                            deleteCallBack(context);
+                            Navigator.of(context).pop();
                           },
                           child: const Text(
                             'Submit',

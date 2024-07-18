@@ -6,7 +6,7 @@ import 'package:iot_controller/src/models/status.dart';
 
 class CoffeeMachineForm extends StatefulWidget {
   final name = "coffee machine";
-  final Function(BaseProduct) callbackAddBaseProduct;
+  final Function(BuildContext, BaseProduct) callbackAddBaseProduct;
   const CoffeeMachineForm({super.key, required this.callbackAddBaseProduct});
 
   @override
@@ -19,7 +19,7 @@ class CoffeeMachineForm extends StatefulWidget {
 }
 
 class CoffeeMachineFormState extends State<CoffeeMachineForm> {
-  late Function(BaseProduct) callbackAddBaseProduct;
+  late Function(BuildContext, BaseProduct) callbackAddBaseProduct;
 
   @override
   void initState() {
@@ -30,7 +30,9 @@ class CoffeeMachineFormState extends State<CoffeeMachineForm> {
   @override
   Widget build(BuildContext context) {
     SchedulerBinding.instance
-        .addPostFrameCallback((_) => callbackAddBaseProduct(CoffeeMachine(
+        .addPostFrameCallback((_) => callbackAddBaseProduct(
+            context,
+            CoffeeMachine(
               id: -1,
               name: "",
               ipPort: 0,

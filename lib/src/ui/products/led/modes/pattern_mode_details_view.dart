@@ -8,7 +8,8 @@ import 'package:iot_controller/src/models/products/led/modes/pattern_mode.dart';
 import 'package:iot_controller/src/ui/utils/popup/abstract_popup.dart';
 
 class PatternModeDetailsView extends StatefulWidget {
-  final Function(Map<String, dynamic>) callbackUpdateProductLedMode;
+  final Function(BuildContext, Map<String, dynamic>)
+      callbackUpdateProductLedMode;
 
   const PatternModeDetailsView({
     super.key,
@@ -23,7 +24,8 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
   late PatternMode mode;
   late Color fpsColor;
   late Color blinkColor;
-  late Function(Map<String, dynamic>) callbackUpdateProductLedMode;
+  late Function(BuildContext, Map<String, dynamic>)
+      callbackUpdateProductLedMode;
   Map<String, PatternMode> patterns = <String, PatternMode>{};
 
   @override
@@ -36,7 +38,7 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
     blinkColor = Color.lerp(Colors.black, Colors.white, mode.blink)!;
   }
 
-  // void serverPartialUpdate(Map<String, dynamic> fields) {
+  // void serverPartialUpdate(BuildContext, Map<String, dynamic> fields) {
   //   context
   //       .read<LedModeGRPCBloc>()
   //       .add(PartialUpdateLedModeEvent(mode: mode, fields: fields));
@@ -71,7 +73,7 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
         mode.palette[index] = newColor;
       }
     });
-    callbackUpdateProductLedMode({"mode": mode});
+    callbackUpdateProductLedMode(context, {"mode": mode.getAbstractRequest()});
   }
 
   GestureDetector addColorWidget(int index, Color c, bool addNewColor) {
@@ -80,7 +82,8 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
           setState(() {
             if (addNewColor == false) {
               mode.palette.removeAt(index);
-              callbackUpdateProductLedMode({"mode": mode});
+              callbackUpdateProductLedMode(
+                  context, {"mode": mode.getAbstractRequest()});
             }
           });
         },
@@ -148,7 +151,8 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
               });
             },
             onChangeEnd: (value) {
-              callbackUpdateProductLedMode({"mode": mode});
+              callbackUpdateProductLedMode(
+                  context, {"mode": mode.getAbstractRequest()});
             }),
         const Text('Blink interval'),
         Slider(
@@ -166,7 +170,8 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
               });
             },
             onChangeEnd: (value) {
-              callbackUpdateProductLedMode({"mode": mode});
+              callbackUpdateProductLedMode(
+                  context, {"mode": mode.getAbstractRequest()});
             }),
         Wrap(
             children: List.generate(mode.palette.length, (i) => i).map((index) {
@@ -205,7 +210,8 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
                 setState(() {
                   mode.palette = selectedPalette.p;
                 });
-                callbackUpdateProductLedMode({"mode": mode});
+                callbackUpdateProductLedMode(
+                    context, {"mode": mode.getAbstractRequest()});
               }
             });
           },

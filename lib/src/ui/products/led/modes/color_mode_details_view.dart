@@ -6,7 +6,8 @@ import 'package:iot_controller/src/models/products/led/modes/color_mode.dart';
 import 'package:iot_controller/src/models/products/led/modes/led_mode.dart';
 
 class ColorModeDetailsView extends StatefulWidget {
-  final Function(Map<String, dynamic>) callbackUpdateProductLedMode;
+  final Function(BuildContext, Map<String, dynamic>)
+      callbackUpdateProductLedMode;
 
   const ColorModeDetailsView({
     super.key,
@@ -19,7 +20,8 @@ class ColorModeDetailsView extends StatefulWidget {
 
 class _ColorModeDetailsViewState extends State<ColorModeDetailsView> {
   late ColorMode mode;
-  late Function(Map<String, dynamic>) callbackUpdateProductLedMode;
+  late Function(BuildContext, Map<String, dynamic>)
+      callbackUpdateProductLedMode;
 
   @override
   void initState() {
@@ -31,7 +33,7 @@ class _ColorModeDetailsViewState extends State<ColorModeDetailsView> {
     setState(() => mode.color = newColor);
     // context.read<LedModeGRPCBloc>().add(
     //     PartialUpdateLedModeEvent(mode: mode, fields: {"color": newColor}));
-    callbackUpdateProductLedMode({"mode": mode});
+    callbackUpdateProductLedMode(context, {"mode": mode.getAbstractRequest()});
   }
 
   ColorIndicator addColorWidget(Color c) {

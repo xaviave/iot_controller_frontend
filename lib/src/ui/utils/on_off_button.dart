@@ -3,7 +3,7 @@ import 'package:iot_controller/src/models/status.dart';
 
 class OnOffButton extends StatefulWidget {
   final Status status;
-  final Function(Map<String, dynamic>) callbackUpdateStatus;
+  final Function(BuildContext, Map<String, dynamic>) callbackUpdateStatus;
 
   const OnOffButton(
       {super.key, required this.status, required this.callbackUpdateStatus});
@@ -16,7 +16,7 @@ class _OnOffButtonState extends State<OnOffButton> {
   late bool isOn;
   late Status status;
 
-  late Function(Map<String, dynamic>) callbackUpdateStatus;
+  late Function(BuildContext, Map<String, dynamic>) callbackUpdateStatus;
 
   @override
   void initState() {
@@ -30,7 +30,7 @@ class _OnOffButtonState extends State<OnOffButton> {
     setState(() {
       isOn = !isOn;
       status = isOn ? Status.on : Status.off;
-      callbackUpdateStatus({"status": status.id});
+      callbackUpdateStatus(context, {"status": status.id});
     });
   }
 

@@ -39,16 +39,16 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
     return true;
   }
 
-  void callbackDeleteLedPanel() {
+  void callbackDeleteLedPanel(BuildContext context) {
     BaseProductState state =
         BlocProvider.of<BaseProductGRPCBloc>(context).state;
 
     context.read<BaseProductGRPCBloc>().add(DestroyBaseProductEvent(
         product: state.product!, products: state.products));
-    context.goNamed("project_detail");
+    context.pushNamed("project_detail");
   }
 
-  void updateProduct(Map<String, dynamic> fields) {
+  void updateProduct(BuildContext context, Map<String, dynamic> fields) {
     BaseProductState state =
         BlocProvider.of<BaseProductGRPCBloc>(context).state;
 
@@ -189,7 +189,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                     });
                   },
                   onChangeEnd: (_) {
-                    updateProduct({"brightness": productBrightness});
+                    updateProduct(context, {"brightness": productBrightness});
                   }),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

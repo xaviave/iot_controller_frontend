@@ -19,7 +19,7 @@ class CoffeeMachineMinimalDetailsView extends StatefulWidget {
 
 class _CoffeeMachineMinimalDetailsViewState
     extends State<CoffeeMachineMinimalDetailsView> {
-  void updateProduct(Map<String, dynamic> fields) {
+  void updateProduct(BuildContext context, Map<String, dynamic> fields) {
     BaseProductState state =
         BlocProvider.of<BaseProductGRPCBloc>(context).state;
 

@@ -20,7 +20,7 @@ class _LedPanelMinimalDetailsViewState
   late Color colorBrightness;
   late double productBrightness;
 
-  void updateProduct(Map<String, dynamic> fields) {
+  void updateProduct(BuildContext context, Map<String, dynamic> fields) {
     BaseProductState state =
         BlocProvider.of<BaseProductGRPCBloc>(context).state;
 
@@ -86,7 +86,7 @@ class _LedPanelMinimalDetailsViewState
                       });
                     },
                     onChangeEnd: (value) {
-                      updateProduct({"brightness": productBrightness});
+                      updateProduct(context, {"brightness": productBrightness});
                     }),
               ],
             )));
