@@ -205,8 +205,7 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
                 setState(() {
                   mode.palette = selectedPalette.p;
                 });
-                callbackUpdateProductLedMode(
-                    {"mode": mode});
+                callbackUpdateProductLedMode({"mode": mode});
               }
             });
           },

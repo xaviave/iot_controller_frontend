@@ -25,7 +25,9 @@ class _LedPanelMinimalDetailsViewState
         BlocProvider.of<BaseProductGRPCBloc>(context).state;
 
     context.read<BaseProductGRPCBloc>().add(PartialUpdateBaseProductEvent(
-        product: state.products[widget.productIndex], fields: fields, products: state.products));
+        product: state.products[widget.productIndex],
+        fields: fields,
+        products: state.products));
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:iot_controller/src/blocs/product.dart';
 import 'package:iot_controller/src/blocs/project.dart';
@@ -16,7 +17,7 @@ import 'package:iot_controller/src/ui/utils/popup/refresh_popup.dart';
 
 class ProjectDetailsView extends StatefulWidget {
   const ProjectDetailsView({super.key});
-  static const routeName = '/project_detail';
+  static const routeName = 'project_detail';
 
   @override
   State<ProjectDetailsView> createState() => _ProjectDetailsViewState();
@@ -47,8 +48,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
 
     context.read<ProjectGRPCBloc>().add(DestroyProjectEvent(
         projectId: state.project!.id, projects: state.projects));
-    Navigator.of(context)
-        .pushNamedAndRemoveUntil('/projects', (Route<dynamic> route) => false);
+    context.goNamed("projects");
   }
 
   Widget headerView(BuildContext context, ProjectState state, String titleView,
@@ -65,20 +65,20 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
               if (state.projects == []) {
                 context.read<ProjectGRPCBloc>().add(GetProjectListEvent());
               }
-              Navigator.pop(context);
+              context.pop("/project_detail");
             },
           ),
           actions: [
             IconButton(
               icon: const Icon(Icons.settings),
               onPressed: () {
-                Navigator.restorablePushNamed(context, SettingsView.routeName);
+                context.push("/settings");
               },
             ),
           ],
         ),
         body: bodyView,
-        floatingActionButton: buttons  ?? const SizedBox());
+        floatingActionButton: buttons ?? const SizedBox());
   }
 
   Widget errorBuild(BuildContext context, ProjectState errorState) {

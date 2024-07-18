@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iot_controller/src/blocs/settings_bloc.dart';
 import 'package:iot_controller/src/blocs/project.dart' as project_bloc;
 import 'package:iot_controller/src/blocs/user.dart' as user_bloc;
@@ -15,7 +16,7 @@ import 'project_details_view.dart';
 
 class ProjectListView extends StatefulWidget {
   const ProjectListView({super.key});
-  static const routeName = '/projects';
+  static const routeName = 'projects';
 
   @override
   State<ProjectListView> createState() => _ProjectListViewState();
@@ -54,8 +55,7 @@ class _ProjectListViewState extends State<ProjectListView> {
                   IconButton(
                     icon: const Icon(Icons.settings),
                     onPressed: () {
-                      Navigator.restorablePushNamed(
-                          context, SettingsView.routeName);
+                      context.push("/settings");
                     },
                   ),
                 ],
@@ -89,14 +89,7 @@ class _ProjectListViewState extends State<ProjectListView> {
                                 project_bloc.GetProjectEvent(
                                     project: project,
                                     projects: state.projects));
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const ProjectDetailsView(),
-                                settings: const RouteSettings(),
-                              ),
-                            );
+                            context.push("/project_detail");
                           },
                         );
                       });

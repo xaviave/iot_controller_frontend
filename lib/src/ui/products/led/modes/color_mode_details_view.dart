@@ -78,8 +78,7 @@ class _ColorModeDetailsViewState extends State<ColorModeDetailsView> {
 
   @override
   Widget build(BuildContext context) {
-    mode =
-        BlocProvider.of<LedModeGRPCBloc>(context).state.mode as ColorMode;
+    mode = BlocProvider.of<LedModeGRPCBloc>(context).state.mode as ColorMode;
     return Container(
         decoration: const BoxDecoration(
             gradient: RadialGradient(

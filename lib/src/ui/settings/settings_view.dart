@@ -8,7 +8,7 @@ import 'package:iot_controller/src/ui/utils/popup/login_popup.dart';
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
 
-  static const routeName = '/settings';
+  static const routeName = 'settings';
 
   @override
   Widget build(BuildContext context) {

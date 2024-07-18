@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iot_controller/src/blocs/product.dart';
 import 'package:iot_controller/src/models/products/base_product.dart';
 import 'package:iot_controller/src/models/products/coffee_machine.dart';
@@ -38,7 +39,7 @@ class _CoffeeMachineDetailsViewState extends State<CoffeeMachineDetailsView> {
 
     context.read<BaseProductGRPCBloc>().add(DestroyBaseProductEvent(
         product: state.product!, products: state.products));
-    Navigator.pushReplacementNamed(context, '/project_detail');
+    context.goNamed("project_detail");
   }
 
   void updateProduct(Map<String, dynamic> fields) {
@@ -71,14 +72,14 @@ class _CoffeeMachineDetailsViewState extends State<CoffeeMachineDetailsView> {
                     .read<BaseProductGRPCBloc>()
                     .add(GetBaseProductListEvent([]));
               }
-              Navigator.pop(context);
+              context.pop("/product_detail");
             },
           ),
           actions: [
             IconButton(
               icon: const Icon(Icons.settings),
               onPressed: () {
-                Navigator.restorablePushNamed(context, SettingsView.routeName);
+                context.push("/settings");
               },
             ),
           ],

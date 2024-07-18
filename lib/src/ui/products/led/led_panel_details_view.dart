@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
+import "package:go_router/go_router.dart";
 import "package:iot_controller/src/blocs/led_mode.dart";
 import "package:iot_controller/src/blocs/product.dart";
 import "package:iot_controller/src/models/products/base_product.dart";
@@ -44,7 +45,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
 
     context.read<BaseProductGRPCBloc>().add(DestroyBaseProductEvent(
         product: state.product!, products: state.products));
-    Navigator.pushReplacementNamed(context, '/project_detail');
+    context.goNamed("project_detail");
   }
 
   void updateProduct(Map<String, dynamic> fields) {
@@ -91,14 +92,14 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                     .read<BaseProductGRPCBloc>()
                     .add(GetBaseProductListEvent([]));
               }
-              Navigator.pop(context);
+              context.pop("/product_detail");
             },
           ),
           actions: [
             IconButton(
               icon: const Icon(Icons.settings),
               onPressed: () {
-                Navigator.restorablePushNamed(context, SettingsView.routeName);
+                context.push("/settings");
               },
             ),
           ],
