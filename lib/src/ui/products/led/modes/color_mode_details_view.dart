@@ -1,14 +1,18 @@
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iot_controller/src/blocs/led_mode.dart';
 import 'package:iot_controller/src/models/products/led/modes/color_mode.dart';
 import 'package:iot_controller/src/models/products/led/modes/led_mode.dart';
 
 class ColorModeDetailsView extends StatefulWidget {
-  final ColorMode mode;
-  final Function(LedMode) callbackUpdateMode;
+  final Function(BuildContext, Map<String, dynamic>)
+      callbackUpdateProductLedMode;
 
-  const ColorModeDetailsView(
-      {super.key, required this.mode, required this.callbackUpdateMode});
+  const ColorModeDetailsView({
+    super.key,
+    required this.callbackUpdateProductLedMode,
+  });
 
   @override
   State<ColorModeDetailsView> createState() => _ColorModeDetailsViewState();
@@ -16,26 +20,26 @@ class ColorModeDetailsView extends StatefulWidget {
 
 class _ColorModeDetailsViewState extends State<ColorModeDetailsView> {
   late ColorMode mode;
-  late Function(LedMode) callbackUpdateMode;
+  late Function(BuildContext, Map<String, dynamic>)
+      callbackUpdateProductLedMode;
 
   @override
   void initState() {
     super.initState();
-    mode = widget.mode;
-    callbackUpdateMode = widget.callbackUpdateMode;
+    callbackUpdateProductLedMode = widget.callbackUpdateProductLedMode;
   }
 
   void callbackUpdatePalette(Color newColor) {
-    setState(() {
-      mode.color = newColor;
-      callbackUpdateMode(mode);
-    });
+    setState(() => mode.color = newColor);
+    // context.read<LedModeGRPCBloc>().add(
+    //     PartialUpdateLedModeEvent(mode: mode, fields: {"color": newColor}));
+    callbackUpdateProductLedMode(context, {"mode": mode.getAbstractRequest()});
   }
 
   ColorIndicator addColorWidget(Color c) {
     return ColorIndicator(
-        width: 100,
-        height: 100,
+        width: 500,
+        height: 500,
         borderRadius: 0,
         color: c,
         elevation: 1,
@@ -76,6 +80,7 @@ class _ColorModeDetailsViewState extends State<ColorModeDetailsView> {
 
   @override
   Widget build(BuildContext context) {
+    mode = BlocProvider.of<LedModeGRPCBloc>(context).state.mode as ColorMode;
     return Container(
         decoration: const BoxDecoration(
             gradient: RadialGradient(

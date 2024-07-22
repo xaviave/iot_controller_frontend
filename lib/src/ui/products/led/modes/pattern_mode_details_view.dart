@@ -1,16 +1,20 @@
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iot_controller/src/blocs/led_mode.dart';
 import 'package:iot_controller/src/models/products/led/default_palette.dart';
 import 'package:iot_controller/src/models/products/led/modes/led_mode.dart';
 import 'package:iot_controller/src/models/products/led/modes/pattern_mode.dart';
-import 'package:iot_controller/src/ui/utils/alert_popup.dart';
+import 'package:iot_controller/src/ui/utils/popup/abstract_popup.dart';
 
 class PatternModeDetailsView extends StatefulWidget {
-  final PatternMode mode;
-  final Function(LedMode) callbackUpdateMode;
+  final Function(BuildContext, Map<String, dynamic>)
+      callbackUpdateProductLedMode;
 
-  const PatternModeDetailsView(
-      {super.key, required this.mode, required this.callbackUpdateMode});
+  const PatternModeDetailsView({
+    super.key,
+    required this.callbackUpdateProductLedMode,
+  });
 
   @override
   State<PatternModeDetailsView> createState() => _PatternModeDetailsViewState();
@@ -20,25 +24,46 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
   late PatternMode mode;
   late Color fpsColor;
   late Color blinkColor;
+  late Function(BuildContext, Map<String, dynamic>)
+      callbackUpdateProductLedMode;
   Map<String, PatternMode> patterns = <String, PatternMode>{};
-  late Function(LedMode) callbackUpdateMode;
 
   @override
   void initState() {
     super.initState();
-    mode = widget.mode;
+    callbackUpdateProductLedMode = widget.callbackUpdateProductLedMode;
+
+    mode = BlocProvider.of<LedModeGRPCBloc>(context).state.mode as PatternMode;
     fpsColor = Color.lerp(Colors.black, Colors.white, mode.fps)!;
     blinkColor = Color.lerp(Colors.black, Colors.white, mode.blink)!;
-    callbackUpdateMode = widget.callbackUpdateMode;
   }
 
-  void callbackUpdatePaletteColor(int index, Color newColor, bool addNewColor) {
+  // void serverPartialUpdate(BuildContext, Map<String, dynamic> fields) {
+  //   context
+  //       .read<LedModeGRPCBloc>()
+  //       .add(PartialUpdateLedModeEvent(mode: mode, fields: fields));
+  //   callbackUpdateLedMode({"mode": mode});
+  // }
+
+  Future<void> updatePaletteColor(
+      int index, Color newColor, bool addNewColor) async {
     if (mode.palette.length >= PatternMode.maxPaletteLength) {
-      showInfoDialog(
-          context,
-          "Maximum palette size reached",
-          "The maximum of colors in a palette is: ${PatternMode.maxPaletteLength}",
-          "Ok");
+      await showDialog(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+                  title: const Text(
+                    "Maximum palette size reached",
+                  ),
+                  content: const Text(
+                      "The maximum of colors in a palette is: ${PatternMode.maxPaletteLength}"),
+                  actions: [
+                    TextButton(
+                      child: const Text("Ok"),
+                      onPressed: () {
+                        Navigator.of(context).pop(); // dismiss dialog
+                      },
+                    )
+                  ]));
       return;
     }
     setState(() {
@@ -47,15 +72,8 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
       } else {
         mode.palette[index] = newColor;
       }
-      callbackUpdateMode(mode);
     });
-  }
-
-  void callbackUpdatePalette(List<Color> p) {
-    setState(() {
-      mode.palette = List.from(p);
-      callbackUpdateMode(mode);
-    });
+    callbackUpdateProductLedMode(context, {"mode": mode.getAbstractRequest()});
   }
 
   GestureDetector addColorWidget(int index, Color c, bool addNewColor) {
@@ -64,6 +82,8 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
           setState(() {
             if (addNewColor == false) {
               mode.palette.removeAt(index);
+              callbackUpdateProductLedMode(
+                  context, {"mode": mode.getAbstractRequest()});
             }
           });
         },
@@ -90,7 +110,7 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
                 showColorCode: true,
                 colorCodeHasColor: true,
                 pickersEnabled: <ColorPickerType, bool>{
-                  ColorPickerType.wheel: true,
+                  ColorPickerType.wheel: true
                 },
                 copyPasteBehavior: const ColorPickerCopyPasteBehavior(
                   copyButton: true,
@@ -105,12 +125,14 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
                 constraints: const BoxConstraints(
                     minHeight: 480, minWidth: 320, maxWidth: 320),
               );
-              callbackUpdatePaletteColor(index, newColor, addNewColor);
+              updatePaletteColor(index, newColor, addNewColor);
             }));
   }
 
   @override
   Widget build(BuildContext context) {
+    mode = BlocProvider.of<LedModeGRPCBloc>(context).state.mode as PatternMode;
+
     // missing settings
     return Column(
       children: [
@@ -129,7 +151,8 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
               });
             },
             onChangeEnd: (value) {
-              callbackUpdateMode(mode);
+              callbackUpdateProductLedMode(
+                  context, {"mode": mode.getAbstractRequest()});
             }),
         const Text('Blink interval'),
         Slider(
@@ -147,13 +170,21 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
               });
             },
             onChangeEnd: (value) {
-              callbackUpdateMode(mode);
+              callbackUpdateProductLedMode(
+                  context, {"mode": mode.getAbstractRequest()});
             }),
         Wrap(
             children: List.generate(mode.palette.length, (i) => i).map((index) {
           return addColorWidget(index, mode.palette[index], false);
-        }).toList()
-              ..add(addColorWidget(0, Colors.black, true))),
+        }).toList()),
+        AbstractPopup(
+            name: "Add Color",
+            heroTag: "add_pattern_color",
+            icon: Icons.add,
+            displacement: Alignment.center,
+            onPressedCallBack: () {
+              addColorWidget(0, Colors.black, true);
+            }),
         ElevatedButton(
           onPressed: () {
             showDialog(
@@ -176,7 +207,11 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
               },
             ).then((selectedPalette) {
               if (selectedPalette != null) {
-                callbackUpdatePalette(selectedPalette.p);
+                setState(() {
+                  mode.palette = selectedPalette.p;
+                });
+                callbackUpdateProductLedMode(
+                    context, {"mode": mode.getAbstractRequest()});
               }
             });
           },

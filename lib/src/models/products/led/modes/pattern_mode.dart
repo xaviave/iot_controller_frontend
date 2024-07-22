@@ -20,6 +20,11 @@ class PatternMode extends LedMode {
       required this.blink,
       required this.palette});
 
+  @override
+  String toString() {
+    return name;
+  }
+
   PatternModeRequest getRequest() {
     // fps and blink are capped to 60 from the slider itself (0-1 with 0.01 step)
     return PatternModeRequest(
@@ -28,6 +33,18 @@ class PatternMode extends LedMode {
       fps: truncateToDecimalPlaces(fps, 2),
       blink: truncateToDecimalPlaces(blink, 2),
       palette: palette.map((c) => hexFromColor(c)),
+    );
+  }
+
+  PatternModePartialUpdateRequest getPartialRequest(
+      Map<String, dynamic> fields) {
+    return PatternModePartialUpdateRequest(
+      id: id,
+      partialUpdateFields: fields.keys,
+      name: fields["name"],
+      fps: fields["fps"],
+      blink: fields["blink"],
+      palette: fields["palette"].map((c) => hexFromColor(c)),
     );
   }
 

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iot_controller/src/blocs/led_mode.dart';
 import 'package:iot_controller/src/models/products/led/modes/color_mode.dart';
 import 'package:iot_controller/src/models/products/led/modes/image_mode.dart';
 import 'package:iot_controller/src/models/products/led/modes/led_mode.dart';
@@ -11,40 +13,57 @@ import 'pattern_mode_details_view.dart';
 import 'video_mode_details_view.dart';
 
 class LedModeDetailsView extends StatelessWidget {
-  final LedMode mode;
-  final Function(LedMode) callbackUpdateMode;
+  final Function(BuildContext, Map<String, dynamic>)
+      callbackUpdateProductLedMode;
 
-  const LedModeDetailsView(
-      {super.key, required this.mode, required this.callbackUpdateMode});
+  const LedModeDetailsView({
+    super.key,
+    required this.callbackUpdateProductLedMode,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Builder(builder: (context) {
-      if (mode is PatternMode) {
-        return PatternModeDetailsView(
-            mode: mode as PatternMode, callbackUpdateMode: callbackUpdateMode);
+    // LedModeState state = BlocProvider.of<LedModeGRPCBloc>(context).state;
+    return BlocBuilder<LedModeGRPCBloc, LedModeState>(
+        builder: (context, state) {
+      // return Builder(builder: (context) {
+      if (state is LedModeListInitial || state is LedModeLoading) {
+        return const Center(child: CircularProgressIndicator());
+      } else if (state is GetLedModeSuccess ||
+          state is RetrieveLedModeSuccess ||
+          state is UpdateLedModeSuccess ||
+          state is CreateLedModeSuccess) {
+        if (state.mode! is PatternMode) {
+          return PatternModeDetailsView(
+            callbackUpdateProductLedMode: callbackUpdateProductLedMode,
+          );
+        } else if (state.mode! is ColorMode) {
+          return ColorModeDetailsView(
+            callbackUpdateProductLedMode: callbackUpdateProductLedMode,
+          );
+        } else {
+          return Container(
+            width: double.infinity,
+            margin: const EdgeInsets.all(10),
+            child: const Text(
+              "No mode",
+              style: TextStyle(fontSize: 28),
+              textAlign: TextAlign.center,
+            ),
+          );
+        }
+      } else {
+        return Container(
+          width: double.infinity,
+          margin: const EdgeInsets.all(10),
+          child: const Text(
+            "No mode",
+            style: TextStyle(fontSize: 28),
+            textAlign: TextAlign.center,
+          ),
+        );
       }
-      if (mode is ImageMode) {
-        return ImageModeDetailsView(
-            mode: mode as ImageMode, callbackUpdateMode: callbackUpdateMode);
-      }
-      if (mode is VideoMode) {
-        return VideoModeDetailsView(
-            mode: mode as VideoMode, callbackUpdateMode: callbackUpdateMode);
-      }
-      if (mode is ColorMode) {
-        return ColorModeDetailsView(
-            mode: mode as ColorMode, callbackUpdateMode: callbackUpdateMode);
-      }
-      return Container(
-        width: double.infinity,
-        margin: const EdgeInsets.all(10),
-        child: const Text(
-          "No mode",
-          style: TextStyle(fontSize: 28),
-          textAlign: TextAlign.center,
-        ),
-      );
+      // });
     });
   }
 }

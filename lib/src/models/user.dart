@@ -36,4 +36,9 @@ class User {
         email: email,
         groups: groups);
   }
+
+  @override
+  String toString() {
+    return username;
+  }
 }
