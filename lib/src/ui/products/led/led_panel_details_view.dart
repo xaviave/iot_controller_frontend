@@ -2,10 +2,13 @@ import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:go_router/go_router.dart";
 import "package:iot_controller/src/blocs/led_mode.dart";
+import "package:iot_controller/src/blocs/periodic_task.dart";
 import "package:iot_controller/src/blocs/product.dart";
 import "package:iot_controller/src/models/products/base_product.dart";
 import "package:iot_controller/src/models/products/led/led_panel.dart";
 import "package:iot_controller/src/models/products/led/modes/led_mode.dart";
+import "package:iot_controller/src/ui/celery_task/periodic_task_create_view.dart";
+import "package:iot_controller/src/ui/celery_task/periodic_task_list_view.dart";
 import "package:iot_controller/src/ui/products/base_product/update_ip_alert_view.dart";
 import "package:iot_controller/src/ui/products/led/modes/led_mode_list_view.dart";
 import "package:iot_controller/src/ui/settings/settings_view.dart";
@@ -54,6 +57,14 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
 
     context.read<BaseProductGRPCBloc>().add(PartialUpdateBaseProductEvent(
         product: state.product!, fields: fields, products: state.products));
+  }
+
+  void updatePeriodicTask(BuildContext context, Map<String, dynamic> fields) {
+    PeriodicTaskState state =
+        BlocProvider.of<PeriodicTaskGRPCBloc>(context).state;
+
+    context.read<PeriodicTaskGRPCBloc>().add(PartialUpdatePeriodicTaskEvent(
+        task: state.task!, fields: fields, tasks: state.tasks));
   }
 
   void setLedMode(LedMode mode) {
@@ -235,6 +246,89 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
               const SizedBox(height: 10),
               LedModeDetailsView(
                 callbackUpdateProductLedMode: updateProduct,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // should find and print the product tasks
+                  // Container(
+                  //     margin: const EdgeInsets.all(10),
+                  //     child: Text(product.mode.name.capitalize,
+                  //         style: const TextStyle(fontSize: 28))),
+                  TextButton(
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) => PopScope(
+                              onPopInvokedWithResult: (bool didPop, _) =>
+                                  // setLedMode(product.mode),
+                                  {},
+                              child: AlertDialog(
+                                  title: const Text("Change periodic task"),
+                                  insetPadding: const EdgeInsets.all(50),
+                                  content: SizedBox(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: PeriodicTaskListView(
+                                          onlyBody: true,
+                                          callbackUpdateProductPeriodicTask:
+                                              updateProduct)),
+                                  actions: [
+                                    TextButton(
+                                        child: const Text("Cancel"),
+                                        onPressed: () {
+                                          setLedMode(product.mode);
+                                          Navigator.of(context).pop();
+                                        })
+                                  ])));
+                    },
+                    child: Container(
+                        margin: const EdgeInsets.all(10),
+                        child: const Text(
+                          "Update periodic tasks",
+                          style: TextStyle(fontSize: 28),
+                        )),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // should find and print the product tasks
+                  // Container(
+                  //     margin: const EdgeInsets.all(10),
+                  //     child: Text(product.mode.name.capitalize,
+                  //         style: const TextStyle(fontSize: 28))),
+                  TextButton(
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) => PopScope(
+                              onPopInvokedWithResult: (bool didPop, _) =>
+                                  // setLedMode(product.mode),
+                                  {},
+                              child: AlertDialog(
+                                  title: const Text("Create periodic task"),
+                                  insetPadding: const EdgeInsets.all(50),
+                                  content: SizedBox(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: PeriodicTaskForm()),
+                                  actions: [
+                                    TextButton(
+                                        child: const Text("Cancel"),
+                                        onPressed: () {
+                                          setLedMode(product.mode);
+                                          Navigator.of(context).pop();
+                                        })
+                                  ])));
+                    },
+                    child: Container(
+                        margin: const EdgeInsets.all(10),
+                        child: const Text(
+                          "Create periodic task",
+                          style: TextStyle(fontSize: 28),
+                        )),
+                  )
+                ],
               ),
             ],
           ),

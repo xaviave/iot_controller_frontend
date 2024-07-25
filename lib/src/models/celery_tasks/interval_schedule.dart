@@ -1,12 +1,12 @@
 import 'package:iot_controller/protos/backend.pb.dart';
+import 'package:iot_controller/src/models/celery_tasks/schedule.dart';
 
-class IntervalSchedule {
-  int id;
+class IntervalSchedule extends Schedule {
   int every;
   String period;
 
   IntervalSchedule({
-    required this.id,
+    required super.id,
     required this.every,
     required this.period,
   });
@@ -19,6 +19,7 @@ class IntervalSchedule {
     );
   }
 
+  @override
   IntervalScheduleRequest getRequest() {
     return IntervalScheduleRequest(
       id: id,

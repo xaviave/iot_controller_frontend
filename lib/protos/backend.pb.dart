@@ -6642,11 +6642,12 @@ class PeriodicTaskPartialUpdateRequest extends $pb.GeneratedMessage {
   factory PeriodicTaskPartialUpdateRequest({
     $core.String? name,
     $core.String? task,
-    $core.int? interval,
-    $core.int? crontab,
-    $core.int? solar,
-    $core.int? clocked,
+    IntervalScheduleRequest? interval,
+    CrontabScheduleRequest? crontab,
+    SolarScheduleRequest? solar,
+    ClockedScheduleRequest? clocked,
     $core.Iterable<$core.String>? partialUpdateFields,
+    $core.String? kwargs,
   }) {
     final $result = create();
     if (name != null) {
@@ -6670,6 +6671,9 @@ class PeriodicTaskPartialUpdateRequest extends $pb.GeneratedMessage {
     if (partialUpdateFields != null) {
       $result.partialUpdateFields.addAll(partialUpdateFields);
     }
+    if (kwargs != null) {
+      $result.kwargs = kwargs;
+    }
     return $result;
   }
   PeriodicTaskPartialUpdateRequest._() : super();
@@ -6687,11 +6691,16 @@ class PeriodicTaskPartialUpdateRequest extends $pb.GeneratedMessage {
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'name')
     ..aOS(2, _omitFieldNames ? '' : 'task')
-    ..a<$core.int>(3, _omitFieldNames ? '' : 'interval', $pb.PbFieldType.O3)
-    ..a<$core.int>(4, _omitFieldNames ? '' : 'crontab', $pb.PbFieldType.O3)
-    ..a<$core.int>(5, _omitFieldNames ? '' : 'solar', $pb.PbFieldType.O3)
-    ..a<$core.int>(6, _omitFieldNames ? '' : 'clocked', $pb.PbFieldType.O3)
+    ..aOM<IntervalScheduleRequest>(3, _omitFieldNames ? '' : 'interval',
+        subBuilder: IntervalScheduleRequest.create)
+    ..aOM<CrontabScheduleRequest>(4, _omitFieldNames ? '' : 'crontab',
+        subBuilder: CrontabScheduleRequest.create)
+    ..aOM<SolarScheduleRequest>(5, _omitFieldNames ? '' : 'solar',
+        subBuilder: SolarScheduleRequest.create)
+    ..aOM<ClockedScheduleRequest>(6, _omitFieldNames ? '' : 'clocked',
+        subBuilder: ClockedScheduleRequest.create)
     ..pPS(7, _omitFieldNames ? '' : 'PartialUpdateFields')
+    ..aOS(8, _omitFieldNames ? '' : 'kwargs')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -6747,65 +6756,86 @@ class PeriodicTaskPartialUpdateRequest extends $pb.GeneratedMessage {
   void clearTask() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.int get interval => $_getIZ(2);
+  IntervalScheduleRequest get interval => $_getN(2);
   @$pb.TagNumber(3)
-  set interval($core.int v) {
-    $_setSignedInt32(2, v);
+  set interval(IntervalScheduleRequest v) {
+    setField(3, v);
   }
 
   @$pb.TagNumber(3)
   $core.bool hasInterval() => $_has(2);
   @$pb.TagNumber(3)
   void clearInterval() => clearField(3);
+  @$pb.TagNumber(3)
+  IntervalScheduleRequest ensureInterval() => $_ensure(2);
 
   @$pb.TagNumber(4)
-  $core.int get crontab => $_getIZ(3);
+  CrontabScheduleRequest get crontab => $_getN(3);
   @$pb.TagNumber(4)
-  set crontab($core.int v) {
-    $_setSignedInt32(3, v);
+  set crontab(CrontabScheduleRequest v) {
+    setField(4, v);
   }
 
   @$pb.TagNumber(4)
   $core.bool hasCrontab() => $_has(3);
   @$pb.TagNumber(4)
   void clearCrontab() => clearField(4);
+  @$pb.TagNumber(4)
+  CrontabScheduleRequest ensureCrontab() => $_ensure(3);
 
   @$pb.TagNumber(5)
-  $core.int get solar => $_getIZ(4);
+  SolarScheduleRequest get solar => $_getN(4);
   @$pb.TagNumber(5)
-  set solar($core.int v) {
-    $_setSignedInt32(4, v);
+  set solar(SolarScheduleRequest v) {
+    setField(5, v);
   }
 
   @$pb.TagNumber(5)
   $core.bool hasSolar() => $_has(4);
   @$pb.TagNumber(5)
   void clearSolar() => clearField(5);
+  @$pb.TagNumber(5)
+  SolarScheduleRequest ensureSolar() => $_ensure(4);
 
   @$pb.TagNumber(6)
-  $core.int get clocked => $_getIZ(5);
+  ClockedScheduleRequest get clocked => $_getN(5);
   @$pb.TagNumber(6)
-  set clocked($core.int v) {
-    $_setSignedInt32(5, v);
+  set clocked(ClockedScheduleRequest v) {
+    setField(6, v);
   }
 
   @$pb.TagNumber(6)
   $core.bool hasClocked() => $_has(5);
   @$pb.TagNumber(6)
   void clearClocked() => clearField(6);
+  @$pb.TagNumber(6)
+  ClockedScheduleRequest ensureClocked() => $_ensure(5);
 
   @$pb.TagNumber(7)
   $core.List<$core.String> get partialUpdateFields => $_getList(6);
+
+  @$pb.TagNumber(8)
+  $core.String get kwargs => $_getSZ(7);
+  @$pb.TagNumber(8)
+  set kwargs($core.String v) {
+    $_setString(7, v);
+  }
+
+  @$pb.TagNumber(8)
+  $core.bool hasKwargs() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearKwargs() => clearField(8);
 }
 
 class PeriodicTaskRequest extends $pb.GeneratedMessage {
   factory PeriodicTaskRequest({
     $core.String? name,
     $core.String? task,
-    $core.int? interval,
-    $core.int? crontab,
-    $core.int? solar,
-    $core.int? clocked,
+    IntervalScheduleRequest? interval,
+    CrontabScheduleRequest? crontab,
+    SolarScheduleRequest? solar,
+    ClockedScheduleRequest? clocked,
+    $core.String? kwargs,
   }) {
     final $result = create();
     if (name != null) {
@@ -6826,6 +6856,9 @@ class PeriodicTaskRequest extends $pb.GeneratedMessage {
     if (clocked != null) {
       $result.clocked = clocked;
     }
+    if (kwargs != null) {
+      $result.kwargs = kwargs;
+    }
     return $result;
   }
   PeriodicTaskRequest._() : super();
@@ -6843,10 +6876,15 @@ class PeriodicTaskRequest extends $pb.GeneratedMessage {
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'name')
     ..aOS(2, _omitFieldNames ? '' : 'task')
-    ..a<$core.int>(3, _omitFieldNames ? '' : 'interval', $pb.PbFieldType.O3)
-    ..a<$core.int>(4, _omitFieldNames ? '' : 'crontab', $pb.PbFieldType.O3)
-    ..a<$core.int>(5, _omitFieldNames ? '' : 'solar', $pb.PbFieldType.O3)
-    ..a<$core.int>(6, _omitFieldNames ? '' : 'clocked', $pb.PbFieldType.O3)
+    ..aOM<IntervalScheduleRequest>(3, _omitFieldNames ? '' : 'interval',
+        subBuilder: IntervalScheduleRequest.create)
+    ..aOM<CrontabScheduleRequest>(4, _omitFieldNames ? '' : 'crontab',
+        subBuilder: CrontabScheduleRequest.create)
+    ..aOM<SolarScheduleRequest>(5, _omitFieldNames ? '' : 'solar',
+        subBuilder: SolarScheduleRequest.create)
+    ..aOM<ClockedScheduleRequest>(6, _omitFieldNames ? '' : 'clocked',
+        subBuilder: ClockedScheduleRequest.create)
+    ..aOS(7, _omitFieldNames ? '' : 'kwargs')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -6897,62 +6935,83 @@ class PeriodicTaskRequest extends $pb.GeneratedMessage {
   void clearTask() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.int get interval => $_getIZ(2);
+  IntervalScheduleRequest get interval => $_getN(2);
   @$pb.TagNumber(3)
-  set interval($core.int v) {
-    $_setSignedInt32(2, v);
+  set interval(IntervalScheduleRequest v) {
+    setField(3, v);
   }
 
   @$pb.TagNumber(3)
   $core.bool hasInterval() => $_has(2);
   @$pb.TagNumber(3)
   void clearInterval() => clearField(3);
+  @$pb.TagNumber(3)
+  IntervalScheduleRequest ensureInterval() => $_ensure(2);
 
   @$pb.TagNumber(4)
-  $core.int get crontab => $_getIZ(3);
+  CrontabScheduleRequest get crontab => $_getN(3);
   @$pb.TagNumber(4)
-  set crontab($core.int v) {
-    $_setSignedInt32(3, v);
+  set crontab(CrontabScheduleRequest v) {
+    setField(4, v);
   }
 
   @$pb.TagNumber(4)
   $core.bool hasCrontab() => $_has(3);
   @$pb.TagNumber(4)
   void clearCrontab() => clearField(4);
+  @$pb.TagNumber(4)
+  CrontabScheduleRequest ensureCrontab() => $_ensure(3);
 
   @$pb.TagNumber(5)
-  $core.int get solar => $_getIZ(4);
+  SolarScheduleRequest get solar => $_getN(4);
   @$pb.TagNumber(5)
-  set solar($core.int v) {
-    $_setSignedInt32(4, v);
+  set solar(SolarScheduleRequest v) {
+    setField(5, v);
   }
 
   @$pb.TagNumber(5)
   $core.bool hasSolar() => $_has(4);
   @$pb.TagNumber(5)
   void clearSolar() => clearField(5);
+  @$pb.TagNumber(5)
+  SolarScheduleRequest ensureSolar() => $_ensure(4);
 
   @$pb.TagNumber(6)
-  $core.int get clocked => $_getIZ(5);
+  ClockedScheduleRequest get clocked => $_getN(5);
   @$pb.TagNumber(6)
-  set clocked($core.int v) {
-    $_setSignedInt32(5, v);
+  set clocked(ClockedScheduleRequest v) {
+    setField(6, v);
   }
 
   @$pb.TagNumber(6)
   $core.bool hasClocked() => $_has(5);
   @$pb.TagNumber(6)
   void clearClocked() => clearField(6);
+  @$pb.TagNumber(6)
+  ClockedScheduleRequest ensureClocked() => $_ensure(5);
+
+  @$pb.TagNumber(7)
+  $core.String get kwargs => $_getSZ(6);
+  @$pb.TagNumber(7)
+  set kwargs($core.String v) {
+    $_setString(6, v);
+  }
+
+  @$pb.TagNumber(7)
+  $core.bool hasKwargs() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearKwargs() => clearField(7);
 }
 
 class PeriodicTaskResponse extends $pb.GeneratedMessage {
   factory PeriodicTaskResponse({
     $core.String? name,
     $core.String? task,
-    $core.int? interval,
-    $core.int? crontab,
-    $core.int? solar,
-    $core.int? clocked,
+    IntervalScheduleResponse? interval,
+    CrontabScheduleResponse? crontab,
+    SolarScheduleResponse? solar,
+    ClockedScheduleResponse? clocked,
+    $core.String? kwargs,
   }) {
     final $result = create();
     if (name != null) {
@@ -6973,6 +7032,9 @@ class PeriodicTaskResponse extends $pb.GeneratedMessage {
     if (clocked != null) {
       $result.clocked = clocked;
     }
+    if (kwargs != null) {
+      $result.kwargs = kwargs;
+    }
     return $result;
   }
   PeriodicTaskResponse._() : super();
@@ -6990,10 +7052,15 @@ class PeriodicTaskResponse extends $pb.GeneratedMessage {
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'name')
     ..aOS(2, _omitFieldNames ? '' : 'task')
-    ..a<$core.int>(3, _omitFieldNames ? '' : 'interval', $pb.PbFieldType.O3)
-    ..a<$core.int>(4, _omitFieldNames ? '' : 'crontab', $pb.PbFieldType.O3)
-    ..a<$core.int>(5, _omitFieldNames ? '' : 'solar', $pb.PbFieldType.O3)
-    ..a<$core.int>(6, _omitFieldNames ? '' : 'clocked', $pb.PbFieldType.O3)
+    ..aOM<IntervalScheduleResponse>(3, _omitFieldNames ? '' : 'interval',
+        subBuilder: IntervalScheduleResponse.create)
+    ..aOM<CrontabScheduleResponse>(4, _omitFieldNames ? '' : 'crontab',
+        subBuilder: CrontabScheduleResponse.create)
+    ..aOM<SolarScheduleResponse>(5, _omitFieldNames ? '' : 'solar',
+        subBuilder: SolarScheduleResponse.create)
+    ..aOM<ClockedScheduleResponse>(6, _omitFieldNames ? '' : 'clocked',
+        subBuilder: ClockedScheduleResponse.create)
+    ..aOS(7, _omitFieldNames ? '' : 'kwargs')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -7045,52 +7112,72 @@ class PeriodicTaskResponse extends $pb.GeneratedMessage {
   void clearTask() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.int get interval => $_getIZ(2);
+  IntervalScheduleResponse get interval => $_getN(2);
   @$pb.TagNumber(3)
-  set interval($core.int v) {
-    $_setSignedInt32(2, v);
+  set interval(IntervalScheduleResponse v) {
+    setField(3, v);
   }
 
   @$pb.TagNumber(3)
   $core.bool hasInterval() => $_has(2);
   @$pb.TagNumber(3)
   void clearInterval() => clearField(3);
+  @$pb.TagNumber(3)
+  IntervalScheduleResponse ensureInterval() => $_ensure(2);
 
   @$pb.TagNumber(4)
-  $core.int get crontab => $_getIZ(3);
+  CrontabScheduleResponse get crontab => $_getN(3);
   @$pb.TagNumber(4)
-  set crontab($core.int v) {
-    $_setSignedInt32(3, v);
+  set crontab(CrontabScheduleResponse v) {
+    setField(4, v);
   }
 
   @$pb.TagNumber(4)
   $core.bool hasCrontab() => $_has(3);
   @$pb.TagNumber(4)
   void clearCrontab() => clearField(4);
+  @$pb.TagNumber(4)
+  CrontabScheduleResponse ensureCrontab() => $_ensure(3);
 
   @$pb.TagNumber(5)
-  $core.int get solar => $_getIZ(4);
+  SolarScheduleResponse get solar => $_getN(4);
   @$pb.TagNumber(5)
-  set solar($core.int v) {
-    $_setSignedInt32(4, v);
+  set solar(SolarScheduleResponse v) {
+    setField(5, v);
   }
 
   @$pb.TagNumber(5)
   $core.bool hasSolar() => $_has(4);
   @$pb.TagNumber(5)
   void clearSolar() => clearField(5);
+  @$pb.TagNumber(5)
+  SolarScheduleResponse ensureSolar() => $_ensure(4);
 
   @$pb.TagNumber(6)
-  $core.int get clocked => $_getIZ(5);
+  ClockedScheduleResponse get clocked => $_getN(5);
   @$pb.TagNumber(6)
-  set clocked($core.int v) {
-    $_setSignedInt32(5, v);
+  set clocked(ClockedScheduleResponse v) {
+    setField(6, v);
   }
 
   @$pb.TagNumber(6)
   $core.bool hasClocked() => $_has(5);
   @$pb.TagNumber(6)
   void clearClocked() => clearField(6);
+  @$pb.TagNumber(6)
+  ClockedScheduleResponse ensureClocked() => $_ensure(5);
+
+  @$pb.TagNumber(7)
+  $core.String get kwargs => $_getSZ(6);
+  @$pb.TagNumber(7)
+  set kwargs($core.String v) {
+    $_setString(6, v);
+  }
+
+  @$pb.TagNumber(7)
+  $core.bool hasKwargs() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearKwargs() => clearField(7);
 }
 
 class PeriodicTaskRetrieveRequest extends $pb.GeneratedMessage {

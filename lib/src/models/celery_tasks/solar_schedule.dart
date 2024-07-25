@@ -1,13 +1,13 @@
 import 'package:iot_controller/protos/backend.pb.dart';
+import 'package:iot_controller/src/models/celery_tasks/schedule.dart';
 
-class SolarSchedule {
-  int id;
+class SolarSchedule extends Schedule {
   String event;
   double latitude;
   double longitude;
 
   SolarSchedule({
-    required this.id,
+    required super.id,
     required this.event,
     required this.latitude,
     required this.longitude,
@@ -22,6 +22,7 @@ class SolarSchedule {
     );
   }
 
+  @override
   SolarScheduleRequest getRequest() {
     return SolarScheduleRequest(
       id: id,

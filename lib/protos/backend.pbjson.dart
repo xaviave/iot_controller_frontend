@@ -1927,29 +1927,33 @@ const PeriodicTaskPartialUpdateRequest$json = {
       '1': 'interval',
       '3': 3,
       '4': 1,
-      '5': 5,
-      '9': 0,
-      '10': 'interval',
-      '17': true
+      '5': 11,
+      '6': '.base_app.products_controller.IntervalScheduleRequest',
+      '10': 'interval'
     },
     {
       '1': 'crontab',
       '3': 4,
       '4': 1,
-      '5': 5,
-      '9': 1,
-      '10': 'crontab',
-      '17': true
+      '5': 11,
+      '6': '.base_app.products_controller.CrontabScheduleRequest',
+      '10': 'crontab'
     },
-    {'1': 'solar', '3': 5, '4': 1, '5': 5, '9': 2, '10': 'solar', '17': true},
+    {
+      '1': 'solar',
+      '3': 5,
+      '4': 1,
+      '5': 11,
+      '6': '.base_app.products_controller.SolarScheduleRequest',
+      '10': 'solar'
+    },
     {
       '1': 'clocked',
       '3': 6,
       '4': 1,
-      '5': 5,
-      '9': 3,
-      '10': 'clocked',
-      '17': true
+      '5': 11,
+      '6': '.base_app.products_controller.ClockedScheduleRequest',
+      '10': 'clocked'
     },
     {
       '1': '_partial_update_fields',
@@ -1958,23 +1962,24 @@ const PeriodicTaskPartialUpdateRequest$json = {
       '5': 9,
       '10': 'PartialUpdateFields'
     },
+    {'1': 'kwargs', '3': 8, '4': 1, '5': 9, '9': 0, '10': 'kwargs', '17': true},
   ],
   '8': [
-    {'1': '_interval'},
-    {'1': '_crontab'},
-    {'1': '_solar'},
-    {'1': '_clocked'},
+    {'1': '_kwargs'},
   ],
 };
 
 /// Descriptor for `PeriodicTaskPartialUpdateRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List periodicTaskPartialUpdateRequestDescriptor = $convert.base64Decode(
     'CiBQZXJpb2RpY1Rhc2tQYXJ0aWFsVXBkYXRlUmVxdWVzdBISCgRuYW1lGAEgASgJUgRuYW1lEh'
-    'IKBHRhc2sYAiABKAlSBHRhc2sSHwoIaW50ZXJ2YWwYAyABKAVIAFIIaW50ZXJ2YWyIAQESHQoH'
-    'Y3JvbnRhYhgEIAEoBUgBUgdjcm9udGFiiAEBEhkKBXNvbGFyGAUgASgFSAJSBXNvbGFyiAEBEh'
-    '0KB2Nsb2NrZWQYBiABKAVIA1IHY2xvY2tlZIgBARIzChZfcGFydGlhbF91cGRhdGVfZmllbGRz'
-    'GAcgAygJUhNQYXJ0aWFsVXBkYXRlRmllbGRzQgsKCV9pbnRlcnZhbEIKCghfY3JvbnRhYkIICg'
-    'Zfc29sYXJCCgoIX2Nsb2NrZWQ=');
+    'IKBHRhc2sYAiABKAlSBHRhc2sSUQoIaW50ZXJ2YWwYAyABKAsyNS5iYXNlX2FwcC5wcm9kdWN0'
+    'c19jb250cm9sbGVyLkludGVydmFsU2NoZWR1bGVSZXF1ZXN0UghpbnRlcnZhbBJOCgdjcm9udG'
+    'FiGAQgASgLMjQuYmFzZV9hcHAucHJvZHVjdHNfY29udHJvbGxlci5Dcm9udGFiU2NoZWR1bGVS'
+    'ZXF1ZXN0Ugdjcm9udGFiEkgKBXNvbGFyGAUgASgLMjIuYmFzZV9hcHAucHJvZHVjdHNfY29udH'
+    'JvbGxlci5Tb2xhclNjaGVkdWxlUmVxdWVzdFIFc29sYXISTgoHY2xvY2tlZBgGIAEoCzI0LmJh'
+    'c2VfYXBwLnByb2R1Y3RzX2NvbnRyb2xsZXIuQ2xvY2tlZFNjaGVkdWxlUmVxdWVzdFIHY2xvY2'
+    'tlZBIzChZfcGFydGlhbF91cGRhdGVfZmllbGRzGAcgAygJUhNQYXJ0aWFsVXBkYXRlRmllbGRz'
+    'EhsKBmt3YXJncxgIIAEoCUgAUgZrd2FyZ3OIAQFCCQoHX2t3YXJncw==');
 
 @$core.Deprecated('Use periodicTaskRequestDescriptor instead')
 const PeriodicTaskRequest$json = {
@@ -1986,46 +1991,51 @@ const PeriodicTaskRequest$json = {
       '1': 'interval',
       '3': 3,
       '4': 1,
-      '5': 5,
-      '9': 0,
-      '10': 'interval',
-      '17': true
+      '5': 11,
+      '6': '.base_app.products_controller.IntervalScheduleRequest',
+      '10': 'interval'
     },
     {
       '1': 'crontab',
       '3': 4,
       '4': 1,
-      '5': 5,
-      '9': 1,
-      '10': 'crontab',
-      '17': true
+      '5': 11,
+      '6': '.base_app.products_controller.CrontabScheduleRequest',
+      '10': 'crontab'
     },
-    {'1': 'solar', '3': 5, '4': 1, '5': 5, '9': 2, '10': 'solar', '17': true},
+    {
+      '1': 'solar',
+      '3': 5,
+      '4': 1,
+      '5': 11,
+      '6': '.base_app.products_controller.SolarScheduleRequest',
+      '10': 'solar'
+    },
     {
       '1': 'clocked',
       '3': 6,
       '4': 1,
-      '5': 5,
-      '9': 3,
-      '10': 'clocked',
-      '17': true
+      '5': 11,
+      '6': '.base_app.products_controller.ClockedScheduleRequest',
+      '10': 'clocked'
     },
+    {'1': 'kwargs', '3': 7, '4': 1, '5': 9, '9': 0, '10': 'kwargs', '17': true},
   ],
   '8': [
-    {'1': '_interval'},
-    {'1': '_crontab'},
-    {'1': '_solar'},
-    {'1': '_clocked'},
+    {'1': '_kwargs'},
   ],
 };
 
 /// Descriptor for `PeriodicTaskRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List periodicTaskRequestDescriptor = $convert.base64Decode(
     'ChNQZXJpb2RpY1Rhc2tSZXF1ZXN0EhIKBG5hbWUYASABKAlSBG5hbWUSEgoEdGFzaxgCIAEoCV'
-    'IEdGFzaxIfCghpbnRlcnZhbBgDIAEoBUgAUghpbnRlcnZhbIgBARIdCgdjcm9udGFiGAQgASgF'
-    'SAFSB2Nyb250YWKIAQESGQoFc29sYXIYBSABKAVIAlIFc29sYXKIAQESHQoHY2xvY2tlZBgGIA'
-    'EoBUgDUgdjbG9ja2VkiAEBQgsKCV9pbnRlcnZhbEIKCghfY3JvbnRhYkIICgZfc29sYXJCCgoI'
-    'X2Nsb2NrZWQ=');
+    'IEdGFzaxJRCghpbnRlcnZhbBgDIAEoCzI1LmJhc2VfYXBwLnByb2R1Y3RzX2NvbnRyb2xsZXIu'
+    'SW50ZXJ2YWxTY2hlZHVsZVJlcXVlc3RSCGludGVydmFsEk4KB2Nyb250YWIYBCABKAsyNC5iYX'
+    'NlX2FwcC5wcm9kdWN0c19jb250cm9sbGVyLkNyb250YWJTY2hlZHVsZVJlcXVlc3RSB2Nyb250'
+    'YWISSAoFc29sYXIYBSABKAsyMi5iYXNlX2FwcC5wcm9kdWN0c19jb250cm9sbGVyLlNvbGFyU2'
+    'NoZWR1bGVSZXF1ZXN0UgVzb2xhchJOCgdjbG9ja2VkGAYgASgLMjQuYmFzZV9hcHAucHJvZHVj'
+    'dHNfY29udHJvbGxlci5DbG9ja2VkU2NoZWR1bGVSZXF1ZXN0UgdjbG9ja2VkEhsKBmt3YXJncx'
+    'gHIAEoCUgAUgZrd2FyZ3OIAQFCCQoHX2t3YXJncw==');
 
 @$core.Deprecated('Use periodicTaskResponseDescriptor instead')
 const PeriodicTaskResponse$json = {
@@ -2037,46 +2047,51 @@ const PeriodicTaskResponse$json = {
       '1': 'interval',
       '3': 3,
       '4': 1,
-      '5': 5,
-      '9': 0,
-      '10': 'interval',
-      '17': true
+      '5': 11,
+      '6': '.base_app.products_controller.IntervalScheduleResponse',
+      '10': 'interval'
     },
     {
       '1': 'crontab',
       '3': 4,
       '4': 1,
-      '5': 5,
-      '9': 1,
-      '10': 'crontab',
-      '17': true
+      '5': 11,
+      '6': '.base_app.products_controller.CrontabScheduleResponse',
+      '10': 'crontab'
     },
-    {'1': 'solar', '3': 5, '4': 1, '5': 5, '9': 2, '10': 'solar', '17': true},
+    {
+      '1': 'solar',
+      '3': 5,
+      '4': 1,
+      '5': 11,
+      '6': '.base_app.products_controller.SolarScheduleResponse',
+      '10': 'solar'
+    },
     {
       '1': 'clocked',
       '3': 6,
       '4': 1,
-      '5': 5,
-      '9': 3,
-      '10': 'clocked',
-      '17': true
+      '5': 11,
+      '6': '.base_app.products_controller.ClockedScheduleResponse',
+      '10': 'clocked'
     },
+    {'1': 'kwargs', '3': 7, '4': 1, '5': 9, '9': 0, '10': 'kwargs', '17': true},
   ],
   '8': [
-    {'1': '_interval'},
-    {'1': '_crontab'},
-    {'1': '_solar'},
-    {'1': '_clocked'},
+    {'1': '_kwargs'},
   ],
 };
 
 /// Descriptor for `PeriodicTaskResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List periodicTaskResponseDescriptor = $convert.base64Decode(
     'ChRQZXJpb2RpY1Rhc2tSZXNwb25zZRISCgRuYW1lGAEgASgJUgRuYW1lEhIKBHRhc2sYAiABKA'
-    'lSBHRhc2sSHwoIaW50ZXJ2YWwYAyABKAVIAFIIaW50ZXJ2YWyIAQESHQoHY3JvbnRhYhgEIAEo'
-    'BUgBUgdjcm9udGFiiAEBEhkKBXNvbGFyGAUgASgFSAJSBXNvbGFyiAEBEh0KB2Nsb2NrZWQYBi'
-    'ABKAVIA1IHY2xvY2tlZIgBAUILCglfaW50ZXJ2YWxCCgoIX2Nyb250YWJCCAoGX3NvbGFyQgoK'
-    'CF9jbG9ja2Vk');
+    'lSBHRhc2sSUgoIaW50ZXJ2YWwYAyABKAsyNi5iYXNlX2FwcC5wcm9kdWN0c19jb250cm9sbGVy'
+    'LkludGVydmFsU2NoZWR1bGVSZXNwb25zZVIIaW50ZXJ2YWwSTwoHY3JvbnRhYhgEIAEoCzI1Lm'
+    'Jhc2VfYXBwLnByb2R1Y3RzX2NvbnRyb2xsZXIuQ3JvbnRhYlNjaGVkdWxlUmVzcG9uc2VSB2Ny'
+    'b250YWISSQoFc29sYXIYBSABKAsyMy5iYXNlX2FwcC5wcm9kdWN0c19jb250cm9sbGVyLlNvbG'
+    'FyU2NoZWR1bGVSZXNwb25zZVIFc29sYXISTwoHY2xvY2tlZBgGIAEoCzI1LmJhc2VfYXBwLnBy'
+    'b2R1Y3RzX2NvbnRyb2xsZXIuQ2xvY2tlZFNjaGVkdWxlUmVzcG9uc2VSB2Nsb2NrZWQSGwoGa3'
+    'dhcmdzGAcgASgJSABSBmt3YXJnc4gBAUIJCgdfa3dhcmdz');
 
 @$core.Deprecated('Use periodicTaskRetrieveRequestDescriptor instead')
 const PeriodicTaskRetrieveRequest$json = {

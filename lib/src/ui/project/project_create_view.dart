@@ -118,9 +118,10 @@ class ProjectFormState extends State<ProjectForm> {
                             project: generateProject(
                                 _nameController.text, _productController.value),
                             projects: state.projects));
-                        context
-                            .read<ProjectGRPCBloc>()
-                            .add(GetProjectListEvent());
+                        print("Check if needed");
+                        // context
+                        //     .read<ProjectGRPCBloc>()
+                        //     .add(GetProjectListEvent());
                         Navigator.of(context).pop(true);
                       }
                       return;

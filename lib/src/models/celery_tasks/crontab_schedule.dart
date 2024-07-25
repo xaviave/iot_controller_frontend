@@ -1,7 +1,7 @@
 import 'package:iot_controller/protos/backend.pb.dart';
+import 'package:iot_controller/src/models/celery_tasks/schedule.dart';
 
-class CrontabSchedule {
-  int id;
+class CrontabSchedule extends Schedule {
   String minute;
   String hour;
   String dayOfWeek;
@@ -10,7 +10,7 @@ class CrontabSchedule {
   String timezone;
 
   CrontabSchedule({
-    required this.id,
+    required super.id,
     required this.minute,
     required this.hour,
     required this.dayOfWeek,
@@ -31,6 +31,7 @@ class CrontabSchedule {
     );
   }
 
+  @override
   CrontabScheduleRequest getRequest() {
     return CrontabScheduleRequest(
       id: id,

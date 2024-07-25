@@ -1,11 +1,11 @@
 import 'package:iot_controller/protos/backend.pb.dart';
+import 'package:iot_controller/src/models/celery_tasks/schedule.dart';
 
-class ClockedSchedule {
-  int id;
+class ClockedSchedule extends Schedule {
   String clockedTime;
 
   ClockedSchedule({
-    required this.id,
+    required super.id,
     required this.clockedTime,
   });
 
@@ -16,6 +16,7 @@ class ClockedSchedule {
     );
   }
 
+  @override
   ClockedScheduleRequest getRequest() {
     return ClockedScheduleRequest(
       id: id,
