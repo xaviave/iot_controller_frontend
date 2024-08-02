@@ -4,6 +4,15 @@ import 'package:iot_controller/src/models/celery_tasks/crontab_schedule.dart';
 import 'package:iot_controller/src/models/celery_tasks/schedule.dart';
 
 final r = RegExp(r"(?:,|^)\s*(?<m>\*|\*/\d+|\d+-\d+(?:/\d+)?|\d+)\s*(?=,|$)");
+const weekDays = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday"
+];
 
 class CrontabScheduleForm extends StatefulWidget {
   final GlobalKey<FormState> formKey;
@@ -56,7 +65,7 @@ class CrontabScheduleFormState extends State<CrontabScheduleForm> {
     return r.allMatches(s).map((x) => x.namedGroup("m")).join(",");
   }
 
-  void callback(BuildContext context) {
+  void execCallback(BuildContext context) {
     widget.callbackAddSchedule(
         context,
         CrontabSchedule(
@@ -103,7 +112,7 @@ class CrontabScheduleFormState extends State<CrontabScheduleForm> {
                 (value == "" && !validateCrontabSelections())) {
               return "Error in the value";
             }
-            callback(context);
+            execCallback(context);
             return null;
           },
         ),
@@ -119,7 +128,7 @@ class CrontabScheduleFormState extends State<CrontabScheduleForm> {
                 (value == "" && !validateCrontabSelections())) {
               return "Error in the value";
             }
-            callback(context);
+            execCallback(context);
             return null;
           },
         ),
@@ -127,21 +136,11 @@ class CrontabScheduleFormState extends State<CrontabScheduleForm> {
         CustomDropdown<String>.multiSelect(
             multiSelectController: _dayOfWeekController,
             hintText: 'Select day of week',
-            items: const [
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday",
-              "Sunday"
-            ],
-            onListChanged: (value) {
-              // print('changing value to: $value');
-            },
+            items: weekDays,
+            onListChanged: (value) {},
             listValidator: (value) {
               if (value.isNotEmpty) {
-                callback(context);
+                execCallback(context);
               }
               return null;
             },
@@ -173,7 +172,7 @@ class CrontabScheduleFormState extends State<CrontabScheduleForm> {
                 (value == "" && !validateCrontabSelections())) {
               return "Error in the value";
             }
-            callback(context);
+            execCallback(context);
             return null;
           },
         ),
@@ -189,7 +188,7 @@ class CrontabScheduleFormState extends State<CrontabScheduleForm> {
                 (value == "" && !validateCrontabSelections())) {
               return "Error in the value";
             }
-            callback(context);
+            execCallback(context);
             return null;
           },
         ),

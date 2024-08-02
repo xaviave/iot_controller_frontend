@@ -4,6 +4,8 @@ import 'package:iot_controller/src/blocs/periodic_task.dart';
 import 'package:iot_controller/src/blocs/settings_bloc.dart';
 import 'package:iot_controller/src/models/celery_tasks/periodic_task.dart';
 import 'package:iot_controller/src/services/communication_service.dart';
+import 'package:iot_controller/src/ui/celery_task/periodic_task_create_view.dart';
+import 'package:iot_controller/src/ui/utils/popup/create_popup.dart';
 import 'package:iot_controller/src/ui/utils/popup/refresh_popup.dart';
 
 class PeriodicTaskListView extends StatefulWidget {
@@ -125,13 +127,12 @@ class _PeriodicTaskListViewState extends State<PeriodicTaskListView> {
             floatingActionButton: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                // CreatePopup(
-                //   heroTag: "task_create_button",
-                //   formName: "periodic task",
-                //   form: PeriodicTaskForm(
-                //       callbackCreatePeriodicTask: callbackCreatePeriodicTask),
-                //   onPressedCallBack: (_) {},
-                // ),
+                CreatePopup(
+                  heroTag: "task_create_button",
+                  formName: "periodic task",
+                  form: const PeriodicTaskForm(),
+                  onPressedCallBack: (_) {},
+                ),
                 const SizedBox(height: 10),
                 RefreshPopup(
                   heroTag: "periodic_task_refresh_button",

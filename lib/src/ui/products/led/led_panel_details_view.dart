@@ -261,7 +261,6 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                               content: SizedBox(
                                   width: MediaQuery.of(context).size.width,
                                   child: PeriodicTaskListView(
-                                      onlyBody: true,
                                       callbackUpdateProductPeriodicTask:
                                           updateProduct)),
                               actions: [
@@ -280,36 +279,6 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                       style: TextStyle(fontSize: 28),
                     )),
               ),
-              TextButton(
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) => PopScope(
-                          onPopInvokedWithResult: (bool didPop, _) =>
-                              // setLedMode(product.mode),
-                              {},
-                          child: AlertDialog(
-                              title: const Text("Create periodic task"),
-                              insetPadding: const EdgeInsets.all(50),
-                              content: SizedBox(
-                                  width: MediaQuery.of(context).size.width,
-                                  child: const PeriodicTaskForm()),
-                              actions: [
-                                TextButton(
-                                    child: const Text("Cancel"),
-                                    onPressed: () {
-                                      setLedMode(product.mode);
-                                      Navigator.of(context).pop();
-                                    })
-                              ])));
-                },
-                child: Container(
-                    margin: const EdgeInsets.all(10),
-                    child: const Text(
-                      "Create periodic task",
-                      style: TextStyle(fontSize: 28),
-                    )),
-              )
             ],
           ),
         ),

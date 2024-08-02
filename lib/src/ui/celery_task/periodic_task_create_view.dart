@@ -4,10 +4,12 @@ import 'package:iot_controller/src/blocs/periodic_task.dart';
 import 'package:iot_controller/src/blocs/project.dart';
 import 'package:iot_controller/src/models/celery_tasks/periodic_task.dart';
 import 'package:iot_controller/src/models/celery_tasks/schedule.dart';
+import 'package:iot_controller/src/ui/celery_task/solar_schedule_create_view.dart';
 import 'package:iot_controller/src/ui/utils/capitalize.dart';
 
 import 'clocked_schedule_create_view.dart';
 import 'crontab_schedule_create_view.dart';
+import 'interval_schedule_create_view.dart';
 
 class PeriodicTaskForm extends StatefulWidget {
   const PeriodicTaskForm({super.key});
@@ -51,8 +53,8 @@ class PeriodicTaskFormState extends State<PeriodicTaskForm> {
     scheduleTypes = [
       ClockedScheduleForm(callbackAddSchedule: addSchedule, formKey: _formKey),
       CrontabScheduleForm(callbackAddSchedule: addSchedule, formKey: _formKey),
-      // IntervalScheduleForm(callbackAddSchedule: addSchedule, formKey: _formKey),
-      // SolarScheduleForm(callbackAddSchedule: addSchedule, formKey: _formKey),
+      IntervalScheduleForm(callbackAddSchedule: addSchedule, formKey: _formKey),
+      SolarScheduleForm(callbackAddSchedule: addSchedule, formKey: _formKey),
     ];
     _scheduleTypeController = scheduleTypes[0];
   }
