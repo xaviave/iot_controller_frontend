@@ -1,9 +1,12 @@
+import "dart:convert";
+
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:go_router/go_router.dart";
 import "package:iot_controller/src/blocs/led_mode.dart";
 import "package:iot_controller/src/blocs/periodic_task.dart";
 import "package:iot_controller/src/blocs/product.dart";
+import "package:iot_controller/src/models/celery_tasks/periodic_task.dart";
 import "package:iot_controller/src/models/products/base_product.dart";
 import "package:iot_controller/src/models/products/led/led_panel.dart";
 import "package:iot_controller/src/models/products/led/modes/led_mode.dart";
@@ -40,6 +43,20 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
     context.read<BaseProductGRPCBloc>().add(RetrieveBaseProductEvent(
         product: state.product!, products: state.products));
     return true;
+  }
+
+  List<ListTile> getPeriodicTask(String classType, int productId) {
+    List<PeriodicTask> tasks =
+        BlocProvider.of<PeriodicTaskGRPCBloc>(context).state.tasks;
+
+    return tasks
+        .where((y) {
+          var dict = json.decode(y.kwargs);
+          return int.parse(dict["class_id"]) == productId &&
+              dict["class_type"] == classType;
+        })
+        .map((x) => ListTile(title: Text(x.name)))
+        .toList();
   }
 
   void callbackDeleteLedPanel(BuildContext context) {
@@ -256,21 +273,13 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                               // setLedMode(product.mode),
                               {},
                           child: AlertDialog(
-                              title: const Text("Change periodic task"),
-                              insetPadding: const EdgeInsets.all(50),
-                              content: SizedBox(
-                                  width: MediaQuery.of(context).size.width,
-                                  child: PeriodicTaskListView(
-                                      callbackUpdateProductPeriodicTask:
-                                          updateProduct)),
-                              actions: [
-                                TextButton(
-                                    child: const Text("Cancel"),
-                                    onPressed: () {
-                                      setLedMode(product.mode);
-                                      Navigator.of(context).pop();
-                                    })
-                              ])));
+                            title: const Text("Change periodic task"),
+                            insetPadding: const EdgeInsets.all(50),
+                            content: SizedBox(
+                                width: MediaQuery.of(context).size.width,
+                                child: const PeriodicTaskListView(
+                                    classType: "BaseProduct")),
+                          )));
                 },
                 child: Container(
                     margin: const EdgeInsets.all(10),
@@ -279,6 +288,12 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                       style: TextStyle(fontSize: 28),
                     )),
               ),
+              SingleChildScrollView(
+                  child: SizedBox(
+                      height: MediaQuery.of(context).size.height / 5,
+                      child: ListView(
+                          children: getPeriodicTask(
+                              "BaseProduct", state.product!.id))))
             ],
           ),
         ),

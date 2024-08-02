@@ -1,15 +1,18 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:iot_controller/src/blocs/periodic_task.dart';
 import 'package:iot_controller/src/blocs/product.dart';
 import 'package:iot_controller/src/blocs/project.dart';
+import 'package:iot_controller/src/models/celery_tasks/periodic_task.dart';
 import 'package:iot_controller/src/models/products/base_product.dart';
-import 'package:iot_controller/src/models/products/led/led_panel.dart';
 import 'package:iot_controller/src/models/project.dart';
+import 'package:iot_controller/src/ui/celery_task/periodic_task_list_view.dart';
 import 'package:iot_controller/src/ui/products/base_product/base_product_create_view.dart';
 import 'package:iot_controller/src/ui/products/base_product/base_product_list_view.dart';
-import 'package:iot_controller/src/ui/settings/settings_view.dart';
 import 'package:iot_controller/src/ui/utils/capitalize.dart';
 import 'package:iot_controller/src/ui/utils/popup/create_popup.dart';
 import 'package:iot_controller/src/ui/utils/popup/delete_popup.dart';
@@ -41,6 +44,20 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
     context.read<ProjectGRPCBloc>().add(RetrieveProjectEvent(
         projectId: state.project!.id, projects: state.projects));
     return true;
+  }
+
+  List<ListTile> getPeriodicTask(String classType, int projectId) {
+    List<PeriodicTask> tasks =
+        BlocProvider.of<PeriodicTaskGRPCBloc>(context).state.tasks;
+
+    return tasks
+        .where((y) {
+          var dict = json.decode(y.kwargs);
+          return int.parse(dict["class_id"]) == projectId &&
+              dict["class_type"] == classType;
+        })
+        .map((x) => ListTile(title: Text(x.toString())))
+        .toList();
   }
 
   void callbackDeleteProject(BuildContext context) {
@@ -116,6 +133,35 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
                 callbackUpdateProject: updateProduct,
               ),
             ),
+            TextButton(
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) => PopScope(
+                        onPopInvokedWithResult: (bool didPop, _) =>
+                            // setLedMode(product.mode),
+                            {},
+                        child: AlertDialog(
+                            title: const Text("Change periodic task"),
+                            insetPadding: const EdgeInsets.all(50),
+                            content: SizedBox(
+                                width: MediaQuery.of(context).size.width,
+                                child: const PeriodicTaskListView(
+                                    classType: "Project")))));
+              },
+              child: Container(
+                  margin: const EdgeInsets.all(10),
+                  child: const Text(
+                    "Update periodic tasks",
+                    style: TextStyle(fontSize: 28),
+                  )),
+            ),
+            SingleChildScrollView(
+                child: SizedBox(
+                    height: MediaQuery.of(context).size.height / 5,
+                    child: ListView(
+                        children:
+                            getPeriodicTask("Project", state.project!.id)))),
           ],
         ),
         Column(

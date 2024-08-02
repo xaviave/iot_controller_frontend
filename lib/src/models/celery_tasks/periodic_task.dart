@@ -27,7 +27,7 @@ class PeriodicTask {
 
   @override
   String toString() {
-    return name;
+    return "Task: $name | Schedule: ${getSchedule()}";
   }
 
   Schedule getSchedule() {

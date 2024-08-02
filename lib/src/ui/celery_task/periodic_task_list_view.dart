@@ -10,13 +10,12 @@ import 'package:iot_controller/src/ui/utils/popup/refresh_popup.dart';
 
 class PeriodicTaskListView extends StatefulWidget {
   final bool onlyBody;
-  final Function(BuildContext, Map<String, dynamic>)
-      callbackUpdateProductPeriodicTask;
+  final String classType;
 
   const PeriodicTaskListView({
     super.key,
     this.onlyBody = false,
-    required this.callbackUpdateProductPeriodicTask,
+    required this.classType,
   });
 
   @override
@@ -24,16 +23,6 @@ class PeriodicTaskListView extends StatefulWidget {
 }
 
 class _PeriodicTaskListViewState extends State<PeriodicTaskListView> {
-  late Function(BuildContext, Map<String, dynamic>)
-      callbackUpdateProductPeriodicTask;
-
-  @override
-  void initState() {
-    super.initState();
-    callbackUpdateProductPeriodicTask =
-        widget.callbackUpdateProductPeriodicTask;
-  }
-
   Future<bool> refreshPeriodicTaskList(BuildContext context) async {
     context.read<PeriodicTaskGRPCBloc>().add(GetPeriodicTaskListEvent());
     return true;
@@ -79,16 +68,7 @@ class _PeriodicTaskListViewState extends State<PeriodicTaskListView> {
                 ]),
                 onTap: () {
                   if (widget.onlyBody == false) {
-                    callbackUpdateProductPeriodicTask(
-                      context,
-                      {"task": state.tasks[index].getRequest()},
-                    );
                     Navigator.of(context).pop();
-                  } else {
-                    callbackUpdateProductPeriodicTask(
-                      context,
-                      {"task": state.tasks[index]},
-                    );
                   }
                 },
                 onLongPress: () {
@@ -130,7 +110,7 @@ class _PeriodicTaskListViewState extends State<PeriodicTaskListView> {
                 CreatePopup(
                   heroTag: "task_create_button",
                   formName: "periodic task",
-                  form: const PeriodicTaskForm(),
+                  form: PeriodicTaskForm(classType: widget.classType),
                   onPressedCallBack: (_) {},
                 ),
                 const SizedBox(height: 10),

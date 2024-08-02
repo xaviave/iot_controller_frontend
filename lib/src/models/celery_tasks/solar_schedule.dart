@@ -36,6 +36,6 @@ class SolarSchedule extends Schedule {
 
   @override
   String toString() {
-    return "$event | $latitude : $longitude";
+    return "Solar - $event | $latitude : $longitude";
   }
 }

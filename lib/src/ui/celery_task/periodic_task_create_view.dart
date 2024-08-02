@@ -12,7 +12,9 @@ import 'crontab_schedule_create_view.dart';
 import 'interval_schedule_create_view.dart';
 
 class PeriodicTaskForm extends StatefulWidget {
-  const PeriodicTaskForm({super.key});
+  final String classType;
+
+  const PeriodicTaskForm({super.key, required this.classType});
 
   @override
   PeriodicTaskFormState createState() {
@@ -139,7 +141,7 @@ class PeriodicTaskFormState extends State<PeriodicTaskForm> {
                               task: generatePeriodicTask(
                                   _nameController.text,
                                   _taskController.text,
-                                  "'class_type': 'Project', 'class_id': '${projectState.project!.id}'",
+                                  '{"class_type": "${widget.classType}", "class_id": "${projectState.project!.id}"}',
                                   {schedule!.name: schedule!}),
                               tasks: state.tasks));
                       context

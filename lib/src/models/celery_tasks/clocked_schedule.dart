@@ -27,6 +27,6 @@ class ClockedSchedule extends Schedule {
 
   @override
   String toString() {
-    return clockedTime;
+    return "Clocked - $clockedTime";
   }
 }
