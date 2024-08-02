@@ -1,5 +1,6 @@
 abstract class Schedule {
   int id;
+  String name = "";
 
   Schedule({
     required this.id,

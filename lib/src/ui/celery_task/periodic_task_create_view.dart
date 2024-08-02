@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iot_controller/src/blocs/periodic_task.dart';
-import 'package:iot_controller/src/blocs/product.dart';
 import 'package:iot_controller/src/blocs/project.dart';
 import 'package:iot_controller/src/models/celery_tasks/periodic_task.dart';
 import 'package:iot_controller/src/models/celery_tasks/schedule.dart';
 import 'package:iot_controller/src/ui/utils/capitalize.dart';
 
-import 'schedule_create_view.dart';
+import 'clocked_schedule_create_view.dart';
+import 'crontab_schedule_create_view.dart';
 
 class PeriodicTaskForm extends StatefulWidget {
   const PeriodicTaskForm({super.key});
@@ -23,7 +23,7 @@ class PeriodicTaskFormState extends State<PeriodicTaskForm> {
   final _nameController = TextEditingController();
   final _taskController = TextEditingController();
 
-  late Schedule schedule;
+  Schedule? schedule;
   late Widget _scheduleTypeController;
   late List<Widget> scheduleTypes;
 
@@ -33,6 +33,7 @@ class PeriodicTaskFormState extends State<PeriodicTaskForm> {
     String kwargs,
     Map<String, dynamic> fields,
   ) {
+    print("$name $task $kwargs $fields");
     return PeriodicTask(
       name: name,
       task: task,
@@ -48,10 +49,10 @@ class PeriodicTaskFormState extends State<PeriodicTaskForm> {
   void initState() {
     super.initState();
     scheduleTypes = [
-      ClockedScheduleForm(callbackAddSchedule: addSchedule),
-      // CrontabScheduleForm(callbackAddSchedule: addSchedule),
-      // IntervalScheduleForm(callbackAddSchedule: addSchedule),
-      // SolarScheduleForm(callbackAddSchedule: addSchedule),
+      ClockedScheduleForm(callbackAddSchedule: addSchedule, formKey: _formKey),
+      CrontabScheduleForm(callbackAddSchedule: addSchedule, formKey: _formKey),
+      // IntervalScheduleForm(callbackAddSchedule: addSchedule, formKey: _formKey),
+      // SolarScheduleForm(callbackAddSchedule: addSchedule, formKey: _formKey),
     ];
     _scheduleTypeController = scheduleTypes[0];
   }
@@ -70,7 +71,7 @@ class PeriodicTaskFormState extends State<PeriodicTaskForm> {
           TextFormField(
             controller: _nameController,
             decoration: const InputDecoration(
-              labelText: 'PeriodicTask name',
+              labelText: 'Periodic task name',
             ),
             validator: (value) {
               return (value != null && value.isEmpty)
@@ -80,9 +81,9 @@ class PeriodicTaskFormState extends State<PeriodicTaskForm> {
           ),
           const SizedBox(height: 16),
           TextFormField(
-            controller: _nameController,
+            controller: _taskController,
             decoration: const InputDecoration(
-              labelText: 'PeriodicTask task',
+              labelText: 'Periodic task action',
             ),
             validator: (value) {
               return (value != null && value.isEmpty)
@@ -137,7 +138,7 @@ class PeriodicTaskFormState extends State<PeriodicTaskForm> {
                                   _nameController.text,
                                   _taskController.text,
                                   "'class_type': 'Project', 'class_id': '${projectState.project!.id}'",
-                                  {}),
+                                  {schedule!.name: schedule!}),
                               tasks: state.tasks));
                       context
                           .read<PeriodicTaskGRPCBloc>()

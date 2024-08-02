@@ -2,6 +2,7 @@ import 'package:iot_controller/protos/backend.pb.dart';
 import 'package:iot_controller/src/models/celery_tasks/schedule.dart';
 
 class ClockedSchedule extends Schedule {
+  final name = "clocked";
   String clockedTime;
 
   ClockedSchedule({

@@ -2,6 +2,8 @@ import 'package:iot_controller/protos/backend.pb.dart';
 import 'package:iot_controller/src/models/celery_tasks/schedule.dart';
 
 class IntervalSchedule extends Schedule {
+  final name = "interval";
+
   int every;
   String period;
 

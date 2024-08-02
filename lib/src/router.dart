@@ -19,12 +19,12 @@ extension GoRouterExtension on GoRouter {
 class MyNavigatorObserver extends NavigatorObserver {
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    print('did push route $previousRoute');
+    // print('did push route $previousRoute');
   }
 
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    print('did pop route $previousRoute');
+    // print('did pop route $previousRoute');
   }
 }
 

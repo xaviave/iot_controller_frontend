@@ -4,7 +4,7 @@ import 'package:iot_controller/src/blocs/schedule.dart';
 import 'package:iot_controller/src/blocs/settings_bloc.dart';
 import 'package:iot_controller/src/models/celery_tasks/schedule.dart';
 import 'package:iot_controller/src/services/communication_service.dart';
-import 'package:iot_controller/src/ui/celery_task/schedule_create_view.dart';
+import 'package:iot_controller/src/ui/celery_task/clocked_schedule_create_view.dart';
 import 'package:iot_controller/src/ui/utils/popup/create_popup.dart';
 import 'package:iot_controller/src/ui/utils/popup/refresh_popup.dart';
 

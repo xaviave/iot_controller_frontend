@@ -2,6 +2,8 @@ import 'package:iot_controller/protos/backend.pb.dart';
 import 'package:iot_controller/src/models/celery_tasks/schedule.dart';
 
 class SolarSchedule extends Schedule {
+  final name = "solar";
+
   String event;
   double latitude;
   double longitude;
