@@ -1,5 +1,3 @@
-import "dart:convert";
-
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:go_router/go_router.dart";
@@ -10,11 +8,9 @@ import "package:iot_controller/src/models/celery_tasks/periodic_task.dart";
 import "package:iot_controller/src/models/products/base_product.dart";
 import "package:iot_controller/src/models/products/led/led_panel.dart";
 import "package:iot_controller/src/models/products/led/modes/led_mode.dart";
-import "package:iot_controller/src/ui/celery_task/periodic_task_create_view.dart";
 import "package:iot_controller/src/ui/celery_task/periodic_task_list_view.dart";
 import "package:iot_controller/src/ui/products/base_product/update_ip_alert_view.dart";
 import "package:iot_controller/src/ui/products/led/modes/led_mode_list_view.dart";
-import "package:iot_controller/src/ui/settings/settings_view.dart";
 import "package:iot_controller/src/ui/utils/capitalize.dart";
 import "package:iot_controller/src/ui/utils/on_off_button.dart";
 import "package:iot_controller/src/ui/utils/popup/delete_popup.dart";
@@ -43,20 +39,6 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
     context.read<BaseProductGRPCBloc>().add(RetrieveBaseProductEvent(
         product: state.product!, products: state.products));
     return true;
-  }
-
-  List<ListTile> getPeriodicTask(String classType, int productId) {
-    List<PeriodicTask> tasks =
-        BlocProvider.of<PeriodicTaskGRPCBloc>(context).state.tasks;
-
-    return tasks
-        .where((y) {
-          var dict = json.decode(y.kwargs);
-          return int.parse(dict["class_id"]) == productId &&
-              dict["class_type"] == classType;
-        })
-        .map((x) => ListTile(title: Text(x.name)))
-        .toList();
   }
 
   void callbackDeleteLedPanel(BuildContext context) {
@@ -148,155 +130,182 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
 
   Widget ledPanelBuild(BuildContext context, BaseProductState state) {
     final LedPanel product = state.product! as LedPanel;
+    final periodicTaskState =
+        BlocProvider.of<PeriodicTaskGRPCBloc>(context).state;
 
+    context.read<PeriodicTaskGRPCBloc>().add(QueryPeriodicTaskEvent(
+          classType: "BaseProduct",
+          classId: state.product!.id,
+          tasks: periodicTaskState.tasks,
+        ));
     setLedMode(product.mode);
+
+    final Map<String, Widget> tabs = {
+      "Product": SingleChildScrollView(
+          child: Column(children: [
+        // add categories
+        OnOffButton(
+          status: product.status,
+          callbackUpdateStatus: updateProduct,
+        ),
+        const SizedBox(height: 10),
+        TextButton(
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                      title: const Text(
+                        "Change Product IP",
+                        textAlign: TextAlign.center,
+                      ),
+                      insetPadding: const EdgeInsets.all(50),
+                      content: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: IpUpdateAlertView(
+                            ipAddress: product.ipAddress,
+                            ipPort: product.ipPort,
+                            callbackUpdateIp: updateProduct,
+                          )),
+                      actions: [
+                        TextButton(
+                          child: const Text("Cancel"),
+                          onPressed: () {
+                            setLedMode(product.mode);
+                            Navigator.of(context).pop();
+                          },
+                        )
+                      ],
+                    ));
+          },
+          child: Container(
+              margin: const EdgeInsets.all(10),
+              child: const Text(
+                "Update Product IP",
+                style: TextStyle(fontSize: 28),
+              )),
+        ),
+        Slider(
+            min: 0,
+            max: 1,
+            activeColor: colorBrightness,
+            inactiveColor: Colors.grey,
+            thumbColor: colorBrightness,
+            value: productBrightness,
+            onChanged: (value) {
+              setState(() {
+                productBrightness = double.parse(value.toStringAsFixed(2));
+                colorBrightness = Color.lerp(
+                  Colors.black,
+                  Colors.yellow,
+                  productBrightness,
+                )!;
+              });
+            },
+            onChangeEnd: (_) {
+              updateProduct(context, {"brightness": productBrightness});
+            }),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+                margin: const EdgeInsets.all(10),
+                child: Text(product.mode.name.capitalize,
+                    style: const TextStyle(fontSize: 28))),
+            TextButton(
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) => PopScope(
+                        onPopInvokedWithResult: (bool didPop, _) =>
+                            setLedMode(product.mode),
+                        child: AlertDialog(
+                            title: const Text("Change Mode"),
+                            insetPadding: const EdgeInsets.all(50),
+                            content: SizedBox(
+                                width: MediaQuery.of(context).size.width,
+                                child: LedModeListView(
+                                  callbackUpdateProductLedMode: updateProduct,
+                                )),
+                            actions: [
+                              TextButton(
+                                  child: const Text("Cancel"),
+                                  onPressed: () {
+                                    setLedMode(product.mode);
+                                    Navigator.of(context).pop();
+                                  })
+                            ])));
+              },
+              child: Container(
+                  margin: const EdgeInsets.all(10),
+                  child: const Text(
+                    "Update mode",
+                    style: TextStyle(fontSize: 28),
+                  )),
+            )
+          ],
+        ),
+        const SizedBox(height: 10),
+        LedModeDetailsView(
+          callbackUpdateProductLedMode: updateProduct,
+        )
+      ])),
+      "Tasks":
+          PeriodicTaskListView(classType: "Product", classId: state.product!.id)
+    };
+
     return headerView(
         context,
         state,
         product.name.capitalize,
-        SingleChildScrollView(
-          child: Column(
-            children: [
-              // add categories
-              OnOffButton(
-                status: product.status,
-                callbackUpdateStatus: updateProduct,
-              ),
-              const SizedBox(height: 10),
-              TextButton(
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                            title: const Text(
-                              "Change Product IP",
-                              textAlign: TextAlign.center,
-                            ),
-                            insetPadding: const EdgeInsets.all(50),
-                            content: SizedBox(
-                                width: MediaQuery.of(context).size.width,
-                                child: IpUpdateAlertView(
-                                  ipAddress: product.ipAddress,
-                                  ipPort: product.ipPort,
-                                  callbackUpdateIp: updateProduct,
-                                )),
-                            actions: [
-                              TextButton(
-                                child: const Text("Cancel"),
-                                onPressed: () {
-                                  setLedMode(product.mode);
-                                  Navigator.of(context).pop();
-                                },
-                              )
-                            ],
-                          ));
-                },
-                child: Container(
-                    margin: const EdgeInsets.all(10),
-                    child: const Text(
-                      "Update Product IP",
-                      style: TextStyle(fontSize: 28),
-                    )),
-              ),
-              Slider(
-                  min: 0,
-                  max: 1,
-                  activeColor: colorBrightness,
-                  inactiveColor: Colors.grey,
-                  thumbColor: colorBrightness,
-                  value: productBrightness,
-                  onChanged: (value) {
-                    setState(() {
-                      productBrightness =
-                          double.parse(value.toStringAsFixed(2));
-                      colorBrightness = Color.lerp(
-                        Colors.black,
-                        Colors.yellow,
-                        productBrightness,
-                      )!;
-                    });
-                  },
-                  onChangeEnd: (_) {
-                    updateProduct(context, {"brightness": productBrightness});
-                  }),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                      margin: const EdgeInsets.all(10),
-                      child: Text(product.mode.name.capitalize,
-                          style: const TextStyle(fontSize: 28))),
-                  TextButton(
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) => PopScope(
-                              onPopInvokedWithResult: (bool didPop, _) =>
-                                  setLedMode(product.mode),
-                              child: AlertDialog(
-                                  title: const Text("Change Mode"),
-                                  insetPadding: const EdgeInsets.all(50),
-                                  content: SizedBox(
-                                      width: MediaQuery.of(context).size.width,
-                                      child: LedModeListView(
-                                        callbackUpdateProductLedMode:
-                                            updateProduct,
-                                      )),
-                                  actions: [
-                                    TextButton(
-                                        child: const Text("Cancel"),
-                                        onPressed: () {
-                                          setLedMode(product.mode);
-                                          Navigator.of(context).pop();
-                                        })
-                                  ])));
-                    },
-                    child: Container(
-                        margin: const EdgeInsets.all(10),
-                        child: const Text(
-                          "Update mode",
-                          style: TextStyle(fontSize: 28),
-                        )),
-                  )
-                ],
-              ),
-              const SizedBox(height: 10),
-              LedModeDetailsView(
-                callbackUpdateProductLedMode: updateProduct,
-              ),
-              TextButton(
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) => PopScope(
-                          onPopInvokedWithResult: (bool didPop, _) =>
-                              // setLedMode(product.mode),
-                              {},
-                          child: AlertDialog(
-                            title: const Text("Change periodic task"),
-                            insetPadding: const EdgeInsets.all(50),
-                            content: SizedBox(
-                                width: MediaQuery.of(context).size.width,
-                                child: const PeriodicTaskListView(
-                                    classType: "BaseProduct")),
-                          )));
-                },
-                child: Container(
-                    margin: const EdgeInsets.all(10),
-                    child: const Text(
-                      "Update periodic tasks",
-                      style: TextStyle(fontSize: 28),
-                    )),
-              ),
-              SingleChildScrollView(
-                  child: SizedBox(
-                      height: MediaQuery.of(context).size.height / 5,
-                      child: ListView(
-                          children: getPeriodicTask(
-                              "BaseProduct", state.product!.id))))
-            ],
-          ),
+        DefaultTabController(
+          length: tabs.length,
+          child: Column(children: [
+            Text(
+              product.name.capitalize,
+              style: const TextStyle(fontSize: 20),
+            ),
+            TabBar(
+                tabs: tabs.keys.map((String name) => Tab(text: name)).toList()),
+            Expanded(child: TabBarView(children: tabs.values.toList())),
+          ]),
         ),
+
+        // TextButton(
+        //   onPressed: () {
+        //     showDialog(
+        //         context: context,
+        //         builder: (BuildContext context) => PopScope(
+        //             onPopInvokedWithResult: (bool didPop, _) =>
+        //                 // setLedMode(product.mode),
+        //                 {},
+        //             child: AlertDialog(
+        //               title: const Text("Change periodic task"),
+        //               insetPadding: const EdgeInsets.all(50),
+        //               content: SizedBox(
+        //                   width: MediaQuery.of(context).size.width,
+        //                   child: const PeriodicTaskListView(
+        //                       classType: "BaseProduct")),
+        //             )));
+        //   },
+        //   child: Container(
+        //       margin: const EdgeInsets.all(10),
+        //       child: const Text(
+        //         "Update periodic tasks",
+        //         style: TextStyle(fontSize: 28),
+        //       )),
+        // ),
+        // SingleChildScrollView(
+        //     child: SizedBox(
+        //         height: MediaQuery.of(context).size.height / 5,
+        //         child: ListView(children: () {
+        //           List<PeriodicTask> t =
+        //               BlocProvider.of<PeriodicTaskGRPCBloc>(context)
+        //                   .state
+        //                   .queryTasks;
+        //           return t
+        //               .map((x) => ListTile(title: Text(x.toString())))
+        //               .toList();
+        //         }()))),
         Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [

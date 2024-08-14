@@ -48,47 +48,43 @@ class _LedPanelMinimalDetailsViewState
         BlocProvider.of<BaseProductGRPCBloc>(context).state;
     LedPanel product = state.products[widget.productIndex] as LedPanel;
 
-    return Card(
-        child: SizedBox(
-            width: double.infinity,
-            child: Column(
-              children: [
-                ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      "https://indieground.net/wp-content/uploads/2022/06/floppydiskdesign-indiegroundblog_four_tet-1024x1024.jpg",
-                    )),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        product.name.capitalize,
-                        style: const TextStyle(fontSize: 28),
-                        textAlign: TextAlign.center,
-                      ),
-                      OnOffButton(
-                          status: product.status,
-                          callbackUpdateStatus: updateProduct)
-                    ]),
-                Slider(
-                    min: 0,
-                    max: 1,
-                    activeColor: colorBrightness,
-                    inactiveColor: Colors.grey,
-                    thumbColor: colorBrightness,
-                    value: productBrightness,
-                    onChanged: (value) {
-                      setState(() {
-                        productBrightness =
-                            double.parse(value.toStringAsFixed(2));
-                        colorBrightness = Color.lerp(
-                            Colors.black, Colors.yellow, productBrightness)!;
-                      });
-                    },
-                    onChangeEnd: (value) {
-                      updateProduct(context, {"brightness": productBrightness});
-                    }),
-              ],
-            )));
+    return Container(
+        padding: const EdgeInsets.all(12),
+        width: double.infinity,
+        child: Column(
+          children: [
+            // ClipRRect(
+            //     borderRadius: BorderRadius.circular(8.0),
+            //     child: Image.network(
+            //       "https://indieground.net/wp-content/uploads/2022/06/floppydiskdesign-indiegroundblog_four_tet-1024x1024.jpg",
+            //     )),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Text(
+                product.name.capitalize,
+                style: const TextStyle(fontSize: 28),
+                textAlign: TextAlign.center,
+              ),
+              OnOffButton(
+                  status: product.status, callbackUpdateStatus: updateProduct)
+            ]),
+            Slider(
+                min: 0,
+                max: 1,
+                activeColor: colorBrightness,
+                inactiveColor: Colors.grey,
+                thumbColor: colorBrightness,
+                value: productBrightness,
+                onChanged: (value) {
+                  setState(() {
+                    productBrightness = double.parse(value.toStringAsFixed(2));
+                    colorBrightness = Color.lerp(
+                        Colors.black, Colors.yellow, productBrightness)!;
+                  });
+                },
+                onChangeEnd: (value) {
+                  updateProduct(context, {"brightness": productBrightness});
+                }),
+          ],
+        ));
   }
 }

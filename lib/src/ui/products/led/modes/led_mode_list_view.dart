@@ -58,7 +58,6 @@ class _LedModeListViewState extends State<LedModeListView> {
   Widget bodyListView() {
     return BlocBuilder<LedModeGRPCBloc, LedModeState>(
         builder: (context, state) {
-      print("led mode list view $state | ${state.modes}");
       if (state is LedModeListInitial) {
         return const Center(child: CircularProgressIndicator());
       } else if (state is LedModeListSuccess ||

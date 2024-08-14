@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iot_controller/protos/backend.pb.dart';
 import 'package:iot_controller/src/blocs/settings_bloc.dart';
@@ -19,6 +21,15 @@ class GetPeriodicTaskEvent extends PeriodicTaskEvent {
   final List<PeriodicTask> tasks;
 
   GetPeriodicTaskEvent({required this.task, required this.tasks});
+}
+
+class QueryPeriodicTaskEvent extends PeriodicTaskEvent {
+  final int classId;
+  final String classType;
+  final List<PeriodicTask> tasks;
+
+  QueryPeriodicTaskEvent(
+      {required this.classType, required this.classId, required this.tasks});
 }
 
 class RetrievePeriodicTaskEvent extends PeriodicTaskEvent {
@@ -66,6 +77,7 @@ sealed class PeriodicTaskState {
   String get message => "";
   PeriodicTask? get task => null;
   List<PeriodicTask> get tasks => [];
+  List<PeriodicTask> get queryTasks => [];
 }
 
 class PeriodicTaskListInitial extends PeriodicTaskState {}
@@ -106,6 +118,27 @@ class GetPeriodicTaskError extends PeriodicTaskState {
   final String _message;
 
   const GetPeriodicTaskError(this._message);
+
+  @override
+  String get message => _message;
+}
+
+class QueryPeriodicTaskSuccess extends PeriodicTaskState {
+  final List<PeriodicTask> _tasks;
+  final List<PeriodicTask> _queryTasks;
+
+  const QueryPeriodicTaskSuccess(this._tasks, this._queryTasks);
+
+  @override
+  List<PeriodicTask> get tasks => _tasks;
+  @override
+  List<PeriodicTask> get queryTasks => _queryTasks;
+}
+
+class QueryPeriodicTaskError extends PeriodicTaskState {
+  final String _message;
+
+  const QueryPeriodicTaskError(this._message);
 
   @override
   String get message => _message;
@@ -211,6 +244,7 @@ class PeriodicTaskGRPCBloc extends Bloc<PeriodicTaskEvent, PeriodicTaskState> {
 
     on<GetPeriodicTaskListEvent>(onGetPeriodicTaskListEvent);
     on<GetPeriodicTaskEvent>(onGetPeriodicTaskEvent);
+    on<QueryPeriodicTaskEvent>(onQueryPeriodicTaskEvent);
     on<RetrievePeriodicTaskEvent>(onRetrievePeriodicTaskEvent);
     on<CreatePeriodicTaskEvent>(onCreatePeriodicTaskEvent);
     on<UpdatePeriodicTaskEvent>(onUpdatePeriodicTaskEvent);
@@ -241,6 +275,26 @@ class PeriodicTaskGRPCBloc extends Bloc<PeriodicTaskEvent, PeriodicTaskState> {
   void onGetPeriodicTaskEvent(
       GetPeriodicTaskEvent event, Emitter<PeriodicTaskState> emit) async {
     emit(GetPeriodicTaskSuccess(event.task, event.tasks));
+  }
+
+  void onQueryPeriodicTaskEvent(
+      QueryPeriodicTaskEvent event, Emitter<PeriodicTaskState> emit) async {
+    print(
+        "${event.classId} ${event.classType} ${event.tasks} ${event.tasks.where((y) {
+      var dict = json.decode(y.kwargs);
+      return int.parse(dict["class_id"]) == event.classId &&
+          dict["class_type"] == event.classType;
+    }).toList()}");
+    if (event.tasks.isEmpty) {
+      emit(QueryPeriodicTaskSuccess(event.tasks, []));
+    }
+    emit(QueryPeriodicTaskSuccess(
+        event.tasks,
+        event.tasks.where((y) {
+          var dict = json.decode(y.kwargs);
+          return int.parse(dict["class_id"]) == event.classId &&
+              dict["class_type"] == event.classType;
+        }).toList()));
   }
 
   void onRetrievePeriodicTaskEvent(

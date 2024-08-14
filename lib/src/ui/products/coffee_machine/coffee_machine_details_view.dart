@@ -4,8 +4,6 @@ import 'package:iot_controller/src/blocs/product.dart';
 import 'package:iot_controller/src/models/products/base_product.dart';
 import 'package:iot_controller/src/models/products/coffee_machine.dart';
 import 'package:flutter/material.dart';
-import 'package:iot_controller/src/ui/project/project_details_view.dart';
-import 'package:iot_controller/src/ui/settings/settings_view.dart';
 import 'package:iot_controller/src/ui/utils/capitalize.dart';
 import 'package:iot_controller/src/ui/utils/popup/delete_popup.dart';
 import 'package:iot_controller/src/ui/utils/popup/refresh_popup.dart';

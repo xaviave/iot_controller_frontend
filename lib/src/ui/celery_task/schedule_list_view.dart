@@ -51,7 +51,6 @@ class _ScheduleListViewState extends State<ScheduleListView> {
   Widget bodyListView() {
     return BlocBuilder<ScheduleGRPCBloc, ScheduleState>(
         builder: (context, state) {
-      print("schedule list view $state | ${state.schedules}");
       if (state is ScheduleListInitial) {
         return const Center(child: CircularProgressIndicator());
       } else if (state is ScheduleListSuccess ||

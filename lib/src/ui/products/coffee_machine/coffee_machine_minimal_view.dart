@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iot_controller/src/blocs/product.dart';
 import 'package:iot_controller/src/models/products/coffee_machine.dart';
-import 'package:iot_controller/src/models/status.dart';
 import 'package:iot_controller/src/ui/utils/capitalize.dart';
 import 'package:iot_controller/src/ui/utils/on_off_button.dart';
 
@@ -36,8 +35,8 @@ class _CoffeeMachineMinimalDetailsViewState
     CoffeeMachine product =
         state.products[widget.productIndex] as CoffeeMachine;
 
-    return Card(
-        child: SizedBox(
+    return Container(
+      padding: const EdgeInsets.all(12),
       width: double.infinity,
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Text(
@@ -47,6 +46,6 @@ class _CoffeeMachineMinimalDetailsViewState
         ),
         OnOffButton(status: product.status, callbackUpdateStatus: updateProduct)
       ]),
-    ));
+    );
   }
 }

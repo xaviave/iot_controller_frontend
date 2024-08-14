@@ -19,7 +19,6 @@ class BaseProductListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BaseProductGRPCBloc, BaseProductState>(
         builder: (context, state) {
-      print("BaseProduct list view $state");
       if (state is BaseProductListInitial || state is BaseProductLoading) {
         return const Center(child: CircularProgressIndicator());
       } else if (state is BaseProductListSuccess ||

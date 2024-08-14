@@ -144,9 +144,9 @@ class PeriodicTaskFormState extends State<PeriodicTaskForm> {
                                   '{"class_type": "${widget.classType}", "class_id": "${projectState.project!.id}"}',
                                   {schedule!.name: schedule!}),
                               tasks: state.tasks));
-                      context
-                          .read<PeriodicTaskGRPCBloc>()
-                          .add(GetPeriodicTaskListEvent());
+                      // context
+                      //     .read<PeriodicTaskGRPCBloc>()
+                      //     .add(GetPeriodicTaskListEvent());
                       Navigator.of(context).pop(true);
                     }
                     return;

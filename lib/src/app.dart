@@ -3,15 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:iot_controller/src/blocs/periodic_task.dart';
-import 'package:iot_controller/src/blocs/periodic_task.dart';
-import 'package:iot_controller/src/models/celery_tasks/periodic_task.dart';
-import 'package:iot_controller/src/models/celery_tasks/periodic_task.dart';
 import 'package:iot_controller/src/router.dart';
-import 'package:iot_controller/src/ui/products/base_product/base_product_details_view.dart';
-import 'package:iot_controller/src/ui/products/base_product/base_product_list_view.dart';
-import 'package:iot_controller/src/ui/project/project_details_view.dart';
-import 'package:iot_controller/src/ui/project/project_list_view.dart';
-import 'package:iot_controller/src/ui/settings/settings_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'blocs/schedule.dart';

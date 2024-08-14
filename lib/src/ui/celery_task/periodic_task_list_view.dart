@@ -10,11 +10,14 @@ import 'package:iot_controller/src/ui/utils/popup/refresh_popup.dart';
 
 class PeriodicTaskListView extends StatefulWidget {
   final bool onlyBody;
+
+  final int classId;
   final String classType;
 
   const PeriodicTaskListView({
     super.key,
     this.onlyBody = false,
+    required this.classId,
     required this.classType,
   });
 
@@ -45,7 +48,6 @@ class _PeriodicTaskListViewState extends State<PeriodicTaskListView> {
   Widget bodyListView() {
     return BlocBuilder<PeriodicTaskGRPCBloc, PeriodicTaskState>(
         builder: (context, state) {
-      print("periodic task list view $state | ${state.tasks}");
       if (state is PeriodicTaskListInitial) {
         return const Center(child: CircularProgressIndicator());
       } else if (state is PeriodicTaskListSuccess ||
