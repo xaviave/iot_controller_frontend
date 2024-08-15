@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iot_controller/src/ui/customColors.dart';
 import 'package:iot_controller/src/ui/utils/capitalize.dart';
 import 'package:iot_controller/src/ui/utils/popup/abstract_popup.dart';
 
@@ -24,13 +25,17 @@ class _CreatePopupState extends AbstractPopupState<CreatePopup> {
   late String formName;
 
   Future<bool> displayFormCallBack(BuildContext context) async {
+    final customColors = Theme.of(context).extension<CustomColors>()!;
+
     await showDialog(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-            title: Text(
-              "${name.capitalize} ${formName.capitalize}",
-              textAlign: TextAlign.center,
-            ),
+            backgroundColor: customColors.lightBackground,
+            title: Text("${name.capitalize} ${formName.capitalize}",
+                style: const TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.w900,
+                )),
             insetPadding: const EdgeInsets.all(50),
             content: SingleChildScrollView(
                 child: SizedBox(

@@ -1,22 +1,23 @@
-import 'dart:math';
+import "dart:math";
 
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:iot_controller/src/blocs/settings_bloc.dart';
-import 'package:iot_controller/src/blocs/project.dart' as project_bloc;
-import 'package:iot_controller/src/blocs/user.dart' as user_bloc;
-import 'package:iot_controller/src/models/project.dart';
-import 'package:iot_controller/src/services/communication_service.dart';
-import 'package:iot_controller/src/ui/project/project_create_view.dart';
-import 'package:iot_controller/src/ui/utils/capitalize.dart';
-import 'package:iot_controller/src/ui/utils/popup/create_popup.dart';
-import 'package:iot_controller/src/ui/utils/popup/refresh_popup.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:go_router/go_router.dart";
+import "package:iot_controller/src/blocs/settings_bloc.dart";
+import "package:iot_controller/src/blocs/project.dart" as project_bloc;
+import "package:iot_controller/src/blocs/user.dart" as user_bloc;
+import "package:iot_controller/src/models/project.dart";
+import "package:iot_controller/src/services/communication_service.dart";
+import "package:iot_controller/src/ui/customColors.dart";
+import "package:iot_controller/src/ui/project/project_create_view.dart";
+import "package:iot_controller/src/ui/utils/capitalize.dart";
+import "package:iot_controller/src/ui/utils/popup/create_popup.dart";
+import "package:iot_controller/src/ui/utils/popup/refresh_popup.dart";
+import "package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart";
 
 class ProjectListView extends StatefulWidget {
   const ProjectListView({super.key});
-  static const routeName = 'projects';
+  static const routeName = "projects";
 
   @override
   State<ProjectListView> createState() => _ProjectListViewState();
@@ -35,6 +36,8 @@ class _ProjectListViewState extends State<ProjectListView> {
     Widget titleView,
     Widget bodyView,
   ) {
+    final customColors = Theme.of(context).extension<CustomColors>()!;
+
     return Scaffold(
         appBar: AppBar(
           title: titleView,
@@ -47,7 +50,14 @@ class _ProjectListViewState extends State<ProjectListView> {
             ),
           ],
         ),
-        body: bodyView,
+        body: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Container(
+                decoration: BoxDecoration(
+                    color: customColors.lightBackground,
+                    borderRadius: const BorderRadius.all(Radius.circular(16))),
+                child: Padding(
+                    padding: const EdgeInsets.all(16), child: bodyView))),
         floatingActionButton: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -67,7 +77,12 @@ class _ProjectListViewState extends State<ProjectListView> {
   }
 
   Widget projectBuild(BuildContext context, user_bloc.UserState userState) {
-    return headerView(context, const Text('GMX IOT Controller'),
+    return headerView(
+        context,
+        const Text("GMX IOT Controller",
+            style: TextStyle(
+              fontSize: 36,
+            )),
         BlocBuilder<project_bloc.ProjectGRPCBloc, project_bloc.ProjectState>(
             builder: (context, state) {
       if (state is project_bloc.ProjectListInitial ||
@@ -80,76 +95,71 @@ class _ProjectListViewState extends State<ProjectListView> {
           state is project_bloc.CreateProjectSuccess ||
           state is project_bloc.DestroyProjectSuccess) {
         int axisCount = (MediaQuery.of(context).size.width ~/ 200).toInt();
-        return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Column(children: [
-              const Align(
-                  alignment: Alignment.topLeft,
-                  child: Text("Projects",
-                      style: TextStyle(
-                        fontSize: 48,
-                        color: Colors.white,
-                      ))),
-              const SizedBox(height: 20),
-              Expanded(
-                  child: MasonryGridView.count(
-                      crossAxisCount: max(axisCount, 1),
-                      mainAxisSpacing: 12,
-                      crossAxisSpacing: 12,
-                      itemCount: state.projects.length,
-                      itemBuilder: (context, index) {
-                        Project p = state.projects[index];
+        return Column(children: [
+          const Align(
+              alignment: Alignment.topLeft,
+              child: Text("Projects",
+                  style: TextStyle(
+                    fontSize: 48,
+                    fontWeight: FontWeight.w900,
+                  ))),
+          const SizedBox(height: 20),
+          Expanded(
+              child: MasonryGridView.count(
+                  crossAxisCount: max(axisCount, 1),
+                  mainAxisSpacing: 12,
+                  crossAxisSpacing: 12,
+                  itemCount: state.projects.length,
+                  itemBuilder: (context, index) {
+                    Project p = state.projects[index];
 
-                        return InkWell(
-                            onTap: () {
-                              context.read<project_bloc.ProjectGRPCBloc>().add(
-                                  project_bloc.GetProjectEvent(
-                                      project: p, projects: state.projects));
-                              context.push("/project_detail");
-                            },
-                            // move it / reorder
-                            // onLongPress: ,
-                            child: AspectRatio(
-                                aspectRatio: (12 / p.name.length).clamp(0.9, 2),
-                                child: Container(
-                                    padding: const EdgeInsets.all(24),
-                                    decoration: BoxDecoration(
-                                        gradient: const LinearGradient(
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                          colors: [
-                                            Color(0xFF846AFF),
-                                            Color(0xFF755EE8),
-                                            Colors.purpleAccent,
-                                            Colors.amber,
-                                          ],
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                            child: Align(
-                                                alignment: Alignment.bottomLeft,
-                                                child: Text(p.name.capitalize,
-                                                    overflow:
-                                                        TextOverflow.visible,
-                                                    style: const TextStyle(
-                                                      fontSize: 24,
-                                                      color: Colors.white,
-                                                    )))),
-                                        const Expanded(
-                                            child: Align(
-                                                alignment:
-                                                    Alignment.bottomRight,
-                                                child: Icon(Icons
-                                                    .keyboard_arrow_down))),
+                    return InkWell(
+                        onTap: () {
+                          context.read<project_bloc.ProjectGRPCBloc>().add(
+                              project_bloc.GetProjectEvent(
+                                  project: p, projects: state.projects));
+                          context.push("/project_detail");
+                        },
+                        // move it / reorder
+                        // onLongPress: ,
+                        child: AspectRatio(
+                            aspectRatio: (12 / p.name.length).clamp(0.9, 2),
+                            child: Container(
+                                padding: const EdgeInsets.all(24),
+                                decoration: BoxDecoration(
+                                    gradient: const LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [
+                                        Color(0xFF846AFF),
+                                        Color(0xFF755EE8),
+                                        Colors.purpleAccent,
+                                        Colors.amber,
                                       ],
-                                    ))));
-                      }))
-            ]));
+                                    ),
+                                    borderRadius: BorderRadius.circular(12)),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                        child: Align(
+                                            alignment: Alignment.bottomLeft,
+                                            child: Text(p.name.capitalize,
+                                                overflow: TextOverflow.visible,
+                                                style: const TextStyle(
+                                                  fontSize: 24,
+                                                  color: Colors.white,
+                                                )))),
+                                    const Expanded(
+                                        child: Align(
+                                            alignment: Alignment.bottomRight,
+                                            child: Icon(
+                                                Icons.keyboard_arrow_down))),
+                                  ],
+                                ))));
+                  }))
+        ]);
       } else {
         return Center(
           child: Text("Error: ${state.message}"),

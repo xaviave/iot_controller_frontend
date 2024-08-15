@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:iot_controller/src/blocs/periodic_task.dart';
 import 'package:iot_controller/src/router.dart';
+import 'package:iot_controller/src/ui/customColors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'blocs/schedule.dart';
@@ -60,8 +61,22 @@ class MyApp extends StatelessWidget {
                 ],
                 onGenerateTitle: (BuildContext context) =>
                     AppLocalizations.of(context)!.appTitle,
-                theme: ThemeData(),
-                darkTheme: ThemeData.dark(),
+                theme: ThemeData(
+                  brightness: Brightness.light,
+                  fontFamily: 'TitilliumWeb',
+                ).copyWith(
+                  extensions: <ThemeExtension<dynamic>>[
+                    CustomColors.light,
+                  ],
+                ),
+                darkTheme: ThemeData(
+                  brightness: Brightness.dark,
+                  fontFamily: 'TitilliumWeb',
+                ).copyWith(
+                  extensions: <ThemeExtension<dynamic>>[
+                    CustomColors.dark,
+                  ],
+                ),
                 themeMode: state.theme,
                 routerConfig: _router,
               ));

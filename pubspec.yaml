@@ -34,6 +34,13 @@ dev_dependencies:
   flutter_lints: ^3.0.0
 
 flutter:
+  fonts:
+    - family: TitilliumWeb
+      fonts:
+        - asset: fonts/TitilliumWeb-Regular.ttf
+        - asset: fonts/TitilliumWeb-Bold.ttf
+        - asset: fonts/TitilliumWeb-Black.ttf
+#          weight: 900
   uses-material-design: true
 
   # Enable generation of localized Strings from arb files.

@@ -5,6 +5,7 @@ import 'package:iot_controller/src/blocs/settings_bloc.dart';
 import 'package:iot_controller/src/models/celery_tasks/periodic_task.dart';
 import 'package:iot_controller/src/services/communication_service.dart';
 import 'package:iot_controller/src/ui/celery_task/periodic_task_create_view.dart';
+import 'package:iot_controller/src/ui/celery_task/periodic_task_minimal_view.dart';
 import 'package:iot_controller/src/ui/utils/popup/create_popup.dart';
 import 'package:iot_controller/src/ui/utils/popup/refresh_popup.dart';
 
@@ -56,28 +57,26 @@ class _PeriodicTaskListViewState extends State<PeriodicTaskListView> {
           state is CreatePeriodicTaskSuccess ||
           // loading here to avoid flickering | should notify
           state is PeriodicTaskLoading) {
-        return ListView.builder(
-            shrinkWrap: true,
-            restorationId: 'PeriodicTaskListView',
-            itemCount: state.tasks.length,
-            itemBuilder: (BuildContext context, int index) {
-              String name = state.tasks.elementAt(index).name;
-              return ListTile(
-                title: Column(children: [
-                  Text(name),
-                  Text(state.tasks.elementAt(index).getSchedule().toString())
-                  // PeriodicTaskPreview(task: state.tasks[index])
-                ]),
-                onTap: () {
-                  if (widget.onlyBody == false) {
-                    Navigator.of(context).pop();
-                  }
-                },
-                onLongPress: () {
-                  callbackDeletePeriodicTask(index, state.tasks);
-                },
-              );
-            });
+        return ListView.separated(
+          shrinkWrap: true,
+          restorationId: 'PeriodicTaskListView',
+          itemCount: state.tasks.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(
+              title: PeriodicTaskMinimalDetailsView(taskIndex: index),
+              onTap: () {
+                // if (widget.onlyBody == false) {
+                //   Navigator.of(context).pop();
+                // }
+              },
+              onLongPress: () {
+                callbackDeletePeriodicTask(index, state.tasks);
+              },
+            );
+          },
+          separatorBuilder: (context, index) =>
+              Divider(color: Theme.of(context).colorScheme.secondary),
+        );
       } else {
         // PeriodicTaskError
         return Center(

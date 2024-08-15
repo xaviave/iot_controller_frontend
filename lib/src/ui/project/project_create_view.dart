@@ -6,6 +6,7 @@ import 'package:iot_controller/src/blocs/project.dart';
 import 'package:iot_controller/src/blocs/user.dart';
 import 'package:iot_controller/src/models/products/base_product.dart';
 import 'package:iot_controller/src/models/project.dart';
+import 'package:iot_controller/src/ui/customColors.dart';
 
 class ProjectForm extends StatefulWidget {
   const ProjectForm({super.key});
@@ -36,6 +37,8 @@ class ProjectFormState extends State<ProjectForm> {
   @override
   Widget build(BuildContext context) {
     context.read<BaseProductGRPCBloc>().add(GetBaseProductListEvent(null));
+    final customColors = Theme.of(context).extension<CustomColors>()!;
+
     return BlocBuilder<BaseProductGRPCBloc, BaseProductState>(
         builder: (context, state) {
       return Form(
@@ -54,7 +57,7 @@ class ProjectFormState extends State<ProjectForm> {
                     : null;
               },
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 20),
             CustomDropdown<BaseProduct>.multiSelect(
                 multiSelectController: _productController,
                 hintText: 'Select products',
@@ -76,11 +79,11 @@ class ProjectFormState extends State<ProjectForm> {
                     color: Theme.of(context).colorScheme.onSurface,
                   ),
                   listItemDecoration: ListItemDecoration(
-                    selectedColor: Theme.of(context).colorScheme.primary,
-                    highlightColor: Theme.of(context).colorScheme.primary,
+                    selectedColor: Theme.of(context).colorScheme.surfaceBright,
+                    highlightColor: Theme.of(context).colorScheme.surfaceBright,
                   ),
                 )),
-            const SizedBox(height: 16),
+            const SizedBox(height: 20),
             SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -92,7 +95,7 @@ class ProjectFormState extends State<ProjectForm> {
                     style: TextStyle(fontWeight: FontWeight.w600),
                   ),
                 )),
-            const SizedBox(height: 16),
+            const SizedBox(height: 20),
             Row(
               children: [
                 SizedBox(

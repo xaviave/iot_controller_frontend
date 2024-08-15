@@ -1,5 +1,5 @@
-import 'package:intl/intl.dart';
-import 'package:go_router/go_router.dart';
+import "package:intl/intl.dart";
+import "package:go_router/go_router.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:iot_controller/src/blocs/periodic_task.dart";
@@ -8,6 +8,7 @@ import "package:iot_controller/src/blocs/project.dart";
 import "package:iot_controller/src/models/products/base_product.dart";
 import "package:iot_controller/src/models/project.dart";
 import "package:iot_controller/src/ui/celery_task/periodic_task_list_view.dart";
+import "package:iot_controller/src/ui/customColors.dart";
 import "package:iot_controller/src/ui/products/base_product/base_product_create_view.dart";
 import "package:iot_controller/src/ui/products/base_product/base_product_list_view.dart";
 import "package:iot_controller/src/ui/utils/capitalize.dart";
@@ -51,6 +52,16 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
     context.pushNamed("projects");
   }
 
+  Widget decorationBlock(BuildContext context, Widget bodyView) {
+    final customColors = Theme.of(context).extension<CustomColors>()!;
+
+    return Container(
+        decoration: BoxDecoration(
+            color: customColors.lightBackground,
+            borderRadius: const BorderRadius.all(Radius.circular(16))),
+        child: Padding(padding: const EdgeInsets.all(16), child: bodyView));
+  }
+
   Widget headerView(
     BuildContext context,
     ProjectState state,
@@ -60,10 +71,11 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
   ) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          titleView,
-          style: const TextStyle(fontSize: 28),
-        ),
+        title: Text(titleView,
+            style: const TextStyle(
+              fontSize: 48,
+              fontWeight: FontWeight.w900,
+            )),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -82,7 +94,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
           ),
         ],
       ),
-      body: bodyView,
+      body: Padding(padding: const EdgeInsets.all(16), child: bodyView),
       floatingActionButton: buttons ?? const SizedBox(),
     );
   }
@@ -106,8 +118,11 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
       "Products": BaseProductListView(
         callbackUpdateProject: updateProduct,
       ),
-      "Tasks":
-          PeriodicTaskListView(classType: "Project", classId: state.project!.id)
+      "Tasks": PeriodicTaskListView(
+        classType: "Project",
+        classId: state.project!.id,
+        onlyBody: true,
+      )
     };
 
     return headerView(
@@ -116,15 +131,37 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
         project.name.capitalize,
         DefaultTabController(
           length: tabs.length,
-          child: Column(children: [
-            Text(
-              "${state.project!.owner.username.toUpperCase()}'s project\n"
-              "Created on ${DateFormat.yMMMd().format(state.project!.pubDate)}",
-              style: const TextStyle(fontSize: 20),
-            ),
-            TabBar(
-                tabs: tabs.keys.map((String name) => Tab(text: name)).toList()),
-            Expanded(child: TabBarView(children: tabs.values.toList())),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            decorationBlock(
+                context,
+                SizedBox(
+                    width: double.infinity,
+                    child: Text(
+                      "${state.project!.owner.username.toUpperCase()}'s project\n"
+                      "Created on ${DateFormat.yMMMd().format(state.project!.pubDate)}",
+                      style: const TextStyle(fontSize: 20),
+                    ))),
+            const SizedBox(height: 20),
+            Expanded(
+                child: decorationBlock(
+              context,
+              Column(children: [
+                TabBar.secondary(
+                    indicator: BoxDecoration(
+                      color: Theme.of(context).colorScheme.surface,
+                      border: Border(
+                        bottom: BorderSide(
+                            color: Theme.of(context).colorScheme.primary,
+                            width: 3.0),
+                      ),
+                    ),
+                    tabs: tabs.keys
+                        .map((String name) => Tab(text: name))
+                        .toList()),
+                Expanded(child: TabBarView(children: tabs.values.toList()))
+              ]),
+            ))
           ]),
         ),
         Column(

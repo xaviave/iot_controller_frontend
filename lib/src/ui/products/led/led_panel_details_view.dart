@@ -4,11 +4,11 @@ import "package:go_router/go_router.dart";
 import "package:iot_controller/src/blocs/led_mode.dart";
 import "package:iot_controller/src/blocs/periodic_task.dart";
 import "package:iot_controller/src/blocs/product.dart";
-import "package:iot_controller/src/models/celery_tasks/periodic_task.dart";
 import "package:iot_controller/src/models/products/base_product.dart";
 import "package:iot_controller/src/models/products/led/led_panel.dart";
 import "package:iot_controller/src/models/products/led/modes/led_mode.dart";
 import "package:iot_controller/src/ui/celery_task/periodic_task_list_view.dart";
+import "package:iot_controller/src/ui/customColors.dart";
 import "package:iot_controller/src/ui/products/base_product/update_ip_alert_view.dart";
 import "package:iot_controller/src/ui/products/led/modes/led_mode_list_view.dart";
 import "package:iot_controller/src/ui/utils/capitalize.dart";
@@ -17,6 +17,113 @@ import "package:iot_controller/src/ui/utils/popup/delete_popup.dart";
 import "package:iot_controller/src/ui/utils/popup/refresh_popup.dart";
 
 import "modes/led_mode_details_view.dart";
+import 'dart:math' as math;
+//
+// class PotentiometerSlider extends StatefulWidget {
+//   final double size;
+//   final ValueChanged<double> onChanged;
+//
+//   const PotentiometerSlider({
+//     super.key,
+//     required this.size,
+//     required this.onChanged,
+//   });
+//
+//   @override
+//   _PotentiometerSliderState createState() => _PotentiometerSliderState();
+// }
+//
+// class _PotentiometerSliderState extends State<PotentiometerSlider> {
+//   double _value = 0.5; // Initial value
+//   Offset _center = Offset.zero;
+//
+//   void _updateValue(Offset globalPosition) {
+//     RenderBox renderBox = context.findRenderObject() as RenderBox;
+//     _center = renderBox.size.center(Offset.zero);
+//     Offset position = globalPosition - _center;
+//
+//     double angle = math.atan2(position.dy, position.dx);
+//     double degree = angle * 180 / math.pi;
+//     double fixedDegree = degree < 0 ? 360 + degree : degree;
+//
+//     // Ensure the potentiometer works within the 240-degree range
+//     if (fixedDegree >= 150 && fixedDegree <= 390) {
+//       double percentage = (fixedDegree - 150) / 240;
+//       setState(() {
+//         _value = percentage.clamp(0.0, 1.0);
+//         widget.onChanged(_value);
+//       });
+//     }
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return GestureDetector(
+//       onPanUpdate: (details) => _updateValue(details.localPosition),
+//       onPanStart: (details) => _updateValue(details.localPosition),
+//       child: CustomPaint(
+//         size: Size(widget.size, widget.size),
+//         painter: _PotentiometerPainter(value: _value),
+//       ),
+//     );
+//   }
+// }
+//
+// class _PotentiometerPainter extends CustomPainter {
+//   final double value;
+//
+//   _PotentiometerPainter({required this.value});
+//
+//   @override
+//   void paint(Canvas canvas, Size size) {
+//     final Paint trackPaint = Paint()
+//       ..color = Colors.grey.shade300
+//       ..style = PaintingStyle.stroke
+//       ..strokeWidth = 8.0
+//       ..strokeCap = StrokeCap.round;
+//
+//     final Paint progressPaint = Paint()
+//       ..color = Colors.blueAccent
+//       ..style = PaintingStyle.stroke
+//       ..strokeWidth = 8.0
+//       ..strokeCap = StrokeCap.round;
+//
+//     final double startAngle = 150 * math.pi / 180;
+//     final double sweepAngle = 240 * math.pi / 180;
+//     final double radius = size.width / 2;
+//
+//     // Draw the track
+//     canvas.drawArc(
+//       Rect.fromCircle(center: Offset(radius, radius), radius: radius - 8),
+//       startAngle,
+//       sweepAngle,
+//       false,
+//       trackPaint,
+//     );
+//
+//     // Draw the progress
+//     canvas.drawArc(
+//       Rect.fromCircle(center: Offset(radius, radius), radius: radius - 8),
+//       startAngle,
+//       value * sweepAngle,
+//       false,
+//       progressPaint,
+//     );
+//
+//     // Draw the thumb
+//     final Offset thumbPos = Offset(
+//       radius + (radius - 8) * math.cos(startAngle + value * sweepAngle),
+//       radius + (radius - 8) * math.sin(startAngle + value * sweepAngle),
+//     );
+//
+//     canvas.drawCircle(thumbPos, 12.0, Paint()..color = Colors.blueAccent);
+//   }
+//
+//   @override
+//   bool shouldRepaint(_PotentiometerPainter oldDelegate) {
+//     return oldDelegate.value != value;
+//   }
+// }
 
 class LedPanelDetailsView extends StatefulWidget {
   final Function(BaseProduct) callbackUpdateProject;
@@ -86,14 +193,20 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
         Color.lerp(Colors.black, Colors.yellow, productBrightness)!;
   }
 
-  Widget headerView(BuildContext context, BaseProductState state,
-      String titleView, Widget bodyView, Widget? buttons) {
+  Widget headerView(
+    BuildContext context,
+    BaseProductState state,
+    String titleView,
+    Widget bodyView,
+    Widget? buttons,
+  ) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-            titleView,
-            style: const TextStyle(fontSize: 28),
-          ),
+          title: Text(titleView,
+              style: const TextStyle(
+                fontSize: 48,
+                fontWeight: FontWeight.w900,
+              )),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
@@ -114,18 +227,8 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
             ),
           ],
         ),
-        body: bodyView,
+        body: Padding(padding: const EdgeInsets.all(16), child: bodyView),
         floatingActionButton: buttons ?? const SizedBox());
-  }
-
-  Widget errorBuild(BuildContext context, BaseProductState errorState) {
-    return headerView(
-      context,
-      errorState,
-      "Error Led panel",
-      Center(child: Text(errorState.message)),
-      null,
-    );
   }
 
   Widget ledPanelBuild(BuildContext context, BaseProductState state) {
@@ -184,6 +287,13 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                 style: TextStyle(fontSize: 28),
               )),
         ),
+
+        // PotentiometerSlider(
+        //   size: 300,
+        //   onChanged: (value) {
+        //     print('Value: $value');
+        //   },
+        // ),
         Slider(
             min: 0,
             max: 1,
@@ -249,9 +359,22 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
           callbackUpdateProductLedMode: updateProduct,
         )
       ])),
-      "Tasks":
-          PeriodicTaskListView(classType: "Product", classId: state.product!.id)
+      "Tasks": PeriodicTaskListView(
+        classType: "Product",
+        classId: state.product!.id,
+        onlyBody: true,
+      )
     };
+
+    Widget decorationBlock(BuildContext context, Widget bodyView) {
+      final customColors = Theme.of(context).extension<CustomColors>()!;
+
+      return Container(
+          decoration: BoxDecoration(
+              color: customColors.lightBackground,
+              borderRadius: const BorderRadius.all(Radius.circular(16))),
+          child: Padding(padding: const EdgeInsets.all(16), child: bodyView));
+    }
 
     return headerView(
         context,
@@ -259,53 +382,16 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
         product.name.capitalize,
         DefaultTabController(
           length: tabs.length,
-          child: Column(children: [
-            Text(
-              product.name.capitalize,
-              style: const TextStyle(fontSize: 20),
-            ),
-            TabBar(
-                tabs: tabs.keys.map((String name) => Tab(text: name)).toList()),
-            Expanded(child: TabBarView(children: tabs.values.toList())),
-          ]),
+          child: decorationBlock(
+              context,
+              Column(children: [
+                TabBar(
+                    tabs: tabs.keys
+                        .map((String name) => Tab(text: name))
+                        .toList()),
+                Expanded(child: TabBarView(children: tabs.values.toList())),
+              ])),
         ),
-
-        // TextButton(
-        //   onPressed: () {
-        //     showDialog(
-        //         context: context,
-        //         builder: (BuildContext context) => PopScope(
-        //             onPopInvokedWithResult: (bool didPop, _) =>
-        //                 // setLedMode(product.mode),
-        //                 {},
-        //             child: AlertDialog(
-        //               title: const Text("Change periodic task"),
-        //               insetPadding: const EdgeInsets.all(50),
-        //               content: SizedBox(
-        //                   width: MediaQuery.of(context).size.width,
-        //                   child: const PeriodicTaskListView(
-        //                       classType: "BaseProduct")),
-        //             )));
-        //   },
-        //   child: Container(
-        //       margin: const EdgeInsets.all(10),
-        //       child: const Text(
-        //         "Update periodic tasks",
-        //         style: TextStyle(fontSize: 28),
-        //       )),
-        // ),
-        // SingleChildScrollView(
-        //     child: SizedBox(
-        //         height: MediaQuery.of(context).size.height / 5,
-        //         child: ListView(children: () {
-        //           List<PeriodicTask> t =
-        //               BlocProvider.of<PeriodicTaskGRPCBloc>(context)
-        //                   .state
-        //                   .queryTasks;
-        //           return t
-        //               .map((x) => ListTile(title: Text(x.toString())))
-        //               .toList();
-        //         }()))),
         Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -322,6 +408,16 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
             )
           ],
         ));
+  }
+
+  Widget errorBuild(BuildContext context, BaseProductState errorState) {
+    return headerView(
+      context,
+      errorState,
+      "Error Led panel",
+      Center(child: Text(errorState.message)),
+      null,
+    );
   }
 
   @override

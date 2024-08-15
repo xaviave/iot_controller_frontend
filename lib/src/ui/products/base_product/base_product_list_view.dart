@@ -29,30 +29,32 @@ class BaseProductListView extends StatelessWidget {
           state is DestroyBaseProductSuccess) {
         final List<BaseProduct> products = state.products;
         return ListView.separated(
-            restorationId: 'BaseProductListView',
-            itemCount: products.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ListTile(title: () {
+          restorationId: 'BaseProductListView',
+          itemCount: products.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(title: () {
+              if (products[index] is LedPanel) {
+                return LedPanelMinimalDetailsView(productIndex: index);
+              } else if (products[index] is CoffeeMachine) {
+                return CoffeeMachineMinimalDetailsView(productIndex: index);
+              }
+            }(), onTap: () {
+              context.read<BaseProductGRPCBloc>().add(GetBaseProductEvent(
+                  product: products[index], products: products));
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
                 if (products[index] is LedPanel) {
-                  return LedPanelMinimalDetailsView(productIndex: index);
-                } else if (products[index] is CoffeeMachine) {
-                  return CoffeeMachineMinimalDetailsView(productIndex: index);
+                  return LedPanelDetailsView(
+                      callbackUpdateProject: callbackUpdateProject);
+                } else {
+                  return CoffeeMachineDetailsView(
+                      callbackUpdateProject: callbackUpdateProject);
                 }
-              }(), onTap: () {
-                context.read<BaseProductGRPCBloc>().add(GetBaseProductEvent(
-                    product: products[index], products: products));
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  if (products[index] is LedPanel) {
-                    return LedPanelDetailsView(
-                        callbackUpdateProject: callbackUpdateProject);
-                  } else {
-                    return CoffeeMachineDetailsView(
-                        callbackUpdateProject: callbackUpdateProject);
-                  }
-                }));
-              });
-            },
-            separatorBuilder: (context, index) => const SizedBox(height: 10));
+              }));
+            });
+          },
+          separatorBuilder: (context, index) =>
+              Divider(color: Theme.of(context).colorScheme.secondary),
+        );
       } else {
         return const SizedBox();
       }
