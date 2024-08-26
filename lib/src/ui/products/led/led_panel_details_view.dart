@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
+import "package:flutter/rendering.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:go_router/go_router.dart";
+import "package:interactive_slider/interactive_slider.dart";
 import "package:iot_controller/src/blocs/led_mode.dart";
 import "package:iot_controller/src/blocs/periodic_task.dart";
 import "package:iot_controller/src/blocs/product.dart";
@@ -13,117 +15,8 @@ import "package:iot_controller/src/ui/products/base_product/update_ip_alert_view
 import "package:iot_controller/src/ui/products/led/modes/led_mode_list_view.dart";
 import "package:iot_controller/src/ui/utils/capitalize.dart";
 import "package:iot_controller/src/ui/utils/on_off_button.dart";
-import "package:iot_controller/src/ui/utils/popup/delete_popup.dart";
-import "package:iot_controller/src/ui/utils/popup/refresh_popup.dart";
 
 import "modes/led_mode_details_view.dart";
-import 'dart:math' as math;
-//
-// class PotentiometerSlider extends StatefulWidget {
-//   final double size;
-//   final ValueChanged<double> onChanged;
-//
-//   const PotentiometerSlider({
-//     super.key,
-//     required this.size,
-//     required this.onChanged,
-//   });
-//
-//   @override
-//   _PotentiometerSliderState createState() => _PotentiometerSliderState();
-// }
-//
-// class _PotentiometerSliderState extends State<PotentiometerSlider> {
-//   double _value = 0.5; // Initial value
-//   Offset _center = Offset.zero;
-//
-//   void _updateValue(Offset globalPosition) {
-//     RenderBox renderBox = context.findRenderObject() as RenderBox;
-//     _center = renderBox.size.center(Offset.zero);
-//     Offset position = globalPosition - _center;
-//
-//     double angle = math.atan2(position.dy, position.dx);
-//     double degree = angle * 180 / math.pi;
-//     double fixedDegree = degree < 0 ? 360 + degree : degree;
-//
-//     // Ensure the potentiometer works within the 240-degree range
-//     if (fixedDegree >= 150 && fixedDegree <= 390) {
-//       double percentage = (fixedDegree - 150) / 240;
-//       setState(() {
-//         _value = percentage.clamp(0.0, 1.0);
-//         widget.onChanged(_value);
-//       });
-//     }
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return GestureDetector(
-//       onPanUpdate: (details) => _updateValue(details.localPosition),
-//       onPanStart: (details) => _updateValue(details.localPosition),
-//       child: CustomPaint(
-//         size: Size(widget.size, widget.size),
-//         painter: _PotentiometerPainter(value: _value),
-//       ),
-//     );
-//   }
-// }
-//
-// class _PotentiometerPainter extends CustomPainter {
-//   final double value;
-//
-//   _PotentiometerPainter({required this.value});
-//
-//   @override
-//   void paint(Canvas canvas, Size size) {
-//     final Paint trackPaint = Paint()
-//       ..color = Colors.grey.shade300
-//       ..style = PaintingStyle.stroke
-//       ..strokeWidth = 8.0
-//       ..strokeCap = StrokeCap.round;
-//
-//     final Paint progressPaint = Paint()
-//       ..color = Colors.blueAccent
-//       ..style = PaintingStyle.stroke
-//       ..strokeWidth = 8.0
-//       ..strokeCap = StrokeCap.round;
-//
-//     final double startAngle = 150 * math.pi / 180;
-//     final double sweepAngle = 240 * math.pi / 180;
-//     final double radius = size.width / 2;
-//
-//     // Draw the track
-//     canvas.drawArc(
-//       Rect.fromCircle(center: Offset(radius, radius), radius: radius - 8),
-//       startAngle,
-//       sweepAngle,
-//       false,
-//       trackPaint,
-//     );
-//
-//     // Draw the progress
-//     canvas.drawArc(
-//       Rect.fromCircle(center: Offset(radius, radius), radius: radius - 8),
-//       startAngle,
-//       value * sweepAngle,
-//       false,
-//       progressPaint,
-//     );
-//
-//     // Draw the thumb
-//     final Offset thumbPos = Offset(
-//       radius + (radius - 8) * math.cos(startAngle + value * sweepAngle),
-//       radius + (radius - 8) * math.sin(startAngle + value * sweepAngle),
-//     );
-//
-//     canvas.drawCircle(thumbPos, 12.0, Paint()..color = Colors.blueAccent);
-//   }
-//
-//   @override
-//   bool shouldRepaint(_PotentiometerPainter oldDelegate) {
-//     return oldDelegate.value != value;
-//   }
-// }
 
 class LedPanelDetailsView extends StatefulWidget {
   final Function(BaseProduct) callbackUpdateProject;
@@ -231,76 +124,177 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
         floatingActionButton: buttons ?? const SizedBox());
   }
 
-  Widget ledPanelBuild(BuildContext context, BaseProductState state) {
-    final LedPanel product = state.product! as LedPanel;
-    final periodicTaskState =
-        BlocProvider.of<PeriodicTaskGRPCBloc>(context).state;
-
-    context.read<PeriodicTaskGRPCBloc>().add(QueryPeriodicTaskEvent(
-          classType: "BaseProduct",
-          classId: state.product!.id,
-          tasks: periodicTaskState.tasks,
+  Widget buttonDecoration(String title, Function callbackButton,
+      Widget? callbackWidget, Function? callbackClosePopup) {
+    return ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        )),
+        onPressed: () {
+          if (callbackWidget != null) {
+            callbackButton(context, title, callbackWidget, callbackClosePopup);
+          } else {
+            callbackButton(context);
+          }
+        },
+        child: Container(
+          // decoration: BoxDecoration(
+          //     color: Theme.of(context).colorScheme.surface,
+          //     borderRadius: const BorderRadius.all(Radius.circular(16))),
+          alignment: Alignment.center,
+          height: MediaQuery.of(context).size.width / 6,
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+            ),
+            textAlign: TextAlign.center,
+          ),
         ));
-    setLedMode(product.mode);
+  }
 
-    final Map<String, Widget> tabs = {
-      "Product": SingleChildScrollView(
-          child: Column(children: [
-        // add categories
-        OnOffButton(
-          status: product.status,
-          callbackUpdateStatus: updateProduct,
-        ),
-        const SizedBox(height: 10),
-        TextButton(
-          onPressed: () {
-            showDialog(
-                context: context,
-                builder: (BuildContext context) => AlertDialog(
-                      title: const Text(
-                        "Change Product IP",
-                        textAlign: TextAlign.center,
+  void confirmationPopupDelete(
+      BuildContext context, String title, Widget? a, Function? b) async {
+    await showDialog(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+              title: Text(
+                title,
+                textAlign: TextAlign.center,
+              ),
+              insetPadding: const EdgeInsets.all(50),
+              content: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(false);
+                          return;
+                        },
+                        child: const Text(
+                          'Cancel',
+                          style: TextStyle(fontWeight: FontWeight.w600),
+                        ),
                       ),
-                      insetPadding: const EdgeInsets.all(50),
-                      content: SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          child: IpUpdateAlertView(
-                            ipAddress: product.ipAddress,
-                            ipPort: product.ipPort,
-                            callbackUpdateIp: updateProduct,
-                          )),
-                      actions: [
-                        TextButton(
-                          child: const Text("Cancel"),
+                      ElevatedButton(
+                        onPressed: () {
+                          callbackDeleteLedPanel(context);
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text(
+                          'Submit',
+                          style: TextStyle(fontWeight: FontWeight.w600),
+                        ),
+                      )
+                    ],
+                  )),
+            ));
+  }
+
+  void confirmationPopup(BuildContext context, String title,
+      Widget callbackWidget, Function? callbackClosePopup) async {
+    await showDialog(
+        context: context,
+        builder: (BuildContext context) => PopScope(
+              onPopInvokedWithResult: (bool didPop, _) {
+                if (callbackClosePopup != null) {
+                  // callbackClosePopup(mode);
+                }
+              },
+              child: AlertDialog(
+                  title: Text(
+                    title,
+                    textAlign: TextAlign.center,
+                  ),
+                  insetPadding: const EdgeInsets.all(50),
+                  content: SizedBox(
+                      child: Column(mainAxisSize: MainAxisSize.min, children: [
+                    callbackWidget,
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
                           onPressed: () {
-                            setLedMode(product.mode);
+                            Navigator.of(context).pop(false);
+                            return;
+                          },
+                          child: const Text(
+                            'Cancel',
+                            style: TextStyle(fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
                             Navigator.of(context).pop();
                           },
+                          child: const Text(
+                            'Submit',
+                            style: TextStyle(fontWeight: FontWeight.w600),
+                          ),
                         )
                       ],
-                    ));
-          },
-          child: Container(
-              margin: const EdgeInsets.all(10),
-              child: const Text(
-                "Update Product IP",
-                style: TextStyle(fontSize: 28),
-              )),
-        ),
+                    )
+                  ]))),
+            ));
+  }
 
-        // PotentiometerSlider(
-        //   size: 300,
-        //   onChanged: (value) {
-        //     print('Value: $value');
-        //   },
-        // ),
-        Slider(
-            min: 0,
-            max: 1,
-            activeColor: colorBrightness,
-            inactiveColor: Colors.grey,
-            thumbColor: colorBrightness,
-            value: productBrightness,
+  Widget ledPanelBuild(BuildContext context, BaseProductState state) {
+    final LedPanel product = state.product! as LedPanel;
+    // final periodicTaskState =
+    //     BlocProvider.of<PeriodicTaskGRPCBloc>(context).state;
+
+    // move that in the previous context or initstate
+    // context.read<PeriodicTaskGRPCBloc>().add(QueryPeriodicTaskEvent(
+    //       classType: "BaseProduct",
+    //       classId: state.product!.id,
+    //       tasks: periodicTaskState.tasks,
+    //     ));
+    setLedMode(product.mode);
+    final Map<String, Widget> tabs = {
+      "Product details": SingleChildScrollView(
+          child: Column(children: [
+        const SizedBox(height: 10),
+        // add categories
+        LedModeDetailsView(
+          callbackUpdateProductLedMode: updateProduct,
+        ),
+        const SizedBox(height: 10),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            buttonDecoration(
+                "Update IP",
+                confirmationPopup,
+                IpUpdateAlertView(
+                    ipAddress: product.ipAddress,
+                    ipPort: product.ipPort,
+                    callbackUpdateIp: updateProduct),
+                null),
+            const SizedBox(width: 20),
+            buttonDecoration(
+              "Mode Selection",
+              confirmationPopup,
+              LedModeListView(
+                  onlyBody: true,
+                  callbackUpdateProductLedMode: updateProduct),
+              setLedMode,
+            )
+          ],
+        ),
+        const SizedBox(height: 30),
+        InteractiveSlider(
+            unfocusedOpacity: 0.8,
+            unfocusedHeight: 25,
+            focusedHeight: 40,
+            unfocusedMargin: const EdgeInsets.symmetric(horizontal: 0),
+            foregroundColor: colorBrightness,
+            backgroundColor: Theme.of(context).colorScheme.surface,
+            iconGap: 16,
             onChanged: (value) {
               setState(() {
                 productBrightness = double.parse(value.toStringAsFixed(2));
@@ -311,53 +305,24 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                 )!;
               });
             },
-            onChangeEnd: (_) {
+            onProgressUpdated: (_) {
               updateProduct(context, {"brightness": productBrightness});
             }),
+        const SizedBox(height: 30),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Container(
-                margin: const EdgeInsets.all(10),
-                child: Text(product.mode.name.capitalize,
-                    style: const TextStyle(fontSize: 28))),
-            TextButton(
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) => PopScope(
-                        onPopInvokedWithResult: (bool didPop, _) =>
-                            setLedMode(product.mode),
-                        child: AlertDialog(
-                            title: const Text("Change Mode"),
-                            insetPadding: const EdgeInsets.all(50),
-                            content: SizedBox(
-                                width: MediaQuery.of(context).size.width,
-                                child: LedModeListView(
-                                  callbackUpdateProductLedMode: updateProduct,
-                                )),
-                            actions: [
-                              TextButton(
-                                  child: const Text("Cancel"),
-                                  onPressed: () {
-                                    setLedMode(product.mode);
-                                    Navigator.of(context).pop();
-                                  })
-                            ])));
-              },
-              child: Container(
-                  margin: const EdgeInsets.all(10),
-                  child: const Text(
-                    "Update mode",
-                    style: TextStyle(fontSize: 28),
-                  )),
-            )
+            buttonDecoration(
+                "Delete Product", confirmationPopupDelete, Container(), null),
+            const SizedBox(height: 20),
+            buttonDecoration("Refresh Product", refreshLedPanel, null, null),
+            const SizedBox(width: 20),
+            OnOffButton(
+              status: product.status,
+              callbackUpdateStatus: updateProduct,
+            ),
           ],
         ),
-        const SizedBox(height: 10),
-        LedModeDetailsView(
-          callbackUpdateProductLedMode: updateProduct,
-        )
       ])),
       "Tasks": PeriodicTaskListView(
         classType: "Product",
@@ -392,22 +357,24 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                 Expanded(child: TabBarView(children: tabs.values.toList())),
               ])),
         ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            DeletePopup(
-                name: "led_panel",
-                objectName: product.name,
-                heroTag: "led_panel_delete_button",
-                deleteCallBack: callbackDeleteLedPanel,
-                onPressedCallBack: () {}),
-            const SizedBox(height: 10),
-            RefreshPopup(
-              heroTag: "led_panel_refresh_button",
-              onPressedCallBack: refreshLedPanel,
-            )
-          ],
-        ));
+        null
+        // Column(
+        //   mainAxisAlignment: MainAxisAlignment.end,
+        //   children: [
+        //     DeletePopup(
+        //         name: "led_panel",
+        //         objectName: product.name,
+        //         heroTag: "led_panel_delete_button",
+        //         deleteCallBack: callbackDeleteLedPanel,
+        //         onPressedCallBack: () {}),
+        //     const SizedBox(height: 10),
+        //     RefreshPopup(
+        //       heroTag: "led_panel_refresh_button",
+        //       onPressedCallBack: refreshLedPanel,
+        //     )
+        //   ],
+        // )
+        );
   }
 
   Widget errorBuild(BuildContext context, BaseProductState errorState) {

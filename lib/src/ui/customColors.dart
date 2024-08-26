@@ -32,8 +32,8 @@ class CustomColors extends ThemeExtension<CustomColors> {
   String toString() => 'CustomColors(lightBackground: $lightBackground)';
   // the light theme
   static var light = const CustomColors(
-    lightBackground: Colors.red,
-    // lightBackground: Colors.white70,
+    // lightBackground: Colors.red,
+    lightBackground: Colors.white70,
   );
   // the dark theme
   static const dark = CustomColors(

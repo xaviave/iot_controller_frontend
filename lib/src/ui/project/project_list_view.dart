@@ -103,7 +103,7 @@ class _ProjectListViewState extends State<ProjectListView> {
                     fontSize: 48,
                     fontWeight: FontWeight.w900,
                   ))),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           Expanded(
               child: MasonryGridView.count(
                   crossAxisCount: max(axisCount, 1),

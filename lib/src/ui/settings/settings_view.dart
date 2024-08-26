@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
+import "package:go_router/go_router.dart";
 import "package:iot_controller/src/blocs/settings_bloc.dart";
 import "package:iot_controller/src/blocs/user.dart";
 import "package:iot_controller/src/ui/customColors.dart";
@@ -151,6 +152,10 @@ class SettingsView extends StatelessWidget {
             style: TextStyle(
               fontSize: 36,
             )),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => context.pop("/settings"),
+        ),
       ),
       body: BlocBuilder<SettingsBloc, SettingsState>(
           builder: (context, settingState) {

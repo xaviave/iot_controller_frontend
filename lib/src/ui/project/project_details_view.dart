@@ -159,6 +159,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
                     tabs: tabs.keys
                         .map((String name) => Tab(text: name))
                         .toList()),
+                const SizedBox(height: 10),
                 Expanded(child: TabBarView(children: tabs.values.toList()))
               ]),
             ))

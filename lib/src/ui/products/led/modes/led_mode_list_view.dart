@@ -66,14 +66,16 @@ class _LedModeListViewState extends State<LedModeListView> {
           state is CreateLedModeSuccess ||
           // loading here to avoid flickering | should notify
           state is LedModeLoading) {
-        return ListView.builder(
-            shrinkWrap: true,
+        return SizedBox(
+            width: double.maxFinite,
+            height: MediaQuery.of(context).size.height / 1.5,
+            child: ListView.builder(
             restorationId: 'LedModeListView',
             itemCount: state.modes.length,
             itemBuilder: (BuildContext context, int index) {
               String name = state.modes.elementAt(index).name;
               return ListTile(
-                title: Column(children: [
+                title: Column(mainAxisSize: MainAxisSize.min, children: [
                   Text("Led mode '$name'"),
                   LedModePreview(mode: state.modes[index])
                 ]),
@@ -95,7 +97,7 @@ class _LedModeListViewState extends State<LedModeListView> {
                   callbackDeleteLedMode(index, state.modes);
                 },
               );
-            });
+            }));
       } else {
         // LedModeError
         return Center(
@@ -117,12 +119,11 @@ class _LedModeListViewState extends State<LedModeListView> {
               serverName: state.serverName, serverPort: state.serverPort)));
     }, child: () {
       if (widget.onlyBody) {
-        return SizedBox(
-            height: MediaQuery.of(context).size.height / 3,
-            child: bodyListView());
+        return bodyListView();
       } else {
         return Scaffold(
-            body: bodyListView(),
+            body: Padding(
+                padding: const EdgeInsets.all(16), child: bodyListView()),
             floatingActionButton: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:interactive_slider/interactive_slider.dart';
 import 'package:iot_controller/src/blocs/product.dart';
 import 'package:iot_controller/src/models/products/led/led_panel.dart';
 import 'package:iot_controller/src/ui/utils/capitalize.dart';
@@ -53,15 +54,11 @@ class _LedPanelMinimalDetailsViewState
             borderRadius: const BorderRadius.all(Radius.circular(16))),
         child: Padding(
             padding: const EdgeInsets.all(16),
-            child:
-                Column(
-                  children: [
-                    // ClipRRect(
-                    //     borderRadius: BorderRadius.circular(8.0),
-                    //     child: Image.network(
-                    //       "https://indieground.net/wp-content/uploads/2022/06/floppydiskdesign-indiegroundblog_four_tet-1024x1024.jpg",
-                    //     )),
-                    Row(
+            child: Column(
+              children: [
+                Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
@@ -72,27 +69,29 @@ class _LedPanelMinimalDetailsViewState
                           OnOffButton(
                               status: product.status,
                               callbackUpdateStatus: updateProduct)
-                        ]),
-                    Slider(
-                        min: 0,
-                        max: 1,
-                        activeColor: colorBrightness,
-                        inactiveColor: Colors.grey,
-                        thumbColor: colorBrightness,
-                        value: productBrightness,
-                        onChanged: (value) {
-                          setState(() {
-                            productBrightness =
-                                double.parse(value.toStringAsFixed(2));
-                            colorBrightness = Color.lerp(Colors.black,
-                                Colors.yellow, productBrightness)!;
-                          });
-                        },
-                        onChangeEnd: (value) {
-                          updateProduct(
-                              context, {"brightness": productBrightness});
-                        }),
-                  ],
-                )));
+                        ])),
+                InteractiveSlider(
+                    iconPosition: IconPosition.inside,
+                    unfocusedHeight: 25,
+                    focusedHeight: 40,
+                    unfocusedMargin: const EdgeInsets.symmetric(horizontal: 0),
+                    foregroundColor: colorBrightness,
+                    iconGap: 16,
+                    onChanged: (value) {
+                      setState(() {
+                        productBrightness =
+                            double.parse(value.toStringAsFixed(2));
+                        colorBrightness = Color.lerp(
+                          Colors.black,
+                          Colors.yellow,
+                          productBrightness,
+                        )!;
+                      });
+                    },
+                    onProgressUpdated: (_) {
+                      updateProduct(context, {"brightness": productBrightness});
+                    })
+              ],
+            )));
   }
 }

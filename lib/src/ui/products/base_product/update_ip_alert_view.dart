@@ -13,9 +13,10 @@ class IpUpdateAlertView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Padding(
-            padding: const EdgeInsets.all(16),
+    return Padding(
+        padding: const EdgeInsets.all(16),
+        child: SizedBox(
+            width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
                 Padding(
@@ -31,7 +32,7 @@ class IpUpdateAlertView extends StatelessWidget {
                     },
                   ),
                 ),
-                const SizedBox(height: 10, width: 1000),
+                const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: TextField(
