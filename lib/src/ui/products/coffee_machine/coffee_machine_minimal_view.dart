@@ -36,16 +36,21 @@ class _CoffeeMachineMinimalDetailsViewState
         state.products[widget.productIndex] as CoffeeMachine;
 
     return Container(
-      padding: const EdgeInsets.all(12),
-      width: double.infinity,
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Text(
-          product.name.capitalize,
-          style: const TextStyle(fontSize: 28),
-          textAlign: TextAlign.center,
-        ),
-        OnOffButton(status: product.status, callbackUpdateStatus: updateProduct)
-      ]),
-    );
+        decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surface,
+            borderRadius: const BorderRadius.all(Radius.circular(16))),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Expanded(
+                child: Text(
+              product.name.capitalize,
+              style: const TextStyle(fontSize: 28),
+            )),
+            OnOffButton(
+                status: product.status, callbackUpdateStatus: updateProduct)
+          ]),
+        ));
   }
 }

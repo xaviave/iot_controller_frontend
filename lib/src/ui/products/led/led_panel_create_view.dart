@@ -32,14 +32,10 @@ class LedPanelForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        LedModeListView(
-          onlyBody: true,
-          callbackUpdateProductLedMode: updateMode,
-        ),
-      ],
-    );
+    return Expanded(
+        child: LedModeListView(
+      abstractRequest: false,
+      callbackUpdateProductLedMode: updateMode,
+    ));
   }
 }

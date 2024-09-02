@@ -86,12 +86,21 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
         Color.lerp(Colors.black, Colors.yellow, productBrightness)!;
   }
 
+  Widget decorationBlock(BuildContext context, Widget bodyView) {
+    final customColors = Theme.of(context).extension<CustomColors>()!;
+
+    return Container(
+        decoration: BoxDecoration(
+            color: customColors.lightBackground,
+            borderRadius: const BorderRadius.all(Radius.circular(16))),
+        child: Padding(padding: const EdgeInsets.all(16), child: bodyView));
+  }
+
   Widget headerView(
     BuildContext context,
     BaseProductState state,
     String titleView,
     Widget bodyView,
-    Widget? buttons,
   ) {
     return Scaffold(
         appBar: AppBar(
@@ -120,89 +129,64 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
             ),
           ],
         ),
-        body: Padding(padding: const EdgeInsets.all(16), child: bodyView),
-        floatingActionButton: buttons ?? const SizedBox());
+        body: Padding(padding: const EdgeInsets.all(16), child: bodyView));
   }
 
-  Widget buttonDecoration(String title, Function callbackButton,
-      Widget? callbackWidget, Function? callbackClosePopup) {
-    return ElevatedButton(
-        style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        )),
-        onPressed: () {
-          if (callbackWidget != null) {
-            callbackButton(context, title, callbackWidget, callbackClosePopup);
-          } else {
-            callbackButton(context);
-          }
-        },
-        child: Container(
-          // decoration: BoxDecoration(
-          //     color: Theme.of(context).colorScheme.surface,
-          //     borderRadius: const BorderRadius.all(Radius.circular(16))),
-          alignment: Alignment.center,
-          height: MediaQuery.of(context).size.width / 6,
-          child: Text(
-            title,
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ));
-  }
-
-  void confirmationPopupDelete(
-      BuildContext context, String title, Widget? a, Function? b) async {
-    await showDialog(
-        context: context,
-        builder: (BuildContext context) => AlertDialog(
-              title: Text(
+  Widget buttonDecoration(
+      String title,
+      Function callbackButton,
+      Widget? callbackWidget,
+      Function? callbackClosePopup,
+      Function? callbackSubmit) {
+    return Expanded(
+        child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            )),
+            onPressed: () {
+              if (callbackWidget != null) {
+                callbackButton(context, title, callbackWidget,
+                    callbackClosePopup, callbackSubmit);
+              } else {
+                callbackButton(context);
+              }
+            },
+            child: Container(
+              // width: MediaQuery.of(context).size.width / 4,
+              // decoration: BoxDecoration(
+              //     color: Theme.of(context).colorScheme.surface,
+              //     borderRadius: const BorderRadius.all(Radius.circular(16))),
+              alignment: Alignment.center,
+              height: MediaQuery.of(context).size.height / 15,
+              child: Text(
                 title,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
                 textAlign: TextAlign.center,
               ),
-              insetPadding: const EdgeInsets.all(50),
-              content: SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).pop(false);
-                          return;
-                        },
-                        child: const Text(
-                          'Cancel',
-                          style: TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          callbackDeleteLedPanel(context);
-                          Navigator.of(context).pop();
-                        },
-                        child: const Text(
-                          'Submit',
-                          style: TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                      )
-                    ],
-                  )),
-            ));
+            )));
   }
 
-  void confirmationPopup(BuildContext context, String title,
-      Widget callbackWidget, Function? callbackClosePopup) async {
+  void confirmationPopup(
+      BuildContext context,
+      String title,
+      Widget callbackWidget,
+      Function? callbackClosePopup,
+      Function? callbackSubmit) async {
     await showDialog(
         context: context,
         builder: (BuildContext context) => PopScope(
               onPopInvokedWithResult: (bool didPop, _) {
-                if (callbackClosePopup != null) {
-                  // callbackClosePopup(mode);
+                if (callbackClosePopup != null
+                    // && didPop
+                    ) {
+                  print("callbackClosePopup");
+                  BaseProductState state =
+                      BlocProvider.of<BaseProductGRPCBloc>(context).state;
+                  callbackClosePopup((state.product! as LedPanel).mode);
                 }
               },
               child: AlertDialog(
@@ -210,7 +194,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                     title,
                     textAlign: TextAlign.center,
                   ),
-                  insetPadding: const EdgeInsets.all(50),
+                  insetPadding: const EdgeInsets.all(16),
                   content: SizedBox(
                       child: Column(mainAxisSize: MainAxisSize.min, children: [
                     callbackWidget,
@@ -220,8 +204,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.of(context).pop(false);
-                            return;
+                            Navigator.of(context).pop();
                           },
                           child: const Text(
                             'Cancel',
@@ -230,6 +213,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                         ),
                         ElevatedButton(
                           onPressed: () {
+                            if (callbackSubmit != null) callbackSubmit(context);
                             Navigator.of(context).pop();
                           },
                           child: const Text(
@@ -245,16 +229,8 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
 
   Widget ledPanelBuild(BuildContext context, BaseProductState state) {
     final LedPanel product = state.product! as LedPanel;
-    // final periodicTaskState =
-    //     BlocProvider.of<PeriodicTaskGRPCBloc>(context).state;
-
-    // move that in the previous context or initstate
-    // context.read<PeriodicTaskGRPCBloc>().add(QueryPeriodicTaskEvent(
-    //       classType: "BaseProduct",
-    //       classId: state.product!.id,
-    //       tasks: periodicTaskState.tasks,
-    //     ));
     setLedMode(product.mode);
+
     final Map<String, Widget> tabs = {
       "Product details": SingleChildScrollView(
           child: Column(children: [
@@ -274,16 +250,15 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                     ipAddress: product.ipAddress,
                     ipPort: product.ipPort,
                     callbackUpdateIp: updateProduct),
+                null,
                 null),
             const SizedBox(width: 20),
             buttonDecoration(
-              "Mode Selection",
-              confirmationPopup,
-              LedModeListView(
-                  onlyBody: true,
-                  callbackUpdateProductLedMode: updateProduct),
-              setLedMode,
-            )
+                "Mode Selection",
+                confirmationPopup,
+                LedModeListView(callbackUpdateProductLedMode: updateProduct),
+                setLedMode,
+                null)
           ],
         ),
         const SizedBox(height: 30),
@@ -312,15 +287,20 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            buttonDecoration(
-                "Delete Product", confirmationPopupDelete, Container(), null),
-            const SizedBox(height: 20),
-            buttonDecoration("Refresh Product", refreshLedPanel, null, null),
+            buttonDecoration("Delete Product", confirmationPopup, Container(),
+                null, callbackDeleteLedPanel),
             const SizedBox(width: 20),
-            OnOffButton(
-              status: product.status,
-              callbackUpdateStatus: updateProduct,
-            ),
+            buttonDecoration(
+                "Refresh Product", refreshLedPanel, null, null, null),
+            const SizedBox(width: 20),
+            SizedBox(
+                width: (MediaQuery.of(context).size.width * 0.1).clamp(70, 200),
+                child: FittedBox(
+                    fit: BoxFit.fill,
+                    child: OnOffButton(
+                      status: product.status,
+                      callbackUpdateStatus: updateProduct,
+                    ))),
           ],
         ),
       ])),
@@ -330,16 +310,6 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
         onlyBody: true,
       )
     };
-
-    Widget decorationBlock(BuildContext context, Widget bodyView) {
-      final customColors = Theme.of(context).extension<CustomColors>()!;
-
-      return Container(
-          decoration: BoxDecoration(
-              color: customColors.lightBackground,
-              borderRadius: const BorderRadius.all(Radius.circular(16))),
-          child: Padding(padding: const EdgeInsets.all(16), child: bodyView));
-    }
 
     return headerView(
         context,
@@ -356,25 +326,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                         .toList()),
                 Expanded(child: TabBarView(children: tabs.values.toList())),
               ])),
-        ),
-        null
-        // Column(
-        //   mainAxisAlignment: MainAxisAlignment.end,
-        //   children: [
-        //     DeletePopup(
-        //         name: "led_panel",
-        //         objectName: product.name,
-        //         heroTag: "led_panel_delete_button",
-        //         deleteCallBack: callbackDeleteLedPanel,
-        //         onPressedCallBack: () {}),
-        //     const SizedBox(height: 10),
-        //     RefreshPopup(
-        //       heroTag: "led_panel_refresh_button",
-        //       onPressedCallBack: refreshLedPanel,
-        //     )
-        //   ],
-        // )
-        );
+        ));
   }
 
   Widget errorBuild(BuildContext context, BaseProductState errorState) {
@@ -383,7 +335,6 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
       errorState,
       "Error Led panel",
       Center(child: Text(errorState.message)),
-      null,
     );
   }
 

@@ -12,13 +12,13 @@ import 'package:iot_controller/src/ui/utils/popup/refresh_popup.dart';
 import 'led_mode_create_view.dart';
 
 class LedModeListView extends StatefulWidget {
-  final bool onlyBody;
+  final bool abstractRequest;
   final Function(BuildContext, Map<String, dynamic>)
       callbackUpdateProductLedMode;
 
   const LedModeListView({
     super.key,
-    this.onlyBody = false,
+    this.abstractRequest = true,
     required this.callbackUpdateProductLedMode,
   });
 
@@ -27,15 +27,6 @@ class LedModeListView extends StatefulWidget {
 }
 
 class _LedModeListViewState extends State<LedModeListView> {
-  late Function(BuildContext, Map<String, dynamic>)
-      callbackUpdateProductLedMode;
-
-  @override
-  void initState() {
-    super.initState();
-    callbackUpdateProductLedMode = widget.callbackUpdateProductLedMode;
-  }
-
   Future<bool> refreshLedModeList(BuildContext context) async {
     context.read<LedModeGRPCBloc>().add(GetLedModeListEvent(null));
     return true;
@@ -68,36 +59,40 @@ class _LedModeListViewState extends State<LedModeListView> {
           state is LedModeLoading) {
         return SizedBox(
             width: double.maxFinite,
-            height: MediaQuery.of(context).size.height / 1.5,
+            height: MediaQuery.of(context).size.height * 0.75,
             child: ListView.builder(
-            restorationId: 'LedModeListView',
-            itemCount: state.modes.length,
-            itemBuilder: (BuildContext context, int index) {
-              String name = state.modes.elementAt(index).name;
-              return ListTile(
-                title: Column(mainAxisSize: MainAxisSize.min, children: [
-                  Text("Led mode '$name'"),
-                  LedModePreview(mode: state.modes[index])
-                ]),
-                onTap: () {
-                  if (widget.onlyBody == false) {
-                    callbackUpdateProductLedMode(
-                      context,
-                      {"mode": state.modes[index].getAbstractRequest()},
-                    );
-                    Navigator.of(context).pop();
-                  } else {
-                    callbackUpdateProductLedMode(
-                      context,
-                      {"mode": state.modes[index]},
-                    );
-                  }
-                },
-                onLongPress: () {
-                  callbackDeleteLedMode(index, state.modes);
-                },
-              );
-            }));
+                restorationId: 'LedModeListView',
+                itemCount: state.modes.length,
+                itemBuilder: (BuildContext context, int index) {
+                  String name = state.modes.elementAt(index).name;
+                  return ListTile(
+                    title: Column(mainAxisSize: MainAxisSize.max, children: [
+                      Text(name,
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w600,
+                          )),
+                      LedModePreview(mode: state.modes[index])
+                    ]),
+                    onTap: () {
+                      if (widget.abstractRequest == false) {
+                        widget.callbackUpdateProductLedMode(
+                          context,
+                          {"mode": state.modes[index]},
+                        );
+                      } else {
+                        widget.callbackUpdateProductLedMode(
+                          context,
+                          {"mode": state.modes[index].getAbstractRequest()},
+                        );
+                        Navigator.of(context).pop();
+                      }
+                    },
+                    onLongPress: () {
+                      callbackDeleteLedMode(index, state.modes);
+                    },
+                  );
+                }));
       } else {
         // LedModeError
         return Center(
@@ -118,30 +113,7 @@ class _LedModeListViewState extends State<LedModeListView> {
           patternModeGrpcClient: PatternModeCommunication(
               serverName: state.serverName, serverPort: state.serverPort)));
     }, child: () {
-      if (widget.onlyBody) {
-        return bodyListView();
-      } else {
-        return Scaffold(
-            body: Padding(
-                padding: const EdgeInsets.all(16), child: bodyListView()),
-            floatingActionButton: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                CreatePopup(
-                  heroTag: "led_mode_create_button",
-                  formName: "led mode",
-                  form:
-                      LedModeForm(callbackCreateLedMode: callbackCreateLedMode),
-                  onPressedCallBack: (_) {},
-                ),
-                const SizedBox(height: 10),
-                RefreshPopup(
-                  heroTag: "led_mode_refresh_button",
-                  onPressedCallBack: refreshLedModeList,
-                )
-              ],
-            ));
-      }
+      return bodyListView();
     }());
   }
 }

@@ -14,7 +14,11 @@ class ServerChangedEvent extends PeriodicTaskEvent {
   ServerChangedEvent(this.periodicTaskGrpcClient);
 }
 
-class GetPeriodicTaskListEvent extends PeriodicTaskEvent {}
+class GetPeriodicTaskListEvent extends PeriodicTaskEvent {
+  final List<PeriodicTask>? tasks;
+
+  GetPeriodicTaskListEvent(this.tasks);
+}
 
 class GetPeriodicTaskEvent extends PeriodicTaskEvent {
   final PeriodicTask task;
@@ -251,22 +255,26 @@ class PeriodicTaskGRPCBloc extends Bloc<PeriodicTaskEvent, PeriodicTaskState> {
     on<PartialUpdatePeriodicTaskEvent>(onPartialUpdatePeriodicTaskEvent);
     on<DestroyPeriodicTaskEvent>(onDestroyPeriodicTaskEvent);
 
-    add(GetPeriodicTaskListEvent());
+    add(GetPeriodicTaskListEvent(null));
   }
 
   void onServerChangedEvent(
       ServerChangedEvent event, Emitter<PeriodicTaskState> emit) {
     periodicTaskGrpcClient = event.periodicTaskGrpcClient;
-    add(GetPeriodicTaskListEvent());
+    add(GetPeriodicTaskListEvent(null));
   }
 
   void onGetPeriodicTaskListEvent(
       GetPeriodicTaskListEvent event, Emitter<PeriodicTaskState> emit) async {
-    emit(PeriodicTaskLoading());
     try {
-      var response = await periodicTaskGrpcClient.list();
-      emit(PeriodicTaskListSuccess(
-          [for (var e in response.results) PeriodicTask.fromResponse(e)]));
+      if (event.tasks == null) {
+        emit(PeriodicTaskLoading());
+        var response = await periodicTaskGrpcClient.list();
+        emit(PeriodicTaskListSuccess(
+            [for (var e in response.results) PeriodicTask.fromResponse(e)]));
+      } else {
+        emit(PeriodicTaskListSuccess(event.tasks!));
+      }
     } catch (error) {
       emit(PeriodicTaskListError(error.toString()));
     }

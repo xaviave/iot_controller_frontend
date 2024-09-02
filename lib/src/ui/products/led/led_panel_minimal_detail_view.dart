@@ -61,11 +61,11 @@ class _LedPanelMinimalDetailsViewState
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          Expanded(
+                              child: Text(
                             product.name.capitalize,
                             style: const TextStyle(fontSize: 28),
-                            textAlign: TextAlign.center,
-                          ),
+                          )),
                           OnOffButton(
                               status: product.status,
                               callbackUpdateStatus: updateProduct)
@@ -76,7 +76,7 @@ class _LedPanelMinimalDetailsViewState
                     focusedHeight: 40,
                     unfocusedMargin: const EdgeInsets.symmetric(horizontal: 0),
                     foregroundColor: colorBrightness,
-                    iconGap: 16,
+                    // iconGap: 16,
                     onChanged: (value) {
                       setState(() {
                         productBrightness =

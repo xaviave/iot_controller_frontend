@@ -45,22 +45,22 @@ class LedModeDetailsView extends StatelessWidget {
           return Container(
             width: double.infinity,
             margin: const EdgeInsets.all(10),
-            child: const Text(
-              "No mode",
-              style: TextStyle(fontSize: 28),
-              textAlign: TextAlign.center,
-            ),
+            child: const Text("No mode",
+                style: TextStyle(
+                  fontSize: 48,
+                  fontWeight: FontWeight.w900,
+                )),
           );
         }
       } else {
         return Container(
           width: double.infinity,
           margin: const EdgeInsets.all(10),
-          child: const Text(
-            "No mode",
-            style: TextStyle(fontSize: 28),
-            textAlign: TextAlign.center,
-          ),
+          child: const Text("No mode due to an error",
+              style: TextStyle(
+                fontSize: 48,
+                fontWeight: FontWeight.w900,
+              )),
         );
       }
       // });

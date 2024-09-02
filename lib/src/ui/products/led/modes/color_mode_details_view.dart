@@ -20,20 +20,14 @@ class ColorModeDetailsView extends StatefulWidget {
 
 class _ColorModeDetailsViewState extends State<ColorModeDetailsView> {
   late ColorMode mode;
-  late Function(BuildContext, Map<String, dynamic>)
-      callbackUpdateProductLedMode;
-
-  @override
-  void initState() {
-    super.initState();
-    callbackUpdateProductLedMode = widget.callbackUpdateProductLedMode;
-  }
 
   void callbackUpdatePalette(Color newColor) {
     setState(() => mode.color = newColor);
     // context.read<LedModeGRPCBloc>().add(
     //     PartialUpdateLedModeEvent(mode: mode, fields: {"color": newColor}));
-    callbackUpdateProductLedMode(context, {"mode": mode.getAbstractRequest()});
+    // callbackUpdateProductLedMode(context, {"mode": mode.getAbstractRequest()});
+    widget.callbackUpdateProductLedMode(
+        context, {"mode": mode.getAbstractRequest()});
   }
 
   ColorIndicator addColorWidget(Color c) {

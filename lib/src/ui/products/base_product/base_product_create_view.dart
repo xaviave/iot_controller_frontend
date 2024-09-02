@@ -58,7 +58,7 @@ class BaseProductFormState extends State<BaseProductForm> {
                   : null;
             },
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 20),
           TextFormField(
             controller: _ipAddressController,
             decoration: const InputDecoration(
@@ -70,7 +70,7 @@ class BaseProductFormState extends State<BaseProductForm> {
                   : null;
             },
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 20),
           TextFormField(
             controller: _ipPortController,
             keyboardType: TextInputType.number,
@@ -83,7 +83,7 @@ class BaseProductFormState extends State<BaseProductForm> {
                   : null;
             },
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 20),
           const Text("Select type of Product:"),
           const SizedBox(height: 6),
           Center(
@@ -102,9 +102,9 @@ class BaseProductFormState extends State<BaseProductForm> {
               );
             }).toList(),
           )),
-          const SizedBox(height: 16),
+          const SizedBox(height: 20),
           _productTypeController,
-          const SizedBox(height: 16),
+          const SizedBox(height: 20),
           Row(
             children: [
               SizedBox(
