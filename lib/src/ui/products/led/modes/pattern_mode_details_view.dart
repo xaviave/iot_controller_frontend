@@ -1,9 +1,9 @@
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:interactive_slider/interactive_slider.dart';
 import 'package:iot_controller/src/blocs/led_mode.dart';
 import 'package:iot_controller/src/models/products/led/default_palette.dart';
-import 'package:iot_controller/src/models/products/led/modes/led_mode.dart';
 import 'package:iot_controller/src/models/products/led/modes/pattern_mode.dart';
 import 'package:iot_controller/src/ui/utils/popup/abstract_popup.dart';
 
@@ -22,8 +22,6 @@ class PatternModeDetailsView extends StatefulWidget {
 
 class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
   late PatternMode mode;
-  late Color fpsColor;
-  late Color blinkColor;
   late Function(BuildContext, Map<String, dynamic>)
       callbackUpdateProductLedMode;
   Map<String, PatternMode> patterns = <String, PatternMode>{};
@@ -34,8 +32,6 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
     callbackUpdateProductLedMode = widget.callbackUpdateProductLedMode;
 
     mode = BlocProvider.of<LedModeGRPCBloc>(context).state.mode as PatternMode;
-    fpsColor = Color.lerp(Colors.black, Colors.white, mode.fps)!;
-    blinkColor = Color.lerp(Colors.black, Colors.white, mode.blink)!;
   }
 
   // void serverPartialUpdate(BuildContext, Map<String, dynamic> fields) {
@@ -129,6 +125,98 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
             }));
   }
 
+  Widget buttonDecoration(
+      String title,
+      Function callbackButton,
+      Widget? callbackWidget,
+      Function? callbackClosePopup,
+      Function? callbackSubmit) {
+    return Expanded(
+        child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            )),
+            onPressed: () {
+              if (callbackWidget != null) {
+                callbackButton(context, title, callbackWidget,
+                    callbackClosePopup, callbackSubmit);
+              } else {
+                callbackButton(context);
+              }
+            },
+            child: Container(
+              // width: MediaQuery.of(context).size.width / 4,
+              // decoration: BoxDecoration(
+              //     color: Theme.of(context).colorScheme.surface,
+              //     borderRadius: const BorderRadius.all(Radius.circular(16))),
+              alignment: Alignment.center,
+              height: MediaQuery.of(context).size.height / 15,
+              child: Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            )));
+  }
+
+  void confirmationPopup(
+      BuildContext context,
+      String title,
+      Widget callbackWidget,
+      Function? callbackClosePopup,
+      Function? callbackSubmit) async {
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+          title: Text(
+            title,
+            textAlign: TextAlign.center,
+          ),
+          insetPadding: const EdgeInsets.all(16),
+          content: SizedBox(
+              child: Column(mainAxisSize: MainAxisSize.min, children: [
+            callbackWidget,
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text(
+                    'Cancel',
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    if (callbackSubmit != null) callbackSubmit(context);
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text(
+                    'Submit',
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                )
+              ],
+            )
+          ]))),
+    ).then((selectedPalette) {
+      if (selectedPalette != null) {
+        setState(() {
+          mode.palette = selectedPalette.p;
+        });
+        callbackUpdateProductLedMode(
+            context, {"mode": mode.getAbstractRequest()});
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     mode = BlocProvider.of<LedModeGRPCBloc>(context).state.mode as PatternMode;
@@ -136,87 +224,87 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
     // missing settings
     return Column(
       children: [
-        const Text('FPS'),
-        Slider(
-            min: 0,
-            max: 1,
-            activeColor: fpsColor,
-            inactiveColor: Colors.grey,
-            thumbColor: fpsColor,
-            value: mode.fps,
-            onChanged: (value) {
-              setState(() {
-                mode.fps = double.parse(value.toStringAsFixed(2));
-                fpsColor = Color.lerp(Colors.black, Colors.white, mode.fps)!;
-              });
-            },
-            onChangeEnd: (value) {
-              callbackUpdateProductLedMode(
-                  context, {"mode": mode.getAbstractRequest()});
-            }),
-        const Text('Blink interval'),
-        Slider(
-            min: 0,
-            max: 1,
-            activeColor: blinkColor,
-            inactiveColor: Colors.grey,
-            thumbColor: blinkColor,
-            value: mode.blink,
-            onChanged: (value) {
-              setState(() {
-                mode.blink = double.parse(value.toStringAsFixed(2));
-                blinkColor =
-                    Color.lerp(Colors.black, Colors.white, mode.blink)!;
-              });
-            },
-            onChangeEnd: (value) {
-              callbackUpdateProductLedMode(
-                  context, {"mode": mode.getAbstractRequest()});
-            }),
         Wrap(
             children: List.generate(mode.palette.length, (i) => i).map((index) {
           return addColorWidget(index, mode.palette[index], false);
         }).toList()),
-        AbstractPopup(
-            name: "Add Color",
-            heroTag: "add_pattern_color",
-            icon: Icons.add,
-            displacement: Alignment.center,
-            onPressedCallBack: () {
-              addColorWidget(0, Colors.black, true);
-            }),
-        ElevatedButton(
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return Dialog(
-                  child: ListView.builder(
-                    itemCount: DefaultPalette.values.length,
-                    itemBuilder: (context, index) {
-                      final palette = DefaultPalette.values[index];
-                      return ListTile(
-                        title: Text(palette.name),
-                        onTap: () {
-                          Navigator.pop(context, palette);
-                        },
-                      );
-                    },
-                  ),
-                );
-              },
-            ).then((selectedPalette) {
-              if (selectedPalette != null) {
+        const SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            buttonDecoration(
+                "Add Color",
+                (context) => updatePaletteColor(0, Colors.black, true),
+                null,
+                null,
+                null),
+            const SizedBox(width: 20),
+            buttonDecoration(
+                "Change Palette",
+                confirmationPopup,
+                SizedBox(
+                    width: MediaQuery.of(context).size.height * 0.5,
+                    height: MediaQuery.of(context).size.height * 0.75,
+                    child: ListView.builder(
+                      itemCount: DefaultPalette.values.length,
+                      itemBuilder: (context, index) {
+                        final palette = DefaultPalette.values[index];
+                        return ListTile(
+                          title: Text(palette.name),
+                          onTap: () {
+                            Navigator.pop(context, palette);
+                          },
+                        );
+                      },
+                    )),
+                null,
+                // setLedMode,
+                null)
+          ],
+        ),
+        const SizedBox(height: 30),
+        InteractiveSlider(
+            centerIcon: const Text('FPS'),
+            startIcon: const Icon(Icons.pause),
+            endIcon: const Icon(Icons.fast_forward),
+            iconPosition: IconPosition.inside,
+            // unfocusedOpacity: 0.8,
+            unfocusedHeight: 25,
+            focusedHeight: 40,
+            unfocusedMargin: const EdgeInsets.symmetric(horizontal: 0),
+            backgroundColor: Theme.of(context).colorScheme.surface,
+            iconGap: 16,
+            onChanged: (value) {
+              setState(() {
                 setState(() {
-                  mode.palette = selectedPalette.p;
+                  mode.fps = double.parse(value.toStringAsFixed(2));
                 });
-                callbackUpdateProductLedMode(
-                    context, {"mode": mode.getAbstractRequest()});
-              }
-            });
-          },
-          child: const Text('Select Palette'),
-        )
+              });
+            },
+            onProgressUpdated: (_) {
+              callbackUpdateProductLedMode(
+                  context, {"mode": mode.getAbstractRequest()});
+            }),
+        InteractiveSlider(
+            centerIcon: const Text('Blink interval'),
+            startIcon: const Icon(Icons.pause),
+            endIcon: const Icon(Icons.fast_forward),
+            iconPosition: IconPosition.inside,
+            // unfocusedOpacity: 0.8,
+            unfocusedHeight: 25,
+            focusedHeight: 40,
+            unfocusedMargin: const EdgeInsets.symmetric(horizontal: 0),
+            backgroundColor: Theme.of(context).colorScheme.surface,
+            iconGap: 16,
+            onChanged: (value) {
+              setState(() {
+                mode.blink = double.parse(value.toStringAsFixed(2));
+              });
+            },
+            onProgressUpdated: (_) {
+              callbackUpdateProductLedMode(
+                  context, {"mode": mode.getAbstractRequest()});
+            }),
       ],
     );
   }

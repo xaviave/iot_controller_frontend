@@ -28,7 +28,6 @@ class LedPanelDetailsView extends StatefulWidget {
 }
 
 class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
-  late Color colorBrightness;
   late double productBrightness;
   late Function(BaseProduct) callbackUpdateProject;
 
@@ -82,8 +81,6 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
     BaseProductState state =
         BlocProvider.of<BaseProductGRPCBloc>(context).state;
     productBrightness = (state.product! as LedPanel).brightness;
-    colorBrightness =
-        Color.lerp(Colors.black, Colors.yellow, productBrightness)!;
   }
 
   Widget decorationBlock(BuildContext context, Widget bodyView) {
@@ -183,7 +180,6 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                 if (callbackClosePopup != null
                     // && didPop
                     ) {
-                  print("callbackClosePopup");
                   BaseProductState state =
                       BlocProvider.of<BaseProductGRPCBloc>(context).state;
                   callbackClosePopup((state.product! as LedPanel).mode);
@@ -239,7 +235,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
         LedModeDetailsView(
           callbackUpdateProductLedMode: updateProduct,
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 30),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -260,49 +256,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                 setLedMode,
                 null)
           ],
-        ),
-        const SizedBox(height: 30),
-        InteractiveSlider(
-            unfocusedOpacity: 0.8,
-            unfocusedHeight: 25,
-            focusedHeight: 40,
-            unfocusedMargin: const EdgeInsets.symmetric(horizontal: 0),
-            foregroundColor: colorBrightness,
-            backgroundColor: Theme.of(context).colorScheme.surface,
-            iconGap: 16,
-            onChanged: (value) {
-              setState(() {
-                productBrightness = double.parse(value.toStringAsFixed(2));
-                colorBrightness = Color.lerp(
-                  Colors.black,
-                  Colors.yellow,
-                  productBrightness,
-                )!;
-              });
-            },
-            onProgressUpdated: (_) {
-              updateProduct(context, {"brightness": productBrightness});
-            }),
-        const SizedBox(height: 30),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            buttonDecoration("Delete Product", confirmationPopup, Container(),
-                null, callbackDeleteLedPanel),
-            const SizedBox(width: 20),
-            buttonDecoration(
-                "Refresh Product", refreshLedPanel, null, null, null),
-            const SizedBox(width: 20),
-            SizedBox(
-                width: (MediaQuery.of(context).size.width * 0.1).clamp(70, 200),
-                child: FittedBox(
-                    fit: BoxFit.fill,
-                    child: OnOffButton(
-                      status: product.status,
-                      callbackUpdateStatus: updateProduct,
-                    ))),
-          ],
-        ),
+        )
       ])),
       "Tasks": PeriodicTaskListView(
         classType: "Product",
@@ -316,17 +270,77 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
         state,
         product.name.capitalize,
         DefaultTabController(
-          length: tabs.length,
-          child: decorationBlock(
-              context,
-              Column(children: [
-                TabBar(
-                    tabs: tabs.keys
-                        .map((String name) => Tab(text: name))
-                        .toList()),
-                Expanded(child: TabBarView(children: tabs.values.toList())),
-              ])),
-        ));
+            length: tabs.length,
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Expanded(
+                  child: decorationBlock(
+                      context,
+                      Column(children: [
+                        TabBar.secondary(
+                            indicator: BoxDecoration(
+                              color: Theme.of(context).colorScheme.surface,
+                              border: Border(
+                                bottom: BorderSide(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                    width: 3.0),
+                              ),
+                            ),
+                            tabs: tabs.keys
+                                .map((String name) => Tab(text: name))
+                                .toList()),
+                        const SizedBox(height: 10),
+                        Expanded(
+                            child: TabBarView(children: tabs.values.toList())),
+                      ]))),
+              const SizedBox(height: 20),
+              decorationBlock(
+                  context,
+                  Column(children: [
+                    InteractiveSlider(
+                        startIcon: const Icon(Icons.brightness_low),
+                        endIcon: const Icon(Icons.brightness_high),
+                        unfocusedOpacity: 0.8,
+                        unfocusedHeight: 25,
+                        focusedHeight: 40,
+                        unfocusedMargin:
+                            const EdgeInsets.symmetric(horizontal: 0),
+                        backgroundColor: Theme.of(context).colorScheme.surface,
+                        iconGap: 16,
+                        onChanged: (value) {
+                          setState(() {
+                            productBrightness =
+                                double.parse(value.toStringAsFixed(2));
+                          });
+                        },
+                        onProgressUpdated: (_) {
+                          updateProduct(
+                              context, {"brightness": productBrightness});
+                        }),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        buttonDecoration("Delete Product", confirmationPopup,
+                            Container(), null, callbackDeleteLedPanel),
+                        const SizedBox(width: 20),
+                        buttonDecoration("Refresh Product", refreshLedPanel,
+                            null, null, null),
+                        const SizedBox(width: 20),
+                        SizedBox(
+                            width: (MediaQuery.of(context).size.width * 0.1)
+                                .clamp(70, 200),
+                            child: FittedBox(
+                                fit: BoxFit.fill,
+                                child: OnOffButton(
+                                  status: product.status,
+                                  callbackUpdateStatus: updateProduct,
+                                ))),
+                      ],
+                    )
+                  ]))
+            ])));
   }
 
   Widget errorBuild(BuildContext context, BaseProductState errorState) {

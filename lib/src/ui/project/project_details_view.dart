@@ -230,7 +230,6 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
                             fontWeight: FontWeight.w600,
                           )),
                     ])),
-            // width: double.infinity,
             const SizedBox(height: 20),
             Expanded(
                 child: decorationBlock(
@@ -250,7 +249,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
                         .toList()),
                 const SizedBox(height: 10),
                 Expanded(child: TabBarView(children: tabs.values.toList()))
-              ]),
+              ])
             )),
             const SizedBox(height: 20),
             decorationBlock(
