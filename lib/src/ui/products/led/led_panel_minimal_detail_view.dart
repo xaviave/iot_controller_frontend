@@ -18,8 +18,7 @@ class LedPanelMinimalDetailsView extends StatefulWidget {
 
 class _LedPanelMinimalDetailsViewState
     extends State<LedPanelMinimalDetailsView> {
-  late Color colorBrightness;
-  late double productBrightness;
+  late InteractiveSliderController _controllerBrightness;
 
   void updateProduct(BuildContext context, Map<String, dynamic> fields) {
     BaseProductState state =
@@ -37,10 +36,8 @@ class _LedPanelMinimalDetailsViewState
     BaseProductState state =
         BlocProvider.of<BaseProductGRPCBloc>(context).state;
 
-    productBrightness =
-        (state.products[widget.productIndex] as LedPanel).brightness;
-    colorBrightness =
-        Color.lerp(Colors.black, Colors.yellow, productBrightness)!;
+    _controllerBrightness = InteractiveSliderController(
+        (state.products[widget.productIndex] as LedPanel).brightness);
   }
 
   @override
@@ -71,25 +68,20 @@ class _LedPanelMinimalDetailsViewState
                               callbackUpdateStatus: updateProduct)
                         ])),
                 InteractiveSlider(
-                    iconPosition: IconPosition.inside,
+                    controller: _controllerBrightness,
+                    startIcon: const Icon(Icons.brightness_low),
+                    endIcon: const Icon(Icons.brightness_high),
+                    unfocusedOpacity: 0.8,
                     unfocusedHeight: 25,
                     focusedHeight: 40,
                     unfocusedMargin: const EdgeInsets.symmetric(horizontal: 0),
-                    foregroundColor: colorBrightness,
-                    // iconGap: 16,
-                    onChanged: (value) {
-                      setState(() {
-                        productBrightness =
-                            double.parse(value.toStringAsFixed(2));
-                        colorBrightness = Color.lerp(
-                          Colors.black,
-                          Colors.yellow,
-                          productBrightness,
-                        )!;
-                      });
-                    },
+                    backgroundColor: Theme.of(context).colorScheme.surface,
+                    iconGap: 16,
                     onProgressUpdated: (_) {
-                      updateProduct(context, {"brightness": productBrightness});
+                      updateProduct(context, {
+                        "brightness": double.parse(
+                            _controllerBrightness.value.toStringAsFixed(2))
+                      });
                     })
               ],
             )));

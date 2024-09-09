@@ -28,7 +28,7 @@ class LedPanelDetailsView extends StatefulWidget {
 }
 
 class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
-  late double productBrightness;
+  late InteractiveSliderController _controllerBrightness;
   late Function(BaseProduct) callbackUpdateProject;
 
   Future<bool> refreshLedPanel(BuildContext context) async {
@@ -53,6 +53,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
     BaseProductState state =
         BlocProvider.of<BaseProductGRPCBloc>(context).state;
 
+    print(fields);
     context.read<BaseProductGRPCBloc>().add(PartialUpdateBaseProductEvent(
         product: state.product!, fields: fields, products: state.products));
   }
@@ -80,7 +81,8 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
 
     BaseProductState state =
         BlocProvider.of<BaseProductGRPCBloc>(context).state;
-    productBrightness = (state.product! as LedPanel).brightness;
+    _controllerBrightness =
+        InteractiveSliderController((state.product! as LedPanel).brightness);
   }
 
   Widget decorationBlock(BuildContext context, Widget bodyView) {
@@ -299,6 +301,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                   context,
                   Column(children: [
                     InteractiveSlider(
+                        controller: _controllerBrightness,
                         startIcon: const Icon(Icons.brightness_low),
                         endIcon: const Icon(Icons.brightness_high),
                         unfocusedOpacity: 0.8,
@@ -308,15 +311,11 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                             const EdgeInsets.symmetric(horizontal: 0),
                         backgroundColor: Theme.of(context).colorScheme.surface,
                         iconGap: 16,
-                        onChanged: (value) {
-                          setState(() {
-                            productBrightness =
-                                double.parse(value.toStringAsFixed(2));
-                          });
-                        },
                         onProgressUpdated: (_) {
-                          updateProduct(
-                              context, {"brightness": productBrightness});
+                          updateProduct(context, {
+                            "brightness": double.parse(
+                                _controllerBrightness.value.toStringAsFixed(2))
+                          });
                         }),
                     const SizedBox(height: 20),
                     Row(

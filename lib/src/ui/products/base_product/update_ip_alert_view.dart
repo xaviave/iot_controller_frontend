@@ -28,7 +28,7 @@ class IpUpdateAlertView extends StatelessWidget {
                         hintText: 'Current Product IP: $ipAddress'),
                     onSubmitted: (value) {
                       // add validator for IP
-                      callbackUpdateIp(context, {"ipValue": value});
+                      callbackUpdateIp(context, {"ip_address": value});
                     },
                   ),
                 ),
@@ -43,7 +43,7 @@ class IpUpdateAlertView extends StatelessWidget {
                     keyboardType: TextInputType.number,
                     onSubmitted: (value) {
                       // add validator for port
-                      callbackUpdateIp(context, {"ipPort": int.parse(value)});
+                      callbackUpdateIp(context, {"ip_port": int.parse(value)});
                     },
                   ),
                 ),
