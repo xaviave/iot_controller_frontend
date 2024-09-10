@@ -147,6 +147,7 @@ class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: const Text("Settings",
             style: TextStyle(
@@ -157,8 +158,9 @@ class SettingsView extends StatelessWidget {
           onPressed: () => context.pop("/settings"),
         ),
       ),
-      body: BlocBuilder<SettingsBloc, SettingsState>(
-          builder: (context, settingState) {
+      body: SingleChildScrollView(child:
+          BlocBuilder<SettingsBloc, SettingsState>(
+              builder: (context, settingState) {
         return BlocBuilder<UserGRPCBloc, UserState>(
             builder: (context, userState) {
           return Padding(
@@ -171,7 +173,7 @@ class SettingsView extends StatelessWidget {
                 serverBloc(context, settingState),
               ]));
         });
-      }),
+      })),
     );
   }
 }

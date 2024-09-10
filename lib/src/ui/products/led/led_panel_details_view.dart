@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:flutter/rendering.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:go_router/go_router.dart";
 import "package:interactive_slider/interactive_slider.dart";
@@ -53,7 +52,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
     BaseProductState state =
         BlocProvider.of<BaseProductGRPCBloc>(context).state;
 
-    print(fields);
+    print("updateProduct led_panel: $fields $state");
     context.read<BaseProductGRPCBloc>().add(PartialUpdateBaseProductEvent(
         product: state.product!, fields: fields, products: state.products));
   }
@@ -161,7 +160,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
               child: Text(
                 title,
                 style: const TextStyle(
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
                 textAlign: TextAlign.center,
@@ -196,7 +195,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                   content: SizedBox(
                       child: Column(mainAxisSize: MainAxisSize.min, children: [
                     callbackWidget,
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 16),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -296,7 +295,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                         Expanded(
                             child: TabBarView(children: tabs.values.toList())),
                       ]))),
-              const SizedBox(height: 20),
+              const SizedBox(height: 16),
               decorationBlock(
                   context,
                   Column(children: [
@@ -317,7 +316,7 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                                 _controllerBrightness.value.toStringAsFixed(2))
                           });
                         }),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 16),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -354,7 +353,10 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BaseProductGRPCBloc, BaseProductState>(
-        builder: (context, state) {
+        buildWhen: (_, state) {
+      return MediaQuery.of(context).viewInsets.bottom == 0;
+    }, builder: (context, state) {
+      print("build led_panel detail: $state");
       if (state is BaseProductListInitial || state is BaseProductLoading) {
         return const Center(child: CircularProgressIndicator());
       } else if (state is GetBaseProductSuccess ||

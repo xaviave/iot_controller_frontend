@@ -1,7 +1,7 @@
-import "package:intl/intl.dart";
-import "package:go_router/go_router.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
+import "package:go_router/go_router.dart";
+import "package:intl/intl.dart";
 import "package:iot_controller/src/blocs/periodic_task.dart";
 import "package:iot_controller/src/blocs/product.dart";
 import "package:iot_controller/src/blocs/project.dart";
@@ -123,7 +123,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
               child: Text(
                 title,
                 style: const TextStyle(
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
                 textAlign: TextAlign.center,
@@ -148,7 +148,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
           content: SizedBox(
               child: Column(mainAxisSize: MainAxisSize.min, children: [
             callbackWidget,
-            const SizedBox(height: 20),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -230,28 +230,28 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
                             fontWeight: FontWeight.w600,
                           )),
                     ])),
-            const SizedBox(height: 20),
+            const SizedBox(height: 16),
             Expanded(
                 child: decorationBlock(
-              context,
-              Column(children: [
-                TabBar.secondary(
-                    indicator: BoxDecoration(
-                      color: Theme.of(context).colorScheme.surface,
-                      border: Border(
-                        bottom: BorderSide(
-                            color: Theme.of(context).colorScheme.primary,
-                            width: 3.0),
-                      ),
-                    ),
-                    tabs: tabs.keys
-                        .map((String name) => Tab(text: name))
-                        .toList()),
-                const SizedBox(height: 10),
-                Expanded(child: TabBarView(children: tabs.values.toList()))
-              ])
-            )),
-            const SizedBox(height: 20),
+                    context,
+                    Column(children: [
+                      TabBar.secondary(
+                          indicator: BoxDecoration(
+                            color: Theme.of(context).colorScheme.surface,
+                            border: Border(
+                              bottom: BorderSide(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  width: 3.0),
+                            ),
+                          ),
+                          tabs: tabs.keys
+                              .map((String name) => Tab(text: name))
+                              .toList()),
+                      const SizedBox(height: 10),
+                      Expanded(
+                          child: TabBarView(children: tabs.values.toList()))
+                    ]))),
+            const SizedBox(height: 16),
             decorationBlock(
                 context,
                 Row(
@@ -288,8 +288,10 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProjectGRPCBloc, ProjectState>(
-        builder: (context, state) {
+    return BlocBuilder<ProjectGRPCBloc, ProjectState>(buildWhen: (_, state) {
+      return MediaQuery.of(context).viewInsets.bottom == 0;
+    }, builder: (context, state) {
+      print("build project details: $state");
       if (state is ProjectLoading) {
         return const Center(child: CircularProgressIndicator());
       } else if (state is GetProjectSuccess ||

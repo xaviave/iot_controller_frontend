@@ -5,7 +5,6 @@ import 'package:interactive_slider/interactive_slider.dart';
 import 'package:iot_controller/src/blocs/led_mode.dart';
 import 'package:iot_controller/src/models/products/led/default_palette.dart';
 import 'package:iot_controller/src/models/products/led/modes/pattern_mode.dart';
-import 'package:iot_controller/src/ui/utils/popup/abstract_popup.dart';
 
 class PatternModeDetailsView extends StatefulWidget {
   final Function(BuildContext, Map<String, dynamic>)
@@ -119,7 +118,10 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
                   dialogActionButtons: false,
                 ),
                 constraints: const BoxConstraints(
-                    minHeight: 480, minWidth: 320, maxWidth: 320),
+                  minHeight: 480,
+                  minWidth: 120,
+                  maxWidth: 120,
+                ),
               );
               updatePaletteColor(index, newColor, addNewColor);
             }));
@@ -180,7 +182,7 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
           content: SizedBox(
               child: Column(mainAxisSize: MainAxisSize.min, children: [
             callbackWidget,
-            const SizedBox(height: 20),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -228,13 +230,13 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
             children: List.generate(mode.palette.length, (i) => i).map((index) {
           return addColorWidget(index, mode.palette[index], false);
         }).toList()),
-        const SizedBox(height: 20),
+        const SizedBox(height: 16),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             buttonDecoration(
                 "Add Color",
-                (context) => updatePaletteColor(0, Colors.black, true),
+                (context) => updatePaletteColor(0, Colors.grey, true),
                 null,
                 null,
                 null),
@@ -262,7 +264,7 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
                 null)
           ],
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 16),
         InteractiveSlider(
             centerIcon: const Text('FPS'),
             startIcon: const Icon(Icons.pause),

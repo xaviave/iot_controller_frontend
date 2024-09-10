@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iot_controller/src/blocs/led_mode.dart';
 import 'package:iot_controller/src/models/products/led/modes/color_mode.dart';
-import 'package:iot_controller/src/models/products/led/modes/led_mode.dart';
 
 class ColorModeDetailsView extends StatefulWidget {
   final Function(BuildContext, Map<String, dynamic>)
@@ -63,8 +62,7 @@ class _ColorModeDetailsViewState extends State<ColorModeDetailsView> {
               okButton: true,
               closeButton: true,
             ),
-            constraints: const BoxConstraints(
-                minHeight: 480, minWidth: 320, maxWidth: 320),
+            constraints: const BoxConstraints(minHeight: 120, minWidth: 120),
           );
           if (c != newColor) {
             callbackUpdatePalette(newColor);
@@ -76,6 +74,7 @@ class _ColorModeDetailsViewState extends State<ColorModeDetailsView> {
   Widget build(BuildContext context) {
     mode = BlocProvider.of<LedModeGRPCBloc>(context).state.mode as ColorMode;
     return Container(
+        height: MediaQuery.of(context).size.height * 0.42,
         decoration: const BoxDecoration(
             gradient: RadialGradient(
           colors: [Color(0xff2bff00), Color(0xffd3fb41)],

@@ -37,7 +37,7 @@ class PeriodicTaskFormState extends State<PeriodicTaskForm> {
     String kwargs,
     Map<String, dynamic> fields,
   ) {
-    print("$name $task $kwargs $fields");
+    print("generatePeriodicTask: $name $task $kwargs $fields");
     return PeriodicTask(
       name: name,
       task: task,

@@ -57,7 +57,8 @@ class CrontabScheduleFormState extends State<CrontabScheduleForm> {
     int groupNumber = s.split(",").length;
     Iterable<RegExpMatch> matches = r.allMatches(s);
     // check if the regex groups are equal of the expected number of group
-    print("matches: ${matches.length} | comma found: $groupNumber | str: '$s'");
+    print(
+        "validateCrontabValue: matches: ${matches.length} | comma found: $groupNumber | str: '$s'");
     return matches.length != groupNumber;
   }
 

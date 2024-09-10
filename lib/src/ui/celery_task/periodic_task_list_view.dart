@@ -7,8 +7,6 @@ import 'package:iot_controller/src/services/communication_service.dart';
 import 'package:iot_controller/src/ui/celery_task/periodic_task_create_view.dart';
 import 'package:iot_controller/src/ui/celery_task/periodic_task_minimal_view.dart';
 import 'package:iot_controller/src/ui/customColors.dart';
-import 'package:iot_controller/src/ui/utils/popup/create_popup.dart';
-import 'package:iot_controller/src/ui/utils/popup/refresh_popup.dart';
 
 class PeriodicTaskListView extends StatefulWidget {
   final bool onlyBody;
@@ -60,7 +58,7 @@ class _PeriodicTaskListViewState extends State<PeriodicTaskListView> {
           // loading here to avoid flickering | should notify
           state is PeriodicTaskLoading) {
         return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.55,
+            height: MediaQuery.of(context).size.height * 0.45,
             child: ListView.separated(
               restorationId: 'PeriodicTaskListView',
               itemCount: state.tasks.length,
@@ -129,7 +127,7 @@ class _PeriodicTaskListViewState extends State<PeriodicTaskListView> {
               child: Text(
                 title,
                 style: const TextStyle(
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
                 textAlign: TextAlign.center,
@@ -154,7 +152,7 @@ class _PeriodicTaskListViewState extends State<PeriodicTaskListView> {
           content: SizedBox(
               child: Column(mainAxisSize: MainAxisSize.min, children: [
             callbackWidget,
-            const SizedBox(height: 20),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
