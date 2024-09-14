@@ -27,7 +27,9 @@ class LedPanelDetailsView extends StatefulWidget {
 }
 
 class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
-  late InteractiveSliderController _controllerBrightness;
+  final InteractiveSliderController _controllerBrightness =
+      InteractiveSliderController(0);
+
   late Function(BaseProduct) callbackUpdateProject;
 
   Future<bool> refreshLedPanel(BuildContext context) async {
@@ -71,17 +73,6 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
     context
         .read<LedModeGRPCBloc>()
         .add(GetLedModeEvent(mode: mode, modes: ledModeState.modes));
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    callbackUpdateProject = widget.callbackUpdateProject;
-
-    BaseProductState state =
-        BlocProvider.of<BaseProductGRPCBloc>(context).state;
-    _controllerBrightness =
-        InteractiveSliderController((state.product! as LedPanel).brightness);
   }
 
   Widget decorationBlock(BuildContext context, Widget bodyView) {
@@ -226,13 +217,12 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
 
   Widget ledPanelBuild(BuildContext context, BaseProductState state) {
     final LedPanel product = state.product! as LedPanel;
+    _controllerBrightness.value = product.brightness;
     setLedMode(product.mode);
 
     final Map<String, Widget> tabs = {
       "Product details": SingleChildScrollView(
           child: Column(children: [
-        const SizedBox(height: 10),
-        // add categories
         LedModeDetailsView(
           callbackUpdateProductLedMode: updateProduct,
         ),

@@ -18,7 +18,8 @@ class LedPanelMinimalDetailsView extends StatefulWidget {
 
 class _LedPanelMinimalDetailsViewState
     extends State<LedPanelMinimalDetailsView> {
-  late InteractiveSliderController _controllerBrightness;
+  final InteractiveSliderController _controllerBrightness =
+      InteractiveSliderController(0);
 
   void updateProduct(BuildContext context, Map<String, dynamic> fields) {
     BaseProductState state =
@@ -31,20 +32,11 @@ class _LedPanelMinimalDetailsViewState
   }
 
   @override
-  void initState() {
-    super.initState();
-    BaseProductState state =
-        BlocProvider.of<BaseProductGRPCBloc>(context).state;
-
-    _controllerBrightness = InteractiveSliderController(
-        (state.products[widget.productIndex] as LedPanel).brightness);
-  }
-
-  @override
   Widget build(BuildContext context) {
     BaseProductState state =
         BlocProvider.of<BaseProductGRPCBloc>(context).state;
     LedPanel product = state.products[widget.productIndex] as LedPanel;
+    _controllerBrightness.value = product.brightness;
     return Container(
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.surface,

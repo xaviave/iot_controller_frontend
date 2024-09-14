@@ -74,7 +74,7 @@ class _ColorModeDetailsViewState extends State<ColorModeDetailsView> {
   Widget build(BuildContext context) {
     mode = BlocProvider.of<LedModeGRPCBloc>(context).state.mode as ColorMode;
     return Container(
-        height: MediaQuery.of(context).size.height * 0.42,
+        height: MediaQuery.of(context).size.height * 0.44,
         decoration: const BoxDecoration(
             gradient: RadialGradient(
           colors: [Color(0xff2bff00), Color(0xffd3fb41)],

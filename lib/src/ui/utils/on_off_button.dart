@@ -13,28 +13,17 @@ class OnOffButton extends StatefulWidget {
 }
 
 class _OnOffButtonState extends State<OnOffButton> {
-  late bool isOn;
-  late Status status;
-
-  @override
-  void initState() {
-    super.initState();
-    status = widget.status;
-    isOn = status == Status.on ? true : false;
-  }
-
   @override
   Widget build(BuildContext context) {
+    bool isOn = widget.status == Status.on ? true : false;
+
     return Switch(
-      // This bool value toggles the switch.
       value: isOn,
       activeColor: Colors.yellow,
       onChanged: (bool value) {
-        // This is called when the user toggles the switch.
         setState(() {
-          isOn = value;
-          status = value ? Status.on : Status.off;
-          widget.callbackUpdateStatus(context, {"status": status.id});
+          widget.callbackUpdateStatus(
+              context, {"status": (value ? Status.on : Status.off).id});
         });
       },
     );
