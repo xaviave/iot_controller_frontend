@@ -33,6 +33,6 @@ abstract class BaseProduct {
 
   @override
   String toString() {
-    return name;
+    return "$name $id";
   }
 }

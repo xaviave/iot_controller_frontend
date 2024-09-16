@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iot_controller/src/blocs/product.dart';
 import 'package:iot_controller/src/models/products/coffee_machine.dart';
+import 'package:iot_controller/src/models/status.dart';
 import 'package:iot_controller/src/ui/utils/capitalize.dart';
-import 'package:iot_controller/src/ui/utils/on_off_button.dart';
 
 class CoffeeMachineMinimalDetailsView extends StatefulWidget {
   final int productIndex;
@@ -48,8 +48,16 @@ class _CoffeeMachineMinimalDetailsViewState
               product.name.capitalize,
               style: const TextStyle(fontSize: 28),
             )),
-            OnOffButton(
-                status: product.status, callbackUpdateStatus: updateProduct)
+            Switch(
+              value: product.status == Status.on,
+              activeColor: Colors.yellow,
+              onChanged: (bool value) {
+                setState(() {
+                  updateProduct(
+                      context, {"status": (value ? Status.on : Status.off).id});
+                });
+              },
+            ),
           ]),
         ));
   }

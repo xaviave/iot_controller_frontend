@@ -46,7 +46,17 @@ class _PeriodicTaskMinimalDetailsViewState
                   style: const TextStyle(fontSize: 28),
                   textAlign: TextAlign.center,
                 ),
-                // OnOffButton(status: task.status, callbackUpdateStatus: updateProduct)
+                // Switch(
+                //                             value: product.status == Status.on,
+                //                             activeColor: Colors.yellow,
+                //                             onChanged: (bool value) {
+                //                               setState(() {
+                //                                 updateProduct(context, {
+                //                                   "status": (value ? Status.on : Status.off).id
+                //                                 });
+                //                               });
+                //                             },
+                //                           ),
               ]),
               Text(task.getSchedule().toString())
             ])));

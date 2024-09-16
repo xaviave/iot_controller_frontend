@@ -291,7 +291,6 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
     return BlocBuilder<ProjectGRPCBloc, ProjectState>(buildWhen: (_, state) {
       return MediaQuery.of(context).viewInsets.bottom == 0;
     }, builder: (context, state) {
-      print("build project details: $state");
       if (state is ProjectLoading) {
         return const Center(child: CircularProgressIndicator());
       } else if (state is GetProjectSuccess ||

@@ -23,7 +23,7 @@ class LedPanel extends BaseProduct {
 
   @override
   String toString() {
-    return name;
+    return "$name $id $brightness $status";
   }
 
   LedPanelRequest getRequest() {

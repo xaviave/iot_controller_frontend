@@ -8,12 +8,12 @@ import "package:iot_controller/src/blocs/product.dart";
 import "package:iot_controller/src/models/products/base_product.dart";
 import "package:iot_controller/src/models/products/led/led_panel.dart";
 import "package:iot_controller/src/models/products/led/modes/led_mode.dart";
+import "package:iot_controller/src/models/status.dart";
 import "package:iot_controller/src/ui/celery_task/periodic_task_list_view.dart";
 import "package:iot_controller/src/ui/customColors.dart";
 import "package:iot_controller/src/ui/products/base_product/update_ip_alert_view.dart";
 import "package:iot_controller/src/ui/products/led/modes/led_mode_list_view.dart";
 import "package:iot_controller/src/ui/utils/capitalize.dart";
-import "package:iot_controller/src/ui/utils/on_off_button.dart";
 
 import "modes/led_mode_details_view.dart";
 
@@ -54,7 +54,6 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
     BaseProductState state =
         BlocProvider.of<BaseProductGRPCBloc>(context).state;
 
-    print("updateProduct led_panel: $fields $state");
     context.read<BaseProductGRPCBloc>().add(PartialUpdateBaseProductEvent(
         product: state.product!, fields: fields, products: state.products));
   }
@@ -320,11 +319,20 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                             width: (MediaQuery.of(context).size.width * 0.1)
                                 .clamp(70, 200),
                             child: FittedBox(
-                                fit: BoxFit.fill,
-                                child: OnOffButton(
-                                  status: product.status,
-                                  callbackUpdateStatus: updateProduct,
-                                ))),
+                              fit: BoxFit.fill,
+                              child: Switch(
+                                value: product.status == Status.on,
+                                activeColor: Colors.yellow,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    updateProduct(context, {
+                                      "status":
+                                          (value ? Status.on : Status.off).id
+                                    });
+                                  });
+                                },
+                              ),
+                            )),
                       ],
                     )
                   ]))

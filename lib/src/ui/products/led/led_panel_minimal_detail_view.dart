@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:interactive_slider/interactive_slider.dart';
 import 'package:iot_controller/src/blocs/product.dart';
+import 'package:iot_controller/src/models/products/base_product.dart';
 import 'package:iot_controller/src/models/products/led/led_panel.dart';
+import 'package:iot_controller/src/models/status.dart';
 import 'package:iot_controller/src/ui/utils/capitalize.dart';
-import 'package:iot_controller/src/ui/utils/on_off_button.dart';
 
 class LedPanelMinimalDetailsView extends StatefulWidget {
   final int productIndex;
@@ -31,12 +32,9 @@ class _LedPanelMinimalDetailsViewState
         products: state.products));
   }
 
-  @override
-  Widget build(BuildContext context) {
-    BaseProductState state =
-        BlocProvider.of<BaseProductGRPCBloc>(context).state;
-    LedPanel product = state.products[widget.productIndex] as LedPanel;
+  Widget ledPanelMinimalBuild(BuildContext context, LedPanel product) {
     _controllerBrightness.value = product.brightness;
+
     return Container(
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.surface,
@@ -55,9 +53,17 @@ class _LedPanelMinimalDetailsViewState
                             product.name.capitalize,
                             style: const TextStyle(fontSize: 28),
                           )),
-                          OnOffButton(
-                              status: product.status,
-                              callbackUpdateStatus: updateProduct)
+                          Switch(
+                            value: product.status == Status.on,
+                            activeColor: Colors.yellow,
+                            onChanged: (bool value) {
+                              setState(() {
+                                updateProduct(context, {
+                                  "status": (value ? Status.on : Status.off).id
+                                });
+                              });
+                            },
+                          ),
                         ])),
                 InteractiveSlider(
                     controller: _controllerBrightness,
@@ -77,5 +83,16 @@ class _LedPanelMinimalDetailsViewState
                     })
               ],
             )));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocSelector<BaseProductGRPCBloc, BaseProductState,
+            List<BaseProduct>>(
+        selector: (state) => state.products,
+        builder: (context, products) {
+          return ledPanelMinimalBuild(
+              context, products[widget.productIndex] as LedPanel);
+        });
   }
 }
