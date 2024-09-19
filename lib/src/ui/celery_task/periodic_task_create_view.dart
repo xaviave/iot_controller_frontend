@@ -83,7 +83,7 @@ class PeriodicTaskFormState extends State<PeriodicTaskForm> {
                   : null;
             },
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 10),
           TextFormField(
             controller: _taskController,
             decoration: const InputDecoration(
@@ -110,10 +110,11 @@ class PeriodicTaskFormState extends State<PeriodicTaskForm> {
               );
             }).toList(),
           )),
-          const SizedBox(height: 16),
+          const SizedBox(height: 10),
           _scheduleTypeController,
-          const SizedBox(height: 16),
+          const SizedBox(height: 10),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SizedBox(
                 child: ElevatedButton(
@@ -144,9 +145,6 @@ class PeriodicTaskFormState extends State<PeriodicTaskForm> {
                                   '{"class_type": "${widget.classType}", "class_id": "${projectState.project!.id}"}',
                                   {schedule!.name: schedule!}),
                               tasks: state.tasks));
-                      // context
-                      //     .read<PeriodicTaskGRPCBloc>()
-                      //     .add(GetPeriodicTaskListEvent());
                       Navigator.of(context).pop(true);
                     }
                     return;

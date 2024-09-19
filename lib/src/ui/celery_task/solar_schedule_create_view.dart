@@ -105,7 +105,7 @@ class SolarScheduleFormState extends State<SolarScheduleForm> {
         ElevatedButton(
             onPressed: getLocation,
             child: const Text("Set location automatically")),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         TextFormField(
           controller: _latitudeController,
           inputFormatters: [LengthLimitingTextInputFormatter(11)],
@@ -122,7 +122,7 @@ class SolarScheduleFormState extends State<SolarScheduleForm> {
             return null;
           },
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         TextFormField(
           controller: _longitudeController,
           inputFormatters: [LengthLimitingTextInputFormatter(11)],
@@ -139,7 +139,7 @@ class SolarScheduleFormState extends State<SolarScheduleForm> {
             return null;
           },
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         CustomDropdown<String>(
             hintText: 'Select an solar event',
             items: events,

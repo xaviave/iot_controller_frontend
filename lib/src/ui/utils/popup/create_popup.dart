@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iot_controller/src/ui/customColors.dart';
+import 'package:iot_controller/src/ui/utils/customColors.dart';
 import 'package:iot_controller/src/ui/utils/capitalize.dart';
 import 'package:iot_controller/src/ui/utils/popup/abstract_popup.dart';
 

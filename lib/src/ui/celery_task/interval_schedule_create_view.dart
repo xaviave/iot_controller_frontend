@@ -57,7 +57,7 @@ class IntervalScheduleFormState extends State<IntervalScheduleForm> {
             return null;
           },
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         CustomDropdown<String>(
             hintText: 'Select period',
             items: periods,

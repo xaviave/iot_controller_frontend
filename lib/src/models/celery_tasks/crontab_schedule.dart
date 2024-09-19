@@ -48,6 +48,6 @@ class CrontabSchedule extends Schedule {
 
   @override
   String toString() {
-    return "Crontab - $minute:$hour on $dayOfWeek / $dayOfMonth / $monthOfYear in $timezone";
+    return "Crontab - $minute:$hour on $dayOfWeek/$dayOfMonth/$monthOfYear in $timezone";
   }
 }

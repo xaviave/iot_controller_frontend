@@ -44,7 +44,7 @@ class _LedPanelMinimalDetailsViewState
             child: Column(
               children: [
                 Padding(
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(8),
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -66,6 +66,7 @@ class _LedPanelMinimalDetailsViewState
                           ),
                         ])),
                 InteractiveSlider(
+                    padding: const EdgeInsets.all(8),
                     controller: _controllerBrightness,
                     startIcon: const Icon(Icons.brightness_low),
                     endIcon: const Icon(Icons.brightness_high),

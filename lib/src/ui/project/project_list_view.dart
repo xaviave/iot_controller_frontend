@@ -8,7 +8,7 @@ import "package:iot_controller/src/blocs/project.dart" as project_bloc;
 import "package:iot_controller/src/blocs/user.dart" as user_bloc;
 import "package:iot_controller/src/models/project.dart";
 import "package:iot_controller/src/services/communication_service.dart";
-import "package:iot_controller/src/ui/customColors.dart";
+import "package:iot_controller/src/ui/utils/customColors.dart";
 import "package:iot_controller/src/ui/project/project_create_view.dart";
 import "package:iot_controller/src/ui/utils/capitalize.dart";
 import "package:iot_controller/src/ui/utils/popup/create_popup.dart";

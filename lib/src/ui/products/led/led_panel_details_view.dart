@@ -10,8 +10,8 @@ import "package:iot_controller/src/models/products/led/led_panel.dart";
 import "package:iot_controller/src/models/products/led/modes/led_mode.dart";
 import "package:iot_controller/src/models/status.dart";
 import "package:iot_controller/src/ui/celery_task/periodic_task_list_view.dart";
-import "package:iot_controller/src/ui/customColors.dart";
-import "package:iot_controller/src/ui/products/base_product/update_ip_alert_view.dart";
+import "package:iot_controller/src/ui/products/base_product/ip_form_view.dart";
+import "package:iot_controller/src/ui/utils/customColors.dart";
 import "package:iot_controller/src/ui/products/led/modes/led_mode_list_view.dart";
 import "package:iot_controller/src/ui/utils/capitalize.dart";
 
@@ -120,12 +120,11 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
         body: Padding(padding: const EdgeInsets.all(16), child: bodyView));
   }
 
-  Widget buttonDecoration(
-      String title,
-      Function callbackButton,
-      Widget? callbackWidget,
+  Widget buttonDecoration(String title, Function callbackButton,
+      {Widget? callbackWidget,
       Function? callbackClosePopup,
-      Function? callbackSubmit) {
+      Function? callbackSubmit,
+      bool submitButtons = true}) {
     return Expanded(
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -135,27 +134,26 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
             onPressed: () {
               if (callbackWidget != null) {
                 callbackButton(context, title, callbackWidget,
-                    callbackClosePopup, callbackSubmit);
+                    callbackClosePopup, submitButtons, callbackSubmit);
               } else {
                 callbackButton(context);
               }
             },
             child: Container(
-              // width: MediaQuery.of(context).size.width / 4,
-              // decoration: BoxDecoration(
-              //     color: Theme.of(context).colorScheme.surface,
-              //     borderRadius: const BorderRadius.all(Radius.circular(16))),
-              alignment: Alignment.center,
-              height: MediaQuery.of(context).size.height / 15,
-              child: Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            )));
+                // width: MediaQuery.of(context).size.width / 4,
+                // decoration: BoxDecoration(
+                //     color: Theme.of(context).colorScheme.surface,
+                //     borderRadius: const BorderRadius.all(Radius.circular(16))),
+                alignment: Alignment.center,
+                height: MediaQuery.of(context).size.height / 15,
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  textAlign: TextAlign.center,
+                ))));
   }
 
   void confirmationPopup(
@@ -163,55 +161,64 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
       String title,
       Widget callbackWidget,
       Function? callbackClosePopup,
+      bool submitButtons,
       Function? callbackSubmit) async {
     await showDialog(
         context: context,
         builder: (BuildContext context) => PopScope(
-              onPopInvokedWithResult: (bool didPop, _) {
-                if (callbackClosePopup != null
-                    // && didPop
-                    ) {
-                  BaseProductState state =
-                      BlocProvider.of<BaseProductGRPCBloc>(context).state;
-                  callbackClosePopup((state.product! as LedPanel).mode);
-                }
-              },
-              child: AlertDialog(
-                  title: Text(
-                    title,
-                    textAlign: TextAlign.center,
-                  ),
-                  insetPadding: const EdgeInsets.all(16),
-                  content: SizedBox(
-                      child: Column(mainAxisSize: MainAxisSize.min, children: [
-                    callbackWidget,
-                    const SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: const Text(
-                            'Cancel',
-                            style: TextStyle(fontWeight: FontWeight.w600),
+            onPopInvokedWithResult: (bool didPop, _) {
+              if (callbackClosePopup != null) {
+                callbackClosePopup();
+              }
+              // if (callbackClosePopup != null) {
+              //   BaseProductState state =
+              //       BlocProvider.of<BaseProductGRPCBloc>(context).state;
+              //   callbackClosePopup((state.product! as LedPanel).mode);
+              // }
+            },
+            child: AlertDialog(
+                title: Text(
+                  title,
+                  textAlign: TextAlign.center,
+                ),
+                insetPadding: const EdgeInsets.all(16),
+                content: SizedBox(
+                    child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  callbackWidget,
+                  const SizedBox(height: 10),
+                  () {
+                    if (submitButtons) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text(
+                              'Cancel',
+                              style: TextStyle(fontWeight: FontWeight.w600),
+                            ),
                           ),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            if (callbackSubmit != null) callbackSubmit(context);
-                            Navigator.of(context).pop();
-                          },
-                          child: const Text(
-                            'Submit',
-                            style: TextStyle(fontWeight: FontWeight.w600),
-                          ),
-                        )
-                      ],
-                    )
-                  ]))),
-            ));
+                          ElevatedButton(
+                            onPressed: () {
+                              if (callbackSubmit != null) {
+                                callbackSubmit(context);
+                              }
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text(
+                              'Submit',
+                              style: TextStyle(fontWeight: FontWeight.w600),
+                            ),
+                          )
+                        ],
+                      );
+                    } else {
+                      return Container();
+                    }
+                  }()
+                ])))));
   }
 
   Widget ledPanelBuild(BuildContext context, BaseProductState state) {
@@ -229,29 +236,26 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            buttonDecoration(
-                "Update IP",
-                confirmationPopup,
-                IpUpdateAlertView(
+            buttonDecoration("Update IP", confirmationPopup,
+                callbackWidget: IpForm(
                     ipAddress: product.ipAddress,
                     ipPort: product.ipPort,
                     callbackUpdateIp: updateProduct),
-                null,
-                null),
+                submitButtons: false),
             const SizedBox(width: 20),
             buttonDecoration(
-                "Mode Selection",
-                confirmationPopup,
-                LedModeListView(callbackUpdateProductLedMode: updateProduct),
-                setLedMode,
-                null)
+              "Mode Selection",
+              confirmationPopup,
+              callbackWidget:
+                  LedModeListView(callbackUpdateProductLedMode: updateProduct),
+              callbackClosePopup: setLedMode,
+            )
           ],
         )
       ])),
       "Tasks": PeriodicTaskListView(
         classType: "Product",
         classId: state.product!.id,
-        onlyBody: true,
       )
     };
 
@@ -284,11 +288,12 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                         Expanded(
                             child: TabBarView(children: tabs.values.toList())),
                       ]))),
-              const SizedBox(height: 16),
+              const SizedBox(height: 10),
               decorationBlock(
                   context,
                   Column(children: [
                     InteractiveSlider(
+                        padding: const EdgeInsets.all(0),
                         controller: _controllerBrightness,
                         startIcon: const Icon(Icons.brightness_low),
                         endIcon: const Icon(Icons.brightness_high),
@@ -305,15 +310,15 @@ class _LedPanelDetailsViewState extends State<LedPanelDetailsView> {
                                 _controllerBrightness.value.toStringAsFixed(2))
                           });
                         }),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         buttonDecoration("Delete Product", confirmationPopup,
-                            Container(), null, callbackDeleteLedPanel),
+                            callbackWidget: const Text("Confirm the deletion"),
+                            callbackSubmit: callbackDeleteLedPanel),
                         const SizedBox(width: 20),
-                        buttonDecoration("Refresh Product", refreshLedPanel,
-                            null, null, null),
+                        buttonDecoration("Refresh Product", refreshLedPanel),
                         const SizedBox(width: 20),
                         SizedBox(
                             width: (MediaQuery.of(context).size.width * 0.1)

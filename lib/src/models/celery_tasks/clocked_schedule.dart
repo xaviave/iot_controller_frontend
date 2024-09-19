@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:iot_controller/protos/backend.pb.dart';
 import 'package:iot_controller/src/models/celery_tasks/schedule.dart';
 
@@ -27,6 +28,6 @@ class ClockedSchedule extends Schedule {
 
   @override
   String toString() {
-    return "Clocked - $clockedTime";
+    return "Clocked - ${DateFormat.yMd().add_Hm().format(DateTime.parse(clockedTime))}";
   }
 }

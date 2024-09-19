@@ -60,9 +60,9 @@ class LedModeFormState extends State<LedModeForm> {
                   : null;
             },
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 10),
           const Text("Select type of Led Mode:"),
-          const SizedBox(height: 6),
+          const SizedBox(height: 10),
           DropdownButton<String>(
             value: _ledModeController,
             icon: const Icon(Icons.arrow_downward),
@@ -78,7 +78,7 @@ class LedModeFormState extends State<LedModeForm> {
               );
             }).toList(),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 10),
           Row(
             children: [
               SizedBox(

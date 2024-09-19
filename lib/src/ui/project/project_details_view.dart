@@ -8,7 +8,7 @@ import "package:iot_controller/src/blocs/project.dart";
 import "package:iot_controller/src/models/products/base_product.dart";
 import "package:iot_controller/src/models/project.dart";
 import "package:iot_controller/src/ui/celery_task/periodic_task_list_view.dart";
-import "package:iot_controller/src/ui/customColors.dart";
+import "package:iot_controller/src/ui/utils/customColors.dart";
 import "package:iot_controller/src/ui/products/base_product/base_product_create_view.dart";
 import "package:iot_controller/src/ui/products/base_product/base_product_list_view.dart";
 import "package:iot_controller/src/ui/utils/capitalize.dart";
@@ -93,12 +93,11 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
         body: Padding(padding: const EdgeInsets.all(16), child: bodyView));
   }
 
-  Widget buttonDecoration(
-      String title,
-      Function callbackButton,
-      Widget? callbackWidget,
+  Widget buttonDecoration(String title, Function callbackButton,
+      {Widget? callbackWidget,
       Function? callbackClosePopup,
-      Function? callbackSubmit) {
+      Function? callbackSubmit,
+      bool submitButtons = true}) {
     return Expanded(
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -108,16 +107,12 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
             onPressed: () {
               if (callbackWidget != null) {
                 callbackButton(context, title, callbackWidget,
-                    callbackClosePopup, callbackSubmit);
+                    callbackClosePopup, submitButtons, callbackSubmit);
               } else {
                 callbackButton(context);
               }
             },
             child: Container(
-              // width: MediaQuery.of(context).size.width / 4,
-              // decoration: BoxDecoration(
-              //     color: Theme.of(context).colorScheme.surface,
-              //     borderRadius: const BorderRadius.all(Radius.circular(16))),
               alignment: Alignment.center,
               height: MediaQuery.of(context).size.height / 15,
               child: Text(
@@ -136,47 +131,59 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
       String title,
       Widget callbackWidget,
       Function? callbackClosePopup,
+      bool submitButtons,
       Function? callbackSubmit) async {
     await showDialog(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-          title: Text(
-            title,
-            textAlign: TextAlign.center,
-          ),
-          insetPadding: const EdgeInsets.all(16),
-          content: SizedBox(
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-            callbackWidget,
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pop(false);
-                    return;
-                  },
-                  child: const Text(
-                    'Cancel',
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  ),
+        context: context,
+        builder: (BuildContext context) => PopScope(
+            onPopInvokedWithResult: (bool didPop, _) {
+              if (callbackClosePopup != null) {
+                callbackClosePopup();
+              }
+            },
+            child: AlertDialog(
+                title: Text(
+                  title,
+                  textAlign: TextAlign.center,
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (callbackSubmit != null) callbackSubmit(context);
-
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text(
-                    'Submit',
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  ),
-                )
-              ],
-            )
-          ]))),
-    );
+                insetPadding: const EdgeInsets.all(16),
+                content: SizedBox(
+                    child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  callbackWidget,
+                  const SizedBox(height: 10),
+                  () {
+                    if (submitButtons) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text(
+                              'Cancel',
+                              style: TextStyle(fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              if (callbackSubmit != null) {
+                                callbackSubmit(context);
+                              }
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text(
+                              'Submit',
+                              style: TextStyle(fontWeight: FontWeight.w600),
+                            ),
+                          )
+                        ],
+                      );
+                    } else {
+                      return Container();
+                    }
+                  }()
+                ])))));
   }
 
   Widget projectBuild(BuildContext context, ProjectState state) {
@@ -200,7 +207,6 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
       "Tasks": PeriodicTaskListView(
         classType: "Project",
         classId: state.project!.id,
-        onlyBody: true,
       )
     };
 
@@ -230,7 +236,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
                             fontWeight: FontWeight.w600,
                           )),
                     ])),
-            const SizedBox(height: 16),
+            const SizedBox(height: 10),
             Expanded(
                 child: decorationBlock(
                     context,
@@ -251,26 +257,23 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
                       Expanded(
                           child: TabBarView(children: tabs.values.toList()))
                     ]))),
-            const SizedBox(height: 16),
+            const SizedBox(height: 10),
             decorationBlock(
                 context,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     buttonDecoration("Delete Project", confirmationPopup,
-                        Container(), null, callbackDeleteProject),
-                    const SizedBox(width: 20),
-                    buttonDecoration(
-                        "Refresh Project", refreshProject, null, null, null),
-                    const SizedBox(width: 20),
-                    buttonDecoration(
-                        "Create Product",
-                        confirmationPopup,
-                        Expanded(
+                        callbackWidget: const Text("Confirm the deletion"),
+                        callbackSubmit: callbackDeleteProject),
+                    const SizedBox(width: 10),
+                    buttonDecoration("Refresh Project", refreshProject),
+                    const SizedBox(width: 10),
+                    buttonDecoration("Create Product", confirmationPopup,
+                        callbackWidget: Expanded(
                             child: BaseProductForm(
                                 callbackUpdateProject: updateProduct)),
-                        null,
-                        null),
+                        submitButtons: false),
                   ],
                 )),
           ]),

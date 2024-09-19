@@ -3,7 +3,7 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:go_router/go_router.dart";
 import "package:iot_controller/src/blocs/settings_bloc.dart";
 import "package:iot_controller/src/blocs/user.dart";
-import "package:iot_controller/src/ui/customColors.dart";
+import "package:iot_controller/src/ui/utils/customColors.dart";
 import "package:iot_controller/src/ui/user/login_view.dart";
 import "package:iot_controller/src/ui/utils/popup/login_popup.dart";
 
@@ -34,7 +34,7 @@ class SettingsView extends StatelessWidget {
                     fontWeight: FontWeight.w900,
                   ))),
           Divider(color: Theme.of(context).colorScheme.secondary),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           SegmentedButton<ThemeMode>(
             segments: const <ButtonSegment<ThemeMode>>[
               ButtonSegment<ThemeMode>(
@@ -70,7 +70,7 @@ class SettingsView extends StatelessWidget {
                 fontWeight: FontWeight.w900,
               ))),
       Divider(color: Theme.of(context).colorScheme.secondary),
-      const SizedBox(height: 20),
+      const SizedBox(height: 10),
     ];
 
     if (userState is AddActiveUserEventSuccess) {
@@ -80,7 +80,7 @@ class SettingsView extends StatelessWidget {
             style: const TextStyle(
               fontSize: 24,
             )),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         // need a remove active user button
         // Button()
       ];
@@ -92,7 +92,7 @@ class SettingsView extends StatelessWidget {
       }
       w = [
         ...w,
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         LoginPopup(
           heroTag: "login_user_create_button",
           formName: "user",
@@ -118,7 +118,7 @@ class SettingsView extends StatelessWidget {
                     fontWeight: FontWeight.w900,
                   ))),
           Divider(color: Theme.of(context).colorScheme.secondary),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           TextField(
             decoration: InputDecoration(
                 border: const OutlineInputBorder(),
@@ -167,9 +167,9 @@ class SettingsView extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               child: Column(children: [
                 themeBloc(context, settingState),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 userBloc(context, userState),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 serverBloc(context, settingState),
               ]));
         });

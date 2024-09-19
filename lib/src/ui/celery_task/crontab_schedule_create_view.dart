@@ -101,7 +101,7 @@ class CrontabScheduleFormState extends State<CrontabScheduleForm> {
         const Text("*/X means every values divided by X"),
         const Text("X-Y means every values between X and Y"),
         const Text("X-Y/2 means every values between X and Y that are even"),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         TextFormField(
           controller: _minuteController,
           decoration: const InputDecoration(
@@ -117,7 +117,7 @@ class CrontabScheduleFormState extends State<CrontabScheduleForm> {
             return null;
           },
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         TextFormField(
           controller: _hourController,
           decoration: const InputDecoration(
@@ -133,7 +133,7 @@ class CrontabScheduleFormState extends State<CrontabScheduleForm> {
             return null;
           },
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         CustomDropdown<String>.multiSelect(
             multiSelectController: _dayOfWeekController,
             hintText: 'Select day of week',
@@ -161,7 +161,7 @@ class CrontabScheduleFormState extends State<CrontabScheduleForm> {
                 highlightColor: Theme.of(context).colorScheme.primary,
               ),
             )),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         TextFormField(
           controller: _dayOfMonthController,
           decoration: const InputDecoration(
@@ -177,7 +177,7 @@ class CrontabScheduleFormState extends State<CrontabScheduleForm> {
             return null;
           },
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         TextFormField(
           controller: _monthOfYearController,
           decoration: const InputDecoration(

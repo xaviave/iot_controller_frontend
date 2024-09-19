@@ -6,15 +6,13 @@ import 'package:iot_controller/src/blocs/project.dart';
 import 'package:iot_controller/src/blocs/user.dart';
 import 'package:iot_controller/src/models/products/base_product.dart';
 import 'package:iot_controller/src/models/project.dart';
-import 'package:iot_controller/src/ui/customColors.dart';
+import 'package:iot_controller/src/ui/utils/customColors.dart';
 
 class ProjectForm extends StatefulWidget {
   const ProjectForm({super.key});
 
   @override
-  ProjectFormState createState() {
-    return ProjectFormState();
-  }
+  ProjectFormState createState() => ProjectFormState();
 }
 
 class ProjectFormState extends State<ProjectForm> {
@@ -37,8 +35,6 @@ class ProjectFormState extends State<ProjectForm> {
   @override
   Widget build(BuildContext context) {
     context.read<BaseProductGRPCBloc>().add(GetBaseProductListEvent(null));
-    final customColors = Theme.of(context).extension<CustomColors>()!;
-
     return BlocBuilder<BaseProductGRPCBloc, BaseProductState>(
         builder: (context, state) {
       return Form(
@@ -57,7 +53,7 @@ class ProjectFormState extends State<ProjectForm> {
                     : null;
               },
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             CustomDropdown<BaseProduct>.multiSelect(
                 multiSelectController: _productController,
                 hintText: 'Select products',
@@ -83,7 +79,7 @@ class ProjectFormState extends State<ProjectForm> {
                     highlightColor: Theme.of(context).colorScheme.surfaceBright,
                   ),
                 )),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -95,7 +91,7 @@ class ProjectFormState extends State<ProjectForm> {
                     style: TextStyle(fontWeight: FontWeight.w600),
                   ),
                 )),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             Row(
               children: [
                 SizedBox(

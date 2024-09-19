@@ -6,17 +6,14 @@ import 'package:iot_controller/src/models/celery_tasks/periodic_task.dart';
 import 'package:iot_controller/src/services/communication_service.dart';
 import 'package:iot_controller/src/ui/celery_task/periodic_task_create_view.dart';
 import 'package:iot_controller/src/ui/celery_task/periodic_task_minimal_view.dart';
-import 'package:iot_controller/src/ui/customColors.dart';
+import 'package:iot_controller/src/ui/utils/customColors.dart';
 
 class PeriodicTaskListView extends StatefulWidget {
-  final bool onlyBody;
-
   final int classId;
   final String classType;
 
   const PeriodicTaskListView({
     super.key,
-    this.onlyBody = false,
     required this.classId,
     required this.classType,
   });
@@ -45,48 +42,6 @@ class _PeriodicTaskListViewState extends State<PeriodicTaskListView> {
         periodicTaskName: tasks[index].name, tasks: tasks));
   }
 
-  Widget bodyListView() {
-    return BlocBuilder<PeriodicTaskGRPCBloc, PeriodicTaskState>(
-        builder: (context, state) {
-      if (state is PeriodicTaskListInitial) {
-        return const Center(child: CircularProgressIndicator());
-      } else if (state is PeriodicTaskListSuccess ||
-          state is GetPeriodicTaskSuccess ||
-          state is QueryPeriodicTaskSuccess ||
-          state is DestroyPeriodicTaskSuccess ||
-          state is CreatePeriodicTaskSuccess ||
-          // loading here to avoid flickering | should notify
-          state is PeriodicTaskLoading) {
-        return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.45,
-            child: ListView.separated(
-              restorationId: 'PeriodicTaskListView',
-              itemCount: state.tasks.length,
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  title: PeriodicTaskMinimalDetailsView(taskIndex: index),
-                  onTap: () {
-                    // if (widget.onlyBody == false) {
-                    //   Navigator.of(context).pop();
-                    // }
-                  },
-                  onLongPress: () {
-                    callbackDeletePeriodicTask(index, state.tasks);
-                  },
-                );
-              },
-              separatorBuilder: (context, index) =>
-                  Divider(color: Theme.of(context).colorScheme.secondary),
-            ));
-      } else {
-        // PeriodicTaskError
-        return Center(
-          child: Text("Error: ${state.message}"),
-        );
-      }
-    });
-  }
-
   Widget decorationBlock(BuildContext context, Widget bodyView) {
     final customColors = Theme.of(context).extension<CustomColors>()!;
 
@@ -97,12 +52,11 @@ class _PeriodicTaskListViewState extends State<PeriodicTaskListView> {
         child: bodyView);
   }
 
-  Widget buttonDecoration(
-      String title,
-      Function callbackButton,
-      Widget? callbackWidget,
+  Widget buttonDecoration(String title, Function callbackButton,
+      {Widget? callbackWidget,
       Function? callbackClosePopup,
-      Function? callbackSubmit) {
+      Function? callbackSubmit,
+      bool submitButtons = true}) {
     return Expanded(
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -112,16 +66,12 @@ class _PeriodicTaskListViewState extends State<PeriodicTaskListView> {
             onPressed: () {
               if (callbackWidget != null) {
                 callbackButton(context, title, callbackWidget,
-                    callbackClosePopup, callbackSubmit);
+                    callbackClosePopup, submitButtons, callbackSubmit);
               } else {
                 callbackButton(context);
               }
             },
             child: Container(
-              // width: MediaQuery.of(context).size.width / 4,
-              // decoration: BoxDecoration(
-              //     color: Theme.of(context).colorScheme.surface,
-              //     borderRadius: const BorderRadius.all(Radius.circular(16))),
               alignment: Alignment.center,
               height: MediaQuery.of(context).size.height / 15,
               child: Text(
@@ -140,47 +90,96 @@ class _PeriodicTaskListViewState extends State<PeriodicTaskListView> {
       String title,
       Widget callbackWidget,
       Function? callbackClosePopup,
+      bool submitButtons,
       Function? callbackSubmit) async {
     await showDialog(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-          title: Text(
-            title,
-            textAlign: TextAlign.center,
-          ),
-          insetPadding: const EdgeInsets.all(16),
-          content: SizedBox(
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-            callbackWidget,
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pop(false);
-                    return;
-                  },
-                  child: const Text(
-                    'Cancel',
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  ),
+        context: context,
+        builder: (BuildContext context) => PopScope(
+            onPopInvokedWithResult: (bool didPop, _) {
+              if (callbackClosePopup != null) {
+                callbackClosePopup();
+              }
+            },
+            child: AlertDialog(
+                title: Text(
+                  title,
+                  textAlign: TextAlign.center,
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (callbackSubmit != null) callbackSubmit(context);
+                insetPadding: const EdgeInsets.all(16),
+                content: SizedBox(
+                    child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  callbackWidget,
+                  const SizedBox(height: 10),
+                  () {
+                    if (submitButtons) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text(
+                              'Cancel',
+                              style: TextStyle(fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              if (callbackSubmit != null) {
+                                callbackSubmit(context);
+                              }
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text(
+                              'Submit',
+                              style: TextStyle(fontWeight: FontWeight.w600),
+                            ),
+                          )
+                        ],
+                      );
+                    } else {
+                      return Container();
+                    }
+                  }()
+                ])))));
+  }
 
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text(
-                    'Submit',
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  ),
-                )
-              ],
-            )
-          ]))),
-    );
+  Widget bodyListView() {
+    return BlocBuilder<PeriodicTaskGRPCBloc, PeriodicTaskState>(
+        builder: (context, state) {
+      if (state is PeriodicTaskListInitial) {
+        return const Center(child: CircularProgressIndicator());
+      } else if (state is PeriodicTaskListSuccess ||
+          state is GetPeriodicTaskSuccess ||
+          state is QueryPeriodicTaskSuccess ||
+          state is DestroyPeriodicTaskSuccess ||
+          state is CreatePeriodicTaskSuccess ||
+          // loading here to avoid flickering | should notify
+          state is PeriodicTaskLoading) {
+        return ListView.separated(
+          restorationId: 'PeriodicTaskListView',
+          itemCount: state.tasks.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(
+              // title: Text("aaa"),
+              title: PeriodicTaskMinimalDetailsView(taskIndex: index),
+              onTap: () {},
+              onLongPress: () {
+                callbackDeletePeriodicTask(index, state.tasks);
+              },
+            );
+          },
+          separatorBuilder: (context, index) =>
+              Divider(color: Theme.of(context).colorScheme.secondary),
+        );
+      } else {
+        // PeriodicTaskError
+        return Center(
+          child: Text("Error: ${state.message}"),
+        );
+      }
+    });
   }
 
   @override
@@ -194,52 +193,25 @@ class _PeriodicTaskListViewState extends State<PeriodicTaskListView> {
             serverPort: state.serverPort,
           )));
     }, child: () {
-      if (widget.onlyBody) {
-        return Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              bodyListView(),
-              decorationBlock(
-                  context,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      buttonDecoration("Refresh Tasks", refreshPeriodicTaskList,
-                          null, null, null),
-                      const SizedBox(width: 20),
-                      buttonDecoration(
-                          "Create Task",
-                          confirmationPopup,
-                          Expanded(
-                              child: PeriodicTaskForm(
-                                  classType: widget.classType)),
-                          null,
-                          null),
-                    ],
-                  ))
-            ]);
-      } else {
-        return Scaffold(
-          body: bodyListView(),
-          floatingActionButton: decorationBlock(
-              context,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  buttonDecoration("Refresh Tasks", refreshPeriodicTaskList,
-                      null, null, null),
-                  const SizedBox(width: 20),
-                  buttonDecoration(
-                      "Create Task",
-                      confirmationPopup,
-                      Expanded(
-                          child: PeriodicTaskForm(classType: widget.classType)),
-                      null,
-                      null),
-                ],
-              )),
-        );
-      }
+      return Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Expanded(child: bodyListView()),
+            const SizedBox(height: 10),
+            decorationBlock(
+                context,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    buttonDecoration("Refresh Tasks", refreshPeriodicTaskList),
+                    const SizedBox(width: 20),
+                    buttonDecoration("Create Task", confirmationPopup,
+                        callbackWidget:
+                            PeriodicTaskForm(classType: widget.classType),
+                        submitButtons: false),
+                  ],
+                ))
+          ]);
     }());
   }
 }

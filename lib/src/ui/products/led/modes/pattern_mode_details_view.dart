@@ -127,12 +127,11 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
             }));
   }
 
-  Widget buttonDecoration(
-      String title,
-      Function callbackButton,
-      Widget? callbackWidget,
+  Widget buttonDecoration(String title, Function callbackButton,
+      {Widget? callbackWidget,
       Function? callbackClosePopup,
-      Function? callbackSubmit) {
+      Function? callbackSubmit,
+      bool submitButtons = true}) {
     return Expanded(
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -142,22 +141,18 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
             onPressed: () {
               if (callbackWidget != null) {
                 callbackButton(context, title, callbackWidget,
-                    callbackClosePopup, callbackSubmit);
+                    callbackClosePopup, submitButtons, callbackSubmit);
               } else {
                 callbackButton(context);
               }
             },
             child: Container(
-              // width: MediaQuery.of(context).size.width / 4,
-              // decoration: BoxDecoration(
-              //     color: Theme.of(context).colorScheme.surface,
-              //     borderRadius: const BorderRadius.all(Radius.circular(16))),
               alignment: Alignment.center,
               height: MediaQuery.of(context).size.height / 15,
               child: Text(
                 title,
                 style: const TextStyle(
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
                 textAlign: TextAlign.center,
@@ -170,45 +165,59 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
       String title,
       Widget callbackWidget,
       Function? callbackClosePopup,
+      bool submitButtons,
       Function? callbackSubmit) async {
     await showDialog(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-          title: Text(
-            title,
-            textAlign: TextAlign.center,
-          ),
-          insetPadding: const EdgeInsets.all(16),
-          content: SizedBox(
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-            callbackWidget,
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text(
-                    'Cancel',
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  ),
+        context: context,
+        builder: (BuildContext context) => PopScope(
+            onPopInvokedWithResult: (bool didPop, _) {
+              if (callbackClosePopup != null) {
+                callbackClosePopup();
+              }
+            },
+            child: AlertDialog(
+                title: Text(
+                  title,
+                  textAlign: TextAlign.center,
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (callbackSubmit != null) callbackSubmit(context);
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text(
-                    'Submit',
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  ),
-                )
-              ],
-            )
-          ]))),
-    ).then((selectedPalette) {
+                insetPadding: const EdgeInsets.all(16),
+                content: SizedBox(
+                    child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  callbackWidget,
+                  const SizedBox(height: 10),
+                  () {
+                    if (submitButtons) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text(
+                              'Cancel',
+                              style: TextStyle(fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              if (callbackSubmit != null) {
+                                callbackSubmit(context);
+                              }
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text(
+                              'Submit',
+                              style: TextStyle(fontWeight: FontWeight.w600),
+                            ),
+                          )
+                        ],
+                      );
+                    } else {
+                      return Container();
+                    }
+                  }()
+                ]))))).then((selectedPalette) {
       if (selectedPalette != null) {
         setState(() {
           mode.palette = selectedPalette.p;
@@ -230,21 +239,15 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
             children: List.generate(mode.palette.length, (i) => i).map((index) {
           return addColorWidget(index, mode.palette[index], false);
         }).toList()),
-        const SizedBox(height: 16),
+        const SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            buttonDecoration(
-                "Add Color",
-                (context) => updatePaletteColor(0, Colors.grey, true),
-                null,
-                null,
-                null),
+            buttonDecoration("Add Color",
+                (context) => updatePaletteColor(0, Colors.grey, true)),
             const SizedBox(width: 20),
-            buttonDecoration(
-                "Change Palette",
-                confirmationPopup,
-                SizedBox(
+            buttonDecoration("Change Palette", confirmationPopup,
+                callbackWidget: SizedBox(
                     width: MediaQuery.of(context).size.height * 0.5,
                     height: MediaQuery.of(context).size.height * 0.75,
                     child: ListView.builder(
@@ -258,14 +261,12 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
                           },
                         );
                       },
-                    )),
-                null,
-                // setLedMode,
-                null)
+                    )))
           ],
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 10),
         InteractiveSlider(
+            padding: const EdgeInsets.all(0),
             centerIcon: const Text('FPS'),
             startIcon: const Icon(Icons.pause),
             endIcon: const Icon(Icons.fast_forward),
@@ -288,6 +289,7 @@ class _PatternModeDetailsViewState extends State<PatternModeDetailsView> {
                   context, {"mode": mode.getAbstractRequest()});
             }),
         InteractiveSlider(
+            padding: const EdgeInsets.all(0),
             centerIcon: const Text('Blink interval'),
             startIcon: const Icon(Icons.pause),
             endIcon: const Icon(Icons.fast_forward),

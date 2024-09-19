@@ -26,12 +26,7 @@ class _PeriodicTaskMinimalDetailsViewState
         tasks: state.tasks));
   }
 
-  @override
-  Widget build(BuildContext context) {
-    PeriodicTaskState state =
-        BlocProvider.of<PeriodicTaskGRPCBloc>(context).state;
-    PeriodicTask task = state.tasks[widget.taskIndex];
-
+  Widget periodicTaskMinimalBuild(BuildContext context, PeriodicTask task) {
     return Container(
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.surface,
@@ -43,22 +38,36 @@ class _PeriodicTaskMinimalDetailsViewState
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 Text(
                   task.name.capitalize,
-                  style: const TextStyle(fontSize: 28),
+                  style: const TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.w600,
+                  ),
                   textAlign: TextAlign.center,
                 ),
-                // Switch(
-                //                             value: product.status == Status.on,
-                //                             activeColor: Colors.yellow,
-                //                             onChanged: (bool value) {
-                //                               setState(() {
-                //                                 updateProduct(context, {
-                //                                   "status": (value ? Status.on : Status.off).id
-                //                                 });
-                //                               });
-                //                             },
-                //                           ),
+                Switch(
+                  value: true,
+                  activeColor: Theme.of(context).colorScheme.secondary,
+                  // need to add this parameter to the proto file
+                  // value: task.enabled == true,
+                  onChanged: (bool value) {
+                    setState(() {
+                      // updatePeriodicTask(context,
+                      //     {"enabled": value});
+                    });
+                  },
+                ),
               ]),
               Text(task.getSchedule().toString())
             ])));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocSelector<PeriodicTaskGRPCBloc, PeriodicTaskState,
+            List<PeriodicTask>>(
+        selector: (state) => state.tasks,
+        builder: (context, tasks) {
+          return periodicTaskMinimalBuild(context, tasks[widget.taskIndex]);
+        });
   }
 }

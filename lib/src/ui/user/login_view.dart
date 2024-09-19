@@ -49,7 +49,7 @@ class UserLoginFormState extends State<UserLoginForm> {
                     highlightColor: Theme.of(context).colorScheme.primary,
                   ),
                 )),
-            const SizedBox(height: 16),
+            const SizedBox(height: 10),
             Row(
               children: [
                 SizedBox(

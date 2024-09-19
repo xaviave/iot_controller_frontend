@@ -92,12 +92,12 @@ class ClockedScheduleFormState extends State<ClockedScheduleForm> {
             return null;
           },
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         ElevatedButton(
           onPressed: () => displayTimePicker(context),
           child: const Text("Pick Time"),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         TextFormField(
           controller: _dateController,
           readOnly: true,
@@ -111,7 +111,7 @@ class ClockedScheduleFormState extends State<ClockedScheduleForm> {
             return null;
           },
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         ElevatedButton(
           onPressed: () => displayDatePicker(context),
           child: const Text("Pick Date"),

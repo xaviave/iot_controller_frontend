@@ -74,10 +74,11 @@ class PeriodicTask {
       name: r.name,
       task: r.task,
       kwargs: r.kwargs,
-      interval: IntervalSchedule.fromResponse(r.interval),
-      crontab: CrontabSchedule.fromResponse(r.crontab),
-      solar: SolarSchedule.fromResponse(r.solar),
-      clocked: ClockedSchedule.fromResponse(r.clocked),
+      interval:
+          r.hasInterval() ? IntervalSchedule.fromResponse(r.interval) : null,
+      crontab: r.hasCrontab() ? CrontabSchedule.fromResponse(r.crontab) : null,
+      solar: r.hasSolar() ? SolarSchedule.fromResponse(r.solar) : null,
+      clocked: r.hasClocked() ? ClockedSchedule.fromResponse(r.clocked) : null,
     );
   }
 }
