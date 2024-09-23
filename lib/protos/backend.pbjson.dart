@@ -310,6 +310,126 @@ const CategoryRetrieveRequest$json = {
 final $typed_data.Uint8List categoryRetrieveRequestDescriptor = $convert
     .base64Decode('ChdDYXRlZ29yeVJldHJpZXZlUmVxdWVzdBIOCgJpZBgBIAEoBVICaWQ=');
 
+@$core.Deprecated('Use clockedScheduleDestroyRequestDescriptor instead')
+const ClockedScheduleDestroyRequest$json = {
+  '1': 'ClockedScheduleDestroyRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 5, '10': 'id'},
+  ],
+};
+
+/// Descriptor for `ClockedScheduleDestroyRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List clockedScheduleDestroyRequestDescriptor =
+    $convert.base64Decode(
+        'Ch1DbG9ja2VkU2NoZWR1bGVEZXN0cm95UmVxdWVzdBIOCgJpZBgBIAEoBVICaWQ=');
+
+@$core.Deprecated('Use clockedScheduleListRequestDescriptor instead')
+const ClockedScheduleListRequest$json = {
+  '1': 'ClockedScheduleListRequest',
+};
+
+/// Descriptor for `ClockedScheduleListRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List clockedScheduleListRequestDescriptor =
+    $convert.base64Decode('ChpDbG9ja2VkU2NoZWR1bGVMaXN0UmVxdWVzdA==');
+
+@$core.Deprecated('Use clockedScheduleListResponseDescriptor instead')
+const ClockedScheduleListResponse$json = {
+  '1': 'ClockedScheduleListResponse',
+  '2': [
+    {
+      '1': 'results',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.base_app.products_controller.ClockedScheduleResponse',
+      '10': 'results'
+    },
+    {'1': 'count', '3': 2, '4': 1, '5': 5, '10': 'count'},
+  ],
+};
+
+/// Descriptor for `ClockedScheduleListResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List clockedScheduleListResponseDescriptor =
+    $convert.base64Decode(
+        'ChtDbG9ja2VkU2NoZWR1bGVMaXN0UmVzcG9uc2USTwoHcmVzdWx0cxgBIAMoCzI1LmJhc2VfYX'
+        'BwLnByb2R1Y3RzX2NvbnRyb2xsZXIuQ2xvY2tlZFNjaGVkdWxlUmVzcG9uc2VSB3Jlc3VsdHMS'
+        'FAoFY291bnQYAiABKAVSBWNvdW50');
+
+@$core.Deprecated('Use clockedSchedulePartialUpdateRequestDescriptor instead')
+const ClockedSchedulePartialUpdateRequest$json = {
+  '1': 'ClockedSchedulePartialUpdateRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 5, '9': 0, '10': 'id', '17': true},
+    {
+      '1': '_partial_update_fields',
+      '3': 4,
+      '4': 3,
+      '5': 9,
+      '10': 'PartialUpdateFields'
+    },
+    {'1': 'clocked_time', '3': 5, '4': 1, '5': 9, '10': 'clockedTime'},
+  ],
+  '8': [
+    {'1': '_id'},
+  ],
+};
+
+/// Descriptor for `ClockedSchedulePartialUpdateRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List clockedSchedulePartialUpdateRequestDescriptor =
+    $convert.base64Decode(
+        'CiNDbG9ja2VkU2NoZWR1bGVQYXJ0aWFsVXBkYXRlUmVxdWVzdBITCgJpZBgBIAEoBUgAUgJpZI'
+        'gBARIzChZfcGFydGlhbF91cGRhdGVfZmllbGRzGAQgAygJUhNQYXJ0aWFsVXBkYXRlRmllbGRz'
+        'EiEKDGNsb2NrZWRfdGltZRgFIAEoCVILY2xvY2tlZFRpbWVCBQoDX2lk');
+
+@$core.Deprecated('Use clockedScheduleRequestDescriptor instead')
+const ClockedScheduleRequest$json = {
+  '1': 'ClockedScheduleRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 5, '9': 0, '10': 'id', '17': true},
+    {'1': 'clocked_time', '3': 4, '4': 1, '5': 9, '10': 'clockedTime'},
+  ],
+  '8': [
+    {'1': '_id'},
+  ],
+};
+
+/// Descriptor for `ClockedScheduleRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List clockedScheduleRequestDescriptor =
+    $convert.base64Decode(
+        'ChZDbG9ja2VkU2NoZWR1bGVSZXF1ZXN0EhMKAmlkGAEgASgFSABSAmlkiAEBEiEKDGNsb2NrZW'
+        'RfdGltZRgEIAEoCVILY2xvY2tlZFRpbWVCBQoDX2lk');
+
+@$core.Deprecated('Use clockedScheduleResponseDescriptor instead')
+const ClockedScheduleResponse$json = {
+  '1': 'ClockedScheduleResponse',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 5, '9': 0, '10': 'id', '17': true},
+    {'1': 'clocked_time', '3': 4, '4': 1, '5': 9, '10': 'clockedTime'},
+  ],
+  '8': [
+    {'1': '_id'},
+  ],
+};
+
+/// Descriptor for `ClockedScheduleResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List clockedScheduleResponseDescriptor =
+    $convert.base64Decode(
+        'ChdDbG9ja2VkU2NoZWR1bGVSZXNwb25zZRITCgJpZBgBIAEoBUgAUgJpZIgBARIhCgxjbG9ja2'
+        'VkX3RpbWUYBCABKAlSC2Nsb2NrZWRUaW1lQgUKA19pZA==');
+
+@$core.Deprecated('Use clockedScheduleRetrieveRequestDescriptor instead')
+const ClockedScheduleRetrieveRequest$json = {
+  '1': 'ClockedScheduleRetrieveRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 5, '10': 'id'},
+  ],
+};
+
+/// Descriptor for `ClockedScheduleRetrieveRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List clockedScheduleRetrieveRequestDescriptor =
+    $convert.base64Decode(
+        'Ch5DbG9ja2VkU2NoZWR1bGVSZXRyaWV2ZVJlcXVlc3QSDgoCaWQYASABKAVSAmlk');
+
 @$core.Deprecated('Use coffeeMachineDestroyRequestDescriptor instead')
 const CoffeeMachineDestroyRequest$json = {
   '1': 'CoffeeMachineDestroyRequest',
@@ -423,15 +543,7 @@ const CoffeeMachinePartialUpdateRequest$json = {
       '17': true
     },
     {'1': 'ip_address', '3': 12, '4': 1, '5': 9, '10': 'ipAddress'},
-    {
-      '1': 'ip_port',
-      '3': 13,
-      '4': 1,
-      '5': 5,
-      '9': 7,
-      '10': 'ipPort',
-      '17': true
-    },
+    {'1': 'ip_port', '3': 13, '4': 1, '5': 5, '10': 'ipPort'},
   ],
   '8': [
     {'1': '_id'},
@@ -441,7 +553,6 @@ const CoffeeMachinePartialUpdateRequest$json = {
     {'1': '_coffee_level'},
     {'1': '_filter_position'},
     {'1': '_mode_value'},
-    {'1': '_ip_port'},
   ],
 };
 
@@ -455,10 +566,10 @@ final $typed_data.Uint8List coffeeMachinePartialUpdateRequestDescriptor = $conve
     'VIAlIKd2F0ZXJMZXZlbIgBARItChB1c2VkX3dhdGVyX2xldmVsGAggASgFSANSDnVzZWRXYXRl'
     'ckxldmVsiAEBEiYKDGNvZmZlZV9sZXZlbBgJIAEoBUgEUgtjb2ZmZWVMZXZlbIgBARIsCg9maW'
     'x0ZXJfcG9zaXRpb24YCiABKAhIBVIOZmlsdGVyUG9zaXRpb26IAQESIgoKbW9kZV92YWx1ZRgL'
-    'IAEoBUgGUgltb2RlVmFsdWWIAQESHQoKaXBfYWRkcmVzcxgMIAEoCVIJaXBBZGRyZXNzEhwKB2'
-    'lwX3BvcnQYDSABKAVIB1IGaXBQb3J0iAEBQgUKA19pZEIHCgVfaGVhdEIOCgxfd2F0ZXJfbGV2'
-    'ZWxCEwoRX3VzZWRfd2F0ZXJfbGV2ZWxCDwoNX2NvZmZlZV9sZXZlbEISChBfZmlsdGVyX3Bvc2'
-    'l0aW9uQg0KC19tb2RlX3ZhbHVlQgoKCF9pcF9wb3J0');
+    'IAEoBUgGUgltb2RlVmFsdWWIAQESHQoKaXBfYWRkcmVzcxgMIAEoCVIJaXBBZGRyZXNzEhcKB2'
+    'lwX3BvcnQYDSABKAVSBmlwUG9ydEIFCgNfaWRCBwoFX2hlYXRCDgoMX3dhdGVyX2xldmVsQhMK'
+    'EV91c2VkX3dhdGVyX2xldmVsQg8KDV9jb2ZmZWVfbGV2ZWxCEgoQX2ZpbHRlcl9wb3NpdGlvbk'
+    'INCgtfbW9kZV92YWx1ZQ==');
 
 @$core.Deprecated('Use coffeeMachineRequestDescriptor instead')
 const CoffeeMachineRequest$json = {
@@ -522,15 +633,7 @@ const CoffeeMachineRequest$json = {
       '17': true
     },
     {'1': 'ip_address', '3': 11, '4': 1, '5': 9, '10': 'ipAddress'},
-    {
-      '1': 'ip_port',
-      '3': 12,
-      '4': 1,
-      '5': 5,
-      '9': 7,
-      '10': 'ipPort',
-      '17': true
-    },
+    {'1': 'ip_port', '3': 12, '4': 1, '5': 5, '10': 'ipPort'},
   ],
   '8': [
     {'1': '_id'},
@@ -540,7 +643,6 @@ const CoffeeMachineRequest$json = {
     {'1': '_coffee_level'},
     {'1': '_filter_position'},
     {'1': '_mode_value'},
-    {'1': '_ip_port'},
   ],
 };
 
@@ -553,10 +655,10 @@ final $typed_data.Uint8List coffeeMachineRequestDescriptor = $convert.base64Deco
     'ZXZlbIgBARItChB1c2VkX3dhdGVyX2xldmVsGAcgASgFSANSDnVzZWRXYXRlckxldmVsiAEBEi'
     'YKDGNvZmZlZV9sZXZlbBgIIAEoBUgEUgtjb2ZmZWVMZXZlbIgBARIsCg9maWx0ZXJfcG9zaXRp'
     'b24YCSABKAhIBVIOZmlsdGVyUG9zaXRpb26IAQESIgoKbW9kZV92YWx1ZRgKIAEoBUgGUgltb2'
-    'RlVmFsdWWIAQESHQoKaXBfYWRkcmVzcxgLIAEoCVIJaXBBZGRyZXNzEhwKB2lwX3BvcnQYDCAB'
-    'KAVIB1IGaXBQb3J0iAEBQgUKA19pZEIHCgVfaGVhdEIOCgxfd2F0ZXJfbGV2ZWxCEwoRX3VzZW'
-    'Rfd2F0ZXJfbGV2ZWxCDwoNX2NvZmZlZV9sZXZlbEISChBfZmlsdGVyX3Bvc2l0aW9uQg0KC19t'
-    'b2RlX3ZhbHVlQgoKCF9pcF9wb3J0');
+    'RlVmFsdWWIAQESHQoKaXBfYWRkcmVzcxgLIAEoCVIJaXBBZGRyZXNzEhcKB2lwX3BvcnQYDCAB'
+    'KAVSBmlwUG9ydEIFCgNfaWRCBwoFX2hlYXRCDgoMX3dhdGVyX2xldmVsQhMKEV91c2VkX3dhdG'
+    'VyX2xldmVsQg8KDV9jb2ZmZWVfbGV2ZWxCEgoQX2ZpbHRlcl9wb3NpdGlvbkINCgtfbW9kZV92'
+    'YWx1ZQ==');
 
 @$core.Deprecated('Use coffeeMachineResponseDescriptor instead')
 const CoffeeMachineResponse$json = {
@@ -629,15 +731,7 @@ const CoffeeMachineResponse$json = {
       '17': true
     },
     {'1': 'ip_address', '3': 12, '4': 1, '5': 9, '10': 'ipAddress'},
-    {
-      '1': 'ip_port',
-      '3': 13,
-      '4': 1,
-      '5': 5,
-      '9': 8,
-      '10': 'ipPort',
-      '17': true
-    },
+    {'1': 'ip_port', '3': 13, '4': 1, '5': 5, '10': 'ipPort'},
   ],
   '8': [
     {'1': '_id'},
@@ -648,7 +742,6 @@ const CoffeeMachineResponse$json = {
     {'1': '_filter_position'},
     {'1': '_mode_value'},
     {'1': '_polymorphic_ctype'},
-    {'1': '_ip_port'},
   ],
 };
 
@@ -662,10 +755,10 @@ final $typed_data.Uint8List coffeeMachineResponseDescriptor = $convert.base64Dec
     'ESJgoMY29mZmVlX2xldmVsGAggASgFSARSC2NvZmZlZUxldmVsiAEBEiwKD2ZpbHRlcl9wb3Np'
     'dGlvbhgJIAEoCEgFUg5maWx0ZXJQb3NpdGlvbogBARIiCgptb2RlX3ZhbHVlGAogASgFSAZSCW'
     '1vZGVWYWx1ZYgBARIwChFwb2x5bW9ycGhpY19jdHlwZRgLIAEoBUgHUhBwb2x5bW9ycGhpY0N0'
-    'eXBliAEBEh0KCmlwX2FkZHJlc3MYDCABKAlSCWlwQWRkcmVzcxIcCgdpcF9wb3J0GA0gASgFSA'
-    'hSBmlwUG9ydIgBAUIFCgNfaWRCBwoFX2hlYXRCDgoMX3dhdGVyX2xldmVsQhMKEV91c2VkX3dh'
-    'dGVyX2xldmVsQg8KDV9jb2ZmZWVfbGV2ZWxCEgoQX2ZpbHRlcl9wb3NpdGlvbkINCgtfbW9kZV'
-    '92YWx1ZUIUChJfcG9seW1vcnBoaWNfY3R5cGVCCgoIX2lwX3BvcnQ=');
+    'eXBliAEBEh0KCmlwX2FkZHJlc3MYDCABKAlSCWlwQWRkcmVzcxIXCgdpcF9wb3J0GA0gASgFUg'
+    'ZpcFBvcnRCBQoDX2lkQgcKBV9oZWF0Qg4KDF93YXRlcl9sZXZlbEITChFfdXNlZF93YXRlcl9s'
+    'ZXZlbEIPCg1fY29mZmVlX2xldmVsQhIKEF9maWx0ZXJfcG9zaXRpb25CDQoLX21vZGVfdmFsdW'
+    'VCFAoSX3BvbHltb3JwaGljX2N0eXBl');
 
 @$core.Deprecated('Use coffeeMachineRetrieveRequestDescriptor instead')
 const CoffeeMachineRetrieveRequest$json = {
@@ -812,6 +905,267 @@ const ColorModeRetrieveRequest$json = {
 /// Descriptor for `ColorModeRetrieveRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List colorModeRetrieveRequestDescriptor = $convert
     .base64Decode('ChhDb2xvck1vZGVSZXRyaWV2ZVJlcXVlc3QSDgoCaWQYASABKAVSAmlk');
+
+@$core.Deprecated('Use crontabScheduleDestroyRequestDescriptor instead')
+const CrontabScheduleDestroyRequest$json = {
+  '1': 'CrontabScheduleDestroyRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 5, '10': 'id'},
+  ],
+};
+
+/// Descriptor for `CrontabScheduleDestroyRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List crontabScheduleDestroyRequestDescriptor =
+    $convert.base64Decode(
+        'Ch1Dcm9udGFiU2NoZWR1bGVEZXN0cm95UmVxdWVzdBIOCgJpZBgBIAEoBVICaWQ=');
+
+@$core.Deprecated('Use crontabScheduleListRequestDescriptor instead')
+const CrontabScheduleListRequest$json = {
+  '1': 'CrontabScheduleListRequest',
+};
+
+/// Descriptor for `CrontabScheduleListRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List crontabScheduleListRequestDescriptor =
+    $convert.base64Decode('ChpDcm9udGFiU2NoZWR1bGVMaXN0UmVxdWVzdA==');
+
+@$core.Deprecated('Use crontabScheduleListResponseDescriptor instead')
+const CrontabScheduleListResponse$json = {
+  '1': 'CrontabScheduleListResponse',
+  '2': [
+    {
+      '1': 'results',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.base_app.products_controller.CrontabScheduleResponse',
+      '10': 'results'
+    },
+    {'1': 'count', '3': 2, '4': 1, '5': 5, '10': 'count'},
+  ],
+};
+
+/// Descriptor for `CrontabScheduleListResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List crontabScheduleListResponseDescriptor =
+    $convert.base64Decode(
+        'ChtDcm9udGFiU2NoZWR1bGVMaXN0UmVzcG9uc2USTwoHcmVzdWx0cxgBIAMoCzI1LmJhc2VfYX'
+        'BwLnByb2R1Y3RzX2NvbnRyb2xsZXIuQ3JvbnRhYlNjaGVkdWxlUmVzcG9uc2VSB3Jlc3VsdHMS'
+        'FAoFY291bnQYAiABKAVSBWNvdW50');
+
+@$core.Deprecated('Use crontabSchedulePartialUpdateRequestDescriptor instead')
+const CrontabSchedulePartialUpdateRequest$json = {
+  '1': 'CrontabSchedulePartialUpdateRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 5, '9': 0, '10': 'id', '17': true},
+    {
+      '1': '_partial_update_fields',
+      '3': 4,
+      '4': 3,
+      '5': 9,
+      '10': 'PartialUpdateFields'
+    },
+    {'1': 'minute', '3': 5, '4': 1, '5': 9, '9': 1, '10': 'minute', '17': true},
+    {'1': 'hour', '3': 6, '4': 1, '5': 9, '9': 2, '10': 'hour', '17': true},
+    {
+      '1': 'day_of_month',
+      '3': 7,
+      '4': 1,
+      '5': 9,
+      '9': 3,
+      '10': 'dayOfMonth',
+      '17': true
+    },
+    {
+      '1': 'month_of_year',
+      '3': 8,
+      '4': 1,
+      '5': 9,
+      '9': 4,
+      '10': 'monthOfYear',
+      '17': true
+    },
+    {
+      '1': 'day_of_week',
+      '3': 9,
+      '4': 1,
+      '5': 9,
+      '9': 5,
+      '10': 'dayOfWeek',
+      '17': true
+    },
+    {
+      '1': 'timezone',
+      '3': 10,
+      '4': 1,
+      '5': 9,
+      '9': 6,
+      '10': 'timezone',
+      '17': true
+    },
+  ],
+  '8': [
+    {'1': '_id'},
+    {'1': '_minute'},
+    {'1': '_hour'},
+    {'1': '_day_of_month'},
+    {'1': '_month_of_year'},
+    {'1': '_day_of_week'},
+    {'1': '_timezone'},
+  ],
+};
+
+/// Descriptor for `CrontabSchedulePartialUpdateRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List crontabSchedulePartialUpdateRequestDescriptor = $convert.base64Decode(
+    'CiNDcm9udGFiU2NoZWR1bGVQYXJ0aWFsVXBkYXRlUmVxdWVzdBITCgJpZBgBIAEoBUgAUgJpZI'
+    'gBARIzChZfcGFydGlhbF91cGRhdGVfZmllbGRzGAQgAygJUhNQYXJ0aWFsVXBkYXRlRmllbGRz'
+    'EhsKBm1pbnV0ZRgFIAEoCUgBUgZtaW51dGWIAQESFwoEaG91chgGIAEoCUgCUgRob3VyiAEBEi'
+    'UKDGRheV9vZl9tb250aBgHIAEoCUgDUgpkYXlPZk1vbnRoiAEBEicKDW1vbnRoX29mX3llYXIY'
+    'CCABKAlIBFILbW9udGhPZlllYXKIAQESIwoLZGF5X29mX3dlZWsYCSABKAlIBVIJZGF5T2ZXZW'
+    'VriAEBEh8KCHRpbWV6b25lGAogASgJSAZSCHRpbWV6b25liAEBQgUKA19pZEIJCgdfbWludXRl'
+    'QgcKBV9ob3VyQg8KDV9kYXlfb2ZfbW9udGhCEAoOX21vbnRoX29mX3llYXJCDgoMX2RheV9vZl'
+    '93ZWVrQgsKCV90aW1lem9uZQ==');
+
+@$core.Deprecated('Use crontabScheduleRequestDescriptor instead')
+const CrontabScheduleRequest$json = {
+  '1': 'CrontabScheduleRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 5, '9': 0, '10': 'id', '17': true},
+    {'1': 'minute', '3': 4, '4': 1, '5': 9, '9': 1, '10': 'minute', '17': true},
+    {'1': 'hour', '3': 5, '4': 1, '5': 9, '9': 2, '10': 'hour', '17': true},
+    {
+      '1': 'day_of_month',
+      '3': 6,
+      '4': 1,
+      '5': 9,
+      '9': 3,
+      '10': 'dayOfMonth',
+      '17': true
+    },
+    {
+      '1': 'month_of_year',
+      '3': 7,
+      '4': 1,
+      '5': 9,
+      '9': 4,
+      '10': 'monthOfYear',
+      '17': true
+    },
+    {
+      '1': 'day_of_week',
+      '3': 8,
+      '4': 1,
+      '5': 9,
+      '9': 5,
+      '10': 'dayOfWeek',
+      '17': true
+    },
+    {
+      '1': 'timezone',
+      '3': 9,
+      '4': 1,
+      '5': 9,
+      '9': 6,
+      '10': 'timezone',
+      '17': true
+    },
+  ],
+  '8': [
+    {'1': '_id'},
+    {'1': '_minute'},
+    {'1': '_hour'},
+    {'1': '_day_of_month'},
+    {'1': '_month_of_year'},
+    {'1': '_day_of_week'},
+    {'1': '_timezone'},
+  ],
+};
+
+/// Descriptor for `CrontabScheduleRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List crontabScheduleRequestDescriptor = $convert.base64Decode(
+    'ChZDcm9udGFiU2NoZWR1bGVSZXF1ZXN0EhMKAmlkGAEgASgFSABSAmlkiAEBEhsKBm1pbnV0ZR'
+    'gEIAEoCUgBUgZtaW51dGWIAQESFwoEaG91chgFIAEoCUgCUgRob3VyiAEBEiUKDGRheV9vZl9t'
+    'b250aBgGIAEoCUgDUgpkYXlPZk1vbnRoiAEBEicKDW1vbnRoX29mX3llYXIYByABKAlIBFILbW'
+    '9udGhPZlllYXKIAQESIwoLZGF5X29mX3dlZWsYCCABKAlIBVIJZGF5T2ZXZWVriAEBEh8KCHRp'
+    'bWV6b25lGAkgASgJSAZSCHRpbWV6b25liAEBQgUKA19pZEIJCgdfbWludXRlQgcKBV9ob3VyQg'
+    '8KDV9kYXlfb2ZfbW9udGhCEAoOX21vbnRoX29mX3llYXJCDgoMX2RheV9vZl93ZWVrQgsKCV90'
+    'aW1lem9uZQ==');
+
+@$core.Deprecated('Use crontabScheduleResponseDescriptor instead')
+const CrontabScheduleResponse$json = {
+  '1': 'CrontabScheduleResponse',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 5, '9': 0, '10': 'id', '17': true},
+    {'1': 'minute', '3': 4, '4': 1, '5': 9, '9': 1, '10': 'minute', '17': true},
+    {'1': 'hour', '3': 5, '4': 1, '5': 9, '9': 2, '10': 'hour', '17': true},
+    {
+      '1': 'day_of_month',
+      '3': 6,
+      '4': 1,
+      '5': 9,
+      '9': 3,
+      '10': 'dayOfMonth',
+      '17': true
+    },
+    {
+      '1': 'month_of_year',
+      '3': 7,
+      '4': 1,
+      '5': 9,
+      '9': 4,
+      '10': 'monthOfYear',
+      '17': true
+    },
+    {
+      '1': 'day_of_week',
+      '3': 8,
+      '4': 1,
+      '5': 9,
+      '9': 5,
+      '10': 'dayOfWeek',
+      '17': true
+    },
+    {
+      '1': 'timezone',
+      '3': 9,
+      '4': 1,
+      '5': 9,
+      '9': 6,
+      '10': 'timezone',
+      '17': true
+    },
+  ],
+  '8': [
+    {'1': '_id'},
+    {'1': '_minute'},
+    {'1': '_hour'},
+    {'1': '_day_of_month'},
+    {'1': '_month_of_year'},
+    {'1': '_day_of_week'},
+    {'1': '_timezone'},
+  ],
+};
+
+/// Descriptor for `CrontabScheduleResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List crontabScheduleResponseDescriptor = $convert.base64Decode(
+    'ChdDcm9udGFiU2NoZWR1bGVSZXNwb25zZRITCgJpZBgBIAEoBUgAUgJpZIgBARIbCgZtaW51dG'
+    'UYBCABKAlIAVIGbWludXRliAEBEhcKBGhvdXIYBSABKAlIAlIEaG91cogBARIlCgxkYXlfb2Zf'
+    'bW9udGgYBiABKAlIA1IKZGF5T2ZNb250aIgBARInCg1tb250aF9vZl95ZWFyGAcgASgJSARSC2'
+    '1vbnRoT2ZZZWFyiAEBEiMKC2RheV9vZl93ZWVrGAggASgJSAVSCWRheU9mV2Vla4gBARIfCgh0'
+    'aW1lem9uZRgJIAEoCUgGUgh0aW1lem9uZYgBAUIFCgNfaWRCCQoHX21pbnV0ZUIHCgVfaG91ck'
+    'IPCg1fZGF5X29mX21vbnRoQhAKDl9tb250aF9vZl95ZWFyQg4KDF9kYXlfb2Zfd2Vla0ILCglf'
+    'dGltZXpvbmU=');
+
+@$core.Deprecated('Use crontabScheduleRetrieveRequestDescriptor instead')
+const CrontabScheduleRetrieveRequest$json = {
+  '1': 'CrontabScheduleRetrieveRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 5, '10': 'id'},
+  ],
+};
+
+/// Descriptor for `CrontabScheduleRetrieveRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List crontabScheduleRetrieveRequestDescriptor =
+    $convert.base64Decode(
+        'Ch5Dcm9udGFiU2NoZWR1bGVSZXRyaWV2ZVJlcXVlc3QSDgoCaWQYASABKAVSAmlk');
 
 @$core.Deprecated('Use imageModeDestroyRequestDescriptor instead')
 const ImageModeDestroyRequest$json = {
@@ -975,6 +1329,129 @@ const ImageModeRetrieveRequest$json = {
 final $typed_data.Uint8List imageModeRetrieveRequestDescriptor = $convert
     .base64Decode('ChhJbWFnZU1vZGVSZXRyaWV2ZVJlcXVlc3QSDgoCaWQYASABKAVSAmlk');
 
+@$core.Deprecated('Use intervalScheduleDestroyRequestDescriptor instead')
+const IntervalScheduleDestroyRequest$json = {
+  '1': 'IntervalScheduleDestroyRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 5, '10': 'id'},
+  ],
+};
+
+/// Descriptor for `IntervalScheduleDestroyRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List intervalScheduleDestroyRequestDescriptor =
+    $convert.base64Decode(
+        'Ch5JbnRlcnZhbFNjaGVkdWxlRGVzdHJveVJlcXVlc3QSDgoCaWQYASABKAVSAmlk');
+
+@$core.Deprecated('Use intervalScheduleListRequestDescriptor instead')
+const IntervalScheduleListRequest$json = {
+  '1': 'IntervalScheduleListRequest',
+};
+
+/// Descriptor for `IntervalScheduleListRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List intervalScheduleListRequestDescriptor =
+    $convert.base64Decode('ChtJbnRlcnZhbFNjaGVkdWxlTGlzdFJlcXVlc3Q=');
+
+@$core.Deprecated('Use intervalScheduleListResponseDescriptor instead')
+const IntervalScheduleListResponse$json = {
+  '1': 'IntervalScheduleListResponse',
+  '2': [
+    {
+      '1': 'results',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.base_app.products_controller.IntervalScheduleResponse',
+      '10': 'results'
+    },
+    {'1': 'count', '3': 2, '4': 1, '5': 5, '10': 'count'},
+  ],
+};
+
+/// Descriptor for `IntervalScheduleListResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List intervalScheduleListResponseDescriptor =
+    $convert.base64Decode(
+        'ChxJbnRlcnZhbFNjaGVkdWxlTGlzdFJlc3BvbnNlElAKB3Jlc3VsdHMYASADKAsyNi5iYXNlX2'
+        'FwcC5wcm9kdWN0c19jb250cm9sbGVyLkludGVydmFsU2NoZWR1bGVSZXNwb25zZVIHcmVzdWx0'
+        'cxIUCgVjb3VudBgCIAEoBVIFY291bnQ=');
+
+@$core.Deprecated('Use intervalSchedulePartialUpdateRequestDescriptor instead')
+const IntervalSchedulePartialUpdateRequest$json = {
+  '1': 'IntervalSchedulePartialUpdateRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 5, '9': 0, '10': 'id', '17': true},
+    {
+      '1': '_partial_update_fields',
+      '3': 4,
+      '4': 3,
+      '5': 9,
+      '10': 'PartialUpdateFields'
+    },
+    {'1': 'every', '3': 5, '4': 1, '5': 5, '10': 'every'},
+    {'1': 'period', '3': 6, '4': 1, '5': 9, '10': 'period'},
+  ],
+  '8': [
+    {'1': '_id'},
+  ],
+};
+
+/// Descriptor for `IntervalSchedulePartialUpdateRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List intervalSchedulePartialUpdateRequestDescriptor =
+    $convert.base64Decode(
+        'CiRJbnRlcnZhbFNjaGVkdWxlUGFydGlhbFVwZGF0ZVJlcXVlc3QSEwoCaWQYASABKAVIAFICaW'
+        'SIAQESMwoWX3BhcnRpYWxfdXBkYXRlX2ZpZWxkcxgEIAMoCVITUGFydGlhbFVwZGF0ZUZpZWxk'
+        'cxIUCgVldmVyeRgFIAEoBVIFZXZlcnkSFgoGcGVyaW9kGAYgASgJUgZwZXJpb2RCBQoDX2lk');
+
+@$core.Deprecated('Use intervalScheduleRequestDescriptor instead')
+const IntervalScheduleRequest$json = {
+  '1': 'IntervalScheduleRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 5, '9': 0, '10': 'id', '17': true},
+    {'1': 'every', '3': 4, '4': 1, '5': 5, '10': 'every'},
+    {'1': 'period', '3': 5, '4': 1, '5': 9, '10': 'period'},
+  ],
+  '8': [
+    {'1': '_id'},
+  ],
+};
+
+/// Descriptor for `IntervalScheduleRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List intervalScheduleRequestDescriptor =
+    $convert.base64Decode(
+        'ChdJbnRlcnZhbFNjaGVkdWxlUmVxdWVzdBITCgJpZBgBIAEoBUgAUgJpZIgBARIUCgVldmVyeR'
+        'gEIAEoBVIFZXZlcnkSFgoGcGVyaW9kGAUgASgJUgZwZXJpb2RCBQoDX2lk');
+
+@$core.Deprecated('Use intervalScheduleResponseDescriptor instead')
+const IntervalScheduleResponse$json = {
+  '1': 'IntervalScheduleResponse',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 5, '9': 0, '10': 'id', '17': true},
+    {'1': 'every', '3': 4, '4': 1, '5': 5, '10': 'every'},
+    {'1': 'period', '3': 5, '4': 1, '5': 9, '10': 'period'},
+  ],
+  '8': [
+    {'1': '_id'},
+  ],
+};
+
+/// Descriptor for `IntervalScheduleResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List intervalScheduleResponseDescriptor =
+    $convert.base64Decode(
+        'ChhJbnRlcnZhbFNjaGVkdWxlUmVzcG9uc2USEwoCaWQYASABKAVIAFICaWSIAQESFAoFZXZlcn'
+        'kYBCABKAVSBWV2ZXJ5EhYKBnBlcmlvZBgFIAEoCVIGcGVyaW9kQgUKA19pZA==');
+
+@$core.Deprecated('Use intervalScheduleRetrieveRequestDescriptor instead')
+const IntervalScheduleRetrieveRequest$json = {
+  '1': 'IntervalScheduleRetrieveRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 5, '10': 'id'},
+  ],
+};
+
+/// Descriptor for `IntervalScheduleRetrieveRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List intervalScheduleRetrieveRequestDescriptor =
+    $convert.base64Decode(
+        'Ch9JbnRlcnZhbFNjaGVkdWxlUmV0cmlldmVSZXF1ZXN0Eg4KAmlkGAEgASgFUgJpZA==');
+
 @$core.Deprecated('Use ledPanelDestroyRequestDescriptor instead')
 const LedPanelDestroyRequest$json = {
   '1': 'LedPanelDestroyRequest',
@@ -1058,20 +1535,11 @@ const LedPanelPartialUpdateRequest$json = {
       '17': true
     },
     {'1': 'ip_address', '3': 8, '4': 1, '5': 9, '10': 'ipAddress'},
-    {
-      '1': 'ip_port',
-      '3': 9,
-      '4': 1,
-      '5': 5,
-      '9': 2,
-      '10': 'ipPort',
-      '17': true
-    },
+    {'1': 'ip_port', '3': 9, '4': 1, '5': 5, '10': 'ipPort'},
   ],
   '8': [
     {'1': '_id'},
     {'1': '_brightness'},
-    {'1': '_ip_port'},
   ],
 };
 
@@ -1083,8 +1551,8 @@ final $typed_data.Uint8List ledPanelPartialUpdateRequestDescriptor = $convert.ba
     'BwLnByb2R1Y3RzX2NvbnRyb2xsZXIuQ2F0ZWdvcnlSZXF1ZXN0UgpjYXRlZ29yaWVzEjMKFl9w'
     'YXJ0aWFsX3VwZGF0ZV9maWVsZHMYBSADKAlSE1BhcnRpYWxVcGRhdGVGaWVsZHMSFgoGc3RhdH'
     'VzGAYgASgFUgZzdGF0dXMSIwoKYnJpZ2h0bmVzcxgHIAEoAUgBUgpicmlnaHRuZXNziAEBEh0K'
-    'CmlwX2FkZHJlc3MYCCABKAlSCWlwQWRkcmVzcxIcCgdpcF9wb3J0GAkgASgFSAJSBmlwUG9ydI'
-    'gBAUIFCgNfaWRCDQoLX2JyaWdodG5lc3NCCgoIX2lwX3BvcnQ=');
+    'CmlwX2FkZHJlc3MYCCABKAlSCWlwQWRkcmVzcxIXCgdpcF9wb3J0GAkgASgFUgZpcFBvcnRCBQ'
+    'oDX2lkQg0KC19icmlnaHRuZXNz');
 
 @$core.Deprecated('Use ledPanelRequestDescriptor instead')
 const LedPanelRequest$json = {
@@ -1119,20 +1587,11 @@ const LedPanelRequest$json = {
       '17': true
     },
     {'1': 'ip_address', '3': 7, '4': 1, '5': 9, '10': 'ipAddress'},
-    {
-      '1': 'ip_port',
-      '3': 8,
-      '4': 1,
-      '5': 5,
-      '9': 2,
-      '10': 'ipPort',
-      '17': true
-    },
+    {'1': 'ip_port', '3': 8, '4': 1, '5': 5, '10': 'ipPort'},
   ],
   '8': [
     {'1': '_id'},
     {'1': '_brightness'},
-    {'1': '_ip_port'},
   ],
 };
 
@@ -1143,8 +1602,8 @@ final $typed_data.Uint8List ledPanelRequestDescriptor = $convert.base64Decode(
     'ZRgDIAEoCVIEbmFtZRJNCgpjYXRlZ29yaWVzGAQgAygLMi0uYmFzZV9hcHAucHJvZHVjdHNfY2'
     '9udHJvbGxlci5DYXRlZ29yeVJlcXVlc3RSCmNhdGVnb3JpZXMSFgoGc3RhdHVzGAUgASgFUgZz'
     'dGF0dXMSIwoKYnJpZ2h0bmVzcxgGIAEoAUgBUgpicmlnaHRuZXNziAEBEh0KCmlwX2FkZHJlc3'
-    'MYByABKAlSCWlwQWRkcmVzcxIcCgdpcF9wb3J0GAggASgFSAJSBmlwUG9ydIgBAUIFCgNfaWRC'
-    'DQoLX2JyaWdodG5lc3NCCgoIX2lwX3BvcnQ=');
+    'MYByABKAlSCWlwQWRkcmVzcxIXCgdpcF9wb3J0GAggASgFUgZpcFBvcnRCBQoDX2lkQg0KC19i'
+    'cmlnaHRuZXNz');
 
 @$core.Deprecated('Use ledPanelResponseDescriptor instead')
 const LedPanelResponse$json = {
@@ -1188,21 +1647,12 @@ const LedPanelResponse$json = {
       '17': true
     },
     {'1': 'ip_address', '3': 8, '4': 1, '5': 9, '10': 'ipAddress'},
-    {
-      '1': 'ip_port',
-      '3': 9,
-      '4': 1,
-      '5': 5,
-      '9': 3,
-      '10': 'ipPort',
-      '17': true
-    },
+    {'1': 'ip_port', '3': 9, '4': 1, '5': 5, '10': 'ipPort'},
   ],
   '8': [
     {'1': '_id'},
     {'1': '_brightness'},
     {'1': '_polymorphic_ctype'},
-    {'1': '_ip_port'},
   ],
 };
 
@@ -1214,8 +1664,8 @@ final $typed_data.Uint8List ledPanelResponseDescriptor = $convert.base64Decode(
     '9jb250cm9sbGVyLkNhdGVnb3J5UmVzcG9uc2VSCmNhdGVnb3JpZXMSFgoGc3RhdHVzGAUgASgF'
     'UgZzdGF0dXMSIwoKYnJpZ2h0bmVzcxgGIAEoAUgBUgpicmlnaHRuZXNziAEBEjAKEXBvbHltb3'
     'JwaGljX2N0eXBlGAcgASgFSAJSEHBvbHltb3JwaGljQ3R5cGWIAQESHQoKaXBfYWRkcmVzcxgI'
-    'IAEoCVIJaXBBZGRyZXNzEhwKB2lwX3BvcnQYCSABKAVIA1IGaXBQb3J0iAEBQgUKA19pZEINCg'
-    'tfYnJpZ2h0bmVzc0IUChJfcG9seW1vcnBoaWNfY3R5cGVCCgoIX2lwX3BvcnQ=');
+    'IAEoCVIJaXBBZGRyZXNzEhcKB2lwX3BvcnQYCSABKAVSBmlwUG9ydEIFCgNfaWRCDQoLX2JyaW'
+    'dodG5lc3NCFAoSX3BvbHltb3JwaGljX2N0eXBl');
 
 @$core.Deprecated('Use ledPanelRetrieveRequestDescriptor instead')
 const LedPanelRetrieveRequest$json = {
@@ -1368,6 +1818,311 @@ const PatternModeRetrieveRequest$json = {
 final $typed_data.Uint8List patternModeRetrieveRequestDescriptor =
     $convert.base64Decode(
         'ChpQYXR0ZXJuTW9kZVJldHJpZXZlUmVxdWVzdBIOCgJpZBgBIAEoBVICaWQ=');
+
+@$core.Deprecated('Use periodicTaskDestroyRequestDescriptor instead')
+const PeriodicTaskDestroyRequest$json = {
+  '1': 'PeriodicTaskDestroyRequest',
+  '2': [
+    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+  ],
+};
+
+/// Descriptor for `PeriodicTaskDestroyRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List periodicTaskDestroyRequestDescriptor =
+    $convert.base64Decode(
+        'ChpQZXJpb2RpY1Rhc2tEZXN0cm95UmVxdWVzdBISCgRuYW1lGAEgASgJUgRuYW1l');
+
+@$core.Deprecated('Use periodicTaskListRequestDescriptor instead')
+const PeriodicTaskListRequest$json = {
+  '1': 'PeriodicTaskListRequest',
+};
+
+/// Descriptor for `PeriodicTaskListRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List periodicTaskListRequestDescriptor =
+    $convert.base64Decode('ChdQZXJpb2RpY1Rhc2tMaXN0UmVxdWVzdA==');
+
+@$core.Deprecated('Use periodicTaskListResponseDescriptor instead')
+const PeriodicTaskListResponse$json = {
+  '1': 'PeriodicTaskListResponse',
+  '2': [
+    {
+      '1': 'results',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.base_app.products_controller.PeriodicTaskResponse',
+      '10': 'results'
+    },
+    {'1': 'count', '3': 2, '4': 1, '5': 5, '10': 'count'},
+  ],
+};
+
+/// Descriptor for `PeriodicTaskListResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List periodicTaskListResponseDescriptor = $convert.base64Decode(
+    'ChhQZXJpb2RpY1Rhc2tMaXN0UmVzcG9uc2USTAoHcmVzdWx0cxgBIAMoCzIyLmJhc2VfYXBwLn'
+    'Byb2R1Y3RzX2NvbnRyb2xsZXIuUGVyaW9kaWNUYXNrUmVzcG9uc2VSB3Jlc3VsdHMSFAoFY291'
+    'bnQYAiABKAVSBWNvdW50');
+
+@$core.Deprecated('Use periodicTaskPartialUpdateRequestDescriptor instead')
+const PeriodicTaskPartialUpdateRequest$json = {
+  '1': 'PeriodicTaskPartialUpdateRequest',
+  '2': [
+    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    {'1': 'task', '3': 2, '4': 1, '5': 9, '10': 'task'},
+    {
+      '1': 'interval',
+      '3': 3,
+      '4': 1,
+      '5': 11,
+      '6': '.base_app.products_controller.IntervalScheduleRequest',
+      '9': 0,
+      '10': 'interval',
+      '17': true
+    },
+    {
+      '1': 'crontab',
+      '3': 4,
+      '4': 1,
+      '5': 11,
+      '6': '.base_app.products_controller.CrontabScheduleRequest',
+      '9': 1,
+      '10': 'crontab',
+      '17': true
+    },
+    {
+      '1': 'solar',
+      '3': 5,
+      '4': 1,
+      '5': 11,
+      '6': '.base_app.products_controller.SolarScheduleRequest',
+      '9': 2,
+      '10': 'solar',
+      '17': true
+    },
+    {
+      '1': 'clocked',
+      '3': 6,
+      '4': 1,
+      '5': 11,
+      '6': '.base_app.products_controller.ClockedScheduleRequest',
+      '9': 3,
+      '10': 'clocked',
+      '17': true
+    },
+    {
+      '1': '_partial_update_fields',
+      '3': 7,
+      '4': 3,
+      '5': 9,
+      '10': 'PartialUpdateFields'
+    },
+    {'1': 'kwargs', '3': 8, '4': 1, '5': 9, '9': 4, '10': 'kwargs', '17': true},
+    {
+      '1': 'enabled',
+      '3': 9,
+      '4': 1,
+      '5': 8,
+      '9': 5,
+      '10': 'enabled',
+      '17': true
+    },
+  ],
+  '8': [
+    {'1': '_interval'},
+    {'1': '_crontab'},
+    {'1': '_solar'},
+    {'1': '_clocked'},
+    {'1': '_kwargs'},
+    {'1': '_enabled'},
+  ],
+};
+
+/// Descriptor for `PeriodicTaskPartialUpdateRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List periodicTaskPartialUpdateRequestDescriptor = $convert.base64Decode(
+    'CiBQZXJpb2RpY1Rhc2tQYXJ0aWFsVXBkYXRlUmVxdWVzdBISCgRuYW1lGAEgASgJUgRuYW1lEh'
+    'IKBHRhc2sYAiABKAlSBHRhc2sSVgoIaW50ZXJ2YWwYAyABKAsyNS5iYXNlX2FwcC5wcm9kdWN0'
+    'c19jb250cm9sbGVyLkludGVydmFsU2NoZWR1bGVSZXF1ZXN0SABSCGludGVydmFsiAEBElMKB2'
+    'Nyb250YWIYBCABKAsyNC5iYXNlX2FwcC5wcm9kdWN0c19jb250cm9sbGVyLkNyb250YWJTY2hl'
+    'ZHVsZVJlcXVlc3RIAVIHY3JvbnRhYogBARJNCgVzb2xhchgFIAEoCzIyLmJhc2VfYXBwLnByb2'
+    'R1Y3RzX2NvbnRyb2xsZXIuU29sYXJTY2hlZHVsZVJlcXVlc3RIAlIFc29sYXKIAQESUwoHY2xv'
+    'Y2tlZBgGIAEoCzI0LmJhc2VfYXBwLnByb2R1Y3RzX2NvbnRyb2xsZXIuQ2xvY2tlZFNjaGVkdW'
+    'xlUmVxdWVzdEgDUgdjbG9ja2VkiAEBEjMKFl9wYXJ0aWFsX3VwZGF0ZV9maWVsZHMYByADKAlS'
+    'E1BhcnRpYWxVcGRhdGVGaWVsZHMSGwoGa3dhcmdzGAggASgJSARSBmt3YXJnc4gBARIdCgdlbm'
+    'FibGVkGAkgASgISAVSB2VuYWJsZWSIAQFCCwoJX2ludGVydmFsQgoKCF9jcm9udGFiQggKBl9z'
+    'b2xhckIKCghfY2xvY2tlZEIJCgdfa3dhcmdzQgoKCF9lbmFibGVk');
+
+@$core.Deprecated('Use periodicTaskRequestDescriptor instead')
+const PeriodicTaskRequest$json = {
+  '1': 'PeriodicTaskRequest',
+  '2': [
+    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    {'1': 'task', '3': 2, '4': 1, '5': 9, '10': 'task'},
+    {
+      '1': 'interval',
+      '3': 3,
+      '4': 1,
+      '5': 11,
+      '6': '.base_app.products_controller.IntervalScheduleRequest',
+      '9': 0,
+      '10': 'interval',
+      '17': true
+    },
+    {
+      '1': 'crontab',
+      '3': 4,
+      '4': 1,
+      '5': 11,
+      '6': '.base_app.products_controller.CrontabScheduleRequest',
+      '9': 1,
+      '10': 'crontab',
+      '17': true
+    },
+    {
+      '1': 'solar',
+      '3': 5,
+      '4': 1,
+      '5': 11,
+      '6': '.base_app.products_controller.SolarScheduleRequest',
+      '9': 2,
+      '10': 'solar',
+      '17': true
+    },
+    {
+      '1': 'clocked',
+      '3': 6,
+      '4': 1,
+      '5': 11,
+      '6': '.base_app.products_controller.ClockedScheduleRequest',
+      '9': 3,
+      '10': 'clocked',
+      '17': true
+    },
+    {'1': 'kwargs', '3': 7, '4': 1, '5': 9, '9': 4, '10': 'kwargs', '17': true},
+    {
+      '1': 'enabled',
+      '3': 8,
+      '4': 1,
+      '5': 8,
+      '9': 5,
+      '10': 'enabled',
+      '17': true
+    },
+  ],
+  '8': [
+    {'1': '_interval'},
+    {'1': '_crontab'},
+    {'1': '_solar'},
+    {'1': '_clocked'},
+    {'1': '_kwargs'},
+    {'1': '_enabled'},
+  ],
+};
+
+/// Descriptor for `PeriodicTaskRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List periodicTaskRequestDescriptor = $convert.base64Decode(
+    'ChNQZXJpb2RpY1Rhc2tSZXF1ZXN0EhIKBG5hbWUYASABKAlSBG5hbWUSEgoEdGFzaxgCIAEoCV'
+    'IEdGFzaxJWCghpbnRlcnZhbBgDIAEoCzI1LmJhc2VfYXBwLnByb2R1Y3RzX2NvbnRyb2xsZXIu'
+    'SW50ZXJ2YWxTY2hlZHVsZVJlcXVlc3RIAFIIaW50ZXJ2YWyIAQESUwoHY3JvbnRhYhgEIAEoCz'
+    'I0LmJhc2VfYXBwLnByb2R1Y3RzX2NvbnRyb2xsZXIuQ3JvbnRhYlNjaGVkdWxlUmVxdWVzdEgB'
+    'Ugdjcm9udGFiiAEBEk0KBXNvbGFyGAUgASgLMjIuYmFzZV9hcHAucHJvZHVjdHNfY29udHJvbG'
+    'xlci5Tb2xhclNjaGVkdWxlUmVxdWVzdEgCUgVzb2xhcogBARJTCgdjbG9ja2VkGAYgASgLMjQu'
+    'YmFzZV9hcHAucHJvZHVjdHNfY29udHJvbGxlci5DbG9ja2VkU2NoZWR1bGVSZXF1ZXN0SANSB2'
+    'Nsb2NrZWSIAQESGwoGa3dhcmdzGAcgASgJSARSBmt3YXJnc4gBARIdCgdlbmFibGVkGAggASgI'
+    'SAVSB2VuYWJsZWSIAQFCCwoJX2ludGVydmFsQgoKCF9jcm9udGFiQggKBl9zb2xhckIKCghfY2'
+    'xvY2tlZEIJCgdfa3dhcmdzQgoKCF9lbmFibGVk');
+
+@$core.Deprecated('Use periodicTaskResponseDescriptor instead')
+const PeriodicTaskResponse$json = {
+  '1': 'PeriodicTaskResponse',
+  '2': [
+    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    {'1': 'task', '3': 2, '4': 1, '5': 9, '10': 'task'},
+    {
+      '1': 'interval',
+      '3': 3,
+      '4': 1,
+      '5': 11,
+      '6': '.base_app.products_controller.IntervalScheduleResponse',
+      '9': 0,
+      '10': 'interval',
+      '17': true
+    },
+    {
+      '1': 'crontab',
+      '3': 4,
+      '4': 1,
+      '5': 11,
+      '6': '.base_app.products_controller.CrontabScheduleResponse',
+      '9': 1,
+      '10': 'crontab',
+      '17': true
+    },
+    {
+      '1': 'solar',
+      '3': 5,
+      '4': 1,
+      '5': 11,
+      '6': '.base_app.products_controller.SolarScheduleResponse',
+      '9': 2,
+      '10': 'solar',
+      '17': true
+    },
+    {
+      '1': 'clocked',
+      '3': 6,
+      '4': 1,
+      '5': 11,
+      '6': '.base_app.products_controller.ClockedScheduleResponse',
+      '9': 3,
+      '10': 'clocked',
+      '17': true
+    },
+    {'1': 'kwargs', '3': 7, '4': 1, '5': 9, '9': 4, '10': 'kwargs', '17': true},
+    {
+      '1': 'enabled',
+      '3': 8,
+      '4': 1,
+      '5': 8,
+      '9': 5,
+      '10': 'enabled',
+      '17': true
+    },
+  ],
+  '8': [
+    {'1': '_interval'},
+    {'1': '_crontab'},
+    {'1': '_solar'},
+    {'1': '_clocked'},
+    {'1': '_kwargs'},
+    {'1': '_enabled'},
+  ],
+};
+
+/// Descriptor for `PeriodicTaskResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List periodicTaskResponseDescriptor = $convert.base64Decode(
+    'ChRQZXJpb2RpY1Rhc2tSZXNwb25zZRISCgRuYW1lGAEgASgJUgRuYW1lEhIKBHRhc2sYAiABKA'
+    'lSBHRhc2sSVwoIaW50ZXJ2YWwYAyABKAsyNi5iYXNlX2FwcC5wcm9kdWN0c19jb250cm9sbGVy'
+    'LkludGVydmFsU2NoZWR1bGVSZXNwb25zZUgAUghpbnRlcnZhbIgBARJUCgdjcm9udGFiGAQgAS'
+    'gLMjUuYmFzZV9hcHAucHJvZHVjdHNfY29udHJvbGxlci5Dcm9udGFiU2NoZWR1bGVSZXNwb25z'
+    'ZUgBUgdjcm9udGFiiAEBEk4KBXNvbGFyGAUgASgLMjMuYmFzZV9hcHAucHJvZHVjdHNfY29udH'
+    'JvbGxlci5Tb2xhclNjaGVkdWxlUmVzcG9uc2VIAlIFc29sYXKIAQESVAoHY2xvY2tlZBgGIAEo'
+    'CzI1LmJhc2VfYXBwLnByb2R1Y3RzX2NvbnRyb2xsZXIuQ2xvY2tlZFNjaGVkdWxlUmVzcG9uc2'
+    'VIA1IHY2xvY2tlZIgBARIbCgZrd2FyZ3MYByABKAlIBFIGa3dhcmdziAEBEh0KB2VuYWJsZWQY'
+    'CCABKAhIBVIHZW5hYmxlZIgBAUILCglfaW50ZXJ2YWxCCgoIX2Nyb250YWJCCAoGX3NvbGFyQg'
+    'oKCF9jbG9ja2VkQgkKB19rd2FyZ3NCCgoIX2VuYWJsZWQ=');
+
+@$core.Deprecated('Use periodicTaskRetrieveRequestDescriptor instead')
+const PeriodicTaskRetrieveRequest$json = {
+  '1': 'PeriodicTaskRetrieveRequest',
+  '2': [
+    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+  ],
+};
+
+/// Descriptor for `PeriodicTaskRetrieveRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List periodicTaskRetrieveRequestDescriptor =
+    $convert.base64Decode(
+        'ChtQZXJpb2RpY1Rhc2tSZXRyaWV2ZVJlcXVlc3QSEgoEbmFtZRgBIAEoCVIEbmFtZQ==');
 
 @$core.Deprecated('Use projectDestroyRequestDescriptor instead')
 const ProjectDestroyRequest$json = {
@@ -1542,6 +2297,132 @@ const ProjectRetrieveRequest$json = {
 /// Descriptor for `ProjectRetrieveRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List projectRetrieveRequestDescriptor = $convert
     .base64Decode('ChZQcm9qZWN0UmV0cmlldmVSZXF1ZXN0Eg4KAmlkGAEgASgFUgJpZA==');
+
+@$core.Deprecated('Use solarScheduleDestroyRequestDescriptor instead')
+const SolarScheduleDestroyRequest$json = {
+  '1': 'SolarScheduleDestroyRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 5, '10': 'id'},
+  ],
+};
+
+/// Descriptor for `SolarScheduleDestroyRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List solarScheduleDestroyRequestDescriptor =
+    $convert.base64Decode(
+        'ChtTb2xhclNjaGVkdWxlRGVzdHJveVJlcXVlc3QSDgoCaWQYASABKAVSAmlk');
+
+@$core.Deprecated('Use solarScheduleListRequestDescriptor instead')
+const SolarScheduleListRequest$json = {
+  '1': 'SolarScheduleListRequest',
+};
+
+/// Descriptor for `SolarScheduleListRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List solarScheduleListRequestDescriptor =
+    $convert.base64Decode('ChhTb2xhclNjaGVkdWxlTGlzdFJlcXVlc3Q=');
+
+@$core.Deprecated('Use solarScheduleListResponseDescriptor instead')
+const SolarScheduleListResponse$json = {
+  '1': 'SolarScheduleListResponse',
+  '2': [
+    {
+      '1': 'results',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.base_app.products_controller.SolarScheduleResponse',
+      '10': 'results'
+    },
+    {'1': 'count', '3': 2, '4': 1, '5': 5, '10': 'count'},
+  ],
+};
+
+/// Descriptor for `SolarScheduleListResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List solarScheduleListResponseDescriptor = $convert.base64Decode(
+    'ChlTb2xhclNjaGVkdWxlTGlzdFJlc3BvbnNlEk0KB3Jlc3VsdHMYASADKAsyMy5iYXNlX2FwcC'
+    '5wcm9kdWN0c19jb250cm9sbGVyLlNvbGFyU2NoZWR1bGVSZXNwb25zZVIHcmVzdWx0cxIUCgVj'
+    'b3VudBgCIAEoBVIFY291bnQ=');
+
+@$core.Deprecated('Use solarSchedulePartialUpdateRequestDescriptor instead')
+const SolarSchedulePartialUpdateRequest$json = {
+  '1': 'SolarSchedulePartialUpdateRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 5, '9': 0, '10': 'id', '17': true},
+    {
+      '1': '_partial_update_fields',
+      '3': 4,
+      '4': 3,
+      '5': 9,
+      '10': 'PartialUpdateFields'
+    },
+    {'1': 'event', '3': 5, '4': 1, '5': 9, '10': 'event'},
+    {'1': 'latitude', '3': 6, '4': 1, '5': 1, '10': 'latitude'},
+    {'1': 'longitude', '3': 7, '4': 1, '5': 1, '10': 'longitude'},
+  ],
+  '8': [
+    {'1': '_id'},
+  ],
+};
+
+/// Descriptor for `SolarSchedulePartialUpdateRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List solarSchedulePartialUpdateRequestDescriptor =
+    $convert.base64Decode(
+        'CiFTb2xhclNjaGVkdWxlUGFydGlhbFVwZGF0ZVJlcXVlc3QSEwoCaWQYASABKAVIAFICaWSIAQ'
+        'ESMwoWX3BhcnRpYWxfdXBkYXRlX2ZpZWxkcxgEIAMoCVITUGFydGlhbFVwZGF0ZUZpZWxkcxIU'
+        'CgVldmVudBgFIAEoCVIFZXZlbnQSGgoIbGF0aXR1ZGUYBiABKAFSCGxhdGl0dWRlEhwKCWxvbm'
+        'dpdHVkZRgHIAEoAVIJbG9uZ2l0dWRlQgUKA19pZA==');
+
+@$core.Deprecated('Use solarScheduleRequestDescriptor instead')
+const SolarScheduleRequest$json = {
+  '1': 'SolarScheduleRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 5, '9': 0, '10': 'id', '17': true},
+    {'1': 'event', '3': 4, '4': 1, '5': 9, '10': 'event'},
+    {'1': 'latitude', '3': 5, '4': 1, '5': 1, '10': 'latitude'},
+    {'1': 'longitude', '3': 6, '4': 1, '5': 1, '10': 'longitude'},
+  ],
+  '8': [
+    {'1': '_id'},
+  ],
+};
+
+/// Descriptor for `SolarScheduleRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List solarScheduleRequestDescriptor = $convert.base64Decode(
+    'ChRTb2xhclNjaGVkdWxlUmVxdWVzdBITCgJpZBgBIAEoBUgAUgJpZIgBARIUCgVldmVudBgEIA'
+    'EoCVIFZXZlbnQSGgoIbGF0aXR1ZGUYBSABKAFSCGxhdGl0dWRlEhwKCWxvbmdpdHVkZRgGIAEo'
+    'AVIJbG9uZ2l0dWRlQgUKA19pZA==');
+
+@$core.Deprecated('Use solarScheduleResponseDescriptor instead')
+const SolarScheduleResponse$json = {
+  '1': 'SolarScheduleResponse',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 5, '9': 0, '10': 'id', '17': true},
+    {'1': 'event', '3': 4, '4': 1, '5': 9, '10': 'event'},
+    {'1': 'latitude', '3': 5, '4': 1, '5': 1, '10': 'latitude'},
+    {'1': 'longitude', '3': 6, '4': 1, '5': 1, '10': 'longitude'},
+  ],
+  '8': [
+    {'1': '_id'},
+  ],
+};
+
+/// Descriptor for `SolarScheduleResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List solarScheduleResponseDescriptor = $convert.base64Decode(
+    'ChVTb2xhclNjaGVkdWxlUmVzcG9uc2USEwoCaWQYASABKAVIAFICaWSIAQESFAoFZXZlbnQYBC'
+    'ABKAlSBWV2ZW50EhoKCGxhdGl0dWRlGAUgASgBUghsYXRpdHVkZRIcCglsb25naXR1ZGUYBiAB'
+    'KAFSCWxvbmdpdHVkZUIFCgNfaWQ=');
+
+@$core.Deprecated('Use solarScheduleRetrieveRequestDescriptor instead')
+const SolarScheduleRetrieveRequest$json = {
+  '1': 'SolarScheduleRetrieveRequest',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 5, '10': 'id'},
+  ],
+};
+
+/// Descriptor for `SolarScheduleRetrieveRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List solarScheduleRetrieveRequestDescriptor =
+    $convert.base64Decode(
+        'ChxTb2xhclNjaGVkdWxlUmV0cmlldmVSZXF1ZXN0Eg4KAmlkGAEgASgFUgJpZA==');
 
 @$core.Deprecated('Use userDestroyRequestDescriptor instead')
 const UserDestroyRequest$json = {

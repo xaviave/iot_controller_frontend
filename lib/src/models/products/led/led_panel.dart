@@ -23,7 +23,7 @@ class LedPanel extends BaseProduct {
 
   @override
   String toString() {
-    return name;
+    return "$name $id $brightness $status";
   }
 
   LedPanelRequest getRequest() {
@@ -44,8 +44,8 @@ class LedPanel extends BaseProduct {
       id: id,
       partialUpdateFields: fields.keys,
       name: fields["name"],
-      ipPort: fields["ipPort"],
-      ipAddress: fields["ipAddress"],
+      ipPort: fields["ip_port"],
+      ipAddress: fields["ip_address"],
       categories: fields["categories"],
       status: fields["status"],
       brightness: fields["brightness"],

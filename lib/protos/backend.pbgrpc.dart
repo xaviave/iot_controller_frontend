@@ -197,6 +197,192 @@ abstract class CategoryControllerServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.CategoryRequest request);
 }
 
+@$pb.GrpcServiceName('base_app.products_controller.ClockedScheduleController')
+class ClockedScheduleControllerClient extends $grpc.Client {
+  static final _$create =
+      $grpc.ClientMethod<$0.ClockedScheduleRequest, $0.ClockedScheduleResponse>(
+          '/base_app.products_controller.ClockedScheduleController/Create',
+          ($0.ClockedScheduleRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) =>
+              $0.ClockedScheduleResponse.fromBuffer(value));
+  static final _$destroy =
+      $grpc.ClientMethod<$0.ClockedScheduleDestroyRequest, $1.Empty>(
+          '/base_app.products_controller.ClockedScheduleController/Destroy',
+          ($0.ClockedScheduleDestroyRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+  static final _$list = $grpc.ClientMethod<$0.ClockedScheduleListRequest,
+          $0.ClockedScheduleListResponse>(
+      '/base_app.products_controller.ClockedScheduleController/List',
+      ($0.ClockedScheduleListRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.ClockedScheduleListResponse.fromBuffer(value));
+  static final _$partialUpdate = $grpc.ClientMethod<
+          $0.ClockedSchedulePartialUpdateRequest, $0.ClockedScheduleResponse>(
+      '/base_app.products_controller.ClockedScheduleController/PartialUpdate',
+      ($0.ClockedSchedulePartialUpdateRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.ClockedScheduleResponse.fromBuffer(value));
+  static final _$retrieve = $grpc.ClientMethod<
+          $0.ClockedScheduleRetrieveRequest, $0.ClockedScheduleResponse>(
+      '/base_app.products_controller.ClockedScheduleController/Retrieve',
+      ($0.ClockedScheduleRetrieveRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.ClockedScheduleResponse.fromBuffer(value));
+  static final _$update =
+      $grpc.ClientMethod<$0.ClockedScheduleRequest, $0.ClockedScheduleResponse>(
+          '/base_app.products_controller.ClockedScheduleController/Update',
+          ($0.ClockedScheduleRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) =>
+              $0.ClockedScheduleResponse.fromBuffer(value));
+
+  ClockedScheduleControllerClient($grpc.ClientChannel channel,
+      {$grpc.CallOptions? options,
+      $core.Iterable<$grpc.ClientInterceptor>? interceptors})
+      : super(channel, options: options, interceptors: interceptors);
+
+  $grpc.ResponseFuture<$0.ClockedScheduleResponse> create(
+      $0.ClockedScheduleRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$create, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$1.Empty> destroy(
+      $0.ClockedScheduleDestroyRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$destroy, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.ClockedScheduleListResponse> list(
+      $0.ClockedScheduleListRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$list, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.ClockedScheduleResponse> partialUpdate(
+      $0.ClockedSchedulePartialUpdateRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$partialUpdate, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.ClockedScheduleResponse> retrieve(
+      $0.ClockedScheduleRetrieveRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$retrieve, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.ClockedScheduleResponse> update(
+      $0.ClockedScheduleRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$update, request, options: options);
+  }
+}
+
+@$pb.GrpcServiceName('base_app.products_controller.ClockedScheduleController')
+abstract class ClockedScheduleControllerServiceBase extends $grpc.Service {
+  $core.String get $name =>
+      'base_app.products_controller.ClockedScheduleController';
+
+  ClockedScheduleControllerServiceBase() {
+    $addMethod($grpc.ServiceMethod<$0.ClockedScheduleRequest,
+            $0.ClockedScheduleResponse>(
+        'Create',
+        create_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.ClockedScheduleRequest.fromBuffer(value),
+        ($0.ClockedScheduleResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.ClockedScheduleDestroyRequest, $1.Empty>(
+        'Destroy',
+        destroy_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.ClockedScheduleDestroyRequest.fromBuffer(value),
+        ($1.Empty value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.ClockedScheduleListRequest,
+            $0.ClockedScheduleListResponse>(
+        'List',
+        list_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.ClockedScheduleListRequest.fromBuffer(value),
+        ($0.ClockedScheduleListResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.ClockedSchedulePartialUpdateRequest,
+            $0.ClockedScheduleResponse>(
+        'PartialUpdate',
+        partialUpdate_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.ClockedSchedulePartialUpdateRequest.fromBuffer(value),
+        ($0.ClockedScheduleResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.ClockedScheduleRetrieveRequest,
+            $0.ClockedScheduleResponse>(
+        'Retrieve',
+        retrieve_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.ClockedScheduleRetrieveRequest.fromBuffer(value),
+        ($0.ClockedScheduleResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.ClockedScheduleRequest,
+            $0.ClockedScheduleResponse>(
+        'Update',
+        update_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.ClockedScheduleRequest.fromBuffer(value),
+        ($0.ClockedScheduleResponse value) => value.writeToBuffer()));
+  }
+
+  $async.Future<$0.ClockedScheduleResponse> create_Pre($grpc.ServiceCall call,
+      $async.Future<$0.ClockedScheduleRequest> request) async {
+    return create(call, await request);
+  }
+
+  $async.Future<$1.Empty> destroy_Pre($grpc.ServiceCall call,
+      $async.Future<$0.ClockedScheduleDestroyRequest> request) async {
+    return destroy(call, await request);
+  }
+
+  $async.Future<$0.ClockedScheduleListResponse> list_Pre($grpc.ServiceCall call,
+      $async.Future<$0.ClockedScheduleListRequest> request) async {
+    return list(call, await request);
+  }
+
+  $async.Future<$0.ClockedScheduleResponse> partialUpdate_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.ClockedSchedulePartialUpdateRequest> request) async {
+    return partialUpdate(call, await request);
+  }
+
+  $async.Future<$0.ClockedScheduleResponse> retrieve_Pre($grpc.ServiceCall call,
+      $async.Future<$0.ClockedScheduleRetrieveRequest> request) async {
+    return retrieve(call, await request);
+  }
+
+  $async.Future<$0.ClockedScheduleResponse> update_Pre($grpc.ServiceCall call,
+      $async.Future<$0.ClockedScheduleRequest> request) async {
+    return update(call, await request);
+  }
+
+  $async.Future<$0.ClockedScheduleResponse> create(
+      $grpc.ServiceCall call, $0.ClockedScheduleRequest request);
+  $async.Future<$1.Empty> destroy(
+      $grpc.ServiceCall call, $0.ClockedScheduleDestroyRequest request);
+  $async.Future<$0.ClockedScheduleListResponse> list(
+      $grpc.ServiceCall call, $0.ClockedScheduleListRequest request);
+  $async.Future<$0.ClockedScheduleResponse> partialUpdate(
+      $grpc.ServiceCall call, $0.ClockedSchedulePartialUpdateRequest request);
+  $async.Future<$0.ClockedScheduleResponse> retrieve(
+      $grpc.ServiceCall call, $0.ClockedScheduleRetrieveRequest request);
+  $async.Future<$0.ClockedScheduleResponse> update(
+      $grpc.ServiceCall call, $0.ClockedScheduleRequest request);
+}
+
 @$pb.GrpcServiceName('base_app.products_controller.CoffeeMachineController')
 class CoffeeMachineControllerClient extends $grpc.Client {
   static final _$create =
@@ -558,6 +744,192 @@ abstract class ColorModeControllerServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.ColorModeRequest request);
 }
 
+@$pb.GrpcServiceName('base_app.products_controller.CrontabScheduleController')
+class CrontabScheduleControllerClient extends $grpc.Client {
+  static final _$create =
+      $grpc.ClientMethod<$0.CrontabScheduleRequest, $0.CrontabScheduleResponse>(
+          '/base_app.products_controller.CrontabScheduleController/Create',
+          ($0.CrontabScheduleRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) =>
+              $0.CrontabScheduleResponse.fromBuffer(value));
+  static final _$destroy =
+      $grpc.ClientMethod<$0.CrontabScheduleDestroyRequest, $1.Empty>(
+          '/base_app.products_controller.CrontabScheduleController/Destroy',
+          ($0.CrontabScheduleDestroyRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+  static final _$list = $grpc.ClientMethod<$0.CrontabScheduleListRequest,
+          $0.CrontabScheduleListResponse>(
+      '/base_app.products_controller.CrontabScheduleController/List',
+      ($0.CrontabScheduleListRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.CrontabScheduleListResponse.fromBuffer(value));
+  static final _$partialUpdate = $grpc.ClientMethod<
+          $0.CrontabSchedulePartialUpdateRequest, $0.CrontabScheduleResponse>(
+      '/base_app.products_controller.CrontabScheduleController/PartialUpdate',
+      ($0.CrontabSchedulePartialUpdateRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.CrontabScheduleResponse.fromBuffer(value));
+  static final _$retrieve = $grpc.ClientMethod<
+          $0.CrontabScheduleRetrieveRequest, $0.CrontabScheduleResponse>(
+      '/base_app.products_controller.CrontabScheduleController/Retrieve',
+      ($0.CrontabScheduleRetrieveRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.CrontabScheduleResponse.fromBuffer(value));
+  static final _$update =
+      $grpc.ClientMethod<$0.CrontabScheduleRequest, $0.CrontabScheduleResponse>(
+          '/base_app.products_controller.CrontabScheduleController/Update',
+          ($0.CrontabScheduleRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) =>
+              $0.CrontabScheduleResponse.fromBuffer(value));
+
+  CrontabScheduleControllerClient($grpc.ClientChannel channel,
+      {$grpc.CallOptions? options,
+      $core.Iterable<$grpc.ClientInterceptor>? interceptors})
+      : super(channel, options: options, interceptors: interceptors);
+
+  $grpc.ResponseFuture<$0.CrontabScheduleResponse> create(
+      $0.CrontabScheduleRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$create, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$1.Empty> destroy(
+      $0.CrontabScheduleDestroyRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$destroy, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.CrontabScheduleListResponse> list(
+      $0.CrontabScheduleListRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$list, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.CrontabScheduleResponse> partialUpdate(
+      $0.CrontabSchedulePartialUpdateRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$partialUpdate, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.CrontabScheduleResponse> retrieve(
+      $0.CrontabScheduleRetrieveRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$retrieve, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.CrontabScheduleResponse> update(
+      $0.CrontabScheduleRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$update, request, options: options);
+  }
+}
+
+@$pb.GrpcServiceName('base_app.products_controller.CrontabScheduleController')
+abstract class CrontabScheduleControllerServiceBase extends $grpc.Service {
+  $core.String get $name =>
+      'base_app.products_controller.CrontabScheduleController';
+
+  CrontabScheduleControllerServiceBase() {
+    $addMethod($grpc.ServiceMethod<$0.CrontabScheduleRequest,
+            $0.CrontabScheduleResponse>(
+        'Create',
+        create_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.CrontabScheduleRequest.fromBuffer(value),
+        ($0.CrontabScheduleResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.CrontabScheduleDestroyRequest, $1.Empty>(
+        'Destroy',
+        destroy_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.CrontabScheduleDestroyRequest.fromBuffer(value),
+        ($1.Empty value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.CrontabScheduleListRequest,
+            $0.CrontabScheduleListResponse>(
+        'List',
+        list_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.CrontabScheduleListRequest.fromBuffer(value),
+        ($0.CrontabScheduleListResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.CrontabSchedulePartialUpdateRequest,
+            $0.CrontabScheduleResponse>(
+        'PartialUpdate',
+        partialUpdate_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.CrontabSchedulePartialUpdateRequest.fromBuffer(value),
+        ($0.CrontabScheduleResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.CrontabScheduleRetrieveRequest,
+            $0.CrontabScheduleResponse>(
+        'Retrieve',
+        retrieve_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.CrontabScheduleRetrieveRequest.fromBuffer(value),
+        ($0.CrontabScheduleResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.CrontabScheduleRequest,
+            $0.CrontabScheduleResponse>(
+        'Update',
+        update_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.CrontabScheduleRequest.fromBuffer(value),
+        ($0.CrontabScheduleResponse value) => value.writeToBuffer()));
+  }
+
+  $async.Future<$0.CrontabScheduleResponse> create_Pre($grpc.ServiceCall call,
+      $async.Future<$0.CrontabScheduleRequest> request) async {
+    return create(call, await request);
+  }
+
+  $async.Future<$1.Empty> destroy_Pre($grpc.ServiceCall call,
+      $async.Future<$0.CrontabScheduleDestroyRequest> request) async {
+    return destroy(call, await request);
+  }
+
+  $async.Future<$0.CrontabScheduleListResponse> list_Pre($grpc.ServiceCall call,
+      $async.Future<$0.CrontabScheduleListRequest> request) async {
+    return list(call, await request);
+  }
+
+  $async.Future<$0.CrontabScheduleResponse> partialUpdate_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.CrontabSchedulePartialUpdateRequest> request) async {
+    return partialUpdate(call, await request);
+  }
+
+  $async.Future<$0.CrontabScheduleResponse> retrieve_Pre($grpc.ServiceCall call,
+      $async.Future<$0.CrontabScheduleRetrieveRequest> request) async {
+    return retrieve(call, await request);
+  }
+
+  $async.Future<$0.CrontabScheduleResponse> update_Pre($grpc.ServiceCall call,
+      $async.Future<$0.CrontabScheduleRequest> request) async {
+    return update(call, await request);
+  }
+
+  $async.Future<$0.CrontabScheduleResponse> create(
+      $grpc.ServiceCall call, $0.CrontabScheduleRequest request);
+  $async.Future<$1.Empty> destroy(
+      $grpc.ServiceCall call, $0.CrontabScheduleDestroyRequest request);
+  $async.Future<$0.CrontabScheduleListResponse> list(
+      $grpc.ServiceCall call, $0.CrontabScheduleListRequest request);
+  $async.Future<$0.CrontabScheduleResponse> partialUpdate(
+      $grpc.ServiceCall call, $0.CrontabSchedulePartialUpdateRequest request);
+  $async.Future<$0.CrontabScheduleResponse> retrieve(
+      $grpc.ServiceCall call, $0.CrontabScheduleRetrieveRequest request);
+  $async.Future<$0.CrontabScheduleResponse> update(
+      $grpc.ServiceCall call, $0.CrontabScheduleRequest request);
+}
+
 @$pb.GrpcServiceName('base_app.products_controller.ImageModeController')
 class ImageModeControllerClient extends $grpc.Client {
   static final _$create =
@@ -732,6 +1104,194 @@ abstract class ImageModeControllerServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.ImageModeRetrieveRequest request);
   $async.Future<$0.ImageModeResponse> update(
       $grpc.ServiceCall call, $0.ImageModeRequest request);
+}
+
+@$pb.GrpcServiceName('base_app.products_controller.IntervalScheduleController')
+class IntervalScheduleControllerClient extends $grpc.Client {
+  static final _$create = $grpc.ClientMethod<$0.IntervalScheduleRequest,
+          $0.IntervalScheduleResponse>(
+      '/base_app.products_controller.IntervalScheduleController/Create',
+      ($0.IntervalScheduleRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.IntervalScheduleResponse.fromBuffer(value));
+  static final _$destroy =
+      $grpc.ClientMethod<$0.IntervalScheduleDestroyRequest, $1.Empty>(
+          '/base_app.products_controller.IntervalScheduleController/Destroy',
+          ($0.IntervalScheduleDestroyRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+  static final _$list = $grpc.ClientMethod<$0.IntervalScheduleListRequest,
+          $0.IntervalScheduleListResponse>(
+      '/base_app.products_controller.IntervalScheduleController/List',
+      ($0.IntervalScheduleListRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.IntervalScheduleListResponse.fromBuffer(value));
+  static final _$partialUpdate = $grpc.ClientMethod<
+          $0.IntervalSchedulePartialUpdateRequest, $0.IntervalScheduleResponse>(
+      '/base_app.products_controller.IntervalScheduleController/PartialUpdate',
+      ($0.IntervalSchedulePartialUpdateRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.IntervalScheduleResponse.fromBuffer(value));
+  static final _$retrieve = $grpc.ClientMethod<
+          $0.IntervalScheduleRetrieveRequest, $0.IntervalScheduleResponse>(
+      '/base_app.products_controller.IntervalScheduleController/Retrieve',
+      ($0.IntervalScheduleRetrieveRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.IntervalScheduleResponse.fromBuffer(value));
+  static final _$update = $grpc.ClientMethod<$0.IntervalScheduleRequest,
+          $0.IntervalScheduleResponse>(
+      '/base_app.products_controller.IntervalScheduleController/Update',
+      ($0.IntervalScheduleRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.IntervalScheduleResponse.fromBuffer(value));
+
+  IntervalScheduleControllerClient($grpc.ClientChannel channel,
+      {$grpc.CallOptions? options,
+      $core.Iterable<$grpc.ClientInterceptor>? interceptors})
+      : super(channel, options: options, interceptors: interceptors);
+
+  $grpc.ResponseFuture<$0.IntervalScheduleResponse> create(
+      $0.IntervalScheduleRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$create, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$1.Empty> destroy(
+      $0.IntervalScheduleDestroyRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$destroy, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.IntervalScheduleListResponse> list(
+      $0.IntervalScheduleListRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$list, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.IntervalScheduleResponse> partialUpdate(
+      $0.IntervalSchedulePartialUpdateRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$partialUpdate, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.IntervalScheduleResponse> retrieve(
+      $0.IntervalScheduleRetrieveRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$retrieve, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.IntervalScheduleResponse> update(
+      $0.IntervalScheduleRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$update, request, options: options);
+  }
+}
+
+@$pb.GrpcServiceName('base_app.products_controller.IntervalScheduleController')
+abstract class IntervalScheduleControllerServiceBase extends $grpc.Service {
+  $core.String get $name =>
+      'base_app.products_controller.IntervalScheduleController';
+
+  IntervalScheduleControllerServiceBase() {
+    $addMethod($grpc.ServiceMethod<$0.IntervalScheduleRequest,
+            $0.IntervalScheduleResponse>(
+        'Create',
+        create_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.IntervalScheduleRequest.fromBuffer(value),
+        ($0.IntervalScheduleResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.IntervalScheduleDestroyRequest, $1.Empty>(
+        'Destroy',
+        destroy_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.IntervalScheduleDestroyRequest.fromBuffer(value),
+        ($1.Empty value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.IntervalScheduleListRequest,
+            $0.IntervalScheduleListResponse>(
+        'List',
+        list_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.IntervalScheduleListRequest.fromBuffer(value),
+        ($0.IntervalScheduleListResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.IntervalSchedulePartialUpdateRequest,
+            $0.IntervalScheduleResponse>(
+        'PartialUpdate',
+        partialUpdate_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.IntervalSchedulePartialUpdateRequest.fromBuffer(value),
+        ($0.IntervalScheduleResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.IntervalScheduleRetrieveRequest,
+            $0.IntervalScheduleResponse>(
+        'Retrieve',
+        retrieve_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.IntervalScheduleRetrieveRequest.fromBuffer(value),
+        ($0.IntervalScheduleResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.IntervalScheduleRequest,
+            $0.IntervalScheduleResponse>(
+        'Update',
+        update_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.IntervalScheduleRequest.fromBuffer(value),
+        ($0.IntervalScheduleResponse value) => value.writeToBuffer()));
+  }
+
+  $async.Future<$0.IntervalScheduleResponse> create_Pre($grpc.ServiceCall call,
+      $async.Future<$0.IntervalScheduleRequest> request) async {
+    return create(call, await request);
+  }
+
+  $async.Future<$1.Empty> destroy_Pre($grpc.ServiceCall call,
+      $async.Future<$0.IntervalScheduleDestroyRequest> request) async {
+    return destroy(call, await request);
+  }
+
+  $async.Future<$0.IntervalScheduleListResponse> list_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.IntervalScheduleListRequest> request) async {
+    return list(call, await request);
+  }
+
+  $async.Future<$0.IntervalScheduleResponse> partialUpdate_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.IntervalSchedulePartialUpdateRequest> request) async {
+    return partialUpdate(call, await request);
+  }
+
+  $async.Future<$0.IntervalScheduleResponse> retrieve_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.IntervalScheduleRetrieveRequest> request) async {
+    return retrieve(call, await request);
+  }
+
+  $async.Future<$0.IntervalScheduleResponse> update_Pre($grpc.ServiceCall call,
+      $async.Future<$0.IntervalScheduleRequest> request) async {
+    return update(call, await request);
+  }
+
+  $async.Future<$0.IntervalScheduleResponse> create(
+      $grpc.ServiceCall call, $0.IntervalScheduleRequest request);
+  $async.Future<$1.Empty> destroy(
+      $grpc.ServiceCall call, $0.IntervalScheduleDestroyRequest request);
+  $async.Future<$0.IntervalScheduleListResponse> list(
+      $grpc.ServiceCall call, $0.IntervalScheduleListRequest request);
+  $async.Future<$0.IntervalScheduleResponse> partialUpdate(
+      $grpc.ServiceCall call, $0.IntervalSchedulePartialUpdateRequest request);
+  $async.Future<$0.IntervalScheduleResponse> retrieve(
+      $grpc.ServiceCall call, $0.IntervalScheduleRetrieveRequest request);
+  $async.Future<$0.IntervalScheduleResponse> update(
+      $grpc.ServiceCall call, $0.IntervalScheduleRequest request);
 }
 
 @$pb.GrpcServiceName('base_app.products_controller.LedPanelController')
@@ -1096,6 +1656,191 @@ abstract class PatternModeControllerServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.PatternModeRequest request);
 }
 
+@$pb.GrpcServiceName('base_app.products_controller.PeriodicTaskController')
+class PeriodicTaskControllerClient extends $grpc.Client {
+  static final _$create =
+      $grpc.ClientMethod<$0.PeriodicTaskRequest, $0.PeriodicTaskResponse>(
+          '/base_app.products_controller.PeriodicTaskController/Create',
+          ($0.PeriodicTaskRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) =>
+              $0.PeriodicTaskResponse.fromBuffer(value));
+  static final _$destroy =
+      $grpc.ClientMethod<$0.PeriodicTaskDestroyRequest, $1.Empty>(
+          '/base_app.products_controller.PeriodicTaskController/Destroy',
+          ($0.PeriodicTaskDestroyRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+  static final _$list = $grpc.ClientMethod<$0.PeriodicTaskListRequest,
+          $0.PeriodicTaskListResponse>(
+      '/base_app.products_controller.PeriodicTaskController/List',
+      ($0.PeriodicTaskListRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.PeriodicTaskListResponse.fromBuffer(value));
+  static final _$partialUpdate = $grpc.ClientMethod<
+          $0.PeriodicTaskPartialUpdateRequest, $0.PeriodicTaskResponse>(
+      '/base_app.products_controller.PeriodicTaskController/PartialUpdate',
+      ($0.PeriodicTaskPartialUpdateRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.PeriodicTaskResponse.fromBuffer(value));
+  static final _$retrieve = $grpc.ClientMethod<$0.PeriodicTaskRetrieveRequest,
+          $0.PeriodicTaskResponse>(
+      '/base_app.products_controller.PeriodicTaskController/Retrieve',
+      ($0.PeriodicTaskRetrieveRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.PeriodicTaskResponse.fromBuffer(value));
+  static final _$update =
+      $grpc.ClientMethod<$0.PeriodicTaskRequest, $0.PeriodicTaskResponse>(
+          '/base_app.products_controller.PeriodicTaskController/Update',
+          ($0.PeriodicTaskRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) =>
+              $0.PeriodicTaskResponse.fromBuffer(value));
+
+  PeriodicTaskControllerClient($grpc.ClientChannel channel,
+      {$grpc.CallOptions? options,
+      $core.Iterable<$grpc.ClientInterceptor>? interceptors})
+      : super(channel, options: options, interceptors: interceptors);
+
+  $grpc.ResponseFuture<$0.PeriodicTaskResponse> create(
+      $0.PeriodicTaskRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$create, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$1.Empty> destroy($0.PeriodicTaskDestroyRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$destroy, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.PeriodicTaskListResponse> list(
+      $0.PeriodicTaskListRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$list, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.PeriodicTaskResponse> partialUpdate(
+      $0.PeriodicTaskPartialUpdateRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$partialUpdate, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.PeriodicTaskResponse> retrieve(
+      $0.PeriodicTaskRetrieveRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$retrieve, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.PeriodicTaskResponse> update(
+      $0.PeriodicTaskRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$update, request, options: options);
+  }
+}
+
+@$pb.GrpcServiceName('base_app.products_controller.PeriodicTaskController')
+abstract class PeriodicTaskControllerServiceBase extends $grpc.Service {
+  $core.String get $name =>
+      'base_app.products_controller.PeriodicTaskController';
+
+  PeriodicTaskControllerServiceBase() {
+    $addMethod(
+        $grpc.ServiceMethod<$0.PeriodicTaskRequest, $0.PeriodicTaskResponse>(
+            'Create',
+            create_Pre,
+            false,
+            false,
+            ($core.List<$core.int> value) =>
+                $0.PeriodicTaskRequest.fromBuffer(value),
+            ($0.PeriodicTaskResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.PeriodicTaskDestroyRequest, $1.Empty>(
+        'Destroy',
+        destroy_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.PeriodicTaskDestroyRequest.fromBuffer(value),
+        ($1.Empty value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.PeriodicTaskListRequest,
+            $0.PeriodicTaskListResponse>(
+        'List',
+        list_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.PeriodicTaskListRequest.fromBuffer(value),
+        ($0.PeriodicTaskListResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.PeriodicTaskPartialUpdateRequest,
+            $0.PeriodicTaskResponse>(
+        'PartialUpdate',
+        partialUpdate_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.PeriodicTaskPartialUpdateRequest.fromBuffer(value),
+        ($0.PeriodicTaskResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.PeriodicTaskRetrieveRequest,
+            $0.PeriodicTaskResponse>(
+        'Retrieve',
+        retrieve_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.PeriodicTaskRetrieveRequest.fromBuffer(value),
+        ($0.PeriodicTaskResponse value) => value.writeToBuffer()));
+    $addMethod(
+        $grpc.ServiceMethod<$0.PeriodicTaskRequest, $0.PeriodicTaskResponse>(
+            'Update',
+            update_Pre,
+            false,
+            false,
+            ($core.List<$core.int> value) =>
+                $0.PeriodicTaskRequest.fromBuffer(value),
+            ($0.PeriodicTaskResponse value) => value.writeToBuffer()));
+  }
+
+  $async.Future<$0.PeriodicTaskResponse> create_Pre($grpc.ServiceCall call,
+      $async.Future<$0.PeriodicTaskRequest> request) async {
+    return create(call, await request);
+  }
+
+  $async.Future<$1.Empty> destroy_Pre($grpc.ServiceCall call,
+      $async.Future<$0.PeriodicTaskDestroyRequest> request) async {
+    return destroy(call, await request);
+  }
+
+  $async.Future<$0.PeriodicTaskListResponse> list_Pre($grpc.ServiceCall call,
+      $async.Future<$0.PeriodicTaskListRequest> request) async {
+    return list(call, await request);
+  }
+
+  $async.Future<$0.PeriodicTaskResponse> partialUpdate_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.PeriodicTaskPartialUpdateRequest> request) async {
+    return partialUpdate(call, await request);
+  }
+
+  $async.Future<$0.PeriodicTaskResponse> retrieve_Pre($grpc.ServiceCall call,
+      $async.Future<$0.PeriodicTaskRetrieveRequest> request) async {
+    return retrieve(call, await request);
+  }
+
+  $async.Future<$0.PeriodicTaskResponse> update_Pre($grpc.ServiceCall call,
+      $async.Future<$0.PeriodicTaskRequest> request) async {
+    return update(call, await request);
+  }
+
+  $async.Future<$0.PeriodicTaskResponse> create(
+      $grpc.ServiceCall call, $0.PeriodicTaskRequest request);
+  $async.Future<$1.Empty> destroy(
+      $grpc.ServiceCall call, $0.PeriodicTaskDestroyRequest request);
+  $async.Future<$0.PeriodicTaskListResponse> list(
+      $grpc.ServiceCall call, $0.PeriodicTaskListRequest request);
+  $async.Future<$0.PeriodicTaskResponse> partialUpdate(
+      $grpc.ServiceCall call, $0.PeriodicTaskPartialUpdateRequest request);
+  $async.Future<$0.PeriodicTaskResponse> retrieve(
+      $grpc.ServiceCall call, $0.PeriodicTaskRetrieveRequest request);
+  $async.Future<$0.PeriodicTaskResponse> update(
+      $grpc.ServiceCall call, $0.PeriodicTaskRequest request);
+}
+
 @$pb.GrpcServiceName('base_app.products_controller.ProjectController')
 class ProjectControllerClient extends $grpc.Client {
   static final _$create =
@@ -1271,6 +2016,191 @@ abstract class ProjectControllerServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.ProjectRetrieveRequest request);
   $async.Future<$0.ProjectResponse> update(
       $grpc.ServiceCall call, $0.ProjectRequest request);
+}
+
+@$pb.GrpcServiceName('base_app.products_controller.SolarScheduleController')
+class SolarScheduleControllerClient extends $grpc.Client {
+  static final _$create =
+      $grpc.ClientMethod<$0.SolarScheduleRequest, $0.SolarScheduleResponse>(
+          '/base_app.products_controller.SolarScheduleController/Create',
+          ($0.SolarScheduleRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) =>
+              $0.SolarScheduleResponse.fromBuffer(value));
+  static final _$destroy =
+      $grpc.ClientMethod<$0.SolarScheduleDestroyRequest, $1.Empty>(
+          '/base_app.products_controller.SolarScheduleController/Destroy',
+          ($0.SolarScheduleDestroyRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+  static final _$list = $grpc.ClientMethod<$0.SolarScheduleListRequest,
+          $0.SolarScheduleListResponse>(
+      '/base_app.products_controller.SolarScheduleController/List',
+      ($0.SolarScheduleListRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.SolarScheduleListResponse.fromBuffer(value));
+  static final _$partialUpdate = $grpc.ClientMethod<
+          $0.SolarSchedulePartialUpdateRequest, $0.SolarScheduleResponse>(
+      '/base_app.products_controller.SolarScheduleController/PartialUpdate',
+      ($0.SolarSchedulePartialUpdateRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.SolarScheduleResponse.fromBuffer(value));
+  static final _$retrieve = $grpc.ClientMethod<$0.SolarScheduleRetrieveRequest,
+          $0.SolarScheduleResponse>(
+      '/base_app.products_controller.SolarScheduleController/Retrieve',
+      ($0.SolarScheduleRetrieveRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.SolarScheduleResponse.fromBuffer(value));
+  static final _$update =
+      $grpc.ClientMethod<$0.SolarScheduleRequest, $0.SolarScheduleResponse>(
+          '/base_app.products_controller.SolarScheduleController/Update',
+          ($0.SolarScheduleRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) =>
+              $0.SolarScheduleResponse.fromBuffer(value));
+
+  SolarScheduleControllerClient($grpc.ClientChannel channel,
+      {$grpc.CallOptions? options,
+      $core.Iterable<$grpc.ClientInterceptor>? interceptors})
+      : super(channel, options: options, interceptors: interceptors);
+
+  $grpc.ResponseFuture<$0.SolarScheduleResponse> create(
+      $0.SolarScheduleRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$create, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$1.Empty> destroy($0.SolarScheduleDestroyRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$destroy, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.SolarScheduleListResponse> list(
+      $0.SolarScheduleListRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$list, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.SolarScheduleResponse> partialUpdate(
+      $0.SolarSchedulePartialUpdateRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$partialUpdate, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.SolarScheduleResponse> retrieve(
+      $0.SolarScheduleRetrieveRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$retrieve, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.SolarScheduleResponse> update(
+      $0.SolarScheduleRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$update, request, options: options);
+  }
+}
+
+@$pb.GrpcServiceName('base_app.products_controller.SolarScheduleController')
+abstract class SolarScheduleControllerServiceBase extends $grpc.Service {
+  $core.String get $name =>
+      'base_app.products_controller.SolarScheduleController';
+
+  SolarScheduleControllerServiceBase() {
+    $addMethod(
+        $grpc.ServiceMethod<$0.SolarScheduleRequest, $0.SolarScheduleResponse>(
+            'Create',
+            create_Pre,
+            false,
+            false,
+            ($core.List<$core.int> value) =>
+                $0.SolarScheduleRequest.fromBuffer(value),
+            ($0.SolarScheduleResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.SolarScheduleDestroyRequest, $1.Empty>(
+        'Destroy',
+        destroy_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.SolarScheduleDestroyRequest.fromBuffer(value),
+        ($1.Empty value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.SolarScheduleListRequest,
+            $0.SolarScheduleListResponse>(
+        'List',
+        list_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.SolarScheduleListRequest.fromBuffer(value),
+        ($0.SolarScheduleListResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.SolarSchedulePartialUpdateRequest,
+            $0.SolarScheduleResponse>(
+        'PartialUpdate',
+        partialUpdate_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.SolarSchedulePartialUpdateRequest.fromBuffer(value),
+        ($0.SolarScheduleResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.SolarScheduleRetrieveRequest,
+            $0.SolarScheduleResponse>(
+        'Retrieve',
+        retrieve_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.SolarScheduleRetrieveRequest.fromBuffer(value),
+        ($0.SolarScheduleResponse value) => value.writeToBuffer()));
+    $addMethod(
+        $grpc.ServiceMethod<$0.SolarScheduleRequest, $0.SolarScheduleResponse>(
+            'Update',
+            update_Pre,
+            false,
+            false,
+            ($core.List<$core.int> value) =>
+                $0.SolarScheduleRequest.fromBuffer(value),
+            ($0.SolarScheduleResponse value) => value.writeToBuffer()));
+  }
+
+  $async.Future<$0.SolarScheduleResponse> create_Pre($grpc.ServiceCall call,
+      $async.Future<$0.SolarScheduleRequest> request) async {
+    return create(call, await request);
+  }
+
+  $async.Future<$1.Empty> destroy_Pre($grpc.ServiceCall call,
+      $async.Future<$0.SolarScheduleDestroyRequest> request) async {
+    return destroy(call, await request);
+  }
+
+  $async.Future<$0.SolarScheduleListResponse> list_Pre($grpc.ServiceCall call,
+      $async.Future<$0.SolarScheduleListRequest> request) async {
+    return list(call, await request);
+  }
+
+  $async.Future<$0.SolarScheduleResponse> partialUpdate_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.SolarSchedulePartialUpdateRequest> request) async {
+    return partialUpdate(call, await request);
+  }
+
+  $async.Future<$0.SolarScheduleResponse> retrieve_Pre($grpc.ServiceCall call,
+      $async.Future<$0.SolarScheduleRetrieveRequest> request) async {
+    return retrieve(call, await request);
+  }
+
+  $async.Future<$0.SolarScheduleResponse> update_Pre($grpc.ServiceCall call,
+      $async.Future<$0.SolarScheduleRequest> request) async {
+    return update(call, await request);
+  }
+
+  $async.Future<$0.SolarScheduleResponse> create(
+      $grpc.ServiceCall call, $0.SolarScheduleRequest request);
+  $async.Future<$1.Empty> destroy(
+      $grpc.ServiceCall call, $0.SolarScheduleDestroyRequest request);
+  $async.Future<$0.SolarScheduleListResponse> list(
+      $grpc.ServiceCall call, $0.SolarScheduleListRequest request);
+  $async.Future<$0.SolarScheduleResponse> partialUpdate(
+      $grpc.ServiceCall call, $0.SolarSchedulePartialUpdateRequest request);
+  $async.Future<$0.SolarScheduleResponse> retrieve(
+      $grpc.ServiceCall call, $0.SolarScheduleRetrieveRequest request);
+  $async.Future<$0.SolarScheduleResponse> update(
+      $grpc.ServiceCall call, $0.SolarScheduleRequest request);
 }
 
 @$pb.GrpcServiceName('base_app.products_controller.UserController')

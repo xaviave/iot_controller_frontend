@@ -5,6 +5,7 @@ import 'package:iot_controller/src/models/products/base_product.dart';
 import 'package:iot_controller/src/ui/products/coffee_machine/coffee_machine_create_view.dart';
 import 'package:iot_controller/src/ui/products/led/led_panel_create_view.dart';
 import 'package:iot_controller/src/ui/utils/capitalize.dart';
+import 'package:string_validator/string_validator.dart';
 
 class BaseProductForm extends StatefulWidget {
   final Function(BaseProduct) callbackUpdateProject;
@@ -23,7 +24,6 @@ class BaseProductFormState extends State<BaseProductForm> {
   late BaseProduct product;
   late Widget _productTypeController;
   late List<Widget> baseProductTypes;
-  late Function(BaseProduct) callbackUpdateProject;
 
   void addBaseProduct(BuildContext context, BaseProduct p) {
     setState(() => product = p);
@@ -37,7 +37,6 @@ class BaseProductFormState extends State<BaseProductForm> {
       CoffeeMachineForm(callbackAddBaseProduct: addBaseProduct),
     ];
     _productTypeController = baseProductTypes[0];
-    callbackUpdateProject = widget.callbackUpdateProject;
   }
 
   @override
@@ -58,19 +57,19 @@ class BaseProductFormState extends State<BaseProductForm> {
                   : null;
             },
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 10),
           TextFormField(
             controller: _ipAddressController,
             decoration: const InputDecoration(
               labelText: 'Product Ip Address',
             ),
             validator: (value) {
-              return (value != null && value.isEmpty)
+              return (value != null && (value.isEmpty || !isIP(value)))
                   ? 'Please enter an Ip Address.'
                   : null;
             },
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 10),
           TextFormField(
             controller: _ipPortController,
             keyboardType: TextInputType.number,
@@ -78,14 +77,14 @@ class BaseProductFormState extends State<BaseProductForm> {
               labelText: 'Product Ip Port',
             ),
             validator: (value) {
-              return (value != null && value.isEmpty)
+              return (value != null && (value.isEmpty || !isInt(value)))
                   ? 'Please enter an Ip Port.'
                   : null;
             },
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 10),
           const Text("Select type of Product:"),
-          const SizedBox(height: 6),
+          const SizedBox(height: 10),
           Center(
               child: DropdownButton<Widget>(
             value: _productTypeController,
@@ -102,10 +101,11 @@ class BaseProductFormState extends State<BaseProductForm> {
               );
             }).toList(),
           )),
-          const SizedBox(height: 16),
+          const SizedBox(height: 10),
           _productTypeController,
-          const SizedBox(height: 16),
+          const SizedBox(height: 10),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SizedBox(
                 child: ElevatedButton(
@@ -126,7 +126,7 @@ class BaseProductFormState extends State<BaseProductForm> {
                       product.name = _nameController.text;
                       product.ipPort = int.parse(_ipPortController.text);
                       product.ipAddress = _ipAddressController.text;
-                      callbackUpdateProject(product);
+                      widget.callbackUpdateProject(product);
                       Navigator.of(context).pop(true);
                     }
                     return;

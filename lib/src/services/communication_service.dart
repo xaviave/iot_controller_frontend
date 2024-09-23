@@ -1,5 +1,10 @@
 import 'package:iot_controller/protos/backend.pbgrpc.dart';
 import 'package:iot_controller/src/models/category.dart';
+import 'package:iot_controller/src/models/celery_tasks/clocked_schedule.dart';
+import 'package:iot_controller/src/models/celery_tasks/crontab_schedule.dart';
+import 'package:iot_controller/src/models/celery_tasks/interval_schedule.dart';
+import 'package:iot_controller/src/models/celery_tasks/periodic_task.dart';
+import 'package:iot_controller/src/models/celery_tasks/solar_schedule.dart';
 import 'package:iot_controller/src/models/products/coffee_machine.dart';
 import 'package:iot_controller/src/models/products/led/modes/color_mode.dart';
 import 'package:iot_controller/src/models/products/led/led_panel.dart';
@@ -361,4 +366,273 @@ class ProjectCommunication {
     final response = await stub.partialUpdate(p.getPartialRequest(fields));
     return response;
   }
+}
+
+class PeriodicTaskCommunication {
+  late ClientChannel channel;
+  late PeriodicTaskControllerClient stub;
+
+  PeriodicTaskCommunication(
+      {required String serverName, required int serverPort}) {
+    init(serverName, serverPort);
+  }
+
+  Future<void> init(String serverName, int serverPort) async {
+    channel = ClientChannel(serverName,
+        port: serverPort,
+        options:
+            const ChannelOptions(credentials: ChannelCredentials.insecure()));
+    stub = PeriodicTaskControllerClient(channel,
+        options: CallOptions(timeout: const Duration(seconds: 30)));
+  }
+
+  Future<void> clean() async {
+    await channel.shutdown();
+  }
+
+  Future<PeriodicTaskResponse> create(PeriodicTask p) async {
+    final response = await stub.create(p.getRequest());
+    return response;
+  }
+
+  Future<void> destroy(String name) async {
+    await stub.destroy(PeriodicTaskDestroyRequest(name: name));
+  }
+
+  Future<PeriodicTaskListResponse> list() async {
+    final response = await stub.list(PeriodicTaskListRequest());
+    return response;
+  }
+
+  Future<PeriodicTaskResponse> retrieve(String name) async {
+    final response =
+        await stub.retrieve(PeriodicTaskRetrieveRequest(name: name));
+    return response;
+  }
+
+  Future<PeriodicTaskResponse> update(PeriodicTask p) async {
+    final response = await stub.update(p.getRequest());
+    return response;
+  }
+
+  Future<PeriodicTaskResponse> partialUpdate(
+      PeriodicTask p, Map<String, dynamic> fields) async {
+    final response = await stub.partialUpdate(p.getPartialRequest(fields));
+    return response;
+  }
+}
+
+class ClockedScheduleCommunication {
+  late ClientChannel channel;
+  late ClockedScheduleControllerClient stub;
+
+  ClockedScheduleCommunication(
+      {required String serverName, required int serverPort}) {
+    init(serverName, serverPort);
+  }
+
+  Future<void> init(String serverName, int serverPort) async {
+    channel = ClientChannel(serverName,
+        port: serverPort,
+        options:
+            const ChannelOptions(credentials: ChannelCredentials.insecure()));
+    stub = ClockedScheduleControllerClient(channel,
+        options: CallOptions(timeout: const Duration(seconds: 30)));
+  }
+
+  Future<void> clean() async {
+    await channel.shutdown();
+  }
+
+  Future<ClockedScheduleResponse> create(ClockedSchedule p) async {
+    final response = await stub.create(p.getRequest());
+    return response;
+  }
+
+  Future<void> destroy(int id) async {
+    await stub.destroy(ClockedScheduleDestroyRequest(id: id));
+  }
+
+  Future<ClockedScheduleListResponse> list() async {
+    final response = await stub.list(ClockedScheduleListRequest());
+    return response;
+  }
+
+  Future<ClockedScheduleResponse> retrieve(int id) async {
+    final response =
+        await stub.retrieve(ClockedScheduleRetrieveRequest(id: id));
+    return response;
+  }
+
+  Future<ClockedScheduleResponse> update(ClockedSchedule p) async {
+    final response = await stub.update(p.getRequest());
+    return response;
+  }
+
+// Future<ClockedScheduleResponse> partialUpdate(
+//     ClockedSchedule p, Map<String, dynamic> fields) async {
+//   final response = await stub.partialUpdate(p.getPartialRequest(fields));
+//   return response;
+// }
+}
+
+class CrontabScheduleCommunication {
+  late ClientChannel channel;
+  late CrontabScheduleControllerClient stub;
+
+  CrontabScheduleCommunication(
+      {required String serverName, required int serverPort}) {
+    init(serverName, serverPort);
+  }
+
+  Future<void> init(String serverName, int serverPort) async {
+    channel = ClientChannel(serverName,
+        port: serverPort,
+        options:
+            const ChannelOptions(credentials: ChannelCredentials.insecure()));
+    stub = CrontabScheduleControllerClient(channel,
+        options: CallOptions(timeout: const Duration(seconds: 30)));
+  }
+
+  Future<void> clean() async {
+    await channel.shutdown();
+  }
+
+  Future<CrontabScheduleResponse> create(CrontabSchedule p) async {
+    final response = await stub.create(p.getRequest());
+    return response;
+  }
+
+  Future<void> destroy(int id) async {
+    await stub.destroy(CrontabScheduleDestroyRequest(id: id));
+  }
+
+  Future<CrontabScheduleListResponse> list() async {
+    final response = await stub.list(CrontabScheduleListRequest());
+    return response;
+  }
+
+  Future<CrontabScheduleResponse> retrieve(int id) async {
+    final response =
+        await stub.retrieve(CrontabScheduleRetrieveRequest(id: id));
+    return response;
+  }
+
+  Future<CrontabScheduleResponse> update(CrontabSchedule p) async {
+    final response = await stub.update(p.getRequest());
+    return response;
+  }
+
+// Future<CrontabScheduleResponse> partialUpdate(
+//     CrontabSchedule p, Map<String, dynamic> fields) async {
+//   final response = await stub.partialUpdate(p.getPartialRequest(fields));
+//   return response;
+// }
+}
+
+class IntervalScheduleCommunication {
+  late ClientChannel channel;
+  late IntervalScheduleControllerClient stub;
+
+  IntervalScheduleCommunication(
+      {required String serverName, required int serverPort}) {
+    init(serverName, serverPort);
+  }
+
+  Future<void> init(String serverName, int serverPort) async {
+    channel = ClientChannel(serverName,
+        port: serverPort,
+        options:
+            const ChannelOptions(credentials: ChannelCredentials.insecure()));
+    stub = IntervalScheduleControllerClient(channel,
+        options: CallOptions(timeout: const Duration(seconds: 30)));
+  }
+
+  Future<void> clean() async {
+    await channel.shutdown();
+  }
+
+  Future<IntervalScheduleResponse> create(IntervalSchedule p) async {
+    final response = await stub.create(p.getRequest());
+    return response;
+  }
+
+  Future<void> destroy(int id) async {
+    await stub.destroy(IntervalScheduleDestroyRequest(id: id));
+  }
+
+  Future<IntervalScheduleListResponse> list() async {
+    final response = await stub.list(IntervalScheduleListRequest());
+    return response;
+  }
+
+  Future<IntervalScheduleResponse> retrieve(int id) async {
+    final response =
+        await stub.retrieve(IntervalScheduleRetrieveRequest(id: id));
+    return response;
+  }
+
+  Future<IntervalScheduleResponse> update(IntervalSchedule p) async {
+    final response = await stub.update(p.getRequest());
+    return response;
+  }
+
+// Future<IntervalScheduleResponse> partialUpdate(
+//     IntervalSchedule p, Map<String, dynamic> fields) async {
+//   final response = await stub.partialUpdate(p.getPartialRequest(fields));
+//   return response;
+// }
+}
+
+class SolarScheduleCommunication {
+  late ClientChannel channel;
+  late SolarScheduleControllerClient stub;
+
+  SolarScheduleCommunication(
+      {required String serverName, required int serverPort}) {
+    init(serverName, serverPort);
+  }
+
+  Future<void> init(String serverName, int serverPort) async {
+    channel = ClientChannel(serverName,
+        port: serverPort,
+        options:
+            const ChannelOptions(credentials: ChannelCredentials.insecure()));
+    stub = SolarScheduleControllerClient(channel,
+        options: CallOptions(timeout: const Duration(seconds: 30)));
+  }
+
+  Future<void> clean() async {
+    await channel.shutdown();
+  }
+
+  Future<SolarScheduleResponse> create(SolarSchedule p) async {
+    final response = await stub.create(p.getRequest());
+    return response;
+  }
+
+  Future<void> destroy(int id) async {
+    await stub.destroy(SolarScheduleDestroyRequest(id: id));
+  }
+
+  Future<SolarScheduleListResponse> list() async {
+    final response = await stub.list(SolarScheduleListRequest());
+    return response;
+  }
+
+  Future<SolarScheduleResponse> retrieve(int id) async {
+    final response = await stub.retrieve(SolarScheduleRetrieveRequest(id: id));
+    return response;
+  }
+
+  Future<SolarScheduleResponse> update(SolarSchedule p) async {
+    final response = await stub.update(p.getRequest());
+    return response;
+  }
+
+// Future<SolarScheduleResponse> partialUpdate(
+//     SolarSchedule p, Map<String, dynamic> fields) async {
+//   final response = await stub.partialUpdate(p.getPartialRequest(fields));
+//   return response;
+// }
 }

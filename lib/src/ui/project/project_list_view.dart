@@ -1,22 +1,23 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:iot_controller/src/blocs/settings_bloc.dart';
-import 'package:iot_controller/src/blocs/project.dart' as project_bloc;
-import 'package:iot_controller/src/blocs/user.dart' as user_bloc;
-import 'package:iot_controller/src/models/project.dart';
-import 'package:iot_controller/src/services/communication_service.dart';
-import 'package:iot_controller/src/ui/project/project_create_view.dart';
-import 'package:iot_controller/src/ui/settings/settings_view.dart';
-import 'package:iot_controller/src/ui/utils/capitalize.dart';
-import 'package:iot_controller/src/ui/utils/popup/create_popup.dart';
-import 'package:iot_controller/src/ui/utils/popup/refresh_popup.dart';
+import "dart:math";
 
-import 'project_details_view.dart';
+import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
+import "package:go_router/go_router.dart";
+import "package:iot_controller/src/blocs/settings_bloc.dart";
+import "package:iot_controller/src/blocs/project.dart" as project_bloc;
+import "package:iot_controller/src/blocs/user.dart" as user_bloc;
+import "package:iot_controller/src/models/project.dart";
+import "package:iot_controller/src/services/communication_service.dart";
+import "package:iot_controller/src/ui/utils/customColors.dart";
+import "package:iot_controller/src/ui/project/project_create_view.dart";
+import "package:iot_controller/src/ui/utils/capitalize.dart";
+import "package:iot_controller/src/ui/utils/popup/create_popup.dart";
+import "package:iot_controller/src/ui/utils/popup/refresh_popup.dart";
+import "package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart";
 
 class ProjectListView extends StatefulWidget {
   const ProjectListView({super.key});
-  static const routeName = 'projects';
+  static const routeName = "projects";
 
   @override
   State<ProjectListView> createState() => _ProjectListViewState();
@@ -28,6 +29,143 @@ class _ProjectListViewState extends State<ProjectListView> {
         .read<project_bloc.ProjectGRPCBloc>()
         .add(project_bloc.GetProjectListEvent());
     return true;
+  }
+
+  Widget headerView(
+    BuildContext context,
+    Widget titleView,
+    Widget bodyView,
+  ) {
+    final customColors = Theme.of(context).extension<CustomColors>()!;
+
+    return Scaffold(
+        appBar: AppBar(
+          title: titleView,
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.settings),
+              onPressed: () {
+                context.push("/settings");
+              },
+            ),
+          ],
+        ),
+        body: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Container(
+                decoration: BoxDecoration(
+                    color: customColors.lightBackground,
+                    borderRadius: const BorderRadius.all(Radius.circular(16))),
+                child: Padding(
+                    padding: const EdgeInsets.all(16), child: bodyView))),
+        floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            CreatePopup(
+              formName: "project",
+              heroTag: "project_create_button",
+              form: const ProjectForm(),
+              onPressedCallBack: (_) {},
+            ),
+            const SizedBox(height: 10),
+            RefreshPopup(
+              heroTag: "project_refresh_button",
+              onPressedCallBack: refreshProjectList,
+            )
+          ],
+        ));
+  }
+
+  Widget projectBuild(BuildContext context, user_bloc.UserState userState) {
+    return headerView(
+        context,
+        const Text("GMX IOT Controller",
+            style: TextStyle(
+              fontSize: 36,
+            )),
+        BlocBuilder<project_bloc.ProjectGRPCBloc, project_bloc.ProjectState>(
+            builder: (context, state) {
+      if (state is project_bloc.ProjectListInitial ||
+          state is project_bloc.ProjectLoading) {
+        return const Center(child: CircularProgressIndicator());
+      } else if (state is project_bloc.ProjectListSuccess ||
+          state is project_bloc.GetProjectSuccess ||
+          state is project_bloc.RetrieveProjectSuccess ||
+          state is project_bloc.UpdateProjectSuccess ||
+          state is project_bloc.CreateProjectSuccess ||
+          state is project_bloc.DestroyProjectSuccess) {
+        int axisCount = (MediaQuery.of(context).size.width ~/ 200).toInt();
+        return Column(children: [
+          const Align(
+              alignment: Alignment.topLeft,
+              child: Text("Projects",
+                  style: TextStyle(
+                    fontSize: 48,
+                    fontWeight: FontWeight.w900,
+                  ))),
+          const SizedBox(height: 10),
+          Expanded(
+              child: MasonryGridView.count(
+                  crossAxisCount: max(axisCount, 1),
+                  mainAxisSpacing: 12,
+                  crossAxisSpacing: 12,
+                  itemCount: state.projects.length,
+                  itemBuilder: (context, index) {
+                    Project p = state.projects[index];
+
+                    return InkWell(
+                        onTap: () {
+                          context.read<project_bloc.ProjectGRPCBloc>().add(
+                              project_bloc.GetProjectEvent(
+                                  project: p, projects: state.projects));
+                          context.push("/project_detail");
+                        },
+                        // move it / reorder
+                        // onLongPress: ,
+                        child: AspectRatio(
+                            aspectRatio: (12 / p.name.length).clamp(0.9, 2),
+                            child: Container(
+                                padding: const EdgeInsets.all(24),
+                                decoration: BoxDecoration(
+                                    gradient: const LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [
+                                        Color(0xFF846AFF),
+                                        Color(0xFF755EE8),
+                                        Colors.purpleAccent,
+                                        Colors.amber,
+                                      ],
+                                    ),
+                                    borderRadius: BorderRadius.circular(12)),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                        child: Align(
+                                            alignment: Alignment.bottomLeft,
+                                            child: Text(p.name.capitalize,
+                                                overflow: TextOverflow.visible,
+                                                style: const TextStyle(
+                                                  fontSize: 24,
+                                                  color: Colors.white,
+                                                )))),
+                                    const Expanded(
+                                        child: Align(
+                                            alignment: Alignment.bottomRight,
+                                            child: Icon(
+                                                Icons.keyboard_arrow_down))),
+                                  ],
+                                ))));
+                  }))
+        ]);
+      } else {
+        return Center(
+          child: Text("Error: ${state.message}"),
+        );
+      }
+    }));
   }
 
   @override
@@ -48,73 +186,7 @@ class _ProjectListViewState extends State<ProjectListView> {
           return state is user_bloc.AddActiveUserEventSuccess ||
               state is user_bloc.AddActiveUserEventError;
         }, builder: (context, state) {
-          return Scaffold(
-              appBar: AppBar(
-                title: const Text('List of projects'),
-                actions: [
-                  IconButton(
-                    icon: const Icon(Icons.settings),
-                    onPressed: () {
-                      context.push("/settings");
-                    },
-                  ),
-                ],
-              ),
-              body: BlocBuilder<project_bloc.ProjectGRPCBloc,
-                  project_bloc.ProjectState>(builder: (context, state) {
-                print("Project list view $state");
-                if (state is project_bloc.ProjectListInitial ||
-                    state is project_bloc.ProjectLoading) {
-                  return const Center(child: CircularProgressIndicator());
-                } else if (state is project_bloc.ProjectListSuccess ||
-                    state is project_bloc.GetProjectSuccess ||
-                    state is project_bloc.RetrieveProjectSuccess ||
-                    state is project_bloc.UpdateProjectSuccess ||
-                    state is project_bloc.CreateProjectSuccess ||
-                    state is project_bloc.DestroyProjectSuccess) {
-                  return ListView.builder(
-                      restorationId: 'ProjectListView',
-                      itemCount: state.projects.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        Project project = state.projects.elementAt(index);
-
-                        return ListTile(
-                          title: Text(project.toString().capitalize),
-                          leading: const CircleAvatar(
-                            foregroundImage:
-                                AssetImage('assets/images/flutter_logo.png'),
-                          ),
-                          onTap: () {
-                            context.read<project_bloc.ProjectGRPCBloc>().add(
-                                project_bloc.GetProjectEvent(
-                                    project: project,
-                                    projects: state.projects));
-                            context.push("/project_detail");
-                          },
-                        );
-                      });
-                } else {
-                  return Center(
-                    child: Text("Error: ${state.message}"),
-                  );
-                }
-              }),
-              floatingActionButton: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  CreatePopup(
-                    formName: "project",
-                    heroTag: "project_create_button",
-                    form: const ProjectForm(),
-                    onPressedCallBack: (_) {},
-                  ),
-                  const SizedBox(height: 10),
-                  RefreshPopup(
-                    heroTag: "project_refresh_button",
-                    onPressedCallBack: refreshProjectList,
-                  )
-                ],
-              ));
+          return projectBuild(context, state);
         }));
   }
 }

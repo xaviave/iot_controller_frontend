@@ -994,6 +994,513 @@ class CategoryRetrieveRequest extends $pb.GeneratedMessage {
   void clearId() => clearField(1);
 }
 
+class ClockedScheduleDestroyRequest extends $pb.GeneratedMessage {
+  factory ClockedScheduleDestroyRequest({
+    $core.int? id,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    return $result;
+  }
+  ClockedScheduleDestroyRequest._() : super();
+  factory ClockedScheduleDestroyRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ClockedScheduleDestroyRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ClockedScheduleDestroyRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  ClockedScheduleDestroyRequest clone() =>
+      ClockedScheduleDestroyRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ClockedScheduleDestroyRequest copyWith(
+          void Function(ClockedScheduleDestroyRequest) updates) =>
+      super.copyWith(
+              (message) => updates(message as ClockedScheduleDestroyRequest))
+          as ClockedScheduleDestroyRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static ClockedScheduleDestroyRequest create() =>
+      ClockedScheduleDestroyRequest._();
+  ClockedScheduleDestroyRequest createEmptyInstance() => create();
+  static $pb.PbList<ClockedScheduleDestroyRequest> createRepeated() =>
+      $pb.PbList<ClockedScheduleDestroyRequest>();
+  @$core.pragma('dart2js:noInline')
+  static ClockedScheduleDestroyRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ClockedScheduleDestroyRequest>(create);
+  static ClockedScheduleDestroyRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+}
+
+class ClockedScheduleListRequest extends $pb.GeneratedMessage {
+  factory ClockedScheduleListRequest() => create();
+  ClockedScheduleListRequest._() : super();
+  factory ClockedScheduleListRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ClockedScheduleListRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ClockedScheduleListRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  ClockedScheduleListRequest clone() =>
+      ClockedScheduleListRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ClockedScheduleListRequest copyWith(
+          void Function(ClockedScheduleListRequest) updates) =>
+      super.copyWith(
+              (message) => updates(message as ClockedScheduleListRequest))
+          as ClockedScheduleListRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static ClockedScheduleListRequest create() => ClockedScheduleListRequest._();
+  ClockedScheduleListRequest createEmptyInstance() => create();
+  static $pb.PbList<ClockedScheduleListRequest> createRepeated() =>
+      $pb.PbList<ClockedScheduleListRequest>();
+  @$core.pragma('dart2js:noInline')
+  static ClockedScheduleListRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ClockedScheduleListRequest>(create);
+  static ClockedScheduleListRequest? _defaultInstance;
+}
+
+class ClockedScheduleListResponse extends $pb.GeneratedMessage {
+  factory ClockedScheduleListResponse({
+    $core.Iterable<ClockedScheduleResponse>? results,
+    $core.int? count,
+  }) {
+    final $result = create();
+    if (results != null) {
+      $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
+    }
+    return $result;
+  }
+  ClockedScheduleListResponse._() : super();
+  factory ClockedScheduleListResponse.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ClockedScheduleListResponse.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ClockedScheduleListResponse',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..pc<ClockedScheduleResponse>(
+        1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM,
+        subBuilder: ClockedScheduleResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  ClockedScheduleListResponse clone() =>
+      ClockedScheduleListResponse()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ClockedScheduleListResponse copyWith(
+          void Function(ClockedScheduleListResponse) updates) =>
+      super.copyWith(
+              (message) => updates(message as ClockedScheduleListResponse))
+          as ClockedScheduleListResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static ClockedScheduleListResponse create() =>
+      ClockedScheduleListResponse._();
+  ClockedScheduleListResponse createEmptyInstance() => create();
+  static $pb.PbList<ClockedScheduleListResponse> createRepeated() =>
+      $pb.PbList<ClockedScheduleListResponse>();
+  @$core.pragma('dart2js:noInline')
+  static ClockedScheduleListResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ClockedScheduleListResponse>(create);
+  static ClockedScheduleListResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<ClockedScheduleResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) {
+    $_setSignedInt32(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
+}
+
+class ClockedSchedulePartialUpdateRequest extends $pb.GeneratedMessage {
+  factory ClockedSchedulePartialUpdateRequest({
+    $core.int? id,
+    $core.Iterable<$core.String>? partialUpdateFields,
+    $core.String? clockedTime,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (partialUpdateFields != null) {
+      $result.partialUpdateFields.addAll(partialUpdateFields);
+    }
+    if (clockedTime != null) {
+      $result.clockedTime = clockedTime;
+    }
+    return $result;
+  }
+  ClockedSchedulePartialUpdateRequest._() : super();
+  factory ClockedSchedulePartialUpdateRequest.fromBuffer(
+          $core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ClockedSchedulePartialUpdateRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ClockedSchedulePartialUpdateRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..pPS(4, _omitFieldNames ? '' : 'PartialUpdateFields')
+    ..aOS(5, _omitFieldNames ? '' : 'clockedTime')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  ClockedSchedulePartialUpdateRequest clone() =>
+      ClockedSchedulePartialUpdateRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ClockedSchedulePartialUpdateRequest copyWith(
+          void Function(ClockedSchedulePartialUpdateRequest) updates) =>
+      super.copyWith((message) =>
+              updates(message as ClockedSchedulePartialUpdateRequest))
+          as ClockedSchedulePartialUpdateRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static ClockedSchedulePartialUpdateRequest create() =>
+      ClockedSchedulePartialUpdateRequest._();
+  ClockedSchedulePartialUpdateRequest createEmptyInstance() => create();
+  static $pb.PbList<ClockedSchedulePartialUpdateRequest> createRepeated() =>
+      $pb.PbList<ClockedSchedulePartialUpdateRequest>();
+  @$core.pragma('dart2js:noInline')
+  static ClockedSchedulePartialUpdateRequest getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<
+          ClockedSchedulePartialUpdateRequest>(create);
+  static ClockedSchedulePartialUpdateRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(4)
+  $core.List<$core.String> get partialUpdateFields => $_getList(1);
+
+  @$pb.TagNumber(5)
+  $core.String get clockedTime => $_getSZ(2);
+  @$pb.TagNumber(5)
+  set clockedTime($core.String v) {
+    $_setString(2, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasClockedTime() => $_has(2);
+  @$pb.TagNumber(5)
+  void clearClockedTime() => clearField(5);
+}
+
+class ClockedScheduleRequest extends $pb.GeneratedMessage {
+  factory ClockedScheduleRequest({
+    $core.int? id,
+    $core.String? clockedTime,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (clockedTime != null) {
+      $result.clockedTime = clockedTime;
+    }
+    return $result;
+  }
+  ClockedScheduleRequest._() : super();
+  factory ClockedScheduleRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ClockedScheduleRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ClockedScheduleRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOS(4, _omitFieldNames ? '' : 'clockedTime')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  ClockedScheduleRequest clone() =>
+      ClockedScheduleRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ClockedScheduleRequest copyWith(
+          void Function(ClockedScheduleRequest) updates) =>
+      super.copyWith((message) => updates(message as ClockedScheduleRequest))
+          as ClockedScheduleRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static ClockedScheduleRequest create() => ClockedScheduleRequest._();
+  ClockedScheduleRequest createEmptyInstance() => create();
+  static $pb.PbList<ClockedScheduleRequest> createRepeated() =>
+      $pb.PbList<ClockedScheduleRequest>();
+  @$core.pragma('dart2js:noInline')
+  static ClockedScheduleRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ClockedScheduleRequest>(create);
+  static ClockedScheduleRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(4)
+  $core.String get clockedTime => $_getSZ(1);
+  @$pb.TagNumber(4)
+  set clockedTime($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(4)
+  $core.bool hasClockedTime() => $_has(1);
+  @$pb.TagNumber(4)
+  void clearClockedTime() => clearField(4);
+}
+
+class ClockedScheduleResponse extends $pb.GeneratedMessage {
+  factory ClockedScheduleResponse({
+    $core.int? id,
+    $core.String? clockedTime,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (clockedTime != null) {
+      $result.clockedTime = clockedTime;
+    }
+    return $result;
+  }
+  ClockedScheduleResponse._() : super();
+  factory ClockedScheduleResponse.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ClockedScheduleResponse.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ClockedScheduleResponse',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOS(4, _omitFieldNames ? '' : 'clockedTime')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  ClockedScheduleResponse clone() =>
+      ClockedScheduleResponse()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ClockedScheduleResponse copyWith(
+          void Function(ClockedScheduleResponse) updates) =>
+      super.copyWith((message) => updates(message as ClockedScheduleResponse))
+          as ClockedScheduleResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static ClockedScheduleResponse create() => ClockedScheduleResponse._();
+  ClockedScheduleResponse createEmptyInstance() => create();
+  static $pb.PbList<ClockedScheduleResponse> createRepeated() =>
+      $pb.PbList<ClockedScheduleResponse>();
+  @$core.pragma('dart2js:noInline')
+  static ClockedScheduleResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ClockedScheduleResponse>(create);
+  static ClockedScheduleResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(4)
+  $core.String get clockedTime => $_getSZ(1);
+  @$pb.TagNumber(4)
+  set clockedTime($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(4)
+  $core.bool hasClockedTime() => $_has(1);
+  @$pb.TagNumber(4)
+  void clearClockedTime() => clearField(4);
+}
+
+class ClockedScheduleRetrieveRequest extends $pb.GeneratedMessage {
+  factory ClockedScheduleRetrieveRequest({
+    $core.int? id,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    return $result;
+  }
+  ClockedScheduleRetrieveRequest._() : super();
+  factory ClockedScheduleRetrieveRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ClockedScheduleRetrieveRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'ClockedScheduleRetrieveRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  ClockedScheduleRetrieveRequest clone() =>
+      ClockedScheduleRetrieveRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ClockedScheduleRetrieveRequest copyWith(
+          void Function(ClockedScheduleRetrieveRequest) updates) =>
+      super.copyWith(
+              (message) => updates(message as ClockedScheduleRetrieveRequest))
+          as ClockedScheduleRetrieveRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static ClockedScheduleRetrieveRequest create() =>
+      ClockedScheduleRetrieveRequest._();
+  ClockedScheduleRetrieveRequest createEmptyInstance() => create();
+  static $pb.PbList<ClockedScheduleRetrieveRequest> createRepeated() =>
+      $pb.PbList<ClockedScheduleRetrieveRequest>();
+  @$core.pragma('dart2js:noInline')
+  static ClockedScheduleRetrieveRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ClockedScheduleRetrieveRequest>(create);
+  static ClockedScheduleRetrieveRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+}
+
 class CoffeeMachineDestroyRequest extends $pb.GeneratedMessage {
   factory CoffeeMachineDestroyRequest({
     $core.int? id,
@@ -2568,6 +3075,768 @@ class ColorModeRetrieveRequest extends $pb.GeneratedMessage {
   void clearId() => clearField(1);
 }
 
+class CrontabScheduleDestroyRequest extends $pb.GeneratedMessage {
+  factory CrontabScheduleDestroyRequest({
+    $core.int? id,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    return $result;
+  }
+  CrontabScheduleDestroyRequest._() : super();
+  factory CrontabScheduleDestroyRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory CrontabScheduleDestroyRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'CrontabScheduleDestroyRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  CrontabScheduleDestroyRequest clone() =>
+      CrontabScheduleDestroyRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  CrontabScheduleDestroyRequest copyWith(
+          void Function(CrontabScheduleDestroyRequest) updates) =>
+      super.copyWith(
+              (message) => updates(message as CrontabScheduleDestroyRequest))
+          as CrontabScheduleDestroyRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static CrontabScheduleDestroyRequest create() =>
+      CrontabScheduleDestroyRequest._();
+  CrontabScheduleDestroyRequest createEmptyInstance() => create();
+  static $pb.PbList<CrontabScheduleDestroyRequest> createRepeated() =>
+      $pb.PbList<CrontabScheduleDestroyRequest>();
+  @$core.pragma('dart2js:noInline')
+  static CrontabScheduleDestroyRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<CrontabScheduleDestroyRequest>(create);
+  static CrontabScheduleDestroyRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+}
+
+class CrontabScheduleListRequest extends $pb.GeneratedMessage {
+  factory CrontabScheduleListRequest() => create();
+  CrontabScheduleListRequest._() : super();
+  factory CrontabScheduleListRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory CrontabScheduleListRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'CrontabScheduleListRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  CrontabScheduleListRequest clone() =>
+      CrontabScheduleListRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  CrontabScheduleListRequest copyWith(
+          void Function(CrontabScheduleListRequest) updates) =>
+      super.copyWith(
+              (message) => updates(message as CrontabScheduleListRequest))
+          as CrontabScheduleListRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static CrontabScheduleListRequest create() => CrontabScheduleListRequest._();
+  CrontabScheduleListRequest createEmptyInstance() => create();
+  static $pb.PbList<CrontabScheduleListRequest> createRepeated() =>
+      $pb.PbList<CrontabScheduleListRequest>();
+  @$core.pragma('dart2js:noInline')
+  static CrontabScheduleListRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<CrontabScheduleListRequest>(create);
+  static CrontabScheduleListRequest? _defaultInstance;
+}
+
+class CrontabScheduleListResponse extends $pb.GeneratedMessage {
+  factory CrontabScheduleListResponse({
+    $core.Iterable<CrontabScheduleResponse>? results,
+    $core.int? count,
+  }) {
+    final $result = create();
+    if (results != null) {
+      $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
+    }
+    return $result;
+  }
+  CrontabScheduleListResponse._() : super();
+  factory CrontabScheduleListResponse.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory CrontabScheduleListResponse.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'CrontabScheduleListResponse',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..pc<CrontabScheduleResponse>(
+        1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM,
+        subBuilder: CrontabScheduleResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  CrontabScheduleListResponse clone() =>
+      CrontabScheduleListResponse()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  CrontabScheduleListResponse copyWith(
+          void Function(CrontabScheduleListResponse) updates) =>
+      super.copyWith(
+              (message) => updates(message as CrontabScheduleListResponse))
+          as CrontabScheduleListResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static CrontabScheduleListResponse create() =>
+      CrontabScheduleListResponse._();
+  CrontabScheduleListResponse createEmptyInstance() => create();
+  static $pb.PbList<CrontabScheduleListResponse> createRepeated() =>
+      $pb.PbList<CrontabScheduleListResponse>();
+  @$core.pragma('dart2js:noInline')
+  static CrontabScheduleListResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<CrontabScheduleListResponse>(create);
+  static CrontabScheduleListResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<CrontabScheduleResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) {
+    $_setSignedInt32(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
+}
+
+class CrontabSchedulePartialUpdateRequest extends $pb.GeneratedMessage {
+  factory CrontabSchedulePartialUpdateRequest({
+    $core.int? id,
+    $core.Iterable<$core.String>? partialUpdateFields,
+    $core.String? minute,
+    $core.String? hour,
+    $core.String? dayOfMonth,
+    $core.String? monthOfYear,
+    $core.String? dayOfWeek,
+    $core.String? timezone,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (partialUpdateFields != null) {
+      $result.partialUpdateFields.addAll(partialUpdateFields);
+    }
+    if (minute != null) {
+      $result.minute = minute;
+    }
+    if (hour != null) {
+      $result.hour = hour;
+    }
+    if (dayOfMonth != null) {
+      $result.dayOfMonth = dayOfMonth;
+    }
+    if (monthOfYear != null) {
+      $result.monthOfYear = monthOfYear;
+    }
+    if (dayOfWeek != null) {
+      $result.dayOfWeek = dayOfWeek;
+    }
+    if (timezone != null) {
+      $result.timezone = timezone;
+    }
+    return $result;
+  }
+  CrontabSchedulePartialUpdateRequest._() : super();
+  factory CrontabSchedulePartialUpdateRequest.fromBuffer(
+          $core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory CrontabSchedulePartialUpdateRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'CrontabSchedulePartialUpdateRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..pPS(4, _omitFieldNames ? '' : 'PartialUpdateFields')
+    ..aOS(5, _omitFieldNames ? '' : 'minute')
+    ..aOS(6, _omitFieldNames ? '' : 'hour')
+    ..aOS(7, _omitFieldNames ? '' : 'dayOfMonth')
+    ..aOS(8, _omitFieldNames ? '' : 'monthOfYear')
+    ..aOS(9, _omitFieldNames ? '' : 'dayOfWeek')
+    ..aOS(10, _omitFieldNames ? '' : 'timezone')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  CrontabSchedulePartialUpdateRequest clone() =>
+      CrontabSchedulePartialUpdateRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  CrontabSchedulePartialUpdateRequest copyWith(
+          void Function(CrontabSchedulePartialUpdateRequest) updates) =>
+      super.copyWith((message) =>
+              updates(message as CrontabSchedulePartialUpdateRequest))
+          as CrontabSchedulePartialUpdateRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static CrontabSchedulePartialUpdateRequest create() =>
+      CrontabSchedulePartialUpdateRequest._();
+  CrontabSchedulePartialUpdateRequest createEmptyInstance() => create();
+  static $pb.PbList<CrontabSchedulePartialUpdateRequest> createRepeated() =>
+      $pb.PbList<CrontabSchedulePartialUpdateRequest>();
+  @$core.pragma('dart2js:noInline')
+  static CrontabSchedulePartialUpdateRequest getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<
+          CrontabSchedulePartialUpdateRequest>(create);
+  static CrontabSchedulePartialUpdateRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(4)
+  $core.List<$core.String> get partialUpdateFields => $_getList(1);
+
+  @$pb.TagNumber(5)
+  $core.String get minute => $_getSZ(2);
+  @$pb.TagNumber(5)
+  set minute($core.String v) {
+    $_setString(2, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasMinute() => $_has(2);
+  @$pb.TagNumber(5)
+  void clearMinute() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.String get hour => $_getSZ(3);
+  @$pb.TagNumber(6)
+  set hour($core.String v) {
+    $_setString(3, v);
+  }
+
+  @$pb.TagNumber(6)
+  $core.bool hasHour() => $_has(3);
+  @$pb.TagNumber(6)
+  void clearHour() => clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.String get dayOfMonth => $_getSZ(4);
+  @$pb.TagNumber(7)
+  set dayOfMonth($core.String v) {
+    $_setString(4, v);
+  }
+
+  @$pb.TagNumber(7)
+  $core.bool hasDayOfMonth() => $_has(4);
+  @$pb.TagNumber(7)
+  void clearDayOfMonth() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.String get monthOfYear => $_getSZ(5);
+  @$pb.TagNumber(8)
+  set monthOfYear($core.String v) {
+    $_setString(5, v);
+  }
+
+  @$pb.TagNumber(8)
+  $core.bool hasMonthOfYear() => $_has(5);
+  @$pb.TagNumber(8)
+  void clearMonthOfYear() => clearField(8);
+
+  @$pb.TagNumber(9)
+  $core.String get dayOfWeek => $_getSZ(6);
+  @$pb.TagNumber(9)
+  set dayOfWeek($core.String v) {
+    $_setString(6, v);
+  }
+
+  @$pb.TagNumber(9)
+  $core.bool hasDayOfWeek() => $_has(6);
+  @$pb.TagNumber(9)
+  void clearDayOfWeek() => clearField(9);
+
+  @$pb.TagNumber(10)
+  $core.String get timezone => $_getSZ(7);
+  @$pb.TagNumber(10)
+  set timezone($core.String v) {
+    $_setString(7, v);
+  }
+
+  @$pb.TagNumber(10)
+  $core.bool hasTimezone() => $_has(7);
+  @$pb.TagNumber(10)
+  void clearTimezone() => clearField(10);
+}
+
+class CrontabScheduleRequest extends $pb.GeneratedMessage {
+  factory CrontabScheduleRequest({
+    $core.int? id,
+    $core.String? minute,
+    $core.String? hour,
+    $core.String? dayOfMonth,
+    $core.String? monthOfYear,
+    $core.String? dayOfWeek,
+    $core.String? timezone,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (minute != null) {
+      $result.minute = minute;
+    }
+    if (hour != null) {
+      $result.hour = hour;
+    }
+    if (dayOfMonth != null) {
+      $result.dayOfMonth = dayOfMonth;
+    }
+    if (monthOfYear != null) {
+      $result.monthOfYear = monthOfYear;
+    }
+    if (dayOfWeek != null) {
+      $result.dayOfWeek = dayOfWeek;
+    }
+    if (timezone != null) {
+      $result.timezone = timezone;
+    }
+    return $result;
+  }
+  CrontabScheduleRequest._() : super();
+  factory CrontabScheduleRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory CrontabScheduleRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'CrontabScheduleRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOS(4, _omitFieldNames ? '' : 'minute')
+    ..aOS(5, _omitFieldNames ? '' : 'hour')
+    ..aOS(6, _omitFieldNames ? '' : 'dayOfMonth')
+    ..aOS(7, _omitFieldNames ? '' : 'monthOfYear')
+    ..aOS(8, _omitFieldNames ? '' : 'dayOfWeek')
+    ..aOS(9, _omitFieldNames ? '' : 'timezone')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  CrontabScheduleRequest clone() =>
+      CrontabScheduleRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  CrontabScheduleRequest copyWith(
+          void Function(CrontabScheduleRequest) updates) =>
+      super.copyWith((message) => updates(message as CrontabScheduleRequest))
+          as CrontabScheduleRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static CrontabScheduleRequest create() => CrontabScheduleRequest._();
+  CrontabScheduleRequest createEmptyInstance() => create();
+  static $pb.PbList<CrontabScheduleRequest> createRepeated() =>
+      $pb.PbList<CrontabScheduleRequest>();
+  @$core.pragma('dart2js:noInline')
+  static CrontabScheduleRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<CrontabScheduleRequest>(create);
+  static CrontabScheduleRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(4)
+  $core.String get minute => $_getSZ(1);
+  @$pb.TagNumber(4)
+  set minute($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(4)
+  $core.bool hasMinute() => $_has(1);
+  @$pb.TagNumber(4)
+  void clearMinute() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get hour => $_getSZ(2);
+  @$pb.TagNumber(5)
+  set hour($core.String v) {
+    $_setString(2, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasHour() => $_has(2);
+  @$pb.TagNumber(5)
+  void clearHour() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.String get dayOfMonth => $_getSZ(3);
+  @$pb.TagNumber(6)
+  set dayOfMonth($core.String v) {
+    $_setString(3, v);
+  }
+
+  @$pb.TagNumber(6)
+  $core.bool hasDayOfMonth() => $_has(3);
+  @$pb.TagNumber(6)
+  void clearDayOfMonth() => clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.String get monthOfYear => $_getSZ(4);
+  @$pb.TagNumber(7)
+  set monthOfYear($core.String v) {
+    $_setString(4, v);
+  }
+
+  @$pb.TagNumber(7)
+  $core.bool hasMonthOfYear() => $_has(4);
+  @$pb.TagNumber(7)
+  void clearMonthOfYear() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.String get dayOfWeek => $_getSZ(5);
+  @$pb.TagNumber(8)
+  set dayOfWeek($core.String v) {
+    $_setString(5, v);
+  }
+
+  @$pb.TagNumber(8)
+  $core.bool hasDayOfWeek() => $_has(5);
+  @$pb.TagNumber(8)
+  void clearDayOfWeek() => clearField(8);
+
+  @$pb.TagNumber(9)
+  $core.String get timezone => $_getSZ(6);
+  @$pb.TagNumber(9)
+  set timezone($core.String v) {
+    $_setString(6, v);
+  }
+
+  @$pb.TagNumber(9)
+  $core.bool hasTimezone() => $_has(6);
+  @$pb.TagNumber(9)
+  void clearTimezone() => clearField(9);
+}
+
+class CrontabScheduleResponse extends $pb.GeneratedMessage {
+  factory CrontabScheduleResponse({
+    $core.int? id,
+    $core.String? minute,
+    $core.String? hour,
+    $core.String? dayOfMonth,
+    $core.String? monthOfYear,
+    $core.String? dayOfWeek,
+    $core.String? timezone,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (minute != null) {
+      $result.minute = minute;
+    }
+    if (hour != null) {
+      $result.hour = hour;
+    }
+    if (dayOfMonth != null) {
+      $result.dayOfMonth = dayOfMonth;
+    }
+    if (monthOfYear != null) {
+      $result.monthOfYear = monthOfYear;
+    }
+    if (dayOfWeek != null) {
+      $result.dayOfWeek = dayOfWeek;
+    }
+    if (timezone != null) {
+      $result.timezone = timezone;
+    }
+    return $result;
+  }
+  CrontabScheduleResponse._() : super();
+  factory CrontabScheduleResponse.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory CrontabScheduleResponse.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'CrontabScheduleResponse',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOS(4, _omitFieldNames ? '' : 'minute')
+    ..aOS(5, _omitFieldNames ? '' : 'hour')
+    ..aOS(6, _omitFieldNames ? '' : 'dayOfMonth')
+    ..aOS(7, _omitFieldNames ? '' : 'monthOfYear')
+    ..aOS(8, _omitFieldNames ? '' : 'dayOfWeek')
+    ..aOS(9, _omitFieldNames ? '' : 'timezone')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  CrontabScheduleResponse clone() =>
+      CrontabScheduleResponse()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  CrontabScheduleResponse copyWith(
+          void Function(CrontabScheduleResponse) updates) =>
+      super.copyWith((message) => updates(message as CrontabScheduleResponse))
+          as CrontabScheduleResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static CrontabScheduleResponse create() => CrontabScheduleResponse._();
+  CrontabScheduleResponse createEmptyInstance() => create();
+  static $pb.PbList<CrontabScheduleResponse> createRepeated() =>
+      $pb.PbList<CrontabScheduleResponse>();
+  @$core.pragma('dart2js:noInline')
+  static CrontabScheduleResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<CrontabScheduleResponse>(create);
+  static CrontabScheduleResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(4)
+  $core.String get minute => $_getSZ(1);
+  @$pb.TagNumber(4)
+  set minute($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(4)
+  $core.bool hasMinute() => $_has(1);
+  @$pb.TagNumber(4)
+  void clearMinute() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get hour => $_getSZ(2);
+  @$pb.TagNumber(5)
+  set hour($core.String v) {
+    $_setString(2, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasHour() => $_has(2);
+  @$pb.TagNumber(5)
+  void clearHour() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.String get dayOfMonth => $_getSZ(3);
+  @$pb.TagNumber(6)
+  set dayOfMonth($core.String v) {
+    $_setString(3, v);
+  }
+
+  @$pb.TagNumber(6)
+  $core.bool hasDayOfMonth() => $_has(3);
+  @$pb.TagNumber(6)
+  void clearDayOfMonth() => clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.String get monthOfYear => $_getSZ(4);
+  @$pb.TagNumber(7)
+  set monthOfYear($core.String v) {
+    $_setString(4, v);
+  }
+
+  @$pb.TagNumber(7)
+  $core.bool hasMonthOfYear() => $_has(4);
+  @$pb.TagNumber(7)
+  void clearMonthOfYear() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.String get dayOfWeek => $_getSZ(5);
+  @$pb.TagNumber(8)
+  set dayOfWeek($core.String v) {
+    $_setString(5, v);
+  }
+
+  @$pb.TagNumber(8)
+  $core.bool hasDayOfWeek() => $_has(5);
+  @$pb.TagNumber(8)
+  void clearDayOfWeek() => clearField(8);
+
+  @$pb.TagNumber(9)
+  $core.String get timezone => $_getSZ(6);
+  @$pb.TagNumber(9)
+  set timezone($core.String v) {
+    $_setString(6, v);
+  }
+
+  @$pb.TagNumber(9)
+  $core.bool hasTimezone() => $_has(6);
+  @$pb.TagNumber(9)
+  void clearTimezone() => clearField(9);
+}
+
+class CrontabScheduleRetrieveRequest extends $pb.GeneratedMessage {
+  factory CrontabScheduleRetrieveRequest({
+    $core.int? id,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    return $result;
+  }
+  CrontabScheduleRetrieveRequest._() : super();
+  factory CrontabScheduleRetrieveRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory CrontabScheduleRetrieveRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'CrontabScheduleRetrieveRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  CrontabScheduleRetrieveRequest clone() =>
+      CrontabScheduleRetrieveRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  CrontabScheduleRetrieveRequest copyWith(
+          void Function(CrontabScheduleRetrieveRequest) updates) =>
+      super.copyWith(
+              (message) => updates(message as CrontabScheduleRetrieveRequest))
+          as CrontabScheduleRetrieveRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static CrontabScheduleRetrieveRequest create() =>
+      CrontabScheduleRetrieveRequest._();
+  CrontabScheduleRetrieveRequest createEmptyInstance() => create();
+  static $pb.PbList<CrontabScheduleRetrieveRequest> createRepeated() =>
+      $pb.PbList<CrontabScheduleRetrieveRequest>();
+  @$core.pragma('dart2js:noInline')
+  static CrontabScheduleRetrieveRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<CrontabScheduleRetrieveRequest>(create);
+  static CrontabScheduleRetrieveRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+}
+
 class ImageModeDestroyRequest extends $pb.GeneratedMessage {
   factory ImageModeDestroyRequest({
     $core.int? id,
@@ -3167,6 +4436,566 @@ class ImageModeRetrieveRequest extends $pb.GeneratedMessage {
   static ImageModeRetrieveRequest getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<ImageModeRetrieveRequest>(create);
   static ImageModeRetrieveRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+}
+
+class IntervalScheduleDestroyRequest extends $pb.GeneratedMessage {
+  factory IntervalScheduleDestroyRequest({
+    $core.int? id,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    return $result;
+  }
+  IntervalScheduleDestroyRequest._() : super();
+  factory IntervalScheduleDestroyRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory IntervalScheduleDestroyRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'IntervalScheduleDestroyRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  IntervalScheduleDestroyRequest clone() =>
+      IntervalScheduleDestroyRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  IntervalScheduleDestroyRequest copyWith(
+          void Function(IntervalScheduleDestroyRequest) updates) =>
+      super.copyWith(
+              (message) => updates(message as IntervalScheduleDestroyRequest))
+          as IntervalScheduleDestroyRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static IntervalScheduleDestroyRequest create() =>
+      IntervalScheduleDestroyRequest._();
+  IntervalScheduleDestroyRequest createEmptyInstance() => create();
+  static $pb.PbList<IntervalScheduleDestroyRequest> createRepeated() =>
+      $pb.PbList<IntervalScheduleDestroyRequest>();
+  @$core.pragma('dart2js:noInline')
+  static IntervalScheduleDestroyRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<IntervalScheduleDestroyRequest>(create);
+  static IntervalScheduleDestroyRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+}
+
+class IntervalScheduleListRequest extends $pb.GeneratedMessage {
+  factory IntervalScheduleListRequest() => create();
+  IntervalScheduleListRequest._() : super();
+  factory IntervalScheduleListRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory IntervalScheduleListRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'IntervalScheduleListRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  IntervalScheduleListRequest clone() =>
+      IntervalScheduleListRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  IntervalScheduleListRequest copyWith(
+          void Function(IntervalScheduleListRequest) updates) =>
+      super.copyWith(
+              (message) => updates(message as IntervalScheduleListRequest))
+          as IntervalScheduleListRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static IntervalScheduleListRequest create() =>
+      IntervalScheduleListRequest._();
+  IntervalScheduleListRequest createEmptyInstance() => create();
+  static $pb.PbList<IntervalScheduleListRequest> createRepeated() =>
+      $pb.PbList<IntervalScheduleListRequest>();
+  @$core.pragma('dart2js:noInline')
+  static IntervalScheduleListRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<IntervalScheduleListRequest>(create);
+  static IntervalScheduleListRequest? _defaultInstance;
+}
+
+class IntervalScheduleListResponse extends $pb.GeneratedMessage {
+  factory IntervalScheduleListResponse({
+    $core.Iterable<IntervalScheduleResponse>? results,
+    $core.int? count,
+  }) {
+    final $result = create();
+    if (results != null) {
+      $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
+    }
+    return $result;
+  }
+  IntervalScheduleListResponse._() : super();
+  factory IntervalScheduleListResponse.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory IntervalScheduleListResponse.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'IntervalScheduleListResponse',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..pc<IntervalScheduleResponse>(
+        1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM,
+        subBuilder: IntervalScheduleResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  IntervalScheduleListResponse clone() =>
+      IntervalScheduleListResponse()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  IntervalScheduleListResponse copyWith(
+          void Function(IntervalScheduleListResponse) updates) =>
+      super.copyWith(
+              (message) => updates(message as IntervalScheduleListResponse))
+          as IntervalScheduleListResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static IntervalScheduleListResponse create() =>
+      IntervalScheduleListResponse._();
+  IntervalScheduleListResponse createEmptyInstance() => create();
+  static $pb.PbList<IntervalScheduleListResponse> createRepeated() =>
+      $pb.PbList<IntervalScheduleListResponse>();
+  @$core.pragma('dart2js:noInline')
+  static IntervalScheduleListResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<IntervalScheduleListResponse>(create);
+  static IntervalScheduleListResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<IntervalScheduleResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) {
+    $_setSignedInt32(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
+}
+
+class IntervalSchedulePartialUpdateRequest extends $pb.GeneratedMessage {
+  factory IntervalSchedulePartialUpdateRequest({
+    $core.int? id,
+    $core.Iterable<$core.String>? partialUpdateFields,
+    $core.int? every,
+    $core.String? period,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (partialUpdateFields != null) {
+      $result.partialUpdateFields.addAll(partialUpdateFields);
+    }
+    if (every != null) {
+      $result.every = every;
+    }
+    if (period != null) {
+      $result.period = period;
+    }
+    return $result;
+  }
+  IntervalSchedulePartialUpdateRequest._() : super();
+  factory IntervalSchedulePartialUpdateRequest.fromBuffer(
+          $core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory IntervalSchedulePartialUpdateRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'IntervalSchedulePartialUpdateRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..pPS(4, _omitFieldNames ? '' : 'PartialUpdateFields')
+    ..a<$core.int>(5, _omitFieldNames ? '' : 'every', $pb.PbFieldType.O3)
+    ..aOS(6, _omitFieldNames ? '' : 'period')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  IntervalSchedulePartialUpdateRequest clone() =>
+      IntervalSchedulePartialUpdateRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  IntervalSchedulePartialUpdateRequest copyWith(
+          void Function(IntervalSchedulePartialUpdateRequest) updates) =>
+      super.copyWith((message) =>
+              updates(message as IntervalSchedulePartialUpdateRequest))
+          as IntervalSchedulePartialUpdateRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static IntervalSchedulePartialUpdateRequest create() =>
+      IntervalSchedulePartialUpdateRequest._();
+  IntervalSchedulePartialUpdateRequest createEmptyInstance() => create();
+  static $pb.PbList<IntervalSchedulePartialUpdateRequest> createRepeated() =>
+      $pb.PbList<IntervalSchedulePartialUpdateRequest>();
+  @$core.pragma('dart2js:noInline')
+  static IntervalSchedulePartialUpdateRequest getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<
+          IntervalSchedulePartialUpdateRequest>(create);
+  static IntervalSchedulePartialUpdateRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(4)
+  $core.List<$core.String> get partialUpdateFields => $_getList(1);
+
+  @$pb.TagNumber(5)
+  $core.int get every => $_getIZ(2);
+  @$pb.TagNumber(5)
+  set every($core.int v) {
+    $_setSignedInt32(2, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasEvery() => $_has(2);
+  @$pb.TagNumber(5)
+  void clearEvery() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.String get period => $_getSZ(3);
+  @$pb.TagNumber(6)
+  set period($core.String v) {
+    $_setString(3, v);
+  }
+
+  @$pb.TagNumber(6)
+  $core.bool hasPeriod() => $_has(3);
+  @$pb.TagNumber(6)
+  void clearPeriod() => clearField(6);
+}
+
+class IntervalScheduleRequest extends $pb.GeneratedMessage {
+  factory IntervalScheduleRequest({
+    $core.int? id,
+    $core.int? every,
+    $core.String? period,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (every != null) {
+      $result.every = every;
+    }
+    if (period != null) {
+      $result.period = period;
+    }
+    return $result;
+  }
+  IntervalScheduleRequest._() : super();
+  factory IntervalScheduleRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory IntervalScheduleRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'IntervalScheduleRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..a<$core.int>(4, _omitFieldNames ? '' : 'every', $pb.PbFieldType.O3)
+    ..aOS(5, _omitFieldNames ? '' : 'period')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  IntervalScheduleRequest clone() =>
+      IntervalScheduleRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  IntervalScheduleRequest copyWith(
+          void Function(IntervalScheduleRequest) updates) =>
+      super.copyWith((message) => updates(message as IntervalScheduleRequest))
+          as IntervalScheduleRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static IntervalScheduleRequest create() => IntervalScheduleRequest._();
+  IntervalScheduleRequest createEmptyInstance() => create();
+  static $pb.PbList<IntervalScheduleRequest> createRepeated() =>
+      $pb.PbList<IntervalScheduleRequest>();
+  @$core.pragma('dart2js:noInline')
+  static IntervalScheduleRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<IntervalScheduleRequest>(create);
+  static IntervalScheduleRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(4)
+  $core.int get every => $_getIZ(1);
+  @$pb.TagNumber(4)
+  set every($core.int v) {
+    $_setSignedInt32(1, v);
+  }
+
+  @$pb.TagNumber(4)
+  $core.bool hasEvery() => $_has(1);
+  @$pb.TagNumber(4)
+  void clearEvery() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get period => $_getSZ(2);
+  @$pb.TagNumber(5)
+  set period($core.String v) {
+    $_setString(2, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasPeriod() => $_has(2);
+  @$pb.TagNumber(5)
+  void clearPeriod() => clearField(5);
+}
+
+class IntervalScheduleResponse extends $pb.GeneratedMessage {
+  factory IntervalScheduleResponse({
+    $core.int? id,
+    $core.int? every,
+    $core.String? period,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (every != null) {
+      $result.every = every;
+    }
+    if (period != null) {
+      $result.period = period;
+    }
+    return $result;
+  }
+  IntervalScheduleResponse._() : super();
+  factory IntervalScheduleResponse.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory IntervalScheduleResponse.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'IntervalScheduleResponse',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..a<$core.int>(4, _omitFieldNames ? '' : 'every', $pb.PbFieldType.O3)
+    ..aOS(5, _omitFieldNames ? '' : 'period')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  IntervalScheduleResponse clone() =>
+      IntervalScheduleResponse()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  IntervalScheduleResponse copyWith(
+          void Function(IntervalScheduleResponse) updates) =>
+      super.copyWith((message) => updates(message as IntervalScheduleResponse))
+          as IntervalScheduleResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static IntervalScheduleResponse create() => IntervalScheduleResponse._();
+  IntervalScheduleResponse createEmptyInstance() => create();
+  static $pb.PbList<IntervalScheduleResponse> createRepeated() =>
+      $pb.PbList<IntervalScheduleResponse>();
+  @$core.pragma('dart2js:noInline')
+  static IntervalScheduleResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<IntervalScheduleResponse>(create);
+  static IntervalScheduleResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(4)
+  $core.int get every => $_getIZ(1);
+  @$pb.TagNumber(4)
+  set every($core.int v) {
+    $_setSignedInt32(1, v);
+  }
+
+  @$pb.TagNumber(4)
+  $core.bool hasEvery() => $_has(1);
+  @$pb.TagNumber(4)
+  void clearEvery() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get period => $_getSZ(2);
+  @$pb.TagNumber(5)
+  set period($core.String v) {
+    $_setString(2, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasPeriod() => $_has(2);
+  @$pb.TagNumber(5)
+  void clearPeriod() => clearField(5);
+}
+
+class IntervalScheduleRetrieveRequest extends $pb.GeneratedMessage {
+  factory IntervalScheduleRetrieveRequest({
+    $core.int? id,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    return $result;
+  }
+  IntervalScheduleRetrieveRequest._() : super();
+  factory IntervalScheduleRetrieveRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory IntervalScheduleRetrieveRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'IntervalScheduleRetrieveRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  IntervalScheduleRetrieveRequest clone() =>
+      IntervalScheduleRetrieveRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  IntervalScheduleRetrieveRequest copyWith(
+          void Function(IntervalScheduleRetrieveRequest) updates) =>
+      super.copyWith(
+              (message) => updates(message as IntervalScheduleRetrieveRequest))
+          as IntervalScheduleRetrieveRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static IntervalScheduleRetrieveRequest create() =>
+      IntervalScheduleRetrieveRequest._();
+  IntervalScheduleRetrieveRequest createEmptyInstance() => create();
+  static $pb.PbList<IntervalScheduleRetrieveRequest> createRepeated() =>
+      $pb.PbList<IntervalScheduleRetrieveRequest>();
+  @$core.pragma('dart2js:noInline')
+  static IntervalScheduleRetrieveRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<IntervalScheduleRetrieveRequest>(
+          create);
+  static IntervalScheduleRetrieveRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.int get id => $_getIZ(0);
@@ -4627,6 +6456,847 @@ class PatternModeRetrieveRequest extends $pb.GeneratedMessage {
   void clearId() => clearField(1);
 }
 
+class PeriodicTaskDestroyRequest extends $pb.GeneratedMessage {
+  factory PeriodicTaskDestroyRequest({
+    $core.String? name,
+  }) {
+    final $result = create();
+    if (name != null) {
+      $result.name = name;
+    }
+    return $result;
+  }
+  PeriodicTaskDestroyRequest._() : super();
+  factory PeriodicTaskDestroyRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory PeriodicTaskDestroyRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'PeriodicTaskDestroyRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'name')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  PeriodicTaskDestroyRequest clone() =>
+      PeriodicTaskDestroyRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  PeriodicTaskDestroyRequest copyWith(
+          void Function(PeriodicTaskDestroyRequest) updates) =>
+      super.copyWith(
+              (message) => updates(message as PeriodicTaskDestroyRequest))
+          as PeriodicTaskDestroyRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static PeriodicTaskDestroyRequest create() => PeriodicTaskDestroyRequest._();
+  PeriodicTaskDestroyRequest createEmptyInstance() => create();
+  static $pb.PbList<PeriodicTaskDestroyRequest> createRepeated() =>
+      $pb.PbList<PeriodicTaskDestroyRequest>();
+  @$core.pragma('dart2js:noInline')
+  static PeriodicTaskDestroyRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<PeriodicTaskDestroyRequest>(create);
+  static PeriodicTaskDestroyRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set name($core.String v) {
+    $_setString(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearName() => clearField(1);
+}
+
+class PeriodicTaskListRequest extends $pb.GeneratedMessage {
+  factory PeriodicTaskListRequest() => create();
+  PeriodicTaskListRequest._() : super();
+  factory PeriodicTaskListRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory PeriodicTaskListRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'PeriodicTaskListRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  PeriodicTaskListRequest clone() =>
+      PeriodicTaskListRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  PeriodicTaskListRequest copyWith(
+          void Function(PeriodicTaskListRequest) updates) =>
+      super.copyWith((message) => updates(message as PeriodicTaskListRequest))
+          as PeriodicTaskListRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static PeriodicTaskListRequest create() => PeriodicTaskListRequest._();
+  PeriodicTaskListRequest createEmptyInstance() => create();
+  static $pb.PbList<PeriodicTaskListRequest> createRepeated() =>
+      $pb.PbList<PeriodicTaskListRequest>();
+  @$core.pragma('dart2js:noInline')
+  static PeriodicTaskListRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<PeriodicTaskListRequest>(create);
+  static PeriodicTaskListRequest? _defaultInstance;
+}
+
+class PeriodicTaskListResponse extends $pb.GeneratedMessage {
+  factory PeriodicTaskListResponse({
+    $core.Iterable<PeriodicTaskResponse>? results,
+    $core.int? count,
+  }) {
+    final $result = create();
+    if (results != null) {
+      $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
+    }
+    return $result;
+  }
+  PeriodicTaskListResponse._() : super();
+  factory PeriodicTaskListResponse.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory PeriodicTaskListResponse.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'PeriodicTaskListResponse',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..pc<PeriodicTaskResponse>(
+        1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM,
+        subBuilder: PeriodicTaskResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  PeriodicTaskListResponse clone() =>
+      PeriodicTaskListResponse()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  PeriodicTaskListResponse copyWith(
+          void Function(PeriodicTaskListResponse) updates) =>
+      super.copyWith((message) => updates(message as PeriodicTaskListResponse))
+          as PeriodicTaskListResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static PeriodicTaskListResponse create() => PeriodicTaskListResponse._();
+  PeriodicTaskListResponse createEmptyInstance() => create();
+  static $pb.PbList<PeriodicTaskListResponse> createRepeated() =>
+      $pb.PbList<PeriodicTaskListResponse>();
+  @$core.pragma('dart2js:noInline')
+  static PeriodicTaskListResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<PeriodicTaskListResponse>(create);
+  static PeriodicTaskListResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<PeriodicTaskResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) {
+    $_setSignedInt32(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
+}
+
+class PeriodicTaskPartialUpdateRequest extends $pb.GeneratedMessage {
+  factory PeriodicTaskPartialUpdateRequest({
+    $core.String? name,
+    $core.String? task,
+    IntervalScheduleRequest? interval,
+    CrontabScheduleRequest? crontab,
+    SolarScheduleRequest? solar,
+    ClockedScheduleRequest? clocked,
+    $core.Iterable<$core.String>? partialUpdateFields,
+    $core.String? kwargs,
+    $core.bool? enabled,
+  }) {
+    final $result = create();
+    if (name != null) {
+      $result.name = name;
+    }
+    if (task != null) {
+      $result.task = task;
+    }
+    if (interval != null) {
+      $result.interval = interval;
+    }
+    if (crontab != null) {
+      $result.crontab = crontab;
+    }
+    if (solar != null) {
+      $result.solar = solar;
+    }
+    if (clocked != null) {
+      $result.clocked = clocked;
+    }
+    if (partialUpdateFields != null) {
+      $result.partialUpdateFields.addAll(partialUpdateFields);
+    }
+    if (kwargs != null) {
+      $result.kwargs = kwargs;
+    }
+    if (enabled != null) {
+      $result.enabled = enabled;
+    }
+    return $result;
+  }
+  PeriodicTaskPartialUpdateRequest._() : super();
+  factory PeriodicTaskPartialUpdateRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory PeriodicTaskPartialUpdateRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'PeriodicTaskPartialUpdateRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'name')
+    ..aOS(2, _omitFieldNames ? '' : 'task')
+    ..aOM<IntervalScheduleRequest>(3, _omitFieldNames ? '' : 'interval',
+        subBuilder: IntervalScheduleRequest.create)
+    ..aOM<CrontabScheduleRequest>(4, _omitFieldNames ? '' : 'crontab',
+        subBuilder: CrontabScheduleRequest.create)
+    ..aOM<SolarScheduleRequest>(5, _omitFieldNames ? '' : 'solar',
+        subBuilder: SolarScheduleRequest.create)
+    ..aOM<ClockedScheduleRequest>(6, _omitFieldNames ? '' : 'clocked',
+        subBuilder: ClockedScheduleRequest.create)
+    ..pPS(7, _omitFieldNames ? '' : 'PartialUpdateFields')
+    ..aOS(8, _omitFieldNames ? '' : 'kwargs')
+    ..aOB(9, _omitFieldNames ? '' : 'enabled')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  PeriodicTaskPartialUpdateRequest clone() =>
+      PeriodicTaskPartialUpdateRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  PeriodicTaskPartialUpdateRequest copyWith(
+          void Function(PeriodicTaskPartialUpdateRequest) updates) =>
+      super.copyWith(
+              (message) => updates(message as PeriodicTaskPartialUpdateRequest))
+          as PeriodicTaskPartialUpdateRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static PeriodicTaskPartialUpdateRequest create() =>
+      PeriodicTaskPartialUpdateRequest._();
+  PeriodicTaskPartialUpdateRequest createEmptyInstance() => create();
+  static $pb.PbList<PeriodicTaskPartialUpdateRequest> createRepeated() =>
+      $pb.PbList<PeriodicTaskPartialUpdateRequest>();
+  @$core.pragma('dart2js:noInline')
+  static PeriodicTaskPartialUpdateRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<PeriodicTaskPartialUpdateRequest>(
+          create);
+  static PeriodicTaskPartialUpdateRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set name($core.String v) {
+    $_setString(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearName() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get task => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set task($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasTask() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearTask() => clearField(2);
+
+  @$pb.TagNumber(3)
+  IntervalScheduleRequest get interval => $_getN(2);
+  @$pb.TagNumber(3)
+  set interval(IntervalScheduleRequest v) {
+    setField(3, v);
+  }
+
+  @$pb.TagNumber(3)
+  $core.bool hasInterval() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearInterval() => clearField(3);
+  @$pb.TagNumber(3)
+  IntervalScheduleRequest ensureInterval() => $_ensure(2);
+
+  @$pb.TagNumber(4)
+  CrontabScheduleRequest get crontab => $_getN(3);
+  @$pb.TagNumber(4)
+  set crontab(CrontabScheduleRequest v) {
+    setField(4, v);
+  }
+
+  @$pb.TagNumber(4)
+  $core.bool hasCrontab() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearCrontab() => clearField(4);
+  @$pb.TagNumber(4)
+  CrontabScheduleRequest ensureCrontab() => $_ensure(3);
+
+  @$pb.TagNumber(5)
+  SolarScheduleRequest get solar => $_getN(4);
+  @$pb.TagNumber(5)
+  set solar(SolarScheduleRequest v) {
+    setField(5, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasSolar() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearSolar() => clearField(5);
+  @$pb.TagNumber(5)
+  SolarScheduleRequest ensureSolar() => $_ensure(4);
+
+  @$pb.TagNumber(6)
+  ClockedScheduleRequest get clocked => $_getN(5);
+  @$pb.TagNumber(6)
+  set clocked(ClockedScheduleRequest v) {
+    setField(6, v);
+  }
+
+  @$pb.TagNumber(6)
+  $core.bool hasClocked() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearClocked() => clearField(6);
+  @$pb.TagNumber(6)
+  ClockedScheduleRequest ensureClocked() => $_ensure(5);
+
+  @$pb.TagNumber(7)
+  $core.List<$core.String> get partialUpdateFields => $_getList(6);
+
+  @$pb.TagNumber(8)
+  $core.String get kwargs => $_getSZ(7);
+  @$pb.TagNumber(8)
+  set kwargs($core.String v) {
+    $_setString(7, v);
+  }
+
+  @$pb.TagNumber(8)
+  $core.bool hasKwargs() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearKwargs() => clearField(8);
+
+  @$pb.TagNumber(9)
+  $core.bool get enabled => $_getBF(8);
+  @$pb.TagNumber(9)
+  set enabled($core.bool v) {
+    $_setBool(8, v);
+  }
+
+  @$pb.TagNumber(9)
+  $core.bool hasEnabled() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearEnabled() => clearField(9);
+}
+
+class PeriodicTaskRequest extends $pb.GeneratedMessage {
+  factory PeriodicTaskRequest({
+    $core.String? name,
+    $core.String? task,
+    IntervalScheduleRequest? interval,
+    CrontabScheduleRequest? crontab,
+    SolarScheduleRequest? solar,
+    ClockedScheduleRequest? clocked,
+    $core.String? kwargs,
+    $core.bool? enabled,
+  }) {
+    final $result = create();
+    if (name != null) {
+      $result.name = name;
+    }
+    if (task != null) {
+      $result.task = task;
+    }
+    if (interval != null) {
+      $result.interval = interval;
+    }
+    if (crontab != null) {
+      $result.crontab = crontab;
+    }
+    if (solar != null) {
+      $result.solar = solar;
+    }
+    if (clocked != null) {
+      $result.clocked = clocked;
+    }
+    if (kwargs != null) {
+      $result.kwargs = kwargs;
+    }
+    if (enabled != null) {
+      $result.enabled = enabled;
+    }
+    return $result;
+  }
+  PeriodicTaskRequest._() : super();
+  factory PeriodicTaskRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory PeriodicTaskRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'PeriodicTaskRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'name')
+    ..aOS(2, _omitFieldNames ? '' : 'task')
+    ..aOM<IntervalScheduleRequest>(3, _omitFieldNames ? '' : 'interval',
+        subBuilder: IntervalScheduleRequest.create)
+    ..aOM<CrontabScheduleRequest>(4, _omitFieldNames ? '' : 'crontab',
+        subBuilder: CrontabScheduleRequest.create)
+    ..aOM<SolarScheduleRequest>(5, _omitFieldNames ? '' : 'solar',
+        subBuilder: SolarScheduleRequest.create)
+    ..aOM<ClockedScheduleRequest>(6, _omitFieldNames ? '' : 'clocked',
+        subBuilder: ClockedScheduleRequest.create)
+    ..aOS(7, _omitFieldNames ? '' : 'kwargs')
+    ..aOB(8, _omitFieldNames ? '' : 'enabled')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  PeriodicTaskRequest clone() => PeriodicTaskRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  PeriodicTaskRequest copyWith(void Function(PeriodicTaskRequest) updates) =>
+      super.copyWith((message) => updates(message as PeriodicTaskRequest))
+          as PeriodicTaskRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static PeriodicTaskRequest create() => PeriodicTaskRequest._();
+  PeriodicTaskRequest createEmptyInstance() => create();
+  static $pb.PbList<PeriodicTaskRequest> createRepeated() =>
+      $pb.PbList<PeriodicTaskRequest>();
+  @$core.pragma('dart2js:noInline')
+  static PeriodicTaskRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<PeriodicTaskRequest>(create);
+  static PeriodicTaskRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set name($core.String v) {
+    $_setString(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearName() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get task => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set task($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasTask() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearTask() => clearField(2);
+
+  @$pb.TagNumber(3)
+  IntervalScheduleRequest get interval => $_getN(2);
+  @$pb.TagNumber(3)
+  set interval(IntervalScheduleRequest v) {
+    setField(3, v);
+  }
+
+  @$pb.TagNumber(3)
+  $core.bool hasInterval() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearInterval() => clearField(3);
+  @$pb.TagNumber(3)
+  IntervalScheduleRequest ensureInterval() => $_ensure(2);
+
+  @$pb.TagNumber(4)
+  CrontabScheduleRequest get crontab => $_getN(3);
+  @$pb.TagNumber(4)
+  set crontab(CrontabScheduleRequest v) {
+    setField(4, v);
+  }
+
+  @$pb.TagNumber(4)
+  $core.bool hasCrontab() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearCrontab() => clearField(4);
+  @$pb.TagNumber(4)
+  CrontabScheduleRequest ensureCrontab() => $_ensure(3);
+
+  @$pb.TagNumber(5)
+  SolarScheduleRequest get solar => $_getN(4);
+  @$pb.TagNumber(5)
+  set solar(SolarScheduleRequest v) {
+    setField(5, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasSolar() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearSolar() => clearField(5);
+  @$pb.TagNumber(5)
+  SolarScheduleRequest ensureSolar() => $_ensure(4);
+
+  @$pb.TagNumber(6)
+  ClockedScheduleRequest get clocked => $_getN(5);
+  @$pb.TagNumber(6)
+  set clocked(ClockedScheduleRequest v) {
+    setField(6, v);
+  }
+
+  @$pb.TagNumber(6)
+  $core.bool hasClocked() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearClocked() => clearField(6);
+  @$pb.TagNumber(6)
+  ClockedScheduleRequest ensureClocked() => $_ensure(5);
+
+  @$pb.TagNumber(7)
+  $core.String get kwargs => $_getSZ(6);
+  @$pb.TagNumber(7)
+  set kwargs($core.String v) {
+    $_setString(6, v);
+  }
+
+  @$pb.TagNumber(7)
+  $core.bool hasKwargs() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearKwargs() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.bool get enabled => $_getBF(7);
+  @$pb.TagNumber(8)
+  set enabled($core.bool v) {
+    $_setBool(7, v);
+  }
+
+  @$pb.TagNumber(8)
+  $core.bool hasEnabled() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearEnabled() => clearField(8);
+}
+
+class PeriodicTaskResponse extends $pb.GeneratedMessage {
+  factory PeriodicTaskResponse({
+    $core.String? name,
+    $core.String? task,
+    IntervalScheduleResponse? interval,
+    CrontabScheduleResponse? crontab,
+    SolarScheduleResponse? solar,
+    ClockedScheduleResponse? clocked,
+    $core.String? kwargs,
+    $core.bool? enabled,
+  }) {
+    final $result = create();
+    if (name != null) {
+      $result.name = name;
+    }
+    if (task != null) {
+      $result.task = task;
+    }
+    if (interval != null) {
+      $result.interval = interval;
+    }
+    if (crontab != null) {
+      $result.crontab = crontab;
+    }
+    if (solar != null) {
+      $result.solar = solar;
+    }
+    if (clocked != null) {
+      $result.clocked = clocked;
+    }
+    if (kwargs != null) {
+      $result.kwargs = kwargs;
+    }
+    if (enabled != null) {
+      $result.enabled = enabled;
+    }
+    return $result;
+  }
+  PeriodicTaskResponse._() : super();
+  factory PeriodicTaskResponse.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory PeriodicTaskResponse.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'PeriodicTaskResponse',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'name')
+    ..aOS(2, _omitFieldNames ? '' : 'task')
+    ..aOM<IntervalScheduleResponse>(3, _omitFieldNames ? '' : 'interval',
+        subBuilder: IntervalScheduleResponse.create)
+    ..aOM<CrontabScheduleResponse>(4, _omitFieldNames ? '' : 'crontab',
+        subBuilder: CrontabScheduleResponse.create)
+    ..aOM<SolarScheduleResponse>(5, _omitFieldNames ? '' : 'solar',
+        subBuilder: SolarScheduleResponse.create)
+    ..aOM<ClockedScheduleResponse>(6, _omitFieldNames ? '' : 'clocked',
+        subBuilder: ClockedScheduleResponse.create)
+    ..aOS(7, _omitFieldNames ? '' : 'kwargs')
+    ..aOB(8, _omitFieldNames ? '' : 'enabled')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  PeriodicTaskResponse clone() =>
+      PeriodicTaskResponse()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  PeriodicTaskResponse copyWith(void Function(PeriodicTaskResponse) updates) =>
+      super.copyWith((message) => updates(message as PeriodicTaskResponse))
+          as PeriodicTaskResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static PeriodicTaskResponse create() => PeriodicTaskResponse._();
+  PeriodicTaskResponse createEmptyInstance() => create();
+  static $pb.PbList<PeriodicTaskResponse> createRepeated() =>
+      $pb.PbList<PeriodicTaskResponse>();
+  @$core.pragma('dart2js:noInline')
+  static PeriodicTaskResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<PeriodicTaskResponse>(create);
+  static PeriodicTaskResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set name($core.String v) {
+    $_setString(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearName() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get task => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set task($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasTask() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearTask() => clearField(2);
+
+  @$pb.TagNumber(3)
+  IntervalScheduleResponse get interval => $_getN(2);
+  @$pb.TagNumber(3)
+  set interval(IntervalScheduleResponse v) {
+    setField(3, v);
+  }
+
+  @$pb.TagNumber(3)
+  $core.bool hasInterval() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearInterval() => clearField(3);
+  @$pb.TagNumber(3)
+  IntervalScheduleResponse ensureInterval() => $_ensure(2);
+
+  @$pb.TagNumber(4)
+  CrontabScheduleResponse get crontab => $_getN(3);
+  @$pb.TagNumber(4)
+  set crontab(CrontabScheduleResponse v) {
+    setField(4, v);
+  }
+
+  @$pb.TagNumber(4)
+  $core.bool hasCrontab() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearCrontab() => clearField(4);
+  @$pb.TagNumber(4)
+  CrontabScheduleResponse ensureCrontab() => $_ensure(3);
+
+  @$pb.TagNumber(5)
+  SolarScheduleResponse get solar => $_getN(4);
+  @$pb.TagNumber(5)
+  set solar(SolarScheduleResponse v) {
+    setField(5, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasSolar() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearSolar() => clearField(5);
+  @$pb.TagNumber(5)
+  SolarScheduleResponse ensureSolar() => $_ensure(4);
+
+  @$pb.TagNumber(6)
+  ClockedScheduleResponse get clocked => $_getN(5);
+  @$pb.TagNumber(6)
+  set clocked(ClockedScheduleResponse v) {
+    setField(6, v);
+  }
+
+  @$pb.TagNumber(6)
+  $core.bool hasClocked() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearClocked() => clearField(6);
+  @$pb.TagNumber(6)
+  ClockedScheduleResponse ensureClocked() => $_ensure(5);
+
+  @$pb.TagNumber(7)
+  $core.String get kwargs => $_getSZ(6);
+  @$pb.TagNumber(7)
+  set kwargs($core.String v) {
+    $_setString(6, v);
+  }
+
+  @$pb.TagNumber(7)
+  $core.bool hasKwargs() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearKwargs() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.bool get enabled => $_getBF(7);
+  @$pb.TagNumber(8)
+  set enabled($core.bool v) {
+    $_setBool(7, v);
+  }
+
+  @$pb.TagNumber(8)
+  $core.bool hasEnabled() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearEnabled() => clearField(8);
+}
+
+class PeriodicTaskRetrieveRequest extends $pb.GeneratedMessage {
+  factory PeriodicTaskRetrieveRequest({
+    $core.String? name,
+  }) {
+    final $result = create();
+    if (name != null) {
+      $result.name = name;
+    }
+    return $result;
+  }
+  PeriodicTaskRetrieveRequest._() : super();
+  factory PeriodicTaskRetrieveRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory PeriodicTaskRetrieveRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'PeriodicTaskRetrieveRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'name')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  PeriodicTaskRetrieveRequest clone() =>
+      PeriodicTaskRetrieveRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  PeriodicTaskRetrieveRequest copyWith(
+          void Function(PeriodicTaskRetrieveRequest) updates) =>
+      super.copyWith(
+              (message) => updates(message as PeriodicTaskRetrieveRequest))
+          as PeriodicTaskRetrieveRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static PeriodicTaskRetrieveRequest create() =>
+      PeriodicTaskRetrieveRequest._();
+  PeriodicTaskRetrieveRequest createEmptyInstance() => create();
+  static $pb.PbList<PeriodicTaskRetrieveRequest> createRepeated() =>
+      $pb.PbList<PeriodicTaskRetrieveRequest>();
+  @$core.pragma('dart2js:noInline')
+  static PeriodicTaskRetrieveRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<PeriodicTaskRetrieveRequest>(create);
+  static PeriodicTaskRetrieveRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set name($core.String v) {
+    $_setString(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearName() => clearField(1);
+}
+
 class ProjectDestroyRequest extends $pb.GeneratedMessage {
   factory ProjectDestroyRequest({
     $core.int? id,
@@ -5244,6 +7914,610 @@ class ProjectRetrieveRequest extends $pb.GeneratedMessage {
   static ProjectRetrieveRequest getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<ProjectRetrieveRequest>(create);
   static ProjectRetrieveRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+}
+
+class SolarScheduleDestroyRequest extends $pb.GeneratedMessage {
+  factory SolarScheduleDestroyRequest({
+    $core.int? id,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    return $result;
+  }
+  SolarScheduleDestroyRequest._() : super();
+  factory SolarScheduleDestroyRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory SolarScheduleDestroyRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'SolarScheduleDestroyRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  SolarScheduleDestroyRequest clone() =>
+      SolarScheduleDestroyRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  SolarScheduleDestroyRequest copyWith(
+          void Function(SolarScheduleDestroyRequest) updates) =>
+      super.copyWith(
+              (message) => updates(message as SolarScheduleDestroyRequest))
+          as SolarScheduleDestroyRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static SolarScheduleDestroyRequest create() =>
+      SolarScheduleDestroyRequest._();
+  SolarScheduleDestroyRequest createEmptyInstance() => create();
+  static $pb.PbList<SolarScheduleDestroyRequest> createRepeated() =>
+      $pb.PbList<SolarScheduleDestroyRequest>();
+  @$core.pragma('dart2js:noInline')
+  static SolarScheduleDestroyRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<SolarScheduleDestroyRequest>(create);
+  static SolarScheduleDestroyRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+}
+
+class SolarScheduleListRequest extends $pb.GeneratedMessage {
+  factory SolarScheduleListRequest() => create();
+  SolarScheduleListRequest._() : super();
+  factory SolarScheduleListRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory SolarScheduleListRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'SolarScheduleListRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  SolarScheduleListRequest clone() =>
+      SolarScheduleListRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  SolarScheduleListRequest copyWith(
+          void Function(SolarScheduleListRequest) updates) =>
+      super.copyWith((message) => updates(message as SolarScheduleListRequest))
+          as SolarScheduleListRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static SolarScheduleListRequest create() => SolarScheduleListRequest._();
+  SolarScheduleListRequest createEmptyInstance() => create();
+  static $pb.PbList<SolarScheduleListRequest> createRepeated() =>
+      $pb.PbList<SolarScheduleListRequest>();
+  @$core.pragma('dart2js:noInline')
+  static SolarScheduleListRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<SolarScheduleListRequest>(create);
+  static SolarScheduleListRequest? _defaultInstance;
+}
+
+class SolarScheduleListResponse extends $pb.GeneratedMessage {
+  factory SolarScheduleListResponse({
+    $core.Iterable<SolarScheduleResponse>? results,
+    $core.int? count,
+  }) {
+    final $result = create();
+    if (results != null) {
+      $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
+    }
+    return $result;
+  }
+  SolarScheduleListResponse._() : super();
+  factory SolarScheduleListResponse.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory SolarScheduleListResponse.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'SolarScheduleListResponse',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..pc<SolarScheduleResponse>(
+        1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM,
+        subBuilder: SolarScheduleResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  SolarScheduleListResponse clone() =>
+      SolarScheduleListResponse()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  SolarScheduleListResponse copyWith(
+          void Function(SolarScheduleListResponse) updates) =>
+      super.copyWith((message) => updates(message as SolarScheduleListResponse))
+          as SolarScheduleListResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static SolarScheduleListResponse create() => SolarScheduleListResponse._();
+  SolarScheduleListResponse createEmptyInstance() => create();
+  static $pb.PbList<SolarScheduleListResponse> createRepeated() =>
+      $pb.PbList<SolarScheduleListResponse>();
+  @$core.pragma('dart2js:noInline')
+  static SolarScheduleListResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<SolarScheduleListResponse>(create);
+  static SolarScheduleListResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<SolarScheduleResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) {
+    $_setSignedInt32(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
+}
+
+class SolarSchedulePartialUpdateRequest extends $pb.GeneratedMessage {
+  factory SolarSchedulePartialUpdateRequest({
+    $core.int? id,
+    $core.Iterable<$core.String>? partialUpdateFields,
+    $core.String? event,
+    $core.double? latitude,
+    $core.double? longitude,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (partialUpdateFields != null) {
+      $result.partialUpdateFields.addAll(partialUpdateFields);
+    }
+    if (event != null) {
+      $result.event = event;
+    }
+    if (latitude != null) {
+      $result.latitude = latitude;
+    }
+    if (longitude != null) {
+      $result.longitude = longitude;
+    }
+    return $result;
+  }
+  SolarSchedulePartialUpdateRequest._() : super();
+  factory SolarSchedulePartialUpdateRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory SolarSchedulePartialUpdateRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'SolarSchedulePartialUpdateRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..pPS(4, _omitFieldNames ? '' : 'PartialUpdateFields')
+    ..aOS(5, _omitFieldNames ? '' : 'event')
+    ..a<$core.double>(6, _omitFieldNames ? '' : 'latitude', $pb.PbFieldType.OD)
+    ..a<$core.double>(7, _omitFieldNames ? '' : 'longitude', $pb.PbFieldType.OD)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  SolarSchedulePartialUpdateRequest clone() =>
+      SolarSchedulePartialUpdateRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  SolarSchedulePartialUpdateRequest copyWith(
+          void Function(SolarSchedulePartialUpdateRequest) updates) =>
+      super.copyWith((message) =>
+              updates(message as SolarSchedulePartialUpdateRequest))
+          as SolarSchedulePartialUpdateRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static SolarSchedulePartialUpdateRequest create() =>
+      SolarSchedulePartialUpdateRequest._();
+  SolarSchedulePartialUpdateRequest createEmptyInstance() => create();
+  static $pb.PbList<SolarSchedulePartialUpdateRequest> createRepeated() =>
+      $pb.PbList<SolarSchedulePartialUpdateRequest>();
+  @$core.pragma('dart2js:noInline')
+  static SolarSchedulePartialUpdateRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<SolarSchedulePartialUpdateRequest>(
+          create);
+  static SolarSchedulePartialUpdateRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(4)
+  $core.List<$core.String> get partialUpdateFields => $_getList(1);
+
+  @$pb.TagNumber(5)
+  $core.String get event => $_getSZ(2);
+  @$pb.TagNumber(5)
+  set event($core.String v) {
+    $_setString(2, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasEvent() => $_has(2);
+  @$pb.TagNumber(5)
+  void clearEvent() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.double get latitude => $_getN(3);
+  @$pb.TagNumber(6)
+  set latitude($core.double v) {
+    $_setDouble(3, v);
+  }
+
+  @$pb.TagNumber(6)
+  $core.bool hasLatitude() => $_has(3);
+  @$pb.TagNumber(6)
+  void clearLatitude() => clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.double get longitude => $_getN(4);
+  @$pb.TagNumber(7)
+  set longitude($core.double v) {
+    $_setDouble(4, v);
+  }
+
+  @$pb.TagNumber(7)
+  $core.bool hasLongitude() => $_has(4);
+  @$pb.TagNumber(7)
+  void clearLongitude() => clearField(7);
+}
+
+class SolarScheduleRequest extends $pb.GeneratedMessage {
+  factory SolarScheduleRequest({
+    $core.int? id,
+    $core.String? event,
+    $core.double? latitude,
+    $core.double? longitude,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (event != null) {
+      $result.event = event;
+    }
+    if (latitude != null) {
+      $result.latitude = latitude;
+    }
+    if (longitude != null) {
+      $result.longitude = longitude;
+    }
+    return $result;
+  }
+  SolarScheduleRequest._() : super();
+  factory SolarScheduleRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory SolarScheduleRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'SolarScheduleRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOS(4, _omitFieldNames ? '' : 'event')
+    ..a<$core.double>(5, _omitFieldNames ? '' : 'latitude', $pb.PbFieldType.OD)
+    ..a<$core.double>(6, _omitFieldNames ? '' : 'longitude', $pb.PbFieldType.OD)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  SolarScheduleRequest clone() =>
+      SolarScheduleRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  SolarScheduleRequest copyWith(void Function(SolarScheduleRequest) updates) =>
+      super.copyWith((message) => updates(message as SolarScheduleRequest))
+          as SolarScheduleRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static SolarScheduleRequest create() => SolarScheduleRequest._();
+  SolarScheduleRequest createEmptyInstance() => create();
+  static $pb.PbList<SolarScheduleRequest> createRepeated() =>
+      $pb.PbList<SolarScheduleRequest>();
+  @$core.pragma('dart2js:noInline')
+  static SolarScheduleRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<SolarScheduleRequest>(create);
+  static SolarScheduleRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(4)
+  $core.String get event => $_getSZ(1);
+  @$pb.TagNumber(4)
+  set event($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(4)
+  $core.bool hasEvent() => $_has(1);
+  @$pb.TagNumber(4)
+  void clearEvent() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.double get latitude => $_getN(2);
+  @$pb.TagNumber(5)
+  set latitude($core.double v) {
+    $_setDouble(2, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasLatitude() => $_has(2);
+  @$pb.TagNumber(5)
+  void clearLatitude() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.double get longitude => $_getN(3);
+  @$pb.TagNumber(6)
+  set longitude($core.double v) {
+    $_setDouble(3, v);
+  }
+
+  @$pb.TagNumber(6)
+  $core.bool hasLongitude() => $_has(3);
+  @$pb.TagNumber(6)
+  void clearLongitude() => clearField(6);
+}
+
+class SolarScheduleResponse extends $pb.GeneratedMessage {
+  factory SolarScheduleResponse({
+    $core.int? id,
+    $core.String? event,
+    $core.double? latitude,
+    $core.double? longitude,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (event != null) {
+      $result.event = event;
+    }
+    if (latitude != null) {
+      $result.latitude = latitude;
+    }
+    if (longitude != null) {
+      $result.longitude = longitude;
+    }
+    return $result;
+  }
+  SolarScheduleResponse._() : super();
+  factory SolarScheduleResponse.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory SolarScheduleResponse.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'SolarScheduleResponse',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..aOS(4, _omitFieldNames ? '' : 'event')
+    ..a<$core.double>(5, _omitFieldNames ? '' : 'latitude', $pb.PbFieldType.OD)
+    ..a<$core.double>(6, _omitFieldNames ? '' : 'longitude', $pb.PbFieldType.OD)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  SolarScheduleResponse clone() =>
+      SolarScheduleResponse()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  SolarScheduleResponse copyWith(
+          void Function(SolarScheduleResponse) updates) =>
+      super.copyWith((message) => updates(message as SolarScheduleResponse))
+          as SolarScheduleResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static SolarScheduleResponse create() => SolarScheduleResponse._();
+  SolarScheduleResponse createEmptyInstance() => create();
+  static $pb.PbList<SolarScheduleResponse> createRepeated() =>
+      $pb.PbList<SolarScheduleResponse>();
+  @$core.pragma('dart2js:noInline')
+  static SolarScheduleResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<SolarScheduleResponse>(create);
+  static SolarScheduleResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(4)
+  $core.String get event => $_getSZ(1);
+  @$pb.TagNumber(4)
+  set event($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(4)
+  $core.bool hasEvent() => $_has(1);
+  @$pb.TagNumber(4)
+  void clearEvent() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.double get latitude => $_getN(2);
+  @$pb.TagNumber(5)
+  set latitude($core.double v) {
+    $_setDouble(2, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasLatitude() => $_has(2);
+  @$pb.TagNumber(5)
+  void clearLatitude() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.double get longitude => $_getN(3);
+  @$pb.TagNumber(6)
+  set longitude($core.double v) {
+    $_setDouble(3, v);
+  }
+
+  @$pb.TagNumber(6)
+  $core.bool hasLongitude() => $_has(3);
+  @$pb.TagNumber(6)
+  void clearLongitude() => clearField(6);
+}
+
+class SolarScheduleRetrieveRequest extends $pb.GeneratedMessage {
+  factory SolarScheduleRetrieveRequest({
+    $core.int? id,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    return $result;
+  }
+  SolarScheduleRetrieveRequest._() : super();
+  factory SolarScheduleRetrieveRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory SolarScheduleRetrieveRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'SolarScheduleRetrieveRequest',
+      package: const $pb.PackageName(
+          _omitMessageNames ? '' : 'base_app.products_controller'),
+      createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  SolarScheduleRetrieveRequest clone() =>
+      SolarScheduleRetrieveRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  SolarScheduleRetrieveRequest copyWith(
+          void Function(SolarScheduleRetrieveRequest) updates) =>
+      super.copyWith(
+              (message) => updates(message as SolarScheduleRetrieveRequest))
+          as SolarScheduleRetrieveRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static SolarScheduleRetrieveRequest create() =>
+      SolarScheduleRetrieveRequest._();
+  SolarScheduleRetrieveRequest createEmptyInstance() => create();
+  static $pb.PbList<SolarScheduleRetrieveRequest> createRepeated() =>
+      $pb.PbList<SolarScheduleRetrieveRequest>();
+  @$core.pragma('dart2js:noInline')
+  static SolarScheduleRetrieveRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<SolarScheduleRetrieveRequest>(create);
+  static SolarScheduleRetrieveRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.int get id => $_getIZ(0);

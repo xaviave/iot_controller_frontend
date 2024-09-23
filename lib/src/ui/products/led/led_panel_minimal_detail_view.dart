@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:interactive_slider/interactive_slider.dart';
 import 'package:iot_controller/src/blocs/product.dart';
+import 'package:iot_controller/src/models/products/base_product.dart';
 import 'package:iot_controller/src/models/products/led/led_panel.dart';
+import 'package:iot_controller/src/models/status.dart';
 import 'package:iot_controller/src/ui/utils/capitalize.dart';
-import 'package:iot_controller/src/ui/utils/on_off_button.dart';
 
 class LedPanelMinimalDetailsView extends StatefulWidget {
   final int productIndex;
@@ -17,8 +19,8 @@ class LedPanelMinimalDetailsView extends StatefulWidget {
 
 class _LedPanelMinimalDetailsViewState
     extends State<LedPanelMinimalDetailsView> {
-  late Color colorBrightness;
-  late double productBrightness;
+  final InteractiveSliderController _controllerBrightness =
+      InteractiveSliderController(0);
 
   void updateProduct(BuildContext context, Map<String, dynamic> fields) {
     BaseProductState state =
@@ -30,65 +32,68 @@ class _LedPanelMinimalDetailsViewState
         products: state.products));
   }
 
-  @override
-  void initState() {
-    super.initState();
-    BaseProductState state =
-        BlocProvider.of<BaseProductGRPCBloc>(context).state;
+  Widget ledPanelMinimalBuild(BuildContext context, LedPanel product) {
+    _controllerBrightness.value = product.brightness;
 
-    productBrightness =
-        (state.products[widget.productIndex] as LedPanel).brightness;
-    colorBrightness =
-        Color.lerp(Colors.black, Colors.yellow, productBrightness)!;
+    return Container(
+        decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surface,
+            borderRadius: const BorderRadius.all(Radius.circular(16))),
+        child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              children: [
+                Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                              child: Text(
+                            product.name.capitalize,
+                            style: const TextStyle(fontSize: 28),
+                          )),
+                          Switch(
+                            value: product.status == Status.on,
+                            activeColor: Colors.yellow,
+                            onChanged: (bool value) {
+                              setState(() {
+                                updateProduct(context, {
+                                  "status": (value ? Status.on : Status.off).id
+                                });
+                              });
+                            },
+                          ),
+                        ])),
+                InteractiveSlider(
+                    padding: const EdgeInsets.all(8),
+                    controller: _controllerBrightness,
+                    startIcon: const Icon(Icons.brightness_low),
+                    endIcon: const Icon(Icons.brightness_high),
+                    unfocusedOpacity: 0.8,
+                    unfocusedHeight: 25,
+                    focusedHeight: 40,
+                    unfocusedMargin: const EdgeInsets.symmetric(horizontal: 0),
+                    backgroundColor: Theme.of(context).colorScheme.surface,
+                    iconGap: 16,
+                    onProgressUpdated: (_) {
+                      updateProduct(context, {
+                        "brightness": double.parse(
+                            _controllerBrightness.value.toStringAsFixed(2))
+                      });
+                    })
+              ],
+            )));
   }
 
   @override
   Widget build(BuildContext context) {
-    BaseProductState state =
-        BlocProvider.of<BaseProductGRPCBloc>(context).state;
-    LedPanel product = state.products[widget.productIndex] as LedPanel;
-
-    return Card(
-        child: SizedBox(
-            width: double.infinity,
-            child: Column(
-              children: [
-                ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      "https://indieground.net/wp-content/uploads/2022/06/floppydiskdesign-indiegroundblog_four_tet-1024x1024.jpg",
-                    )),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        product.name.capitalize,
-                        style: const TextStyle(fontSize: 28),
-                        textAlign: TextAlign.center,
-                      ),
-                      OnOffButton(
-                          status: product.status,
-                          callbackUpdateStatus: updateProduct)
-                    ]),
-                Slider(
-                    min: 0,
-                    max: 1,
-                    activeColor: colorBrightness,
-                    inactiveColor: Colors.grey,
-                    thumbColor: colorBrightness,
-                    value: productBrightness,
-                    onChanged: (value) {
-                      setState(() {
-                        productBrightness =
-                            double.parse(value.toStringAsFixed(2));
-                        colorBrightness = Color.lerp(
-                            Colors.black, Colors.yellow, productBrightness)!;
-                      });
-                    },
-                    onChangeEnd: (value) {
-                      updateProduct(context, {"brightness": productBrightness});
-                    }),
-              ],
-            )));
+    return BlocSelector<BaseProductGRPCBloc, BaseProductState,
+            List<BaseProduct>>(
+        selector: (state) => state.products,
+        builder: (context, products) {
+          return ledPanelMinimalBuild(
+              context, products[widget.productIndex] as LedPanel);
+        });
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iot_controller/src/ui/products/base_product/base_product_details_view.dart';
@@ -19,12 +17,12 @@ extension GoRouterExtension on GoRouter {
 class MyNavigatorObserver extends NavigatorObserver {
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    print('did push route $previousRoute');
+    // print('did push route $previousRoute');
   }
 
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    print('did pop route $previousRoute');
+    // print('did pop route $previousRoute');
   }
 }
 

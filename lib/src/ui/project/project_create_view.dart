@@ -6,14 +6,13 @@ import 'package:iot_controller/src/blocs/project.dart';
 import 'package:iot_controller/src/blocs/user.dart';
 import 'package:iot_controller/src/models/products/base_product.dart';
 import 'package:iot_controller/src/models/project.dart';
+import 'package:iot_controller/src/ui/utils/customColors.dart';
 
 class ProjectForm extends StatefulWidget {
   const ProjectForm({super.key});
 
   @override
-  ProjectFormState createState() {
-    return ProjectFormState();
-  }
+  ProjectFormState createState() => ProjectFormState();
 }
 
 class ProjectFormState extends State<ProjectForm> {
@@ -54,7 +53,7 @@ class ProjectFormState extends State<ProjectForm> {
                     : null;
               },
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 10),
             CustomDropdown<BaseProduct>.multiSelect(
                 multiSelectController: _productController,
                 hintText: 'Select products',
@@ -76,11 +75,11 @@ class ProjectFormState extends State<ProjectForm> {
                     color: Theme.of(context).colorScheme.onSurface,
                   ),
                   listItemDecoration: ListItemDecoration(
-                    selectedColor: Theme.of(context).colorScheme.primary,
-                    highlightColor: Theme.of(context).colorScheme.primary,
+                    selectedColor: Theme.of(context).colorScheme.surfaceBright,
+                    highlightColor: Theme.of(context).colorScheme.surfaceBright,
                   ),
                 )),
-            const SizedBox(height: 16),
+            const SizedBox(height: 10),
             SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -92,7 +91,7 @@ class ProjectFormState extends State<ProjectForm> {
                     style: TextStyle(fontWeight: FontWeight.w600),
                   ),
                 )),
-            const SizedBox(height: 16),
+            const SizedBox(height: 10),
             Row(
               children: [
                 SizedBox(
@@ -118,9 +117,10 @@ class ProjectFormState extends State<ProjectForm> {
                             project: generateProject(
                                 _nameController.text, _productController.value),
                             projects: state.projects));
-                        context
-                            .read<ProjectGRPCBloc>()
-                            .add(GetProjectListEvent());
+                        print("Check if needed");
+                        // context
+                        //     .read<ProjectGRPCBloc>()
+                        //     .add(GetProjectListEvent());
                         Navigator.of(context).pop(true);
                       }
                       return;

@@ -4,7 +4,6 @@ import 'package:iot_controller/src/blocs/product.dart';
 import 'package:iot_controller/src/models/products/coffee_machine.dart';
 import 'package:iot_controller/src/models/status.dart';
 import 'package:iot_controller/src/ui/utils/capitalize.dart';
-import 'package:iot_controller/src/ui/utils/on_off_button.dart';
 
 class CoffeeMachineMinimalDetailsView extends StatefulWidget {
   final int productIndex;
@@ -36,17 +35,30 @@ class _CoffeeMachineMinimalDetailsViewState
     CoffeeMachine product =
         state.products[widget.productIndex] as CoffeeMachine;
 
-    return Card(
-        child: SizedBox(
-      width: double.infinity,
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Text(
-          product.name.capitalize,
-          style: const TextStyle(fontSize: 28),
-          textAlign: TextAlign.center,
-        ),
-        OnOffButton(status: product.status, callbackUpdateStatus: updateProduct)
-      ]),
-    ));
+    return Container(
+        decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surface,
+            borderRadius: const BorderRadius.all(Radius.circular(16))),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Expanded(
+                child: Text(
+              product.name.capitalize,
+              style: const TextStyle(fontSize: 28),
+            )),
+            Switch(
+              value: product.status == Status.on,
+              activeColor: Colors.yellow,
+              onChanged: (bool value) {
+                setState(() {
+                  updateProduct(
+                      context, {"status": (value ? Status.on : Status.off).id});
+                });
+              },
+            ),
+          ]),
+        ));
   }
 }
