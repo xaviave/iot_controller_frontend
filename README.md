@@ -8,14 +8,12 @@ The app aim to control every different IOT product connected to the server with 
 - Android Widget
 - gRPC web ok on branch but needs a envoy proxy
 - identification | firebase or something
-- Create anything from app
 - gRPC stream data
 
 ### Functionalities
 
 auto on-off:
-- wifi detector
-- time schedule
+- wifi detector via django task
 - outside brightness (sensor or sunset time)
 
 themes by rooms and on-off button for a room
