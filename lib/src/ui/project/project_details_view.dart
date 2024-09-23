@@ -192,6 +192,7 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
         .read<BaseProductGRPCBloc>()
         .add(GetBaseProductListEvent(project.products));
 
+    print(state);
     final periodicTaskState =
         BlocProvider.of<PeriodicTaskGRPCBloc>(context).state;
     context.read<PeriodicTaskGRPCBloc>().add(QueryPeriodicTaskEvent(

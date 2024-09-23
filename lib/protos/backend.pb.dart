@@ -6648,6 +6648,7 @@ class PeriodicTaskPartialUpdateRequest extends $pb.GeneratedMessage {
     ClockedScheduleRequest? clocked,
     $core.Iterable<$core.String>? partialUpdateFields,
     $core.String? kwargs,
+    $core.bool? enabled,
   }) {
     final $result = create();
     if (name != null) {
@@ -6673,6 +6674,9 @@ class PeriodicTaskPartialUpdateRequest extends $pb.GeneratedMessage {
     }
     if (kwargs != null) {
       $result.kwargs = kwargs;
+    }
+    if (enabled != null) {
+      $result.enabled = enabled;
     }
     return $result;
   }
@@ -6701,6 +6705,7 @@ class PeriodicTaskPartialUpdateRequest extends $pb.GeneratedMessage {
         subBuilder: ClockedScheduleRequest.create)
     ..pPS(7, _omitFieldNames ? '' : 'PartialUpdateFields')
     ..aOS(8, _omitFieldNames ? '' : 'kwargs')
+    ..aOB(9, _omitFieldNames ? '' : 'enabled')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -6825,6 +6830,18 @@ class PeriodicTaskPartialUpdateRequest extends $pb.GeneratedMessage {
   $core.bool hasKwargs() => $_has(7);
   @$pb.TagNumber(8)
   void clearKwargs() => clearField(8);
+
+  @$pb.TagNumber(9)
+  $core.bool get enabled => $_getBF(8);
+  @$pb.TagNumber(9)
+  set enabled($core.bool v) {
+    $_setBool(8, v);
+  }
+
+  @$pb.TagNumber(9)
+  $core.bool hasEnabled() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearEnabled() => clearField(9);
 }
 
 class PeriodicTaskRequest extends $pb.GeneratedMessage {
@@ -6836,6 +6853,7 @@ class PeriodicTaskRequest extends $pb.GeneratedMessage {
     SolarScheduleRequest? solar,
     ClockedScheduleRequest? clocked,
     $core.String? kwargs,
+    $core.bool? enabled,
   }) {
     final $result = create();
     if (name != null) {
@@ -6858,6 +6876,9 @@ class PeriodicTaskRequest extends $pb.GeneratedMessage {
     }
     if (kwargs != null) {
       $result.kwargs = kwargs;
+    }
+    if (enabled != null) {
+      $result.enabled = enabled;
     }
     return $result;
   }
@@ -6885,6 +6906,7 @@ class PeriodicTaskRequest extends $pb.GeneratedMessage {
     ..aOM<ClockedScheduleRequest>(6, _omitFieldNames ? '' : 'clocked',
         subBuilder: ClockedScheduleRequest.create)
     ..aOS(7, _omitFieldNames ? '' : 'kwargs')
+    ..aOB(8, _omitFieldNames ? '' : 'enabled')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -7001,6 +7023,18 @@ class PeriodicTaskRequest extends $pb.GeneratedMessage {
   $core.bool hasKwargs() => $_has(6);
   @$pb.TagNumber(7)
   void clearKwargs() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.bool get enabled => $_getBF(7);
+  @$pb.TagNumber(8)
+  set enabled($core.bool v) {
+    $_setBool(7, v);
+  }
+
+  @$pb.TagNumber(8)
+  $core.bool hasEnabled() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearEnabled() => clearField(8);
 }
 
 class PeriodicTaskResponse extends $pb.GeneratedMessage {
@@ -7012,6 +7046,7 @@ class PeriodicTaskResponse extends $pb.GeneratedMessage {
     SolarScheduleResponse? solar,
     ClockedScheduleResponse? clocked,
     $core.String? kwargs,
+    $core.bool? enabled,
   }) {
     final $result = create();
     if (name != null) {
@@ -7034,6 +7069,9 @@ class PeriodicTaskResponse extends $pb.GeneratedMessage {
     }
     if (kwargs != null) {
       $result.kwargs = kwargs;
+    }
+    if (enabled != null) {
+      $result.enabled = enabled;
     }
     return $result;
   }
@@ -7061,6 +7099,7 @@ class PeriodicTaskResponse extends $pb.GeneratedMessage {
     ..aOM<ClockedScheduleResponse>(6, _omitFieldNames ? '' : 'clocked',
         subBuilder: ClockedScheduleResponse.create)
     ..aOS(7, _omitFieldNames ? '' : 'kwargs')
+    ..aOB(8, _omitFieldNames ? '' : 'enabled')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -7178,6 +7217,18 @@ class PeriodicTaskResponse extends $pb.GeneratedMessage {
   $core.bool hasKwargs() => $_has(6);
   @$pb.TagNumber(7)
   void clearKwargs() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.bool get enabled => $_getBF(7);
+  @$pb.TagNumber(8)
+  set enabled($core.bool v) {
+    $_setBool(7, v);
+  }
+
+  @$pb.TagNumber(8)
+  $core.bool hasEnabled() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearEnabled() => clearField(8);
 }
 
 class PeriodicTaskRetrieveRequest extends $pb.GeneratedMessage {

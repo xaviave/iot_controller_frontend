@@ -45,14 +45,13 @@ class _PeriodicTaskMinimalDetailsViewState
                   textAlign: TextAlign.center,
                 ),
                 Switch(
-                  value: true,
+                  value: task.enabled,
                   activeColor: Theme.of(context).colorScheme.secondary,
                   // need to add this parameter to the proto file
                   // value: task.enabled == true,
                   onChanged: (bool value) {
                     setState(() {
-                      // updatePeriodicTask(context,
-                      //     {"enabled": value});
+                      updatePeriodicTask(context, {"enabled": value});
                     });
                   },
                 ),

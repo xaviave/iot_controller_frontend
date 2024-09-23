@@ -287,12 +287,6 @@ class PeriodicTaskGRPCBloc extends Bloc<PeriodicTaskEvent, PeriodicTaskState> {
 
   void onQueryPeriodicTaskEvent(
       QueryPeriodicTaskEvent event, Emitter<PeriodicTaskState> emit) async {
-    print(
-        "${event.classId} ${event.classType} ${event.tasks} ${event.tasks.where((y) {
-      var dict = json.decode(y.kwargs);
-      return int.parse(dict["class_id"]) == event.classId &&
-          dict["class_type"] == event.classType;
-    }).toList()}");
     if (event.tasks.isEmpty) {
       emit(QueryPeriodicTaskSuccess(event.tasks, []));
     }

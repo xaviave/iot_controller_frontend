@@ -32,6 +32,6 @@ class IntervalSchedule extends Schedule {
 
   @override
   String toString() {
-    return "Interval - $every $every $period";
+    return "Interval - $every $period";
   }
 }

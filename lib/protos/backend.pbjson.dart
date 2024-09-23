@@ -1917,6 +1917,15 @@ const PeriodicTaskPartialUpdateRequest$json = {
       '10': 'PartialUpdateFields'
     },
     {'1': 'kwargs', '3': 8, '4': 1, '5': 9, '9': 4, '10': 'kwargs', '17': true},
+    {
+      '1': 'enabled',
+      '3': 9,
+      '4': 1,
+      '5': 8,
+      '9': 5,
+      '10': 'enabled',
+      '17': true
+    },
   ],
   '8': [
     {'1': '_interval'},
@@ -1924,6 +1933,7 @@ const PeriodicTaskPartialUpdateRequest$json = {
     {'1': '_solar'},
     {'1': '_clocked'},
     {'1': '_kwargs'},
+    {'1': '_enabled'},
   ],
 };
 
@@ -1937,8 +1947,9 @@ final $typed_data.Uint8List periodicTaskPartialUpdateRequestDescriptor = $conver
     'R1Y3RzX2NvbnRyb2xsZXIuU29sYXJTY2hlZHVsZVJlcXVlc3RIAlIFc29sYXKIAQESUwoHY2xv'
     'Y2tlZBgGIAEoCzI0LmJhc2VfYXBwLnByb2R1Y3RzX2NvbnRyb2xsZXIuQ2xvY2tlZFNjaGVkdW'
     'xlUmVxdWVzdEgDUgdjbG9ja2VkiAEBEjMKFl9wYXJ0aWFsX3VwZGF0ZV9maWVsZHMYByADKAlS'
-    'E1BhcnRpYWxVcGRhdGVGaWVsZHMSGwoGa3dhcmdzGAggASgJSARSBmt3YXJnc4gBAUILCglfaW'
-    '50ZXJ2YWxCCgoIX2Nyb250YWJCCAoGX3NvbGFyQgoKCF9jbG9ja2VkQgkKB19rd2FyZ3M=');
+    'E1BhcnRpYWxVcGRhdGVGaWVsZHMSGwoGa3dhcmdzGAggASgJSARSBmt3YXJnc4gBARIdCgdlbm'
+    'FibGVkGAkgASgISAVSB2VuYWJsZWSIAQFCCwoJX2ludGVydmFsQgoKCF9jcm9udGFiQggKBl9z'
+    'b2xhckIKCghfY2xvY2tlZEIJCgdfa3dhcmdzQgoKCF9lbmFibGVk');
 
 @$core.Deprecated('Use periodicTaskRequestDescriptor instead')
 const PeriodicTaskRequest$json = {
@@ -1987,6 +1998,15 @@ const PeriodicTaskRequest$json = {
       '17': true
     },
     {'1': 'kwargs', '3': 7, '4': 1, '5': 9, '9': 4, '10': 'kwargs', '17': true},
+    {
+      '1': 'enabled',
+      '3': 8,
+      '4': 1,
+      '5': 8,
+      '9': 5,
+      '10': 'enabled',
+      '17': true
+    },
   ],
   '8': [
     {'1': '_interval'},
@@ -1994,6 +2014,7 @@ const PeriodicTaskRequest$json = {
     {'1': '_solar'},
     {'1': '_clocked'},
     {'1': '_kwargs'},
+    {'1': '_enabled'},
   ],
 };
 
@@ -2006,8 +2027,9 @@ final $typed_data.Uint8List periodicTaskRequestDescriptor = $convert.base64Decod
     'Ugdjcm9udGFiiAEBEk0KBXNvbGFyGAUgASgLMjIuYmFzZV9hcHAucHJvZHVjdHNfY29udHJvbG'
     'xlci5Tb2xhclNjaGVkdWxlUmVxdWVzdEgCUgVzb2xhcogBARJTCgdjbG9ja2VkGAYgASgLMjQu'
     'YmFzZV9hcHAucHJvZHVjdHNfY29udHJvbGxlci5DbG9ja2VkU2NoZWR1bGVSZXF1ZXN0SANSB2'
-    'Nsb2NrZWSIAQESGwoGa3dhcmdzGAcgASgJSARSBmt3YXJnc4gBAUILCglfaW50ZXJ2YWxCCgoI'
-    'X2Nyb250YWJCCAoGX3NvbGFyQgoKCF9jbG9ja2VkQgkKB19rd2FyZ3M=');
+    'Nsb2NrZWSIAQESGwoGa3dhcmdzGAcgASgJSARSBmt3YXJnc4gBARIdCgdlbmFibGVkGAggASgI'
+    'SAVSB2VuYWJsZWSIAQFCCwoJX2ludGVydmFsQgoKCF9jcm9udGFiQggKBl9zb2xhckIKCghfY2'
+    'xvY2tlZEIJCgdfa3dhcmdzQgoKCF9lbmFibGVk');
 
 @$core.Deprecated('Use periodicTaskResponseDescriptor instead')
 const PeriodicTaskResponse$json = {
@@ -2056,6 +2078,15 @@ const PeriodicTaskResponse$json = {
       '17': true
     },
     {'1': 'kwargs', '3': 7, '4': 1, '5': 9, '9': 4, '10': 'kwargs', '17': true},
+    {
+      '1': 'enabled',
+      '3': 8,
+      '4': 1,
+      '5': 8,
+      '9': 5,
+      '10': 'enabled',
+      '17': true
+    },
   ],
   '8': [
     {'1': '_interval'},
@@ -2063,6 +2094,7 @@ const PeriodicTaskResponse$json = {
     {'1': '_solar'},
     {'1': '_clocked'},
     {'1': '_kwargs'},
+    {'1': '_enabled'},
   ],
 };
 
@@ -2075,8 +2107,9 @@ final $typed_data.Uint8List periodicTaskResponseDescriptor = $convert.base64Deco
     'ZUgBUgdjcm9udGFiiAEBEk4KBXNvbGFyGAUgASgLMjMuYmFzZV9hcHAucHJvZHVjdHNfY29udH'
     'JvbGxlci5Tb2xhclNjaGVkdWxlUmVzcG9uc2VIAlIFc29sYXKIAQESVAoHY2xvY2tlZBgGIAEo'
     'CzI1LmJhc2VfYXBwLnByb2R1Y3RzX2NvbnRyb2xsZXIuQ2xvY2tlZFNjaGVkdWxlUmVzcG9uc2'
-    'VIA1IHY2xvY2tlZIgBARIbCgZrd2FyZ3MYByABKAlIBFIGa3dhcmdziAEBQgsKCV9pbnRlcnZh'
-    'bEIKCghfY3JvbnRhYkIICgZfc29sYXJCCgoIX2Nsb2NrZWRCCQoHX2t3YXJncw==');
+    'VIA1IHY2xvY2tlZIgBARIbCgZrd2FyZ3MYByABKAlIBFIGa3dhcmdziAEBEh0KB2VuYWJsZWQY'
+    'CCABKAhIBVIHZW5hYmxlZIgBAUILCglfaW50ZXJ2YWxCCgoIX2Nyb250YWJCCAoGX3NvbGFyQg'
+    'oKCF9jbG9ja2VkQgkKB19rd2FyZ3NCCgoIX2VuYWJsZWQ=');
 
 @$core.Deprecated('Use periodicTaskRetrieveRequestDescriptor instead')
 const PeriodicTaskRetrieveRequest$json = {

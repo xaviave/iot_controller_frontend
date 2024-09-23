@@ -34,6 +34,7 @@ class PeriodicTaskFormState extends State<PeriodicTaskForm> {
   PeriodicTask generatePeriodicTask(
     String name,
     String task,
+    bool enabled,
     String kwargs,
     Map<String, dynamic> fields,
   ) {
@@ -41,6 +42,7 @@ class PeriodicTaskFormState extends State<PeriodicTaskForm> {
     return PeriodicTask(
       name: name,
       task: task,
+      enabled: enabled,
       kwargs: kwargs,
       interval: fields["interval"],
       crontab: fields["crontab"],
@@ -142,6 +144,7 @@ class PeriodicTaskFormState extends State<PeriodicTaskForm> {
                               task: generatePeriodicTask(
                                   _nameController.text,
                                   _taskController.text,
+                                  true,
                                   '{"class_type": "${widget.classType}", "class_id": "${projectState.project!.id}"}',
                                   {schedule!.name: schedule!}),
                               tasks: state.tasks));

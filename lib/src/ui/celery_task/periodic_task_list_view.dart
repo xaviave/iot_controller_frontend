@@ -155,6 +155,7 @@ class _PeriodicTaskListViewState extends State<PeriodicTaskListView> {
           state is QueryPeriodicTaskSuccess ||
           state is DestroyPeriodicTaskSuccess ||
           state is CreatePeriodicTaskSuccess ||
+          state is UpdatePeriodicTaskSuccess ||
           // loading here to avoid flickering | should notify
           state is PeriodicTaskLoading) {
         return ListView.separated(
@@ -162,7 +163,6 @@ class _PeriodicTaskListViewState extends State<PeriodicTaskListView> {
           itemCount: state.tasks.length,
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
-              // title: Text("aaa"),
               title: PeriodicTaskMinimalDetailsView(taskIndex: index),
               onTap: () {},
               onLongPress: () {

@@ -10,6 +10,7 @@ class PeriodicTask {
   String name;
   String task;
   String kwargs;
+  bool enabled;
   ClockedSchedule? clocked;
   CrontabSchedule? crontab;
   IntervalSchedule? interval;
@@ -19,6 +20,7 @@ class PeriodicTask {
     required this.name,
     required this.task,
     required this.kwargs,
+    required this.enabled,
     required this.interval,
     required this.crontab,
     required this.solar,
@@ -48,6 +50,7 @@ class PeriodicTask {
     return PeriodicTaskRequest(
       name: name,
       task: task,
+      enabled: enabled,
       kwargs: kwargs,
       interval: interval?.getRequest(),
       crontab: crontab?.getRequest(),
@@ -61,6 +64,7 @@ class PeriodicTask {
     return PeriodicTaskPartialUpdateRequest(
       name: name,
       partialUpdateFields: fields.keys,
+      enabled: fields["enabled"],
       kwargs: fields["kwargs"],
       interval: fields["interval"],
       crontab: fields["crontab"],
@@ -73,6 +77,7 @@ class PeriodicTask {
     return PeriodicTask(
       name: r.name,
       task: r.task,
+      enabled: r.enabled,
       kwargs: r.kwargs,
       interval:
           r.hasInterval() ? IntervalSchedule.fromResponse(r.interval) : null,
