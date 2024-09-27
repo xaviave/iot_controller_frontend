@@ -474,10 +474,14 @@ class CategoryDestroyRequest extends $pb.GeneratedMessage {
 class CategoryListRequest extends $pb.GeneratedMessage {
   factory CategoryListRequest({
     $2.Struct? filters,
+    $2.Struct? pagination,
   }) {
     final $result = create();
     if (filters != null) {
       $result.filters = filters;
+    }
+    if (pagination != null) {
+      $result.pagination = pagination;
     }
     return $result;
   }
@@ -487,6 +491,7 @@ class CategoryListRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CategoryListRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..aOM<$2.Struct>(1, _omitFieldNames ? '' : 'Filters', subBuilder: $2.Struct.create)
+    ..aOM<$2.Struct>(2, _omitFieldNames ? '' : 'Pagination', subBuilder: $2.Struct.create)
     ..hasRequiredFields = false
   ;
 
@@ -521,15 +526,30 @@ class CategoryListRequest extends $pb.GeneratedMessage {
   void clearFilters() => clearField(1);
   @$pb.TagNumber(1)
   $2.Struct ensureFilters() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $2.Struct get pagination => $_getN(1);
+  @$pb.TagNumber(2)
+  set pagination($2.Struct v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasPagination() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPagination() => clearField(2);
+  @$pb.TagNumber(2)
+  $2.Struct ensurePagination() => $_ensure(1);
 }
 
 class CategoryListResponse extends $pb.GeneratedMessage {
   factory CategoryListResponse({
     $core.Iterable<CategoryResponse>? results,
+    $core.int? count,
   }) {
     final $result = create();
     if (results != null) {
       $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
     }
     return $result;
   }
@@ -539,6 +559,7 @@ class CategoryListResponse extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CategoryListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..pc<CategoryResponse>(1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM, subBuilder: CategoryResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -565,6 +586,15 @@ class CategoryListResponse extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.List<CategoryResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) { $_setSignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
 }
 
 class CategoryPartialUpdateRequest extends $pb.GeneratedMessage {
@@ -870,10 +900,14 @@ class ClockedScheduleDestroyRequest extends $pb.GeneratedMessage {
 class ClockedScheduleListRequest extends $pb.GeneratedMessage {
   factory ClockedScheduleListRequest({
     $2.Struct? filters,
+    $2.Struct? pagination,
   }) {
     final $result = create();
     if (filters != null) {
       $result.filters = filters;
+    }
+    if (pagination != null) {
+      $result.pagination = pagination;
     }
     return $result;
   }
@@ -883,6 +917,7 @@ class ClockedScheduleListRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ClockedScheduleListRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..aOM<$2.Struct>(1, _omitFieldNames ? '' : 'Filters', subBuilder: $2.Struct.create)
+    ..aOM<$2.Struct>(2, _omitFieldNames ? '' : 'Pagination', subBuilder: $2.Struct.create)
     ..hasRequiredFields = false
   ;
 
@@ -917,15 +952,30 @@ class ClockedScheduleListRequest extends $pb.GeneratedMessage {
   void clearFilters() => clearField(1);
   @$pb.TagNumber(1)
   $2.Struct ensureFilters() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $2.Struct get pagination => $_getN(1);
+  @$pb.TagNumber(2)
+  set pagination($2.Struct v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasPagination() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPagination() => clearField(2);
+  @$pb.TagNumber(2)
+  $2.Struct ensurePagination() => $_ensure(1);
 }
 
 class ClockedScheduleListResponse extends $pb.GeneratedMessage {
   factory ClockedScheduleListResponse({
     $core.Iterable<ClockedScheduleResponse>? results,
+    $core.int? count,
   }) {
     final $result = create();
     if (results != null) {
       $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
     }
     return $result;
   }
@@ -935,6 +985,7 @@ class ClockedScheduleListResponse extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ClockedScheduleListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..pc<ClockedScheduleResponse>(1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM, subBuilder: ClockedScheduleResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -961,6 +1012,15 @@ class ClockedScheduleListResponse extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.List<ClockedScheduleResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) { $_setSignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
 }
 
 class ClockedSchedulePartialUpdateRequest extends $pb.GeneratedMessage {
@@ -1266,10 +1326,14 @@ class CoffeeMachineDestroyRequest extends $pb.GeneratedMessage {
 class CoffeeMachineListRequest extends $pb.GeneratedMessage {
   factory CoffeeMachineListRequest({
     $2.Struct? filters,
+    $2.Struct? pagination,
   }) {
     final $result = create();
     if (filters != null) {
       $result.filters = filters;
+    }
+    if (pagination != null) {
+      $result.pagination = pagination;
     }
     return $result;
   }
@@ -1279,6 +1343,7 @@ class CoffeeMachineListRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CoffeeMachineListRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..aOM<$2.Struct>(1, _omitFieldNames ? '' : 'Filters', subBuilder: $2.Struct.create)
+    ..aOM<$2.Struct>(2, _omitFieldNames ? '' : 'Pagination', subBuilder: $2.Struct.create)
     ..hasRequiredFields = false
   ;
 
@@ -1313,15 +1378,30 @@ class CoffeeMachineListRequest extends $pb.GeneratedMessage {
   void clearFilters() => clearField(1);
   @$pb.TagNumber(1)
   $2.Struct ensureFilters() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $2.Struct get pagination => $_getN(1);
+  @$pb.TagNumber(2)
+  set pagination($2.Struct v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasPagination() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPagination() => clearField(2);
+  @$pb.TagNumber(2)
+  $2.Struct ensurePagination() => $_ensure(1);
 }
 
 class CoffeeMachineListResponse extends $pb.GeneratedMessage {
   factory CoffeeMachineListResponse({
     $core.Iterable<CoffeeMachineResponse>? results,
+    $core.int? count,
   }) {
     final $result = create();
     if (results != null) {
       $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
     }
     return $result;
   }
@@ -1331,6 +1411,7 @@ class CoffeeMachineListResponse extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CoffeeMachineListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..pc<CoffeeMachineResponse>(1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM, subBuilder: CoffeeMachineResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -1357,6 +1438,15 @@ class CoffeeMachineListResponse extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.List<CoffeeMachineResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) { $_setSignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
 }
 
 class CoffeeMachinePartialUpdateRequest extends $pb.GeneratedMessage {
@@ -2078,10 +2168,14 @@ class ColorModeDestroyRequest extends $pb.GeneratedMessage {
 class ColorModeListRequest extends $pb.GeneratedMessage {
   factory ColorModeListRequest({
     $2.Struct? filters,
+    $2.Struct? pagination,
   }) {
     final $result = create();
     if (filters != null) {
       $result.filters = filters;
+    }
+    if (pagination != null) {
+      $result.pagination = pagination;
     }
     return $result;
   }
@@ -2091,6 +2185,7 @@ class ColorModeListRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ColorModeListRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..aOM<$2.Struct>(1, _omitFieldNames ? '' : 'Filters', subBuilder: $2.Struct.create)
+    ..aOM<$2.Struct>(2, _omitFieldNames ? '' : 'Pagination', subBuilder: $2.Struct.create)
     ..hasRequiredFields = false
   ;
 
@@ -2125,15 +2220,30 @@ class ColorModeListRequest extends $pb.GeneratedMessage {
   void clearFilters() => clearField(1);
   @$pb.TagNumber(1)
   $2.Struct ensureFilters() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $2.Struct get pagination => $_getN(1);
+  @$pb.TagNumber(2)
+  set pagination($2.Struct v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasPagination() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPagination() => clearField(2);
+  @$pb.TagNumber(2)
+  $2.Struct ensurePagination() => $_ensure(1);
 }
 
 class ColorModeListResponse extends $pb.GeneratedMessage {
   factory ColorModeListResponse({
     $core.Iterable<ColorModeResponse>? results,
+    $core.int? count,
   }) {
     final $result = create();
     if (results != null) {
       $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
     }
     return $result;
   }
@@ -2143,6 +2253,7 @@ class ColorModeListResponse extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ColorModeListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..pc<ColorModeResponse>(1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM, subBuilder: ColorModeResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -2169,6 +2280,15 @@ class ColorModeListResponse extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.List<ColorModeResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) { $_setSignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
 }
 
 class ColorModePartialUpdateRequest extends $pb.GeneratedMessage {
@@ -2530,10 +2650,14 @@ class CrontabScheduleDestroyRequest extends $pb.GeneratedMessage {
 class CrontabScheduleListRequest extends $pb.GeneratedMessage {
   factory CrontabScheduleListRequest({
     $2.Struct? filters,
+    $2.Struct? pagination,
   }) {
     final $result = create();
     if (filters != null) {
       $result.filters = filters;
+    }
+    if (pagination != null) {
+      $result.pagination = pagination;
     }
     return $result;
   }
@@ -2543,6 +2667,7 @@ class CrontabScheduleListRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CrontabScheduleListRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..aOM<$2.Struct>(1, _omitFieldNames ? '' : 'Filters', subBuilder: $2.Struct.create)
+    ..aOM<$2.Struct>(2, _omitFieldNames ? '' : 'Pagination', subBuilder: $2.Struct.create)
     ..hasRequiredFields = false
   ;
 
@@ -2577,15 +2702,30 @@ class CrontabScheduleListRequest extends $pb.GeneratedMessage {
   void clearFilters() => clearField(1);
   @$pb.TagNumber(1)
   $2.Struct ensureFilters() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $2.Struct get pagination => $_getN(1);
+  @$pb.TagNumber(2)
+  set pagination($2.Struct v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasPagination() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPagination() => clearField(2);
+  @$pb.TagNumber(2)
+  $2.Struct ensurePagination() => $_ensure(1);
 }
 
 class CrontabScheduleListResponse extends $pb.GeneratedMessage {
   factory CrontabScheduleListResponse({
     $core.Iterable<CrontabScheduleResponse>? results,
+    $core.int? count,
   }) {
     final $result = create();
     if (results != null) {
       $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
     }
     return $result;
   }
@@ -2595,6 +2735,7 @@ class CrontabScheduleListResponse extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CrontabScheduleListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..pc<CrontabScheduleResponse>(1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM, subBuilder: CrontabScheduleResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -2621,6 +2762,15 @@ class CrontabScheduleListResponse extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.List<CrontabScheduleResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) { $_setSignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
 }
 
 class CrontabSchedulePartialUpdateRequest extends $pb.GeneratedMessage {
@@ -3136,10 +3286,14 @@ class ImageModeDestroyRequest extends $pb.GeneratedMessage {
 class ImageModeListRequest extends $pb.GeneratedMessage {
   factory ImageModeListRequest({
     $2.Struct? filters,
+    $2.Struct? pagination,
   }) {
     final $result = create();
     if (filters != null) {
       $result.filters = filters;
+    }
+    if (pagination != null) {
+      $result.pagination = pagination;
     }
     return $result;
   }
@@ -3149,6 +3303,7 @@ class ImageModeListRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ImageModeListRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..aOM<$2.Struct>(1, _omitFieldNames ? '' : 'Filters', subBuilder: $2.Struct.create)
+    ..aOM<$2.Struct>(2, _omitFieldNames ? '' : 'Pagination', subBuilder: $2.Struct.create)
     ..hasRequiredFields = false
   ;
 
@@ -3183,15 +3338,30 @@ class ImageModeListRequest extends $pb.GeneratedMessage {
   void clearFilters() => clearField(1);
   @$pb.TagNumber(1)
   $2.Struct ensureFilters() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $2.Struct get pagination => $_getN(1);
+  @$pb.TagNumber(2)
+  set pagination($2.Struct v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasPagination() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPagination() => clearField(2);
+  @$pb.TagNumber(2)
+  $2.Struct ensurePagination() => $_ensure(1);
 }
 
 class ImageModeListResponse extends $pb.GeneratedMessage {
   factory ImageModeListResponse({
     $core.Iterable<ImageModeResponse>? results,
+    $core.int? count,
   }) {
     final $result = create();
     if (results != null) {
       $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
     }
     return $result;
   }
@@ -3201,6 +3371,7 @@ class ImageModeListResponse extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ImageModeListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..pc<ImageModeResponse>(1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM, subBuilder: ImageModeResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -3227,6 +3398,15 @@ class ImageModeListResponse extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.List<ImageModeResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) { $_setSignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
 }
 
 class ImageModePartialUpdateRequest extends $pb.GeneratedMessage {
@@ -3630,10 +3810,14 @@ class IntervalScheduleDestroyRequest extends $pb.GeneratedMessage {
 class IntervalScheduleListRequest extends $pb.GeneratedMessage {
   factory IntervalScheduleListRequest({
     $2.Struct? filters,
+    $2.Struct? pagination,
   }) {
     final $result = create();
     if (filters != null) {
       $result.filters = filters;
+    }
+    if (pagination != null) {
+      $result.pagination = pagination;
     }
     return $result;
   }
@@ -3643,6 +3827,7 @@ class IntervalScheduleListRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'IntervalScheduleListRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..aOM<$2.Struct>(1, _omitFieldNames ? '' : 'Filters', subBuilder: $2.Struct.create)
+    ..aOM<$2.Struct>(2, _omitFieldNames ? '' : 'Pagination', subBuilder: $2.Struct.create)
     ..hasRequiredFields = false
   ;
 
@@ -3677,15 +3862,30 @@ class IntervalScheduleListRequest extends $pb.GeneratedMessage {
   void clearFilters() => clearField(1);
   @$pb.TagNumber(1)
   $2.Struct ensureFilters() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $2.Struct get pagination => $_getN(1);
+  @$pb.TagNumber(2)
+  set pagination($2.Struct v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasPagination() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPagination() => clearField(2);
+  @$pb.TagNumber(2)
+  $2.Struct ensurePagination() => $_ensure(1);
 }
 
 class IntervalScheduleListResponse extends $pb.GeneratedMessage {
   factory IntervalScheduleListResponse({
     $core.Iterable<IntervalScheduleResponse>? results,
+    $core.int? count,
   }) {
     final $result = create();
     if (results != null) {
       $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
     }
     return $result;
   }
@@ -3695,6 +3895,7 @@ class IntervalScheduleListResponse extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'IntervalScheduleListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..pc<IntervalScheduleResponse>(1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM, subBuilder: IntervalScheduleResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -3721,6 +3922,15 @@ class IntervalScheduleListResponse extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.List<IntervalScheduleResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) { $_setSignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
 }
 
 class IntervalSchedulePartialUpdateRequest extends $pb.GeneratedMessage {
@@ -4068,10 +4278,14 @@ class LedPanelDestroyRequest extends $pb.GeneratedMessage {
 class LedPanelListRequest extends $pb.GeneratedMessage {
   factory LedPanelListRequest({
     $2.Struct? filters,
+    $2.Struct? pagination,
   }) {
     final $result = create();
     if (filters != null) {
       $result.filters = filters;
+    }
+    if (pagination != null) {
+      $result.pagination = pagination;
     }
     return $result;
   }
@@ -4081,6 +4295,7 @@ class LedPanelListRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'LedPanelListRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..aOM<$2.Struct>(1, _omitFieldNames ? '' : 'Filters', subBuilder: $2.Struct.create)
+    ..aOM<$2.Struct>(2, _omitFieldNames ? '' : 'Pagination', subBuilder: $2.Struct.create)
     ..hasRequiredFields = false
   ;
 
@@ -4115,15 +4330,30 @@ class LedPanelListRequest extends $pb.GeneratedMessage {
   void clearFilters() => clearField(1);
   @$pb.TagNumber(1)
   $2.Struct ensureFilters() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $2.Struct get pagination => $_getN(1);
+  @$pb.TagNumber(2)
+  set pagination($2.Struct v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasPagination() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPagination() => clearField(2);
+  @$pb.TagNumber(2)
+  $2.Struct ensurePagination() => $_ensure(1);
 }
 
 class LedPanelListResponse extends $pb.GeneratedMessage {
   factory LedPanelListResponse({
     $core.Iterable<LedPanelResponse>? results,
+    $core.int? count,
   }) {
     final $result = create();
     if (results != null) {
       $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
     }
     return $result;
   }
@@ -4133,6 +4363,7 @@ class LedPanelListResponse extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'LedPanelListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..pc<LedPanelResponse>(1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM, subBuilder: LedPanelResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -4159,6 +4390,15 @@ class LedPanelListResponse extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.List<LedPanelResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) { $_setSignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
 }
 
 class LedPanelPartialUpdateRequest extends $pb.GeneratedMessage {
@@ -4718,10 +4958,14 @@ class PatternModeDestroyRequest extends $pb.GeneratedMessage {
 class PatternModeListRequest extends $pb.GeneratedMessage {
   factory PatternModeListRequest({
     $2.Struct? filters,
+    $2.Struct? pagination,
   }) {
     final $result = create();
     if (filters != null) {
       $result.filters = filters;
+    }
+    if (pagination != null) {
+      $result.pagination = pagination;
     }
     return $result;
   }
@@ -4731,6 +4975,7 @@ class PatternModeListRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PatternModeListRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..aOM<$2.Struct>(1, _omitFieldNames ? '' : 'Filters', subBuilder: $2.Struct.create)
+    ..aOM<$2.Struct>(2, _omitFieldNames ? '' : 'Pagination', subBuilder: $2.Struct.create)
     ..hasRequiredFields = false
   ;
 
@@ -4765,15 +5010,30 @@ class PatternModeListRequest extends $pb.GeneratedMessage {
   void clearFilters() => clearField(1);
   @$pb.TagNumber(1)
   $2.Struct ensureFilters() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $2.Struct get pagination => $_getN(1);
+  @$pb.TagNumber(2)
+  set pagination($2.Struct v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasPagination() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPagination() => clearField(2);
+  @$pb.TagNumber(2)
+  $2.Struct ensurePagination() => $_ensure(1);
 }
 
 class PatternModeListResponse extends $pb.GeneratedMessage {
   factory PatternModeListResponse({
     $core.Iterable<PatternModeResponse>? results,
+    $core.int? count,
   }) {
     final $result = create();
     if (results != null) {
       $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
     }
     return $result;
   }
@@ -4783,6 +5043,7 @@ class PatternModeListResponse extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PatternModeListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..pc<PatternModeResponse>(1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM, subBuilder: PatternModeResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -4809,6 +5070,15 @@ class PatternModeListResponse extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.List<PatternModeResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) { $_setSignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
 }
 
 class PatternModePartialUpdateRequest extends $pb.GeneratedMessage {
@@ -5236,10 +5506,14 @@ class PeriodicTaskDestroyRequest extends $pb.GeneratedMessage {
 class PeriodicTaskListRequest extends $pb.GeneratedMessage {
   factory PeriodicTaskListRequest({
     $2.Struct? filters,
+    $2.Struct? pagination,
   }) {
     final $result = create();
     if (filters != null) {
       $result.filters = filters;
+    }
+    if (pagination != null) {
+      $result.pagination = pagination;
     }
     return $result;
   }
@@ -5249,6 +5523,7 @@ class PeriodicTaskListRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PeriodicTaskListRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..aOM<$2.Struct>(1, _omitFieldNames ? '' : 'Filters', subBuilder: $2.Struct.create)
+    ..aOM<$2.Struct>(2, _omitFieldNames ? '' : 'Pagination', subBuilder: $2.Struct.create)
     ..hasRequiredFields = false
   ;
 
@@ -5283,15 +5558,30 @@ class PeriodicTaskListRequest extends $pb.GeneratedMessage {
   void clearFilters() => clearField(1);
   @$pb.TagNumber(1)
   $2.Struct ensureFilters() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $2.Struct get pagination => $_getN(1);
+  @$pb.TagNumber(2)
+  set pagination($2.Struct v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasPagination() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPagination() => clearField(2);
+  @$pb.TagNumber(2)
+  $2.Struct ensurePagination() => $_ensure(1);
 }
 
 class PeriodicTaskListResponse extends $pb.GeneratedMessage {
   factory PeriodicTaskListResponse({
     $core.Iterable<PeriodicTaskResponse>? results,
+    $core.int? count,
   }) {
     final $result = create();
     if (results != null) {
       $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
     }
     return $result;
   }
@@ -5301,6 +5591,7 @@ class PeriodicTaskListResponse extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PeriodicTaskListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..pc<PeriodicTaskResponse>(1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM, subBuilder: PeriodicTaskResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -5327,6 +5618,15 @@ class PeriodicTaskListResponse extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.List<PeriodicTaskResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) { $_setSignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
 }
 
 class PeriodicTaskPartialUpdateRequest extends $pb.GeneratedMessage {
@@ -5908,10 +6208,14 @@ class ProjectDestroyRequest extends $pb.GeneratedMessage {
 class ProjectListRequest extends $pb.GeneratedMessage {
   factory ProjectListRequest({
     $2.Struct? filters,
+    $2.Struct? pagination,
   }) {
     final $result = create();
     if (filters != null) {
       $result.filters = filters;
+    }
+    if (pagination != null) {
+      $result.pagination = pagination;
     }
     return $result;
   }
@@ -5921,6 +6225,7 @@ class ProjectListRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProjectListRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..aOM<$2.Struct>(1, _omitFieldNames ? '' : 'Filters', subBuilder: $2.Struct.create)
+    ..aOM<$2.Struct>(2, _omitFieldNames ? '' : 'Pagination', subBuilder: $2.Struct.create)
     ..hasRequiredFields = false
   ;
 
@@ -5955,15 +6260,30 @@ class ProjectListRequest extends $pb.GeneratedMessage {
   void clearFilters() => clearField(1);
   @$pb.TagNumber(1)
   $2.Struct ensureFilters() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $2.Struct get pagination => $_getN(1);
+  @$pb.TagNumber(2)
+  set pagination($2.Struct v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasPagination() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPagination() => clearField(2);
+  @$pb.TagNumber(2)
+  $2.Struct ensurePagination() => $_ensure(1);
 }
 
 class ProjectListResponse extends $pb.GeneratedMessage {
   factory ProjectListResponse({
     $core.Iterable<ProjectResponse>? results,
+    $core.int? count,
   }) {
     final $result = create();
     if (results != null) {
       $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
     }
     return $result;
   }
@@ -5973,6 +6293,7 @@ class ProjectListResponse extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProjectListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..pc<ProjectResponse>(1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM, subBuilder: ProjectResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -5999,6 +6320,15 @@ class ProjectListResponse extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.List<ProjectResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) { $_setSignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
 }
 
 class ProjectPartialUpdateRequest extends $pb.GeneratedMessage {
@@ -6418,10 +6748,14 @@ class SolarScheduleDestroyRequest extends $pb.GeneratedMessage {
 class SolarScheduleListRequest extends $pb.GeneratedMessage {
   factory SolarScheduleListRequest({
     $2.Struct? filters,
+    $2.Struct? pagination,
   }) {
     final $result = create();
     if (filters != null) {
       $result.filters = filters;
+    }
+    if (pagination != null) {
+      $result.pagination = pagination;
     }
     return $result;
   }
@@ -6431,6 +6765,7 @@ class SolarScheduleListRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SolarScheduleListRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..aOM<$2.Struct>(1, _omitFieldNames ? '' : 'Filters', subBuilder: $2.Struct.create)
+    ..aOM<$2.Struct>(2, _omitFieldNames ? '' : 'Pagination', subBuilder: $2.Struct.create)
     ..hasRequiredFields = false
   ;
 
@@ -6465,15 +6800,30 @@ class SolarScheduleListRequest extends $pb.GeneratedMessage {
   void clearFilters() => clearField(1);
   @$pb.TagNumber(1)
   $2.Struct ensureFilters() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $2.Struct get pagination => $_getN(1);
+  @$pb.TagNumber(2)
+  set pagination($2.Struct v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasPagination() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPagination() => clearField(2);
+  @$pb.TagNumber(2)
+  $2.Struct ensurePagination() => $_ensure(1);
 }
 
 class SolarScheduleListResponse extends $pb.GeneratedMessage {
   factory SolarScheduleListResponse({
     $core.Iterable<SolarScheduleResponse>? results,
+    $core.int? count,
   }) {
     final $result = create();
     if (results != null) {
       $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
     }
     return $result;
   }
@@ -6483,6 +6833,7 @@ class SolarScheduleListResponse extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SolarScheduleListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..pc<SolarScheduleResponse>(1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM, subBuilder: SolarScheduleResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -6509,6 +6860,15 @@ class SolarScheduleListResponse extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.List<SolarScheduleResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) { $_setSignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
 }
 
 class SolarSchedulePartialUpdateRequest extends $pb.GeneratedMessage {
@@ -6898,10 +7258,14 @@ class UserDestroyRequest extends $pb.GeneratedMessage {
 class UserListRequest extends $pb.GeneratedMessage {
   factory UserListRequest({
     $2.Struct? filters,
+    $2.Struct? pagination,
   }) {
     final $result = create();
     if (filters != null) {
       $result.filters = filters;
+    }
+    if (pagination != null) {
+      $result.pagination = pagination;
     }
     return $result;
   }
@@ -6911,6 +7275,7 @@ class UserListRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UserListRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..aOM<$2.Struct>(1, _omitFieldNames ? '' : 'Filters', subBuilder: $2.Struct.create)
+    ..aOM<$2.Struct>(2, _omitFieldNames ? '' : 'Pagination', subBuilder: $2.Struct.create)
     ..hasRequiredFields = false
   ;
 
@@ -6945,15 +7310,30 @@ class UserListRequest extends $pb.GeneratedMessage {
   void clearFilters() => clearField(1);
   @$pb.TagNumber(1)
   $2.Struct ensureFilters() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $2.Struct get pagination => $_getN(1);
+  @$pb.TagNumber(2)
+  set pagination($2.Struct v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasPagination() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPagination() => clearField(2);
+  @$pb.TagNumber(2)
+  $2.Struct ensurePagination() => $_ensure(1);
 }
 
 class UserListResponse extends $pb.GeneratedMessage {
   factory UserListResponse({
     $core.Iterable<UserResponse>? results,
+    $core.int? count,
   }) {
     final $result = create();
     if (results != null) {
       $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
     }
     return $result;
   }
@@ -6963,6 +7343,7 @@ class UserListResponse extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UserListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..pc<UserResponse>(1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM, subBuilder: UserResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -6989,6 +7370,15 @@ class UserListResponse extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.List<UserResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) { $_setSignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
 }
 
 class UserPartialUpdateRequest extends $pb.GeneratedMessage {
@@ -7444,10 +7834,14 @@ class VideoModeDestroyRequest extends $pb.GeneratedMessage {
 class VideoModeListRequest extends $pb.GeneratedMessage {
   factory VideoModeListRequest({
     $2.Struct? filters,
+    $2.Struct? pagination,
   }) {
     final $result = create();
     if (filters != null) {
       $result.filters = filters;
+    }
+    if (pagination != null) {
+      $result.pagination = pagination;
     }
     return $result;
   }
@@ -7457,6 +7851,7 @@ class VideoModeListRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'VideoModeListRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..aOM<$2.Struct>(1, _omitFieldNames ? '' : 'Filters', subBuilder: $2.Struct.create)
+    ..aOM<$2.Struct>(2, _omitFieldNames ? '' : 'Pagination', subBuilder: $2.Struct.create)
     ..hasRequiredFields = false
   ;
 
@@ -7491,15 +7886,30 @@ class VideoModeListRequest extends $pb.GeneratedMessage {
   void clearFilters() => clearField(1);
   @$pb.TagNumber(1)
   $2.Struct ensureFilters() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $2.Struct get pagination => $_getN(1);
+  @$pb.TagNumber(2)
+  set pagination($2.Struct v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasPagination() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPagination() => clearField(2);
+  @$pb.TagNumber(2)
+  $2.Struct ensurePagination() => $_ensure(1);
 }
 
 class VideoModeListResponse extends $pb.GeneratedMessage {
   factory VideoModeListResponse({
     $core.Iterable<VideoModeResponse>? results,
+    $core.int? count,
   }) {
     final $result = create();
     if (results != null) {
       $result.results.addAll(results);
+    }
+    if (count != null) {
+      $result.count = count;
     }
     return $result;
   }
@@ -7509,6 +7919,7 @@ class VideoModeListResponse extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'VideoModeListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'base_app.products_controller'), createEmptyInstance: create)
     ..pc<VideoModeResponse>(1, _omitFieldNames ? '' : 'results', $pb.PbFieldType.PM, subBuilder: VideoModeResponse.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'count', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
 
@@ -7535,6 +7946,15 @@ class VideoModeListResponse extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.List<VideoModeResponse> get results => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.int get count => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set count($core.int v) { $_setSignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCount() => clearField(2);
 }
 
 class VideoModePartialUpdateRequest extends $pb.GeneratedMessage {

@@ -116,29 +116,35 @@ const CategoryListRequest$json = {
   '1': 'CategoryListRequest',
   '2': [
     {'1': '_filters', '3': 1, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 0, '10': 'Filters', '17': true},
+    {'1': '_pagination', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 1, '10': 'Pagination', '17': true},
   ],
   '8': [
     {'1': 'X_filters'},
+    {'1': 'X_pagination'},
   ],
 };
 
 /// Descriptor for `CategoryListRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List categoryListRequestDescriptor = $convert.base64Decode(
     'ChNDYXRlZ29yeUxpc3RSZXF1ZXN0EjcKCF9maWx0ZXJzGAEgASgLMhcuZ29vZ2xlLnByb3RvYn'
-    'VmLlN0cnVjdEgAUgdGaWx0ZXJziAEBQgsKCVhfZmlsdGVycw==');
+    'VmLlN0cnVjdEgAUgdGaWx0ZXJziAEBEj0KC19wYWdpbmF0aW9uGAIgASgLMhcuZ29vZ2xlLnBy'
+    'b3RvYnVmLlN0cnVjdEgBUgpQYWdpbmF0aW9uiAEBQgsKCVhfZmlsdGVyc0IOCgxYX3BhZ2luYX'
+    'Rpb24=');
 
 @$core.Deprecated('Use categoryListResponseDescriptor instead')
 const CategoryListResponse$json = {
   '1': 'CategoryListResponse',
   '2': [
     {'1': 'results', '3': 1, '4': 3, '5': 11, '6': '.base_app.products_controller.CategoryResponse', '10': 'results'},
+    {'1': 'count', '3': 2, '4': 1, '5': 5, '10': 'count'},
   ],
 };
 
 /// Descriptor for `CategoryListResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List categoryListResponseDescriptor = $convert.base64Decode(
     'ChRDYXRlZ29yeUxpc3RSZXNwb25zZRJICgdyZXN1bHRzGAEgAygLMi4uYmFzZV9hcHAucHJvZH'
-    'VjdHNfY29udHJvbGxlci5DYXRlZ29yeVJlc3BvbnNlUgdyZXN1bHRz');
+    'VjdHNfY29udHJvbGxlci5DYXRlZ29yeVJlc3BvbnNlUgdyZXN1bHRzEhQKBWNvdW50GAIgASgF'
+    'UgVjb3VudA==');
 
 @$core.Deprecated('Use categoryPartialUpdateRequestDescriptor instead')
 const CategoryPartialUpdateRequest$json = {
@@ -222,29 +228,35 @@ const ClockedScheduleListRequest$json = {
   '1': 'ClockedScheduleListRequest',
   '2': [
     {'1': '_filters', '3': 1, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 0, '10': 'Filters', '17': true},
+    {'1': '_pagination', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 1, '10': 'Pagination', '17': true},
   ],
   '8': [
     {'1': 'X_filters'},
+    {'1': 'X_pagination'},
   ],
 };
 
 /// Descriptor for `ClockedScheduleListRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List clockedScheduleListRequestDescriptor = $convert.base64Decode(
     'ChpDbG9ja2VkU2NoZWR1bGVMaXN0UmVxdWVzdBI3CghfZmlsdGVycxgBIAEoCzIXLmdvb2dsZS'
-    '5wcm90b2J1Zi5TdHJ1Y3RIAFIHRmlsdGVyc4gBAUILCglYX2ZpbHRlcnM=');
+    '5wcm90b2J1Zi5TdHJ1Y3RIAFIHRmlsdGVyc4gBARI9CgtfcGFnaW5hdGlvbhgCIAEoCzIXLmdv'
+    'b2dsZS5wcm90b2J1Zi5TdHJ1Y3RIAVIKUGFnaW5hdGlvbogBAUILCglYX2ZpbHRlcnNCDgoMWF'
+    '9wYWdpbmF0aW9u');
 
 @$core.Deprecated('Use clockedScheduleListResponseDescriptor instead')
 const ClockedScheduleListResponse$json = {
   '1': 'ClockedScheduleListResponse',
   '2': [
     {'1': 'results', '3': 1, '4': 3, '5': 11, '6': '.base_app.products_controller.ClockedScheduleResponse', '10': 'results'},
+    {'1': 'count', '3': 2, '4': 1, '5': 5, '10': 'count'},
   ],
 };
 
 /// Descriptor for `ClockedScheduleListResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List clockedScheduleListResponseDescriptor = $convert.base64Decode(
     'ChtDbG9ja2VkU2NoZWR1bGVMaXN0UmVzcG9uc2USTwoHcmVzdWx0cxgBIAMoCzI1LmJhc2VfYX'
-    'BwLnByb2R1Y3RzX2NvbnRyb2xsZXIuQ2xvY2tlZFNjaGVkdWxlUmVzcG9uc2VSB3Jlc3VsdHM=');
+    'BwLnByb2R1Y3RzX2NvbnRyb2xsZXIuQ2xvY2tlZFNjaGVkdWxlUmVzcG9uc2VSB3Jlc3VsdHMS'
+    'FAoFY291bnQYAiABKAVSBWNvdW50');
 
 @$core.Deprecated('Use clockedSchedulePartialUpdateRequestDescriptor instead')
 const ClockedSchedulePartialUpdateRequest$json = {
@@ -328,29 +340,35 @@ const CoffeeMachineListRequest$json = {
   '1': 'CoffeeMachineListRequest',
   '2': [
     {'1': '_filters', '3': 1, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 0, '10': 'Filters', '17': true},
+    {'1': '_pagination', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 1, '10': 'Pagination', '17': true},
   ],
   '8': [
     {'1': 'X_filters'},
+    {'1': 'X_pagination'},
   ],
 };
 
 /// Descriptor for `CoffeeMachineListRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List coffeeMachineListRequestDescriptor = $convert.base64Decode(
     'ChhDb2ZmZWVNYWNoaW5lTGlzdFJlcXVlc3QSNwoIX2ZpbHRlcnMYASABKAsyFy5nb29nbGUucH'
-    'JvdG9idWYuU3RydWN0SABSB0ZpbHRlcnOIAQFCCwoJWF9maWx0ZXJz');
+    'JvdG9idWYuU3RydWN0SABSB0ZpbHRlcnOIAQESPQoLX3BhZ2luYXRpb24YAiABKAsyFy5nb29n'
+    'bGUucHJvdG9idWYuU3RydWN0SAFSClBhZ2luYXRpb26IAQFCCwoJWF9maWx0ZXJzQg4KDFhfcG'
+    'FnaW5hdGlvbg==');
 
 @$core.Deprecated('Use coffeeMachineListResponseDescriptor instead')
 const CoffeeMachineListResponse$json = {
   '1': 'CoffeeMachineListResponse',
   '2': [
     {'1': 'results', '3': 1, '4': 3, '5': 11, '6': '.base_app.products_controller.CoffeeMachineResponse', '10': 'results'},
+    {'1': 'count', '3': 2, '4': 1, '5': 5, '10': 'count'},
   ],
 };
 
 /// Descriptor for `CoffeeMachineListResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List coffeeMachineListResponseDescriptor = $convert.base64Decode(
     'ChlDb2ZmZWVNYWNoaW5lTGlzdFJlc3BvbnNlEk0KB3Jlc3VsdHMYASADKAsyMy5iYXNlX2FwcC'
-    '5wcm9kdWN0c19jb250cm9sbGVyLkNvZmZlZU1hY2hpbmVSZXNwb25zZVIHcmVzdWx0cw==');
+    '5wcm9kdWN0c19jb250cm9sbGVyLkNvZmZlZU1hY2hpbmVSZXNwb25zZVIHcmVzdWx0cxIUCgVj'
+    'b3VudBgCIAEoBVIFY291bnQ=');
 
 @$core.Deprecated('Use coffeeMachinePartialUpdateRequestDescriptor instead')
 const CoffeeMachinePartialUpdateRequest$json = {
@@ -512,29 +530,35 @@ const ColorModeListRequest$json = {
   '1': 'ColorModeListRequest',
   '2': [
     {'1': '_filters', '3': 1, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 0, '10': 'Filters', '17': true},
+    {'1': '_pagination', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 1, '10': 'Pagination', '17': true},
   ],
   '8': [
     {'1': 'X_filters'},
+    {'1': 'X_pagination'},
   ],
 };
 
 /// Descriptor for `ColorModeListRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List colorModeListRequestDescriptor = $convert.base64Decode(
     'ChRDb2xvck1vZGVMaXN0UmVxdWVzdBI3CghfZmlsdGVycxgBIAEoCzIXLmdvb2dsZS5wcm90b2'
-    'J1Zi5TdHJ1Y3RIAFIHRmlsdGVyc4gBAUILCglYX2ZpbHRlcnM=');
+    'J1Zi5TdHJ1Y3RIAFIHRmlsdGVyc4gBARI9CgtfcGFnaW5hdGlvbhgCIAEoCzIXLmdvb2dsZS5w'
+    'cm90b2J1Zi5TdHJ1Y3RIAVIKUGFnaW5hdGlvbogBAUILCglYX2ZpbHRlcnNCDgoMWF9wYWdpbm'
+    'F0aW9u');
 
 @$core.Deprecated('Use colorModeListResponseDescriptor instead')
 const ColorModeListResponse$json = {
   '1': 'ColorModeListResponse',
   '2': [
     {'1': 'results', '3': 1, '4': 3, '5': 11, '6': '.base_app.products_controller.ColorModeResponse', '10': 'results'},
+    {'1': 'count', '3': 2, '4': 1, '5': 5, '10': 'count'},
   ],
 };
 
 /// Descriptor for `ColorModeListResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List colorModeListResponseDescriptor = $convert.base64Decode(
     'ChVDb2xvck1vZGVMaXN0UmVzcG9uc2USSQoHcmVzdWx0cxgBIAMoCzIvLmJhc2VfYXBwLnByb2'
-    'R1Y3RzX2NvbnRyb2xsZXIuQ29sb3JNb2RlUmVzcG9uc2VSB3Jlc3VsdHM=');
+    'R1Y3RzX2NvbnRyb2xsZXIuQ29sb3JNb2RlUmVzcG9uc2VSB3Jlc3VsdHMSFAoFY291bnQYAiAB'
+    'KAVSBWNvdW50');
 
 @$core.Deprecated('Use colorModePartialUpdateRequestDescriptor instead')
 const ColorModePartialUpdateRequest$json = {
@@ -629,29 +653,35 @@ const CrontabScheduleListRequest$json = {
   '1': 'CrontabScheduleListRequest',
   '2': [
     {'1': '_filters', '3': 1, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 0, '10': 'Filters', '17': true},
+    {'1': '_pagination', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 1, '10': 'Pagination', '17': true},
   ],
   '8': [
     {'1': 'X_filters'},
+    {'1': 'X_pagination'},
   ],
 };
 
 /// Descriptor for `CrontabScheduleListRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List crontabScheduleListRequestDescriptor = $convert.base64Decode(
     'ChpDcm9udGFiU2NoZWR1bGVMaXN0UmVxdWVzdBI3CghfZmlsdGVycxgBIAEoCzIXLmdvb2dsZS'
-    '5wcm90b2J1Zi5TdHJ1Y3RIAFIHRmlsdGVyc4gBAUILCglYX2ZpbHRlcnM=');
+    '5wcm90b2J1Zi5TdHJ1Y3RIAFIHRmlsdGVyc4gBARI9CgtfcGFnaW5hdGlvbhgCIAEoCzIXLmdv'
+    'b2dsZS5wcm90b2J1Zi5TdHJ1Y3RIAVIKUGFnaW5hdGlvbogBAUILCglYX2ZpbHRlcnNCDgoMWF'
+    '9wYWdpbmF0aW9u');
 
 @$core.Deprecated('Use crontabScheduleListResponseDescriptor instead')
 const CrontabScheduleListResponse$json = {
   '1': 'CrontabScheduleListResponse',
   '2': [
     {'1': 'results', '3': 1, '4': 3, '5': 11, '6': '.base_app.products_controller.CrontabScheduleResponse', '10': 'results'},
+    {'1': 'count', '3': 2, '4': 1, '5': 5, '10': 'count'},
   ],
 };
 
 /// Descriptor for `CrontabScheduleListResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List crontabScheduleListResponseDescriptor = $convert.base64Decode(
     'ChtDcm9udGFiU2NoZWR1bGVMaXN0UmVzcG9uc2USTwoHcmVzdWx0cxgBIAMoCzI1LmJhc2VfYX'
-    'BwLnByb2R1Y3RzX2NvbnRyb2xsZXIuQ3JvbnRhYlNjaGVkdWxlUmVzcG9uc2VSB3Jlc3VsdHM=');
+    'BwLnByb2R1Y3RzX2NvbnRyb2xsZXIuQ3JvbnRhYlNjaGVkdWxlUmVzcG9uc2VSB3Jlc3VsdHMS'
+    'FAoFY291bnQYAiABKAVSBWNvdW50');
 
 @$core.Deprecated('Use crontabSchedulePartialUpdateRequestDescriptor instead')
 const CrontabSchedulePartialUpdateRequest$json = {
@@ -783,29 +813,35 @@ const ImageModeListRequest$json = {
   '1': 'ImageModeListRequest',
   '2': [
     {'1': '_filters', '3': 1, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 0, '10': 'Filters', '17': true},
+    {'1': '_pagination', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 1, '10': 'Pagination', '17': true},
   ],
   '8': [
     {'1': 'X_filters'},
+    {'1': 'X_pagination'},
   ],
 };
 
 /// Descriptor for `ImageModeListRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List imageModeListRequestDescriptor = $convert.base64Decode(
     'ChRJbWFnZU1vZGVMaXN0UmVxdWVzdBI3CghfZmlsdGVycxgBIAEoCzIXLmdvb2dsZS5wcm90b2'
-    'J1Zi5TdHJ1Y3RIAFIHRmlsdGVyc4gBAUILCglYX2ZpbHRlcnM=');
+    'J1Zi5TdHJ1Y3RIAFIHRmlsdGVyc4gBARI9CgtfcGFnaW5hdGlvbhgCIAEoCzIXLmdvb2dsZS5w'
+    'cm90b2J1Zi5TdHJ1Y3RIAVIKUGFnaW5hdGlvbogBAUILCglYX2ZpbHRlcnNCDgoMWF9wYWdpbm'
+    'F0aW9u');
 
 @$core.Deprecated('Use imageModeListResponseDescriptor instead')
 const ImageModeListResponse$json = {
   '1': 'ImageModeListResponse',
   '2': [
     {'1': 'results', '3': 1, '4': 3, '5': 11, '6': '.base_app.products_controller.ImageModeResponse', '10': 'results'},
+    {'1': 'count', '3': 2, '4': 1, '5': 5, '10': 'count'},
   ],
 };
 
 /// Descriptor for `ImageModeListResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List imageModeListResponseDescriptor = $convert.base64Decode(
     'ChVJbWFnZU1vZGVMaXN0UmVzcG9uc2USSQoHcmVzdWx0cxgBIAMoCzIvLmJhc2VfYXBwLnByb2'
-    'R1Y3RzX2NvbnRyb2xsZXIuSW1hZ2VNb2RlUmVzcG9uc2VSB3Jlc3VsdHM=');
+    'R1Y3RzX2NvbnRyb2xsZXIuSW1hZ2VNb2RlUmVzcG9uc2VSB3Jlc3VsdHMSFAoFY291bnQYAiAB'
+    'KAVSBWNvdW50');
 
 @$core.Deprecated('Use imageModePartialUpdateRequestDescriptor instead')
 const ImageModePartialUpdateRequest$json = {
@@ -905,22 +941,27 @@ const IntervalScheduleListRequest$json = {
   '1': 'IntervalScheduleListRequest',
   '2': [
     {'1': '_filters', '3': 1, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 0, '10': 'Filters', '17': true},
+    {'1': '_pagination', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 1, '10': 'Pagination', '17': true},
   ],
   '8': [
     {'1': 'X_filters'},
+    {'1': 'X_pagination'},
   ],
 };
 
 /// Descriptor for `IntervalScheduleListRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List intervalScheduleListRequestDescriptor = $convert.base64Decode(
     'ChtJbnRlcnZhbFNjaGVkdWxlTGlzdFJlcXVlc3QSNwoIX2ZpbHRlcnMYASABKAsyFy5nb29nbG'
-    'UucHJvdG9idWYuU3RydWN0SABSB0ZpbHRlcnOIAQFCCwoJWF9maWx0ZXJz');
+    'UucHJvdG9idWYuU3RydWN0SABSB0ZpbHRlcnOIAQESPQoLX3BhZ2luYXRpb24YAiABKAsyFy5n'
+    'b29nbGUucHJvdG9idWYuU3RydWN0SAFSClBhZ2luYXRpb26IAQFCCwoJWF9maWx0ZXJzQg4KDF'
+    'hfcGFnaW5hdGlvbg==');
 
 @$core.Deprecated('Use intervalScheduleListResponseDescriptor instead')
 const IntervalScheduleListResponse$json = {
   '1': 'IntervalScheduleListResponse',
   '2': [
     {'1': 'results', '3': 1, '4': 3, '5': 11, '6': '.base_app.products_controller.IntervalScheduleResponse', '10': 'results'},
+    {'1': 'count', '3': 2, '4': 1, '5': 5, '10': 'count'},
   ],
 };
 
@@ -928,7 +969,7 @@ const IntervalScheduleListResponse$json = {
 final $typed_data.Uint8List intervalScheduleListResponseDescriptor = $convert.base64Decode(
     'ChxJbnRlcnZhbFNjaGVkdWxlTGlzdFJlc3BvbnNlElAKB3Jlc3VsdHMYASADKAsyNi5iYXNlX2'
     'FwcC5wcm9kdWN0c19jb250cm9sbGVyLkludGVydmFsU2NoZWR1bGVSZXNwb25zZVIHcmVzdWx0'
-    'cw==');
+    'cxIUCgVjb3VudBgCIAEoBVIFY291bnQ=');
 
 @$core.Deprecated('Use intervalSchedulePartialUpdateRequestDescriptor instead')
 const IntervalSchedulePartialUpdateRequest$json = {
@@ -1015,29 +1056,35 @@ const LedPanelListRequest$json = {
   '1': 'LedPanelListRequest',
   '2': [
     {'1': '_filters', '3': 1, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 0, '10': 'Filters', '17': true},
+    {'1': '_pagination', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 1, '10': 'Pagination', '17': true},
   ],
   '8': [
     {'1': 'X_filters'},
+    {'1': 'X_pagination'},
   ],
 };
 
 /// Descriptor for `LedPanelListRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List ledPanelListRequestDescriptor = $convert.base64Decode(
     'ChNMZWRQYW5lbExpc3RSZXF1ZXN0EjcKCF9maWx0ZXJzGAEgASgLMhcuZ29vZ2xlLnByb3RvYn'
-    'VmLlN0cnVjdEgAUgdGaWx0ZXJziAEBQgsKCVhfZmlsdGVycw==');
+    'VmLlN0cnVjdEgAUgdGaWx0ZXJziAEBEj0KC19wYWdpbmF0aW9uGAIgASgLMhcuZ29vZ2xlLnBy'
+    'b3RvYnVmLlN0cnVjdEgBUgpQYWdpbmF0aW9uiAEBQgsKCVhfZmlsdGVyc0IOCgxYX3BhZ2luYX'
+    'Rpb24=');
 
 @$core.Deprecated('Use ledPanelListResponseDescriptor instead')
 const LedPanelListResponse$json = {
   '1': 'LedPanelListResponse',
   '2': [
     {'1': 'results', '3': 1, '4': 3, '5': 11, '6': '.base_app.products_controller.LedPanelResponse', '10': 'results'},
+    {'1': 'count', '3': 2, '4': 1, '5': 5, '10': 'count'},
   ],
 };
 
 /// Descriptor for `LedPanelListResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List ledPanelListResponseDescriptor = $convert.base64Decode(
     'ChRMZWRQYW5lbExpc3RSZXNwb25zZRJICgdyZXN1bHRzGAEgAygLMi4uYmFzZV9hcHAucHJvZH'
-    'VjdHNfY29udHJvbGxlci5MZWRQYW5lbFJlc3BvbnNlUgdyZXN1bHRz');
+    'VjdHNfY29udHJvbGxlci5MZWRQYW5lbFJlc3BvbnNlUgdyZXN1bHRzEhQKBWNvdW50GAIgASgF'
+    'UgVjb3VudA==');
 
 @$core.Deprecated('Use ledPanelPartialUpdateRequestDescriptor instead')
 const LedPanelPartialUpdateRequest$json = {
@@ -1160,29 +1207,35 @@ const PatternModeListRequest$json = {
   '1': 'PatternModeListRequest',
   '2': [
     {'1': '_filters', '3': 1, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 0, '10': 'Filters', '17': true},
+    {'1': '_pagination', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 1, '10': 'Pagination', '17': true},
   ],
   '8': [
     {'1': 'X_filters'},
+    {'1': 'X_pagination'},
   ],
 };
 
 /// Descriptor for `PatternModeListRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List patternModeListRequestDescriptor = $convert.base64Decode(
     'ChZQYXR0ZXJuTW9kZUxpc3RSZXF1ZXN0EjcKCF9maWx0ZXJzGAEgASgLMhcuZ29vZ2xlLnByb3'
-    'RvYnVmLlN0cnVjdEgAUgdGaWx0ZXJziAEBQgsKCVhfZmlsdGVycw==');
+    'RvYnVmLlN0cnVjdEgAUgdGaWx0ZXJziAEBEj0KC19wYWdpbmF0aW9uGAIgASgLMhcuZ29vZ2xl'
+    'LnByb3RvYnVmLlN0cnVjdEgBUgpQYWdpbmF0aW9uiAEBQgsKCVhfZmlsdGVyc0IOCgxYX3BhZ2'
+    'luYXRpb24=');
 
 @$core.Deprecated('Use patternModeListResponseDescriptor instead')
 const PatternModeListResponse$json = {
   '1': 'PatternModeListResponse',
   '2': [
     {'1': 'results', '3': 1, '4': 3, '5': 11, '6': '.base_app.products_controller.PatternModeResponse', '10': 'results'},
+    {'1': 'count', '3': 2, '4': 1, '5': 5, '10': 'count'},
   ],
 };
 
 /// Descriptor for `PatternModeListResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List patternModeListResponseDescriptor = $convert.base64Decode(
     'ChdQYXR0ZXJuTW9kZUxpc3RSZXNwb25zZRJLCgdyZXN1bHRzGAEgAygLMjEuYmFzZV9hcHAucH'
-    'JvZHVjdHNfY29udHJvbGxlci5QYXR0ZXJuTW9kZVJlc3BvbnNlUgdyZXN1bHRz');
+    'JvZHVjdHNfY29udHJvbGxlci5QYXR0ZXJuTW9kZVJlc3BvbnNlUgdyZXN1bHRzEhQKBWNvdW50'
+    'GAIgASgFUgVjb3VudA==');
 
 @$core.Deprecated('Use patternModePartialUpdateRequestDescriptor instead')
 const PatternModePartialUpdateRequest$json = {
@@ -1281,29 +1334,35 @@ const PeriodicTaskListRequest$json = {
   '1': 'PeriodicTaskListRequest',
   '2': [
     {'1': '_filters', '3': 1, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 0, '10': 'Filters', '17': true},
+    {'1': '_pagination', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 1, '10': 'Pagination', '17': true},
   ],
   '8': [
     {'1': 'X_filters'},
+    {'1': 'X_pagination'},
   ],
 };
 
 /// Descriptor for `PeriodicTaskListRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List periodicTaskListRequestDescriptor = $convert.base64Decode(
     'ChdQZXJpb2RpY1Rhc2tMaXN0UmVxdWVzdBI3CghfZmlsdGVycxgBIAEoCzIXLmdvb2dsZS5wcm'
-    '90b2J1Zi5TdHJ1Y3RIAFIHRmlsdGVyc4gBAUILCglYX2ZpbHRlcnM=');
+    '90b2J1Zi5TdHJ1Y3RIAFIHRmlsdGVyc4gBARI9CgtfcGFnaW5hdGlvbhgCIAEoCzIXLmdvb2ds'
+    'ZS5wcm90b2J1Zi5TdHJ1Y3RIAVIKUGFnaW5hdGlvbogBAUILCglYX2ZpbHRlcnNCDgoMWF9wYW'
+    'dpbmF0aW9u');
 
 @$core.Deprecated('Use periodicTaskListResponseDescriptor instead')
 const PeriodicTaskListResponse$json = {
   '1': 'PeriodicTaskListResponse',
   '2': [
     {'1': 'results', '3': 1, '4': 3, '5': 11, '6': '.base_app.products_controller.PeriodicTaskResponse', '10': 'results'},
+    {'1': 'count', '3': 2, '4': 1, '5': 5, '10': 'count'},
   ],
 };
 
 /// Descriptor for `PeriodicTaskListResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List periodicTaskListResponseDescriptor = $convert.base64Decode(
     'ChhQZXJpb2RpY1Rhc2tMaXN0UmVzcG9uc2USTAoHcmVzdWx0cxgBIAMoCzIyLmJhc2VfYXBwLn'
-    'Byb2R1Y3RzX2NvbnRyb2xsZXIuUGVyaW9kaWNUYXNrUmVzcG9uc2VSB3Jlc3VsdHM=');
+    'Byb2R1Y3RzX2NvbnRyb2xsZXIuUGVyaW9kaWNUYXNrUmVzcG9uc2VSB3Jlc3VsdHMSFAoFY291'
+    'bnQYAiABKAVSBWNvdW50');
 
 @$core.Deprecated('Use periodicTaskPartialUpdateRequestDescriptor instead')
 const PeriodicTaskPartialUpdateRequest$json = {
@@ -1444,29 +1503,35 @@ const ProjectListRequest$json = {
   '1': 'ProjectListRequest',
   '2': [
     {'1': '_filters', '3': 1, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 0, '10': 'Filters', '17': true},
+    {'1': '_pagination', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 1, '10': 'Pagination', '17': true},
   ],
   '8': [
     {'1': 'X_filters'},
+    {'1': 'X_pagination'},
   ],
 };
 
 /// Descriptor for `ProjectListRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List projectListRequestDescriptor = $convert.base64Decode(
     'ChJQcm9qZWN0TGlzdFJlcXVlc3QSNwoIX2ZpbHRlcnMYASABKAsyFy5nb29nbGUucHJvdG9idW'
-    'YuU3RydWN0SABSB0ZpbHRlcnOIAQFCCwoJWF9maWx0ZXJz');
+    'YuU3RydWN0SABSB0ZpbHRlcnOIAQESPQoLX3BhZ2luYXRpb24YAiABKAsyFy5nb29nbGUucHJv'
+    'dG9idWYuU3RydWN0SAFSClBhZ2luYXRpb26IAQFCCwoJWF9maWx0ZXJzQg4KDFhfcGFnaW5hdG'
+    'lvbg==');
 
 @$core.Deprecated('Use projectListResponseDescriptor instead')
 const ProjectListResponse$json = {
   '1': 'ProjectListResponse',
   '2': [
     {'1': 'results', '3': 1, '4': 3, '5': 11, '6': '.base_app.products_controller.ProjectResponse', '10': 'results'},
+    {'1': 'count', '3': 2, '4': 1, '5': 5, '10': 'count'},
   ],
 };
 
 /// Descriptor for `ProjectListResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List projectListResponseDescriptor = $convert.base64Decode(
     'ChNQcm9qZWN0TGlzdFJlc3BvbnNlEkcKB3Jlc3VsdHMYASADKAsyLS5iYXNlX2FwcC5wcm9kdW'
-    'N0c19jb250cm9sbGVyLlByb2plY3RSZXNwb25zZVIHcmVzdWx0cw==');
+    'N0c19jb250cm9sbGVyLlByb2plY3RSZXNwb25zZVIHcmVzdWx0cxIUCgVjb3VudBgCIAEoBVIF'
+    'Y291bnQ=');
 
 @$core.Deprecated('Use projectPartialUpdateRequestDescriptor instead')
 const ProjectPartialUpdateRequest$json = {
@@ -1568,29 +1633,35 @@ const SolarScheduleListRequest$json = {
   '1': 'SolarScheduleListRequest',
   '2': [
     {'1': '_filters', '3': 1, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 0, '10': 'Filters', '17': true},
+    {'1': '_pagination', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 1, '10': 'Pagination', '17': true},
   ],
   '8': [
     {'1': 'X_filters'},
+    {'1': 'X_pagination'},
   ],
 };
 
 /// Descriptor for `SolarScheduleListRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List solarScheduleListRequestDescriptor = $convert.base64Decode(
     'ChhTb2xhclNjaGVkdWxlTGlzdFJlcXVlc3QSNwoIX2ZpbHRlcnMYASABKAsyFy5nb29nbGUucH'
-    'JvdG9idWYuU3RydWN0SABSB0ZpbHRlcnOIAQFCCwoJWF9maWx0ZXJz');
+    'JvdG9idWYuU3RydWN0SABSB0ZpbHRlcnOIAQESPQoLX3BhZ2luYXRpb24YAiABKAsyFy5nb29n'
+    'bGUucHJvdG9idWYuU3RydWN0SAFSClBhZ2luYXRpb26IAQFCCwoJWF9maWx0ZXJzQg4KDFhfcG'
+    'FnaW5hdGlvbg==');
 
 @$core.Deprecated('Use solarScheduleListResponseDescriptor instead')
 const SolarScheduleListResponse$json = {
   '1': 'SolarScheduleListResponse',
   '2': [
     {'1': 'results', '3': 1, '4': 3, '5': 11, '6': '.base_app.products_controller.SolarScheduleResponse', '10': 'results'},
+    {'1': 'count', '3': 2, '4': 1, '5': 5, '10': 'count'},
   ],
 };
 
 /// Descriptor for `SolarScheduleListResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List solarScheduleListResponseDescriptor = $convert.base64Decode(
     'ChlTb2xhclNjaGVkdWxlTGlzdFJlc3BvbnNlEk0KB3Jlc3VsdHMYASADKAsyMy5iYXNlX2FwcC'
-    '5wcm9kdWN0c19jb250cm9sbGVyLlNvbGFyU2NoZWR1bGVSZXNwb25zZVIHcmVzdWx0cw==');
+    '5wcm9kdWN0c19jb250cm9sbGVyLlNvbGFyU2NoZWR1bGVSZXNwb25zZVIHcmVzdWx0cxIUCgVj'
+    'b3VudBgCIAEoBVIFY291bnQ=');
 
 @$core.Deprecated('Use solarSchedulePartialUpdateRequestDescriptor instead')
 const SolarSchedulePartialUpdateRequest$json = {
@@ -1683,29 +1754,34 @@ const UserListRequest$json = {
   '1': 'UserListRequest',
   '2': [
     {'1': '_filters', '3': 1, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 0, '10': 'Filters', '17': true},
+    {'1': '_pagination', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 1, '10': 'Pagination', '17': true},
   ],
   '8': [
     {'1': 'X_filters'},
+    {'1': 'X_pagination'},
   ],
 };
 
 /// Descriptor for `UserListRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List userListRequestDescriptor = $convert.base64Decode(
     'Cg9Vc2VyTGlzdFJlcXVlc3QSNwoIX2ZpbHRlcnMYASABKAsyFy5nb29nbGUucHJvdG9idWYuU3'
-    'RydWN0SABSB0ZpbHRlcnOIAQFCCwoJWF9maWx0ZXJz');
+    'RydWN0SABSB0ZpbHRlcnOIAQESPQoLX3BhZ2luYXRpb24YAiABKAsyFy5nb29nbGUucHJvdG9i'
+    'dWYuU3RydWN0SAFSClBhZ2luYXRpb26IAQFCCwoJWF9maWx0ZXJzQg4KDFhfcGFnaW5hdGlvbg'
+    '==');
 
 @$core.Deprecated('Use userListResponseDescriptor instead')
 const UserListResponse$json = {
   '1': 'UserListResponse',
   '2': [
     {'1': 'results', '3': 1, '4': 3, '5': 11, '6': '.base_app.products_controller.UserResponse', '10': 'results'},
+    {'1': 'count', '3': 2, '4': 1, '5': 5, '10': 'count'},
   ],
 };
 
 /// Descriptor for `UserListResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List userListResponseDescriptor = $convert.base64Decode(
     'ChBVc2VyTGlzdFJlc3BvbnNlEkQKB3Jlc3VsdHMYASADKAsyKi5iYXNlX2FwcC5wcm9kdWN0c1'
-    '9jb250cm9sbGVyLlVzZXJSZXNwb25zZVIHcmVzdWx0cw==');
+    '9jb250cm9sbGVyLlVzZXJSZXNwb25zZVIHcmVzdWx0cxIUCgVjb3VudBgCIAEoBVIFY291bnQ=');
 
 @$core.Deprecated('Use userPartialUpdateRequestDescriptor instead')
 const UserPartialUpdateRequest$json = {
@@ -1819,29 +1895,35 @@ const VideoModeListRequest$json = {
   '1': 'VideoModeListRequest',
   '2': [
     {'1': '_filters', '3': 1, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 0, '10': 'Filters', '17': true},
+    {'1': '_pagination', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.Struct', '9': 1, '10': 'Pagination', '17': true},
   ],
   '8': [
     {'1': 'X_filters'},
+    {'1': 'X_pagination'},
   ],
 };
 
 /// Descriptor for `VideoModeListRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List videoModeListRequestDescriptor = $convert.base64Decode(
     'ChRWaWRlb01vZGVMaXN0UmVxdWVzdBI3CghfZmlsdGVycxgBIAEoCzIXLmdvb2dsZS5wcm90b2'
-    'J1Zi5TdHJ1Y3RIAFIHRmlsdGVyc4gBAUILCglYX2ZpbHRlcnM=');
+    'J1Zi5TdHJ1Y3RIAFIHRmlsdGVyc4gBARI9CgtfcGFnaW5hdGlvbhgCIAEoCzIXLmdvb2dsZS5w'
+    'cm90b2J1Zi5TdHJ1Y3RIAVIKUGFnaW5hdGlvbogBAUILCglYX2ZpbHRlcnNCDgoMWF9wYWdpbm'
+    'F0aW9u');
 
 @$core.Deprecated('Use videoModeListResponseDescriptor instead')
 const VideoModeListResponse$json = {
   '1': 'VideoModeListResponse',
   '2': [
     {'1': 'results', '3': 1, '4': 3, '5': 11, '6': '.base_app.products_controller.VideoModeResponse', '10': 'results'},
+    {'1': 'count', '3': 2, '4': 1, '5': 5, '10': 'count'},
   ],
 };
 
 /// Descriptor for `VideoModeListResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List videoModeListResponseDescriptor = $convert.base64Decode(
     'ChVWaWRlb01vZGVMaXN0UmVzcG9uc2USSQoHcmVzdWx0cxgBIAMoCzIvLmJhc2VfYXBwLnByb2'
-    'R1Y3RzX2NvbnRyb2xsZXIuVmlkZW9Nb2RlUmVzcG9uc2VSB3Jlc3VsdHM=');
+    'R1Y3RzX2NvbnRyb2xsZXIuVmlkZW9Nb2RlUmVzcG9uc2VSB3Jlc3VsdHMSFAoFY291bnQYAiAB'
+    'KAVSBWNvdW50');
 
 @$core.Deprecated('Use videoModePartialUpdateRequestDescriptor instead')
 const VideoModePartialUpdateRequest$json = {

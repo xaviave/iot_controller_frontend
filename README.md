@@ -44,6 +44,10 @@ Generate gPRC dart files:
 
     protoc -I=protos/ protos/backend.proto --dart_out=grpc:lib/protos --experimental_allow_proto3_optional
 
+When creating new gesture from python, we always recompile the proto file to match the dart language. 
+Dart protoc doesn't handle plugins / over sources like google one files.
+They are find [here](https://github.com/grpc/grpc-dart/tree/master/example/googleapis/lib/src/generated/google/protobuf) and need to be added to the right path following the `.pb.dart` import path.
+
 ## Assets
 
 The `assets` directory houses images, fonts, and any other files you want to
